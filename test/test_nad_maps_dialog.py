@@ -9,25 +9,25 @@
 """
 
 __author__ = 'dataplatform@waterketendelfland.nl'
-__date__ = '2024-12-05'
-__copyright__ = 'Copyright 2024, Netwerk Waterketen Delfland'
+__date__ = '2025-01-09'
+__copyright__ = 'Copyright 2025, Netwerk Waterketen Delfland'
 
 import unittest
 
 from qgis.PyQt.QtGui import QDialogButtonBox, QDialog
 
-from map_loader_dialog import WaterketenPluginDialog
+from nad_maps_dialog import NADMapsDialog
 
 from utilities import get_qgis_app
 QGIS_APP = get_qgis_app()
 
 
-class WaterketenPluginDialogTest(unittest.TestCase):
+class NADMapsDialogTest(unittest.TestCase):
     """Test dialog works."""
 
     def setUp(self):
         """Runs before each test."""
-        self.dialog = WaterketenPluginDialog(None)
+        self.dialog = NADMapsDialog(None)
 
     def tearDown(self):
         """Runs after each test."""
@@ -49,7 +49,7 @@ class WaterketenPluginDialogTest(unittest.TestCase):
         self.assertEqual(result, QDialog.Rejected)
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(WaterketenPluginDialogTest)
+    suite = unittest.makeSuite(NADMapsDialogTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

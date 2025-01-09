@@ -9,8 +9,8 @@
 """
 
 __author__ = 'dataplatform@waterketendelfland.nl'
-__date__ = '2024-12-05'
-__copyright__ = 'Copyright 2024, Netwerk Waterketen Delfland'
+__date__ = '2025-01-09'
+__copyright__ = 'Copyright 2025, Netwerk Waterketen Delfland'
 
 import unittest
 
@@ -18,7 +18,7 @@ from qgis.PyQt.QtGui import QIcon
 
 
 
-class WaterketenPluginDialogTest(unittest.TestCase):
+class NADMapsDialogTest(unittest.TestCase):
     """Test rerources work."""
 
     def setUp(self):
@@ -31,12 +31,12 @@ class WaterketenPluginDialogTest(unittest.TestCase):
 
     def test_icon_png(self):
         """Test we can click OK."""
-        path = ':/plugins/WaterketenPlugin/icon.png'
+        path = ':/plugins/NADMaps/icon.png'
         icon = QIcon(path)
         self.assertFalse(icon.isNull())
 
 if __name__ == "__main__":
-    suite = unittest.makeSuite(WaterketenPluginResourcesTest)
+    suite = unittest.makeSuite(NADMapsResourcesTest)
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
 

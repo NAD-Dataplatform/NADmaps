@@ -1,11 +1,11 @@
 #/***************************************************************************
-# WaterketenPlugin
+# NADMaps
 #
 # Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
 #							 -------------------
-#		begin				: 2024-12-05
+#		begin				: 2025-01-09
 #		git sha				: $Format:%H$
-#		copyright			: (C) 2024 by Netwerk Waterketen Delfland
+#		copyright			: (C) 2025 by Netwerk Waterketen Delfland
 #		email				: dataplatform@waterketendelfland.nl
 # ***************************************************************************/
 #
@@ -38,15 +38,15 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	map_loader.py map_loader_dialog.py
+	nad_maps.py nad_maps_dialog.py
 
-PLUGINNAME = map_loader
+PLUGINNAME = nad_maps
 
 PY_FILES = \
 	__init__.py \
-	map_loader.py map_loader_dialog.py
+	nad_maps.py nad_maps_dialog.py
 
-UI_FILES = map_loader_dialog_base.ui
+UI_FILES = nad_maps_dialog_base.ui
 
 EXTRAS = metadata.txt icon.png
 

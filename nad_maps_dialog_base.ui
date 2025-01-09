@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>WaterketenPluginDialogBase</class>
- <widget class="QDialog" name="WaterketenPluginDialogBase" >
+ <class>NADMapsDialogBase</class>
+ <widget class="QDialog" name="NADMapsDialogBase" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>NAD Kaarten Plugin</string>
+   <string>NAD Waterketen Kaarten</string>
   </property>
   <widget class="QDialogButtonBox" name="button_box" >
    <property name="geometry" >
@@ -34,7 +34,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>WaterketenPluginDialogBase</receiver>
+   <receiver>NADMapsDialogBase</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="source_label" >
@@ -50,7 +50,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>WaterketenPluginDialogBase</receiver>
+   <receiver>NADMapsDialogBase</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="source_label" >
