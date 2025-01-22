@@ -1,0 +1,111 @@
+[
+    {
+        "name": "BeheerLeiding",
+        "title": "Leiding",
+        "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
+        "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
+        "styles": [
+            {
+                "title": "GWSW Beheerleiding",
+                "name": "GWSW_Leiding"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "minscale": "",
+        "maxscale": "25000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Stedelijk Water (ook Riolering) WMS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wms",
+        "service_md_id": "3e2fb829-3c81-45b5-a65c-95ecc2d891d4"
+    },
+    {
+        "name": "BeheerPut",
+        "title": "Put",
+        "abstract": "Putten met kenmerken gericht op beheeractiviteiten",
+        "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
+        "styles": [
+            {
+                "title": "GWSW Beheerput",
+                "name": "GWSW_Put"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "minscale": "",
+        "maxscale": "5000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Stedelijk Water (ook Riolering) WMS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wms",
+        "service_md_id": "3e2fb829-3c81-45b5-a65c-95ecc2d891d4"
+    },
+    {
+        "name": "beheerstedelijkwater:BeheerPut",
+        "title": "Put",
+        "abstract": "Putten met kenmerken gericht op beheeractiviteiten",
+        "styling": "gwsw_put",
+        "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs",
+        "service_md_id": "3a28ce6f-1c66-4bc2-9d4d-33324a044759"
+    },
+    {
+        "name": "beheerstedelijkwater:BeheerLeiding",
+        "title": "Leiding",
+        "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
+        "styling": "gwsw_leiding",
+        "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs",
+        "service_md_id": "3a28ce6f-1c66-4bc2-9d4d-33324a044759"
+    },
+    {
+        "name": "bag:pand",
+        "title": "pand",
+        "abstract": "pand",
+        "styling": "",
+        "dataset_md_id": "aa3b5e6e-7baa-40c0-8972-3353e927ec2f",
+        "service_url": "https://service.pdok.nl/lv/bag/wfs/v2_0?request=GetCapabilities&service=WFS",
+        "service_title": "BAG WFS",
+        "service_abstract": "Deze service wordt dagelijks geactualiseerd. De gegevens bestaan uit BAG-panden, een deelselectie van BAG-gegevens van deze panden en de verblijfsobjecten die zich hierin bevinden. De ligplaatsen en standplaatsen zijn hierin ook opgenomen met een deelselectie van BAG-gegevens. Nummeraanduidingen (en de bijhorende Nummeraanduidingidentificaties) worden in de WFS niet opgenomen als een losstaand object. De gegevens van de nummeraanduidingen zijn in deze services onderdeel van de adresseerbare objecten. Hierbij wordt alleen het hoofdadres opgenomen. Objecten met meerdere adressen (hoofd- en nevenadressen) zijn dus niet compleet. Dit betekent dat niet alle BAG adressen zijn opgenomen. Als u behoefte heeft aan de volledige BAG gegevens adviseren wij u gebruik te maken van andere BAG producten. De BAG API Individuele bevragingen https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-api-individuele-bevragingen bevat alle BAG gegevens. Dit geldt ook voor de BAG viewer https://bagviewer.kadaster.nl/lvbag/bag-viewer/ en het BAG 2.0 Extract https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-2.0-extract. Als u wilt nagaan welk BAG product het beste aansluit bij uw behoefte, raadpleeg dan de beslisboom voor BAG 2.0 producten: https://www.kadaster.nl/-/beslisboom-bag-2.0-producten",
+        "service_type": "wfs",
+        "service_md_id": "1c0dcc64-91aa-4d44-a9e3-54355556f5e7"
+    },
+    {
+        "name": "bag:woonplaats",
+        "title": "woonplaats",
+        "abstract": "woonplaats",
+        "styling": "",
+        "dataset_md_id": "aa3b5e6e-7baa-40c0-8972-3353e927ec2f",
+        "service_url": "https://service.pdok.nl/lv/bag/wfs/v2_0?request=GetCapabilities&service=WFS",
+        "service_title": "BAG WFS",
+        "service_abstract": "Deze service wordt dagelijks geactualiseerd. De gegevens bestaan uit BAG-panden, een deelselectie van BAG-gegevens van deze panden en de verblijfsobjecten die zich hierin bevinden. De ligplaatsen en standplaatsen zijn hierin ook opgenomen met een deelselectie van BAG-gegevens. Nummeraanduidingen (en de bijhorende Nummeraanduidingidentificaties) worden in de WFS niet opgenomen als een losstaand object. De gegevens van de nummeraanduidingen zijn in deze services onderdeel van de adresseerbare objecten. Hierbij wordt alleen het hoofdadres opgenomen. Objecten met meerdere adressen (hoofd- en nevenadressen) zijn dus niet compleet. Dit betekent dat niet alle BAG adressen zijn opgenomen. Als u behoefte heeft aan de volledige BAG gegevens adviseren wij u gebruik te maken van andere BAG producten. De BAG API Individuele bevragingen https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-api-individuele-bevragingen bevat alle BAG gegevens. Dit geldt ook voor de BAG viewer https://bagviewer.kadaster.nl/lvbag/bag-viewer/ en het BAG 2.0 Extract https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-2.0-extract. Als u wilt nagaan welk BAG product het beste aansluit bij uw behoefte, raadpleeg dan de beslisboom voor BAG 2.0 producten: https://www.kadaster.nl/-/beslisboom-bag-2.0-producten",
+        "service_type": "wfs",
+        "service_md_id": "1c0dcc64-91aa-4d44-a9e3-54355556f5e7"
+    },
+    {
+        "name": "pastel",
+        "title": "Achtergrondkaart",
+        "abstract": "pastel",
+        "dataset_md_id": "3373be8c-8539-4763-bc22-eba23ac1898f",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992,EPSG:25831,EPSG:3857",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+        "service_title": "BRT Achtergrondkaart WMTS",
+        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
+        "service_type": "wmts",
+        "service_md_id": "6d23a02b-5a8a-447e-a481-ddb2a085c1fa"
+    }
+]
