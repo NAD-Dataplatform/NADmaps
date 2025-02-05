@@ -1,7 +1,28 @@
 [
     {
+        "name": "HoofdrioolDenHaag",
+        "title": "Hoofdriool Den Haag",
+        "abstract": "Hoofdriool van de gemeente Den Haag",
+        "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "minscale": "",
+        "maxscale": "25000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://www.viewer-duopp.nl/cgi-bin/mapserv?map=/home/gisarts/apps/cook/duopp/map/authenticatie/denhaag_type.map",
+        "service_title": "Hoofdriool",
+        "service_abstract": "info",
+        "service_type": "wms",
+        "service_md_id": "3e2fb829-3c81-45b5-a65c-95ecc2d891d4"
+    },
+    {
         "name": "BeheerLeiding",
-        "title": "Leiding",
+        "title": "Riolering WMS: Leiding",
         "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
         "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
         "styles": [
@@ -22,7 +43,7 @@
     },
     {
         "name": "BeheerPut",
-        "title": "Put",
+        "title": "Riolering WMS: Put",
         "abstract": "Putten met kenmerken gericht op beheeractiviteiten",
         "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
         "styles": [
@@ -43,9 +64,8 @@
     },
     {
         "name": "beheerstedelijkwater:BeheerPut",
-        "title": "Put",
+        "title": "Riolering WFS: Put",
         "abstract": "Putten met kenmerken gericht op beheeractiviteiten",
-        "styling": "gwsw_put",
         "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
         "service_title": "Stedelijk Water (Riolering) WFS",
@@ -55,9 +75,8 @@
     },
     {
         "name": "beheerstedelijkwater:BeheerLeiding",
-        "title": "Leiding",
+        "title": "Riolering WFS: Leiding",
         "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
-        "styling": "gwsw_leiding",
         "dataset_md_id": "e30528cf-9964-4741-b0f3-5814c8b0ade4",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
         "service_title": "Stedelijk Water (Riolering) WFS",
@@ -68,8 +87,7 @@
     {
         "name": "bag:pand",
         "title": "pand",
-        "abstract": "pand",
-        "styling": "",
+        "abstract": "Panden uit de BAG",
         "dataset_md_id": "aa3b5e6e-7baa-40c0-8972-3353e927ec2f",
         "service_url": "https://service.pdok.nl/lv/bag/wfs/v2_0?request=GetCapabilities&service=WFS",
         "service_title": "BAG WFS",
@@ -78,16 +96,15 @@
         "service_md_id": "1c0dcc64-91aa-4d44-a9e3-54355556f5e7"
     },
     {
-        "name": "bag:woonplaats",
-        "title": "woonplaats",
-        "abstract": "woonplaats",
-        "styling": "",
-        "dataset_md_id": "aa3b5e6e-7baa-40c0-8972-3353e927ec2f",
-        "service_url": "https://service.pdok.nl/lv/bag/wfs/v2_0?request=GetCapabilities&service=WFS",
-        "service_title": "BAG WFS",
-        "service_abstract": "Deze service wordt dagelijks geactualiseerd. De gegevens bestaan uit BAG-panden, een deelselectie van BAG-gegevens van deze panden en de verblijfsobjecten die zich hierin bevinden. De ligplaatsen en standplaatsen zijn hierin ook opgenomen met een deelselectie van BAG-gegevens. Nummeraanduidingen (en de bijhorende Nummeraanduidingidentificaties) worden in de WFS niet opgenomen als een losstaand object. De gegevens van de nummeraanduidingen zijn in deze services onderdeel van de adresseerbare objecten. Hierbij wordt alleen het hoofdadres opgenomen. Objecten met meerdere adressen (hoofd- en nevenadressen) zijn dus niet compleet. Dit betekent dat niet alle BAG adressen zijn opgenomen. Als u behoefte heeft aan de volledige BAG gegevens adviseren wij u gebruik te maken van andere BAG producten. De BAG API Individuele bevragingen https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-api-individuele-bevragingen bevat alle BAG gegevens. Dit geldt ook voor de BAG viewer https://bagviewer.kadaster.nl/lvbag/bag-viewer/ en het BAG 2.0 Extract https://www.kadaster.nl/zakelijk/producten/adressen-en-gebouwen/bag-2.0-extract. Als u wilt nagaan welk BAG product het beste aansluit bij uw behoefte, raadpleeg dan de beslisboom voor BAG 2.0 producten: https://www.kadaster.nl/-/beslisboom-bag-2.0-producten",
+        "name": "bestuurlijkegebieden:Gemeentegebied",
+        "title": "Gemeenten",
+        "abstract": "Bestuurlijke Gebieden bestaan uit de gemeente-, provincie- en landgebieden. Deze worden sinds 2012 vervaardigd op basis van de kadastrale registratie (BRK).",
+        "dataset_md_id": "208bc283-7c66-4ce7-8ad3-1cf3e8933fb5",
+        "service_url": "https://service.pdok.nl/kadaster/bestuurlijkegebieden/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "service_title": "Bestuurlijke Gebieden",
+        "service_abstract": "Overzicht van de bestuurlijke indeling van Nederland in gemeenten en provincies alsmede de rijksgrens. Gegevens zijn afgeleid uit de  Basisregistratie Kadaster (BRK).",
         "service_type": "wfs",
-        "service_md_id": "1c0dcc64-91aa-4d44-a9e3-54355556f5e7"
+        "service_md_id": "76f69ed9-7af1-421a-86c0-30f820fbdec0"
     },
     {
         "name": "pastel",
@@ -100,12 +117,1202 @@
                 "name": "default"
             }
         ],
-        "tilematrixsets": "EPSG:28992,EPSG:25831,EPSG:3857",
+        "tilematrixsets": "EPSG:28992",
         "imgformats": "image/png",
         "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
         "service_title": "BRT Achtergrondkaart WMTS",
         "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
         "service_type": "wmts",
         "service_md_id": "6d23a02b-5a8a-447e-a481-ddb2a085c1fa"
+    },
+    {
+        "name": "Actueel_orthoHR",
+        "title": "Luchtfoto Actueel Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "dataset_md_id": "4e2bb25e-a5a9-43a7-986a-40e7aea32e38",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.",
+        "service_type": "wmts",
+        "service_md_id": "c82a783a-9a58-4761-a809-b4c5d90dcd35"
+    },
+    {
+        "name": "osm",
+        "title": "OpenBasisKaart - OSM - EPSG:28992",
+        "abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "dataset_md_id": "https://openbasiskaart.nl",
+        "service_md_id": "https://openbasiskaart.nl",
+        "styles": [ { "title": "", "name": "default" } ],
+        "tilematrixsets": "rd",
+        "crs": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://www.openbasiskaart.nl/mapcache/wmts/?SERVICE=WMTS&REQUEST=GETCAPABILITIES",
+        "service_title": "OpenBasisKaart.nl",
+        "service_abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "koudeopenwkobuurt",
+        "title": "Potentieel koude open WKO buurt",
+        "abstract": "Potentieel aan koude bodemopslag capaciteit dat via open WKO systemen beschikbaar is per hectare grond. De potentielen zijn in GJ/(ha.jaar) per buurt weergegeven.",
+        "dataset_md_id": "1568ebe9-d1dc-4642-baa7-7cdcb60d1145",
+        "styles": [
+            {
+                "title": "Potentieel koude open WKO buurt",
+                "name": "omgevingswarmte:os_koud"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rvo/omgevingswarmte/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Potentiekaart Omgevingswarmte WMS",
+        "service_abstract": "De WarmteAtlas Nederland is een digitale, geografische kaart waarop warmteaanbod en -vraag in ons land zijn aangegeven. Aan de aanbodkant gaat het om (potentieel) geschikte locaties van warmte- en koude opslag (WKO), diepe geothermie, biomassa en restwarmte. Deze lagen tonen de potentie voor WKO systemen per buurt en per gemeente.",
+        "service_type": "wms",
+        "service_md_id": "448f360f-f683-4e52-a004-650a005ef5f4"
+    },
+    {
+        "name": "koudegeslotenwkobuurt",
+        "title": "Potentieel koude gesloten WKO buurt",
+        "abstract": "Potentieel aan koude bodemopslag capaciteit dat via gesloten WKO systemen beschikbaar is per hectare grond. De potentielen zijn in GJ/(ha.jaar) per buurt weergegeven.",
+        "dataset_md_id": "1568ebe9-d1dc-4642-baa7-7cdcb60d1145",
+        "styles": [
+            {
+                "title": "Potentieel koude gesloten WKO buurt",
+                "name": "omgevingswarmte:gs_koud"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rvo/omgevingswarmte/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Potentiekaart Omgevingswarmte WMS",
+        "service_abstract": "De WarmteAtlas Nederland is een digitale, geografische kaart waarop warmteaanbod en -vraag in ons land zijn aangegeven. Aan de aanbodkant gaat het om (potentieel) geschikte locaties van warmte- en koude opslag (WKO), diepe geothermie, biomassa en restwarmte. Deze lagen tonen de potentie voor WKO systemen per buurt en per gemeente.",
+        "service_type": "wms",
+        "service_md_id": "448f360f-f683-4e52-a004-650a005ef5f4"
+    },
+    {
+        "name": "warmteopenwkobuurt",
+        "title": "Potentieel warmte open WKO buurt",
+        "abstract": "Potentieel aan koude bodemopslag capaciteit dat via open WKO systemen beschikbaar is per hectare grond. De potentielen zijn in GJ/(ha.jaar) per gemeente weergegeven.",
+        "dataset_md_id": "1568ebe9-d1dc-4642-baa7-7cdcb60d1145",
+        "styles": [
+            {
+                "title": "Potentieel warmte open WKO buurt",
+                "name": "omgevingswarmte:os_warm"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rvo/omgevingswarmte/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Potentiekaart Omgevingswarmte WMS",
+        "service_abstract": "De WarmteAtlas Nederland is een digitale, geografische kaart waarop warmteaanbod en -vraag in ons land zijn aangegeven. Aan de aanbodkant gaat het om (potentieel) geschikte locaties van warmte- en koude opslag (WKO), diepe geothermie, biomassa en restwarmte. Deze lagen tonen de potentie voor WKO systemen per buurt en per gemeente.",
+        "service_type": "wms",
+        "service_md_id": "448f360f-f683-4e52-a004-650a005ef5f4"
+    },
+    {
+        "name": "warmtegeslotenwkobuurt",
+        "title": "Potentieel warmte gesloten WKO buurt",
+        "abstract": "Potentieel aan koude bodemopslag capaciteit dat via open WKO systemen beschikbaar is per hectare grond. De potentielen zijn in GJ/(ha.jaar) per buurt weergegeven.",
+        "dataset_md_id": "1568ebe9-d1dc-4642-baa7-7cdcb60d1145",
+        "styles": [
+            {
+                "title": "Potentieel warmte gesloten WKO buurt",
+                "name": "omgevingswarmte:gs_warm"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rvo/omgevingswarmte/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Potentiekaart Omgevingswarmte WMS",
+        "service_abstract": "De WarmteAtlas Nederland is een digitale, geografische kaart waarop warmteaanbod en -vraag in ons land zijn aangegeven. Aan de aanbodkant gaat het om (potentieel) geschikte locaties van warmte- en koude opslag (WKO), diepe geothermie, biomassa en restwarmte. Deze lagen tonen de potentie voor WKO systemen per buurt en per gemeente.",
+        "service_type": "wms",
+        "service_md_id": "448f360f-f683-4e52-a004-650a005ef5f4"
+    },
+    {
+        "name": "dsm_05m",
+        "title": "Digital Surface Model (DSM) 0.5m",
+        "abstract": "Het AHN DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als \"water\" tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Er zijn geen verdere bewerkingen uitgevoerd.",
+        "dataset_md_id": "41daef8b-155e-4608-b49c-c87ea45d931c",
+        "service_url": "https://service.pdok.nl/rws/ahn/wcs/v1_0?request=GetCapabilities&service=WCS",
+        "service_title": "Actueel Hoogtebestand Nederland (AHN) WCS",
+        "service_abstract": "Web Coverage Service (WCS) van het Actueel Hoogtebestand Nederland (AHN). Het AHN is de digitale hoogtekaart voor heel Nederland. Het bevat gedetailleerde en precieze hoogtegegevens met minimaal 10 hoogtemetingen per vierkante meter. AHN is een samenwerking van de provincies, Rijksoverheid en de waterschappen. De hoogte wordt gemeten met laseraltimetrie: een techniek waarbij een vliegtuig met een laserstraal het aardoppervlak aftast. Het huidige AHN is versie 4. Deze versie is ingewonnen over de jaren 2020, 2021 en 2022. Voor meer informatie over het AHN zie https://ahn.nl. In deze WCS zijn de AHN rasterbestanden met een resolutie van 0,5 meter opgenomen. Hierin is een onderscheid tussen het DTM en het DSM gemaakt. Het DTM is bedoeld als maaiveldbestand, waarbij alle punten geclassificeerd als 'maaiveld' tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Het DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als 'water' tot een raster zijn herbemonsterd op basis van een Squared IDW methode.",
+        "service_type": "wcs",
+        "service_md_id": "bfcc588f-9393-4c70-b989-d9e92ac2f493"
+    },
+    {
+        "name": "dtm_05m",
+        "title": "Digital Terrain Model (DTM) 0.5m",
+        "abstract": "Het AHN DTM is bedoeld als maaiveldbestand, waarbij alle punten geclassificeerd als \"maaiveld\" tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Punten geclassificeerd in een andere klasse (niet-maaiveld objecten als bomen, gebouwen, bruggen, water en andere objecten) zijn niet gebruikt in de herbemonstering. Er zijn geen verdere bewerkingen uitgevoerd.",
+        "dataset_md_id": "41daef8b-155e-4608-b49c-c87ea45d931c",
+        "service_url": "https://service.pdok.nl/rws/ahn/wcs/v1_0?request=GetCapabilities&service=WCS",
+        "service_title": "Actueel Hoogtebestand Nederland (AHN) WCS",
+        "service_abstract": "Web Coverage Service (WCS) van het Actueel Hoogtebestand Nederland (AHN). Het AHN is de digitale hoogtekaart voor heel Nederland. Het bevat gedetailleerde en precieze hoogtegegevens met minimaal 10 hoogtemetingen per vierkante meter. AHN is een samenwerking van de provincies, Rijksoverheid en de waterschappen. De hoogte wordt gemeten met laseraltimetrie: een techniek waarbij een vliegtuig met een laserstraal het aardoppervlak aftast. Het huidige AHN is versie 4. Deze versie is ingewonnen over de jaren 2020, 2021 en 2022. Voor meer informatie over het AHN zie https://ahn.nl. In deze WCS zijn de AHN rasterbestanden met een resolutie van 0,5 meter opgenomen. Hierin is een onderscheid tussen het DTM en het DSM gemaakt. Het DTM is bedoeld als maaiveldbestand, waarbij alle punten geclassificeerd als 'maaiveld' tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Het DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als 'water' tot een raster zijn herbemonsterd op basis van een Squared IDW methode.",
+        "service_type": "wcs",
+        "service_md_id": "bfcc588f-9393-4c70-b989-d9e92ac2f493"
+    },
+    {
+        "name": "dtm_05m",
+        "title": "Digital Terrain Model (DTM) 0,5m",
+        "abstract": "Het AHN DTM is bedoeld als maaiveldbestand, waarbij alle punten geclassificeerd als &#x27;maaiveld&#x27; tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Punten geclassificeerd in een andere klasse (niet-maaiveld objecten als bomen, gebouwen, bruggen, water en andere objecten) zijn niet gebruikt in de herbemonstering. Er zijn geen verdere bewerkingen uitgevoerd.",
+        "dataset_md_id": "41daef8b-155e-4608-b49c-c87ea45d931c",
+        "styles": [
+            {
+                "title": "default",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rws/ahn/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Actueel Hoogtebestand Nederland (AHN) WMS",
+        "service_abstract": "Web Map Service (WMS) van het Actueel Hoogtebestand Nederland (AHN). Het AHN is de digitale hoogtekaart voor heel Nederland. Het bevat gedetailleerde en precieze hoogtegegevens met minimaal tien hoogtemetingen per vierkante meter. AHN is een samenwerking van de provincies, Rijksoverheid en de waterschappen. De hoogte wordt gemeten met laseraltimetrie: een techniek waarbij een vliegtuig met een laserstraal het aardoppervlak aftast. Het huidige AHN is versie 4. Deze versie is ingewonnen over de jaren 2020, 2021 en 2022. Voor meer informatie over het AHN zie https://ahn.nl. In deze service vind je AHN rasterbestanden met een resolutie van 0,5 meter.",
+        "service_type": "wms",
+        "service_md_id": "94e5b115-bece-4140-99ed-93b8f363948e"
+    },
+    {
+        "name": "dsm_05m",
+        "title": "Digital Surface Model (DSM) 0,5m",
+        "abstract": "Het AHN DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als &#x27;water&#x27; tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Er zijn geen verdere bewerkingen uitgevoerd.",
+        "dataset_md_id": "41daef8b-155e-4608-b49c-c87ea45d931g",
+        "styles": [
+            {
+                "title": "default",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/rws/ahn/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Actueel Hoogtebestand Nederland (AHN) WMS",
+        "service_abstract": "Web Map Service (WMS) van het Actueel Hoogtebestand Nederland (AHN). Het AHN is de digitale hoogtekaart voor heel Nederland. Het bevat gedetailleerde en precieze hoogtegegevens met minimaal tien hoogtemetingen per vierkante meter. AHN is een samenwerking van de provincies, Rijksoverheid en de waterschappen. De hoogte wordt gemeten met laseraltimetrie: een techniek waarbij een vliegtuig met een laserstraal het aardoppervlak aftast. Het huidige AHN is versie 4. Deze versie is ingewonnen over de jaren 2020, 2021 en 2022. Voor meer informatie over het AHN zie https://ahn.nl. In deze service vind je AHN rasterbestanden met een resolutie van 0,5 meter.",
+        "service_type": "wms",
+        "service_md_id": "94e5b115-bece-4140-99ed-93b8f363948e"
+    },    
+    {
+        "name": "waterstaatswerkoppervlaktewaterlichaam",
+        "title": "WaterstaatswerkOppervlaktewaterlichaam",
+        "abstract": "Samenhangend geheel van vrij aan het aardoppervlak voorkomend water, met de daarin aanwezige stoffen, alsmede de bijbehorende bodem, oevers en, voor zover uitdrukkelijk aangewezen krachtens deze wet, drogere oevergebieden, alsmede flora en fauna.",
+        "dataset_md_id": "69c17937-d947-42c1-ae87-9f76c5381f4c",
+        "styles": [
+            {
+                "title": "oppervlaktewaterlichaam",
+                "name": "oppervlaktewaterlichaam"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/zoneringenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterstaatskundige zoneringen waterstaatswerk IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: beschermingszone, waterstaatswerkOppervlaktewaterlichaam, waterbergingsgebied, waterstaatswerkWaterkering, Profiel van Vrije Ruimte",
+        "service_type": "wms",
+        "service_md_id": "46c7d3f5-632b-43e1-a786-7bb3fd0cdda4"
+    },
+    {
+        "name": "waterbergingsgebied",
+        "title": "Waterbergingsgebied",
+        "abstract": "Een krachtens de Wet ruimtelijke ordening voor waterstaatkundige doeleinden bestemd gebied, niet zijnde een oppervlaktewaterlichaam of onderdeel daarvan, dat dient ter verruiming van de bergingscapaciteit van een of meer watersystemen en ook als bergingsgebied op de legger is opgenomen.",
+        "dataset_md_id": "69c17937-d947-42c1-ae87-9f76c5381f4c",
+        "styles": [
+            {
+                "title": "waterbergingsgebied",
+                "name": "waterbergingsgebied"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/zoneringenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterstaatskundige zoneringen waterstaatswerk IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: beschermingszone, waterstaatswerkOppervlaktewaterlichaam, waterbergingsgebied, waterstaatswerkWaterkering, Profiel van Vrije Ruimte",
+        "service_type": "wms",
+        "service_md_id": "46c7d3f5-632b-43e1-a786-7bb3fd0cdda4"
+    },
+    {
+        "name": "beschermingszone",
+        "title": "Beschermingszone",
+        "abstract": "Aan een waterstaatswerk grenzende zone, waarin ter bescherming van dat werk voorschriften en beperkingen kunnen gelden.",
+        "dataset_md_id": "69c17937-d947-42c1-ae87-9f76c5381f4c",
+        "styles": [
+            {
+                "title": "beschermingszone",
+                "name": "beschermingszone"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/zoneringenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterstaatskundige zoneringen waterstaatswerk IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: beschermingszone, waterstaatswerkOppervlaktewaterlichaam, waterbergingsgebied, waterstaatswerkWaterkering, Profiel van Vrije Ruimte",
+        "service_type": "wms",
+        "service_md_id": "46c7d3f5-632b-43e1-a786-7bb3fd0cdda4"
+    },
+    {
+        "name": "profielvoorvrijeruimte",
+        "title": "ProfielVoorVrijeRuimte",
+        "abstract": "Het gebied dat nodig is om toekomstige verbeteringen aan de waterkering te kunnen realiseren.",
+        "dataset_md_id": "69c17937-d947-42c1-ae87-9f76c5381f4c",
+        "styles": [
+            {
+                "title": "profielvoorvrijeruimte",
+                "name": "profielvoorvrijeruimte"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/zoneringenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterstaatskundige zoneringen waterstaatswerk IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: beschermingszone, waterstaatswerkOppervlaktewaterlichaam, waterbergingsgebied, waterstaatswerkWaterkering, Profiel van Vrije Ruimte",
+        "service_type": "wms",
+        "service_md_id": "46c7d3f5-632b-43e1-a786-7bb3fd0cdda4"
+    },
+    {
+        "name": "waterstaatswerkwaterkering",
+        "title": "WaterstaatswerkWaterkering",
+        "abstract": "Kunstmatige hoogte, natuurlijke hoogte of gedeelte daarvan, of hoge gronden met ondersteunende kunstwerken, die een waterkerende of mede een waterkerende functie hebben.",
+        "dataset_md_id": "69c17937-d947-42c1-ae87-9f76c5381f4c",
+        "styles": [
+            {
+                "title": "waterstaatswerkwaterkering",
+                "name": "waterstaatswerkwaterkering"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/zoneringenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterstaatskundige zoneringen waterstaatswerk IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: beschermingszone, waterstaatswerkOppervlaktewaterlichaam, waterbergingsgebied, waterstaatswerkWaterkering, Profiel van Vrije Ruimte",
+        "service_type": "wms",
+        "service_md_id": "46c7d3f5-632b-43e1-a786-7bb3fd0cdda4"
+    },
+    {
+        "name": "stuw",
+        "title": "Stuw",
+        "abstract": "Vaste of beweegbare constructie in het water die dient om de waterhoogte bovenstrooms en/of benedenstrooms van de constructie te regelen.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Stuw",
+                "name": "stuw"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "voorde",
+        "title": "Voorde",
+        "abstract": "Een doorwaadbare, doorgaans verharde, plaats in de waterloop, die dient voor de oversteek van die waterloop.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Voorde",
+                "name": "voorde"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "drainagebuis",
+        "title": "DrainageBuis",
+        "abstract": "Ondergronds gelegen buis met doorlatende c.q. geperforeerde wand die dient voor de afvoer van grondwater.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Drainagebuis",
+                "name": "drainagebuis"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "5000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "vuilvang",
+        "title": "Vuilvang",
+        "abstract": "Een voorziening om de waterloop dan wel \u00e9\u00e9n of meerdere objecten benedenstrooms te vrijwaren van drijvend vuil en dergelijke.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Vuilvang",
+                "name": "vuilvang"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "bodemval",
+        "title": "Bodemval",
+        "abstract": "Sprong in de bodem van een waterloop.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Bodemval",
+                "name": "bodemval"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "duiker",
+        "title": "Duiker",
+        "abstract": "Een kokervormige constructie met als doel de wederzijdse verbinding tussen oppervlaktewater te waarborgen, waarbij in principe de bodem van de waterloop, in tegenstelling tot die van de brug, wordt onderbroken.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Duiker",
+                "name": "duiker"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "5000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "vispassage",
+        "title": "Vispassage",
+        "abstract": "Een kunstmatige passage ten behoeve van de vistrek bij kunstwerken in wateren.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Vispassage",
+                "name": "vispassage"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "gemaal",
+        "title": "Gemaal",
+        "abstract": "Een gemaal dient in principe om water van een laag peil naar een hoog peil te brengen, waarvan de noodzaak kan liggen in wateroverschot aan de lage kant (afvoer) of in waterbehoefte in het gebied aan de hoge kant (aanvoer).",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Gemaal",
+                "name": "gemaal"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "zandvang",
+        "title": "Zandvang",
+        "abstract": "Inrichting in een waterloop die dient om het door het water meegevoerde zand te laten bezinken.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Zandvang",
+                "name": "zandvang"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "afsluitmiddel",
+        "title": "Afsluitmiddel",
+        "abstract": "Een beweegbare constructie met als doel een waterkerende functie te kunnen vervullen.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Afsluitmiddel",
+                "name": "afsluitmiddel"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "aquaduct",
+        "title": "Aquaduct",
+        "abstract": "Een kunstwerk waarmee een waterloop in een open constructie over een weg of andere waterloop wordt gevoerd.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Aquaduct",
+                "name": "aquaduct"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "brug",
+        "title": "Brug",
+        "abstract": "Civielkundige constructie die doorgang verschaft voor voetgangers, dieren, voertuigen en diensten boven obstakels of tussen twee punten op een hoogte boven de grond.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Brug",
+                "name": "brug"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "sluis",
+        "title": "Sluis",
+        "abstract": "Een kunstmatige, beweegbare waterkering die de verbinding tussen twee wateren kan afsluiten of openstellen en daartoe van deuren of schuiven is voorzien.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Sluis",
+                "name": "sluis"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "put",
+        "title": "Put",
+        "abstract": "Verticale waterdichte constructie, toegepast om leidingen aan te sluiten, van richting of niveau te veranderen, om toegang te verschaffen aan personeel en/of apparatuur voor inspectie en onderhoud, en om beluchting en ventilatie mogelijk te maken.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Put",
+                "name": "put"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "drainageput",
+        "title": "DrainagePut",
+        "abstract": "Put voor het verzamelen van drainagewater.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Drainageput",
+                "name": "drainageput"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "hevel",
+        "title": "Hevel",
+        "abstract": "Een kokervormige constructie met een verhoogd middengedeelte dat twee wederzijds gelegen wateren met elkaar verbindt.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Hevel",
+                "name": "hevel"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "5000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "sifon",
+        "title": "Sifon",
+        "abstract": "Kokervormige constructie met een verlaagd middengedeelte dat geheel met water is gevuld en die twee waterlopen met elkaar verbindt.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Sifon",
+                "name": "sifon"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "5000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "vastedam",
+        "title": "VasteDam",
+        "abstract": "Dwars door een water gelegen afsluiting, bedoeld om water te keren of te beheersen.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Vastedam",
+                "name": "vastedam"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "coupure",
+        "title": "Coupure",
+        "abstract": "Een onderbreking in een waterkering voor de doorvoer van een weg of spoorweg, die bij extreme waterstanden afsluitbaar is.",
+        "dataset_md_id": "c2b698a7-563d-47ed-82d2-55249c82213a",
+        "styles": [
+            {
+                "title": "Coupure",
+                "name": "coupure"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Kunstwerken IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: afsluitmiddel, aquaduct, bodemval, brug, coupure, drainagebuis, drainageput, duiker, gemaal, hevel, put, sifon, sluis, stuw, vastedam, vispassage, voorde, vuilvang en zandvang.",
+        "service_type": "wms",
+        "service_md_id": "69cf7fe4-68ea-4c53-8ac0-477b59e4123a"
+    },
+    {
+        "name": "oever",
+        "title": "Oever",
+        "abstract": "Het gebied op de grens van water en land waar het dynamisch samenspel van land en water plaatsvindt.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "oever",
+                "name": "oever"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "waterdeel",
+        "title": "Waterdeel",
+        "abstract": "Kleinste functioneel stukje water met gelijkblijvende, homogene eigenschappen en relaties dat er binnen een water wordt onderscheiden.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "waterdeel",
+                "name": "waterdeel"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "25000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "krwoppervlaktewaterlichaamstromend",
+        "title": "KRWOppervlaktewaterlichaamStromend",
+        "abstract": "Een onderscheiden oppervlaktewater van aanzienlijke omvang, zoals een meer, een waterbekken, een stroom, een rivier, een kanaal, een deel van een stroom, rivier of kanaal, een overgangswater of een strook kustwater.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "KRWOppervlaktewaterlichaamStromend",
+                "name": "krwoppervlaktewaterlichaamstromend"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "profielverdediging",
+        "title": "Profielverdediging",
+        "abstract": "Een kunstmatige verdediging van talud en/of bodem van een water.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "profielverdediging",
+                "name": "profielverdediging"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "krwoppervlaktewaterlichaamstilstaand",
+        "title": "KRWOppervlaktewaterlichaamStilstaand",
+        "abstract": "Een onderscheiden oppervlaktewater van aanzienlijke omvang, zoals een meer, een waterbekken, een stroom, een rivier, een kanaal, een deel van een stroom, rivier of kanaal, een overgangswater of een strook kustwater.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "Krwoppervlaktewaterlichaamstilstaand",
+                "name": "krwoppervlaktewaterlichaamstilstaand"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "oppervlaktewaterlichaam",
+        "title": "Oppervlaktewaterlichaam",
+        "abstract": "Een onderscheiden oppervlaktewater van aanzienlijke omvang, zoals een meer, een waterbekken, een stroom, een rivier, een kanaal, een deel van een stroom, rivier of kanaal, een overgangswater of een strook kustwater.",
+        "dataset_md_id": "8b24bde5-ecc5-4523-93b9-cd17f9288bbf",
+        "styles": [
+            {
+                "title": "oppervlaktewaterlichaam",
+                "name": "oppervlaktewaterlichaam"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "25000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Oppervlaktewateren IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: Oppervlaktewaterlichaam, KRWOppervlaktewaterlichaamStilstaand, KRWOppervlaktewaterlichaamStromend, Oever, Profielverdediging en Waterdeel.",
+        "service_type": "wms",
+        "service_md_id": "f06984ba-5e3c-4fa6-9078-a69617122d67"
+    },
+    {
+        "name": "vaarweg",
+        "title": "Vaarweg",
+        "abstract": "Een aaneengesloten stuk oppervlaktewater, dat als vaarweg in de Wegwijzer voor de binnenscheepvaart is gedefinieerd.",
+        "dataset_md_id": "ffd6dd97-9764-4d57-8a94-6ac6f695eae2",
+        "styles": [
+            {
+                "title": "vaarweg",
+                "name": "vaarweg"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterbeheergebieden IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: AfvoergebiedAanvoergebied, Peilafwijkinggebied, Peilbesluitgebied, Peilgebied",
+        "service_type": "wms",
+        "service_md_id": "5243bd74-591f-4fb3-9b70-90d4827b189b"
+    },
+    {
+        "name": "peilafwijkinggebied",
+        "title": "Peilafwijkinggebied",
+        "abstract": "Een ontheffing die van toepassing is voor een afgebakend gedeelte van een oppervlaktewater waarvoor een van het vigerende peilbesluit afwijkende waterstand wordt nagestreefd.",
+        "dataset_md_id": "ffd6dd97-9764-4d57-8a94-6ac6f695eae2",
+        "styles": [
+            {
+                "title": "Peilafwijkinggebied",
+                "name": "peilafwijkingGebied"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterbeheergebieden IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: AfvoergebiedAanvoergebied, Peilafwijkinggebied, Peilbesluitgebied, Peilgebied",
+        "service_type": "wms",
+        "service_md_id": "5243bd74-591f-4fb3-9b70-90d4827b189b"
+    },
+    {
+        "name": "afvoergebiedaanvoergebied",
+        "title": "AfvoergebiedAanvoergebied",
+        "abstract": "Een gebied begrensd door (stroom)scheidingen, waaruit beschouwd vanuit het afvoerpunt het water van dat gebied afstroomt of via bemaling getransporteerd wordt naar het desbetreffende afvoerpunt.",
+        "dataset_md_id": "ffd6dd97-9764-4d57-8a94-6ac6f695eae2",
+        "styles": [
+            {
+                "title": "afvoergebiedaanvoergebied",
+                "name": "afvoergebiedaanvoergebied"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterbeheergebieden IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: AfvoergebiedAanvoergebied, Peilafwijkinggebied, Peilbesluitgebied, Peilgebied",
+        "service_type": "wms",
+        "service_md_id": "5243bd74-591f-4fb3-9b70-90d4827b189b"
+    },
+    {
+        "name": "peilbesluitgebied",
+        "title": "Peilbesluitgebied",
+        "abstract": "Bestuurlijk besluit met betrekking tot de te handhaven waterhoogte in waterlopen. Toelichting: Het gebied waarop het besluit (peilbesluit/parti\u00eble herziening) van toepassing is.",
+        "dataset_md_id": "ffd6dd97-9764-4d57-8a94-6ac6f695eae2",
+        "styles": [
+            {
+                "title": "peilbesluitGebied",
+                "name": "peilbesluitGebied"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterbeheergebieden IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: AfvoergebiedAanvoergebied, Peilafwijkinggebied, Peilbesluitgebied, Peilgebied",
+        "service_type": "wms",
+        "service_md_id": "5243bd74-591f-4fb3-9b70-90d4827b189b"
+    },
+    {
+        "name": "peilgebied",
+        "title": "Peilgebied",
+        "abstract": "Een cluster van afwateringsgebieden waarin \u00e9\u00e9n en hetzelfde peil wordt nagestreefd.",
+        "dataset_md_id": "ffd6dd97-9764-4d57-8a94-6ac6f695eae2",
+        "styles": [
+            {
+                "title": "peilgebied",
+                "name": "peilgebied"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Waterbeheergebieden IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten: AfvoergebiedAanvoergebied, Peilafwijkinggebied, Peilbesluitgebied, Peilgebied",
+        "service_type": "wms",
+        "service_md_id": "5243bd74-591f-4fb3-9b70-90d4827b189b"
+    },
+    {
+        "name": "kenmerkendeprofiellijn",
+        "title": "Kenmerkende profiellijn",
+        "abstract": "Lijnvormige elementen waarmee bepaalde kniklijnen van het dijklichaam worden vastgelegd.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Kenmerkendeprofiellijn",
+                "name": "kenmerkendeprofiellijn"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "100000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "toplaag",
+        "title": "Toplaag",
+        "abstract": "Buitenste verdedigingslaag van een talud, bestaande uit in verband geplaatste elementen. Voorbeelden; asfalt, betonbekleding, gras, steenzetting.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Toplaag",
+                "name": "toplaag"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "basismateriaal",
+        "title": "Basismateriaal",
+        "abstract": "Bovenste laag van het grondlichaam onder de bekledingsconstructie.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Basismateriaal",
+                "name": "basismateriaal"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "referentiepunt",
+        "title": "Referentiepunt",
+        "abstract": "Punt dat gebruikt wordt als referentie aanduiding. Voorbeelden; punt op de kaart van oud stelsel, dijkpalen, raaipalen.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Referentiepunt",
+                "name": "referentiepunt"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "uitvullaag",
+        "title": "Uitvullaag",
+        "abstract": "Vlijlaag: Een tussenlaag in de bekledingsconstructie  met filterfunctie, bestaande uit \u00e9\u00e9n of meer lagen plat gelegde bakstenen die in verband zijn geplaatst.Uitvullaag: Een dun laagje granulair materiaal, bedoeld om oneffenheden van het oppervlak van de laag eronder op te vullen, zodat een vlak oppervlak voor het plaatsen van de toplaagelementen wordt verkregen.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Uitvullaag",
+                "name": "uitvullaag"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "filtervlijlaag",
+        "title": "FilterVlijlaag",
+        "abstract": "Een tussenlaag in de taludbekleding die uitspoeling van fijnkorrelig materiaal uit de ondergrond door de bovenliggende laag van de bekleding voorkomt.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Filtervlijlaag",
+                "name": "filtervlijlaag"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "flexibelewaterkering",
+        "title": "Flexibele Waterkering",
+        "abstract": "Constructie met een waterkerende functie die bij extreme waterstanden zorgt voor de kerende hoogte.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Flexibelewaterkering",
+                "name": "flexibelewaterkering"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "wandconstructie",
+        "title": "Wandconstructie",
+        "abstract": "Een zelfstandige constructie die verticaal geplaatst is met als doel water of grond te keren.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Wandconstructie",
+                "name": "wandconstructie"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "geotextiel",
+        "title": "Geotextiel",
+        "abstract": "Een vlak doorlatend weefsel of vlies, in contact met grond en/of andere materialen toegepast in geotechnische en civieltechnische constructies.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Geotextiel",
+                "name": "geotextiel"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "waterkeringsectie",
+        "title": "Waterkeringsectie",
+        "abstract": "Deel van een waterkering met min of meer gelijke eigenschappen.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Waterkeringsectie",
+                "name": "waterkeringsectie"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "waterkering",
+        "title": "Waterkering",
+        "abstract": "Een waterkerende en/of scheidende, kunstmatige of natuurlijke hoogte of hooggelegen gronden inclusief de daarin aanwezige waterkerende elementen. Voorbeelden; dijken, dammen, duinen, kunstwerken en hoge duinen.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Waterkering",
+                "name": "waterkering"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "bodemlaag",
+        "title": "Bodemlaag",
+        "abstract": "Een laag in de bodem of de ondergrond met volgens de modelleringsregels van het aan het gebied ten grondslag liggende bodem en ondergrondmodel gelijke bodemkundige en/of aardkundige kenmerken.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Bodemlaag",
+                "name": "bodemlaag"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
+    },
+    {
+        "name": "kistdam",
+        "title": "Kistdam",
+        "abstract": "Een kistdam is een grond- en/of waterkerende constructie bestaande uit twee gekoppelde damwanden, waartussen zich grond of een andere vulmassa (meestal granulair materiaal) bevindt.",
+        "dataset_md_id": "efe36c79-4106-47bc-8501-35c16ed5b8c2",
+        "styles": [
+            {
+                "title": "Kistdam",
+                "name": "kistdam"
+            }
+        ],
+        "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84",
+        "minscale": "",
+        "maxscale": "50000",
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "Waterschappen Keringen IMWA WMS",
+        "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
+        "service_type": "wms",
+        "service_md_id": "e55d0ae4-fd31-440f-8faa-9e28dcc7a5a5"
     }
 ]

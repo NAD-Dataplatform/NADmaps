@@ -1,0 +1,140 @@
+[
+	{
+		"thema_name": "Riolering WMS",
+		"layers": [
+			"Riolering WMS: Leiding",
+			"Riolering WMS: Put"
+		]
+	},
+	{
+		"thema_name": "Riolering WFS",
+		"layers": [
+			"Riolering WFS: Put",
+			"Riolering WFS: Leiding"
+		]
+	},
+	{
+		"thema_name": "Achtergrond",
+		"layers": [
+			"Achtergrondkaart",
+			"Luchtfoto Actueel Ortho 8cm RGB",
+			"OpenBasisKaart - OSM - EPSG:28992"
+		]
+	},
+	{
+		"thema_name": "pand_test",
+		"layers": [
+			"pand"
+		]
+	},
+	{
+		"thema_name": "test2",
+		"layers": [
+			"pand"
+		]
+	},
+	{
+		"thema_name": "test_arie",
+		"layers": [
+			"Riolering WMS: Put",
+			"Riolering WFS: Put"
+		]
+	},
+	{
+		"thema_name": "Arie is cool",
+		"layers": [
+			"Achtergrondkaart",
+			"pand",
+			"Riolering WFS: Leiding"
+		]
+	},
+	{
+		"thema_name": "Waterstaatswerken",
+		"layers": [
+			"WaterstaatswerkOppervlaktewaterlichaam",
+			"Waterbergingsgebied",
+			"Beschermingszone",
+			"ProfielVoorVrijeRuimte",
+			"WaterstaatswerkWaterkering"
+		]
+	},
+	{
+		"thema_name": "Kunstwerken",
+		"layers": [
+			"Stuw",
+			"Voorde",
+			"DrainageBuis",
+			"Vuilvang",
+			"Bodemval",
+			"Duiker",
+			"Vispassage",
+			"Gemaal",
+			"Zandvang",
+			"Afsluitmiddel",
+			"Aquaduct",
+			"Brug",
+			"Sluis",
+			"Put",
+			"DrainagePut",
+			"Hevel",
+			"Sifon",
+			"VasteDam",
+			"Coupure"
+		]
+	},
+	{
+		"thema_name": "Oppervlaktewateren",
+		"layers": [
+			"Oever",
+			"Waterdeel",
+			"KRWOppervlaktewaterlichaamStromend",
+			"Profielverdediging",
+			"KRWOppervlaktewaterlichaamStilstaand",
+			"Oppervlaktewaterlichaam"
+		]
+	},
+	{
+		"thema_name": "Waterbeheergebieden",
+		"layers": [
+			"Vaarweg",
+			"Peilafwijkinggebied",
+			"AfvoergebiedAanvoergebied",
+			"Peilbesluitgebied",
+			"Peilgebied"
+		]
+	},
+	{
+		"thema_name": "Keringen",
+		"layers": [
+			"Kenmerkende profiellijn",
+			"Toplaag",
+			"Basismateriaal",
+			"Referentiepunt",
+			"Uitvullaag",
+			"FilterVlijlaag",
+			"Flexibele Waterkering",
+			"Wandconstructie",
+			"Geotextiel",
+			"Waterkeringsectie",
+			"Waterkering",
+			"Bodemlaag",
+			"Kistdam"
+		]
+	},
+	{
+		"thema_name": "Toplagen",
+		"layers": [
+			"DrainageBuis",
+			"Vuilvang"
+		]
+	},
+	{
+		"thema_name": "WKO",
+		"layers": [
+			"Potentieel koude open WKO buurt",
+			"Potentieel koude gesloten WKO buurt",
+			"Potentieel warmte open WKO buurt",
+			"Potentieel warmte gesloten WKO buurt"
+		]
+	}
+]

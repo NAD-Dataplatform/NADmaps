@@ -42,3 +42,10 @@ class NADMapsDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        self.ui = self
+        self.themaView = self.ui.themaView
+        self.themaView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.themaMapListView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.NoSelection)
+        self.mapListView = self.ui.mapListView
+        self.mapListView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.mapListView.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)

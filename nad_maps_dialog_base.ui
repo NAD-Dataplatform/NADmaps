@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>594</width>
-    <height>548</height>
+    <height>558</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -31,46 +31,143 @@
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout" name="gridLayout_2">
+    <layout class="QGridLayout" name="gridLayoutMain">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Zoeken</string>
+      <widget class="QComboBox" name="zoomComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="layerSearch">
-       <property name="clearButtonEnabled">
-        <bool>true</bool>
+      <widget class="QPushButton" name="zoomButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="text">
+        <string>Ga naar</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="mapListView">
-     <property name="enabled">
-      <bool>true</bool>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="focusPolicy">
+      <enum>Qt::TabFocus</enum>
      </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>30</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>300</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="whatsThis">
-      <string/>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
-     </property>
+     <widget class="QWidget" name="start_tab">
+      <attribute name="title">
+       <string>Start</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabStart">
+       <item row="0" column="0">
+        <widget class="QTableView" name="themaView"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTableView" name="themaMapListView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="lagen_tab">
+      <attribute name="title">
+       <string>Alle lagen</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabLayers">
+       <item row="0" column="0" colspan="2">
+        <widget class="QTableView" name="mapListView">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>30</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Thema opslaan</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutTabLayers">
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Selecteer meerdere lagen uit de lijst (houd de CTRL-toets ingedrukt), vul een naam in voor dit thema en klik op 'Opslaan'.</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="saveThemaLineEdit">
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="saveThemaButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Opslaan</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="log_tab">
+      <attribute name="title">
+       <string>Logberichten</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabLog">
+       <item row="0" column="0">
+        <widget class="QTableView" name="logView"/>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -82,9 +179,6 @@
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="QTableView" name="logView"/>
    </item>
   </layout>
  </widget>
