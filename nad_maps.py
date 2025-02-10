@@ -21,9 +21,24 @@
  *                                                                         *
  ***************************************************************************/
 """
-from qgis.PyQt.QtCore import Qt, QSettings, QTranslator, QCoreApplication, QSortFilterProxyModel
-from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem
+# General packages
+import os.path
+import json
+import re
+import urllib.request, urllib.parse, urllib.error
+
+# PyQGIS packages
+from qgis.PyQt.QtCore import (
+    Qt, QSettings,
+    QTranslator,
+    QCoreApplication,
+    QSortFilterProxyModel,
+    QRegularExpression,
+    QTimer
+)
+from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem, QColor
 from qgis.PyQt import QtWidgets
+from qgis.gui import QgsVertexMarker
 # from qgis.PyQt import QtCore, QtGui, 
 # https://api.qgis.org/api/group__core.html
 from qgis.core import (
@@ -35,7 +50,12 @@ from qgis.core import (
     QgsVectorLayer,
     QgsVectorTileLayer,
     QgsCoordinateReferenceSystem,
-    QgsPointXY
+    QgsRectangle,
+    QgsCoordinateTransform,
+    QgsGeometry,
+    QgsWkbTypes,
+    QgsPointXY,
+    QgsMapLayer
 )
 from qgis.PyQt.QtWidgets import (
     QSizePolicy,
@@ -45,15 +65,26 @@ from qgis.PyQt.QtWidgets import (
     QDialog,
     QGridLayout,
     QDialogButtonBox,
+    QCompleter,
 )
+
 # Initialize Qt resources from file resources.py
 from .resources import *
+# Import code for the search and zoom function
+from .lib.locatieserver import (
+    suggest_query,
+    TypeFilter,
+    LsType,
+    lookup_object,
+    get_lookup_object_url,
+    Projection,
+)
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
-import os.path
-import json
-import urllib.request, urllib.parse, urllib.error
 from .lib.constants import PLUGIN_NAME, PLUGIN_ID
+
+
+
 
 
 class NADMaps(object):
@@ -79,6 +110,16 @@ class NADMaps(object):
             self.plugin_dir,
             'i18n',
             'NADMaps_{}.qm'.format(locale))
+
+        thema_filename = "default.json"
+        self.thema_path = os.path.join(
+            self.plugin_dir,
+            "resources\\themas",
+            thema_filename)
+
+        self.styling_path = os.path.join(
+            self.plugin_dir,
+            "resources\\styling")
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -124,34 +165,19 @@ class NADMaps(object):
             "api features": "top",
             "api tiles": "bottom",
         }
-        
-        self.municipality_list = {
-            "NAD regio": [200000, 83700, 447000],
-            "Delft": [44000, 84800, 446000],
-            "Den Haag": [80000, 81800, 454100],
-            "Lansingerland": [70000, 94000, 447400],
-            "Leidschendam-Voorburg": [50000, 88600, 456500],
-            "Maassluis": [30000, 76300, 438200],
-            "Midden-Delfland": [70000, 81300, 442700],
-            "Pijnacker-Nootdorp": [60000, 88800, 447900],
-            "Rijswijk": [35000, 82800, 450500],
-            "Schiedam": [40000, 86000, 438000],
-            "Vlaardingen": [40000, 82400, 437400],
-            "Westland": [80000, 74200, 446700],
-            "Zoetermeer": [45000, 94000, 453000],
+        self.layer_type_mapping = {
+            0: "VectorLayer",
+            1: "RasterLayer",
+            2: "PluginLayer",
+            3: "MeshLayer",
+            4: "VectorTileLayer",
+            5: "AnnotationLayer",
+            6: "PointCloudLayer",
+            7: "GroupLayer"
         }
         # will be set True in run()
         self.maps_loaded = False
 
-    def log(self, text: str, lvl = 0):
-        # if not isinstance(text, str):
-        #     return
-        log = QStandardItem(text)
-        # print(text)
-        QgsMessageLog.logMessage(text, PLUGIN_NAME, lvl)
-        self.logModel.appendRow(
-            [log]
-        )
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -228,18 +254,6 @@ class NADMaps(object):
         if tree_location == "bottom":
             layer_tree.insertChildNode(-1, new_layer_tree_layer)
 
-    def load_qml_style(self, layer, styling):
-        if not styling:
-            return
-        else:
-            folder = "resources\\styling"
-            self.log(folder)
-            qmlpad = os.path.join(self.plugin_dir, folder, styling) + ".qml"
-            layer.loadNamedStyle(qmlpad)
-            layer.triggerRepaint()
-            # print(layer.name())
-            self.log(qmlpad)
-        # self.configure_dropdown()
     
     def create_new_layer(self):
         servicetype = self.current_layer["service_type"]
@@ -393,93 +407,125 @@ class NADMaps(object):
         url = f"{location}?{query_escaped_quoted}"
         return url
 
+
+#########################################################################################
+##############  Zoom function to go to selected locations ####################
+#########################################################################################
+
     def zoom_to(self):
         """Zoom to desired location"""
         self.log("inside zoom_to function")
-        region = self.dlg.zoomComboBox.currentText()
-        scale, x, y = self.municipality_list[region]
-        # self.iface.mapCanvas().zoomScale(200000)
-        # self.iface.mapCanvas().setCenter(QgsPointXY(83700, 447000))
-        self.iface.mapCanvas().zoomScale(scale)
-        self.iface.mapCanvas().setCenter(QgsPointXY(x, y))
-        # https://api.qgis.org/api/classQgsMapCanvas.html
+
+
+
+#########################################################################################
+##############  Manage thema sets (a list of one or more map layers) ####################
+#########################################################################################
 
     # TODO: First implement the UI
     def delete_thema(self):
         """Delete an existing thema (only user defined themas should be deleted)"""
         self.log("Starting the delete_thema function")
+
+        # Find the thema name to be deleted
+        thema_name = self.current_thema["thema_name"]
+        self.log(f"Thema to be deleted is {thema_name}")
+
+        with open(self.thema_path, "r", encoding="utf-8") as f:
+            jsondata = json.load(f)
+
+        # Iterate through the json list and remove the object with the selected name
+        jsondata = [obj for obj in jsondata if obj["thema_name"] != thema_name]
+        
+        with open(self.thema_path, "w", encoding="utf-8") as feedsjson:
+            json.dump(jsondata, feedsjson, indent='\t')
+
+        self.update_thema_list()
         self.log("Finished the delete_thema function")
 
-    # TODO: Something goes wrong (saving data double for each extra selection)
-    def save_thema(self):
+
+    def save_thema(self, all: bool):
         """Save a collection of layers in order to later quickly load them"""
         self.log("Starting the save_thema function")
-        folder = "resources\\themas"
-        filename = "default.json"
-        thema_path = os.path.join(self.plugin_dir, folder, filename)
-        if not os.path.isfile(thema_path):
-            with open(thema_path, 'w', encoding='utf-8') as f:
+        self.log(f"Save all? {all}")
+        # TODO: does this work properly?
+        if not os.path.isfile(self.thema_path):
+            with open(self.thema_path, "w", encoding="utf-8") as f:
                 json.dump([], f)
         
         # Collect a json string with a thema_name and a list of layer names
         thema_name = self.dlg.saveThemaLineEdit.text()
+        self.log(f"Thema name given is {thema_name}")
 
         string = "{\"thema_name\": \"" + thema_name + "\", "
         string = string + "\"layers\": ["
 
         # https://doc.qt.io/qt-6/qabstractitemmodel.html#details # documentation p1
         # https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum # documentation p2
-        selected_layers = self.dlg.mapListView.selectionModel().selectedRows()
-        for i, r in enumerate(selected_layers):
-            current_layer = r.siblingAtColumn(0).data(Qt.ItemDataRole.DisplayRole)
-            string = string + "\"" + current_layer + "\""
+        if all == False:
+            selected_layers = self.selected_active_layers
+        else:
+            selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
+            selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
+
+        self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
+        for i, layer in enumerate(selected_layers):
+            self.log(layer.name())
+            string = string + "\"" + layer.name() + "\""
             if i == len(selected_layers) - 1:
+                self.log("end")
                 string = string + "]"
             else:
+                self.log("going")
                 string = string + ", "
         string = string + "}"
         self.log(string)
 
         data = json.loads(string)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
-        with open(thema_path, mode='r', encoding='utf-8') as feedsjson:
+        with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
             feeds = json.load(feedsjson)
-        with open(thema_path, mode='w', encoding='utf-8') as feedsjson:
+        with open(self.thema_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
             json.dump(feeds, feedsjson, indent='\t')
         
-        self.update_thema_list(data)
+        self.update_thema_list()
+        self.dlg.saveThemaLineEdit.clear()
         self.log("Finished the save_thema function")
 
-    def update_thema_list(self, thema):
+    def update_thema_list(self):
         """Add a thema to the thema model"""
-        if isinstance(thema["thema_name"], str):
-            # layers_string = ""
-            # if "layers" in thema:
-            #     layers_string = " ".join(
-            #         [" ".join(x.values()) for x in thema["layers"]]
-            #     )
+        self.themaModel.clear()
+        
+        self.themas = []
+        with open(self.thema_path, "r", encoding="utf-8") as f:
+            self.themas.extend(json.load(f))
+        
+        for thema in self.themas:
             itemThema = QStandardItem(str(thema["thema_name"]))
+            itemSource = QStandardItem(str("Plugin"))
             itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
             # https://doc.qt.io/qt-6/qstandarditem.html#setData
             itemThema.setData(thema, Qt.ItemDataRole.UserRole)
             self.themaModel.appendRow(
-                [itemThema, itemFilter]
+                [itemThema, itemSource, itemFilter]
             )
+            
+        self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Bron")
+        self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema")
+        self.themaModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.themaModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
+        self.dlg.themaView.hideColumn(2)
+        self.dlg.themaView.setColumnWidth(
+            0, 300
+        )  # set name to 300px (there are some huge layernames)
+        self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
 
 
-    def show_layer(self, selectedIndexes):
-        self.log(f"show_layer: len(selectedIndexes) is {str(len(selectedIndexes))}")
-        if len(selectedIndexes) == 0:
-            self.current_layer = None
-            return
-
-        self.dlg.mapListView.scrollTo(self.dlg.mapListView.selectedIndexes()[0])
-        # itemType holds the data (== column 1) hence self.dlg.mapListView.selectedIndexes()[1], see itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
-        self.current_layer = self.dlg.mapListView.selectedIndexes()[1].data(
-            Qt.ItemDataRole.UserRole
-        )
-
+#########################################################################################
+##############  Updating the layers that are part of a thema set ########################
+#########################################################################################
 
     def show_thema_layers(self, selectedIndexes):
         """Show the layers that are part of a thema"""
@@ -491,7 +537,7 @@ class NADMaps(object):
         self.current_thema = self.dlg.themaView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
-        # wmts Luchtfoto Actueel Ortho 25cm RGB Landelijke Voorziening Beeldmateriaal Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.  default
+
         layers = self.current_thema["layers"]
         layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
         self.thema_layers = []
@@ -516,6 +562,8 @@ class NADMaps(object):
             self.current_layer = layer
             # self.load_layer(None)
             self.load_layer(None)
+        self.iface.layerTreeView().collapseAllNodes()
+        self.update_active_map_list()
         self.log("Finished the load_thema_layers function")
 
 
@@ -545,6 +593,7 @@ class NADMaps(object):
         self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
+        self.dlg.themaMapListView.hideColumn(3)
         
         self.dlg.themaMapListView.setColumnWidth(
             0, 200
@@ -552,24 +601,240 @@ class NADMaps(object):
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
 
 
+#########################################################################################
+############################  Show a regular layer ########################
+#########################################################################################
+
+    def get_current_layer(self, selectedIndexes):
+        self.log(f"get_current_layer: len(selectedIndexes) is {str(len(selectedIndexes))}")
+        if len(selectedIndexes) == 0:
+            self.current_layer = None
+            return
+
+        self.dlg.mapListView.scrollTo(self.dlg.mapListView.selectedIndexes()[0])
+        # itemType holds the data (== column 1) hence self.dlg.mapListView.selectedIndexes()[1], see itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
+        self.current_layer = self.dlg.mapListView.selectedIndexes()[1].data(
+            Qt.ItemDataRole.UserRole
+        )
+
+#########################################################################################
+######################  Show current loaded layers on the canvas ########################
+#########################################################################################
+
+
+    def load_qml_style(self, layer, styling):
+        if not styling:
+            return
+        else:
+            path = self.styling_path + f"{layer.name()}/{styling}.qml"
+            self.log(path)
+            layer.loadNamedStyle(path)
+            layer.triggerRepaint()
+            # print(layer.name())
+        # self.configure_dropdown()
+        # vlayer.renderer().symbol().setSize(6)
+        # vlayer.triggerRepaint()
+
+
+    def save_styling(self, layer, styling):
+        """Save the styling of the current layer to a qml file"""
+        # https://gis.stackexchange.com/search?q=%5Bqml%5Dsave
+        # very old blog: https://snorfalorpagus.net/blog/2014/03/04/symbology-of-vector-layers-in-qgis-python-plugins/
+        # https://anitagraser.com/pyqgis-101-introduction-to-qgis-python-programming-for-non-programmers/pyqgis-101-styling-vector-layers/
+        # https://opensourceoptions.com/loading-and-symbolizing-raster-layers/
+
+        path = self.styling_path + f"{layer.name()}/{styling}.qml"
+        self.log(path)
+        if layer.type() == QgsMapLayer.VectorLayer:
+            layer.saveNamedStyle(path)
+            # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
+            # lyr.saveNamedStyle(path, categories = QgsMapLayer.Symbology | QgsMapLayer.Labeling | QgsMapLayer.Forms)
+
+
+    def update_active_map_list(self):
+        """Update the table with active layers in the project"""
+        self.log(f"update_active_map_list function started")        
+        self.mapsModel.clear()
+
+        # self.iface.layerTreeView()
+        layers = QgsProject.instance().mapLayers().values()
+        self.log(f"Number of layers: {len(layers)}")
+        if len(layers) < 1:
+            itemLayername = QStandardItem(str(""))
+            itemType = QStandardItem(str(""))
+            itemStylingTitle = QStandardItem(str(""))
+            itemSource = QStandardItem(str(""))
+            self.mapsModel.appendRow(
+                [itemLayername, itemType, itemStylingTitle, itemSource]
+            )
+        else:
+            for i, layer in enumerate(layers):
+                self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
+                layer_type = self.layer_type_mapping[layer.type()]
+                self.log(f"layer is {layer}")
+                # l is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
+
+                itemLayername = QStandardItem(str(layer.name()))
+                itemType = QStandardItem(str(layer_type))
+                styling = "default"
+                # if l.type() == 0:
+                #     self.log(str(styling))
+                #     styling = l.writeStyle()
+                #     self.log(str(styling))
+                itemStylingTitle = QStandardItem(str(styling))
+                itemSource = QStandardItem(str(layer.source()))
+                itemSource.setToolTip(str(layer.source()))
+                self.mapsModel.appendRow(
+                    [itemLayername, itemType, itemStylingTitle, itemSource]
+                )
+                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+
+        self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
+        self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Styling")
+        self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
+        self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
+        self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
+        # self.dlg.activeMapListView.hideColumn(3)
+        
+        self.dlg.activeMapListView.setColumnWidth(
+            0, 150
+        )  # set name to 300px (there are some huge layernames)
+        self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
+
+
+
+# OGC API - Tiles
+# Layer 0 has name: Bestuurlijke Gebieden - Tiles [Bestuurlijke Gebieden Standaardvisualisatie (NetherlandsRDNewQuad)] of type 4 with source styleUrl=https://api.pdok.nl/kadaster/bestuurlijkegebieden/ogc/v1_0/styles/bestuurlijkegebieden_standaardvisualisatie__netherlandsrdnewquad?f=mapbox&url=https://api.pdok.nl/kadaster/bestuurlijkegebieden/ogc/v1_0/tiles/WebMercatorQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=17&zmin=0&http-header:referer=
+# <QgsVectorTileLayer: 'Bestuurlijke Gebieden - Tiles [Bestuurlijke Gebieden Standaardvisualisatie (NetherlandsRDNewQuad)]'>
+
+# WMTS
+# Layer 1 has name: Luchtfoto Actueel Ortho 8cm RGB of type 1 with source crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=Actueel_orthoHR&styles=default&format=image/jpeg&url=https://service.pdok.nl//hwh/luchtfotorgb/wmts/v1_0?request%3DGetCapabilities%26service%3DWMTS
+# <QgsRasterLayer: 'Luchtfoto Actueel Ortho 8cm RGB' (wms)>
+
+# WFS
+# Layer 2 has name: Riolering WFS: Put of type 0 with source  pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'
+# <QgsVectorLayer: 'Riolering WFS: Put' (WFS)>
+
+# WMS
+# Layer 4 has name: Riolering WMS: Put of type 1 with source crs=EPSG:28992&layers=BeheerPut&styles=default&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS
+# <QgsRasterLayer: 'Riolering WMS: Put' (wms)>
+
+# OGC API - Features
+# Layer 5 has name: Wegdeel (WGD) of type 0 with source  pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='wegdeel' url='https://api.pdok.nl/lv/bgt/ogc/v1'
+# <QgsVectorLayer: 'Wegdeel (WGD)' (OAPIF)>
+
+# WMTS
+# Layer 6 has name: standaard of type 1 with source crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=standaard&styles=default&format=image/png&url=https://service.pdok.nl//brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS
+# <QgsRasterLayer: 'standaard' (wms)>
+
+# WCS
+# Layer 0 has name: Digital Surface Model (DSM) 0.5m of type 1 with source cache=AlwaysNetwork&crs=EPSG:28992&format=GEOTIFF&identifier=dsm_05m&url=https://service.pdok.nl/rws/ahn/wcs/v1_0
+# <QgsRasterLayer: 'Digital Surface Model (DSM) 0.5m' (wcs)>
+
+    def get_selected_active_layers(self):
+        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
+        first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
+        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
+        self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
+
+        # enable or disable the styling-functions
+        if nr_of_selected_rows == 1:
+            self.dlg.stylingGroupBox.setEnabled(True)
+            self.dlg.stylingGroupBox.setToolTip("")
+            self.dlg.saveThemaButton.setEnabled(True)
+            self.dlg.saveThemaButton.setToolTip("")
+        elif nr_of_selected_rows > 1:
+            self.dlg.stylingGroupBox.setEnabled(False)
+            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+            self.dlg.saveThemaButton.setEnabled(True)
+            self.dlg.saveThemaButton.setToolTip("")
+        elif nr_of_selected_rows == 0:
+            self.dlg.stylingGroupBox.setEnabled(False)
+            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+            self.dlg.saveThemaButton.setEnabled(False)
+            self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
+            self.selected_active_layers = None
+            return
+
+        self.selected_active_layers = []
+        first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
+        for index in first_index_list:
+            self.log(f"active_layer is {index}, at row {index.row()} and column {index.column()}")
+            active_layer = index.data(
+                    Qt.ItemDataRole.UserRole
+                )
+            # self.log(f"active_layer is {active_layer}")
+            # self.log(f"active_layer name is {active_layer.name()}")
+            # self.log(f"active_layer source is {active_layer.source()}")
+            self.selected_active_layers.append(active_layer)
+
+
+
+
+
+#########################################################################################
+####################  Run main script to initiate when NAD button is pressed ############
+#########################################################################################
+
     def run(self, hiddenDialog=False):
         """Run method that performs all the real work"""
 
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.maps_loaded == False:
-            # general functions
-            self.dlg.zoomComboBox.addItems(self.municipality_list)
-            self.dlg.zoomButton.clicked.connect(lambda: self.zoom_to())
             self.maps_loaded = True
+            # general functions
+            # self.dlg.zoomComboBox.addItems(self.municipality_list)
+            self.dlg.zoomButton.clicked.connect(lambda: self.zoom_to())
+            self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
+
+            self.timer_toolbar_search = QTimer()
+            self.timer_toolbar_search.setSingleShot(True)
+            self.timer_toolbar_search.setInterval(200)
+            self.timer_toolbar_search.timeout.connect(self.toolbar_search_get_suggestions)
+            self.dlg.zoomLineEdit.textEdited.connect(
+                lambda: self.timer_toolbar_search.start()
+            )
             
             self.logModel = QStandardItemModel()
             self.dlg.logView.setModel(self.logModel)
             self.dlg.logView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
             self.log('started logging')
+            # active maps tab
+            
+            ### maps list
+            self.mapsModel = QStandardItemModel()
+            self.styleFilterMaps = QSortFilterProxyModel()
+            self.styleFilterMaps.setSourceModel(self.mapsModel)
+            self.styleFilterMaps.setFilterKeyColumn(2)
+
+            self.proxyModelMaps = QSortFilterProxyModel()
+            self.proxyModelMaps.setSourceModel(self.styleFilterMaps)
+            self.proxyModelMaps.setFilterKeyColumn(1)
+
+            self.dlg.activeMapListView.setModel(self.mapsModel)
+            self.dlg.activeMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+            
+            # create a list of existing themas
+            self.update_active_map_list()
+            
+            self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
+                self.get_selected_active_layers
+            )
+
+            # TODO: make these functions
+            self.dlg.loadStyleButton.clicked.connect(lambda: self.load_styling())
+            self.dlg.removeStyleButton.clicked.connect(lambda: self.delete_styling())
+            self.dlg.saveStyleButton.clicked.connect(lambda: self.save_styling())
+
+            self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
+            self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
 
             # thema tab
-            # self.themaModel = QStandardItemModel()
             
             ### thema list
             self.themaModel = QStandardItemModel()
@@ -581,18 +846,13 @@ class NADMaps(object):
             self.proxyModelThema.setSourceModel(self.styleFilterThema)
             self.proxyModelThema.setFilterKeyColumn(1)
 
-            self.dlg.themaView.setModel(self.themaModel)
+            self.dlg.themaView.setModel(self.proxyModelThema)
             self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
             
-            self.themas_nad = []
-            thema_path = os.path.join(self.plugin_dir, "resources\\themas", "default.json")
-            with open(thema_path, "r", encoding="utf-8") as f:
-                self.themas_nad.extend(json.load(f))
-            
-            for thema in self.themas_nad:
-                self.update_thema_list(thema)
+            # create a list of existing themas
+            self.update_thema_list()
 
-            # execute function to update the thema list (if during this session we save more themas then we can update this list again)
+            # update the display with a list of map layers within the selected thema
             self.dlg.themaView.selectionModel().selectionChanged.connect(
                 self.show_thema_layers
             )
@@ -606,14 +866,17 @@ class NADMaps(object):
             self.proxyModelThemaMaps.setSourceModel(self.styleFilterThemaMaps)
             self.proxyModelThemaMaps.setFilterKeyColumn(3)
 
-            self.dlg.themaMapListView.setModel(self.themaMapModel)
+            self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
             self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
-            self.dlg.themaView.selectionModel().select(self.themaModel.index(0,0), QtCore.QItemSelectionModel.Select | QtCore.QItemSelectionModel.Rows)
+            self.dlg.themaView.selectionModel().select(
+                self.themaModel.index(0,0), QtCore.QItemSelectionModel.Select | QtCore.QItemSelectionModel.Rows
+            )
             self.dlg.themaView.doubleClicked.connect(
                 lambda: self.load_thema_layers()
             )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
+            self.dlg.deleteThemaButton.clicked.connect(lambda: self.delete_thema())
             
             # layers tab
             self.layers_nad = []
@@ -622,6 +885,7 @@ class NADMaps(object):
                 self.layers_nad.extend(json.load(f))
 
             self.sourceModel = QStandardItemModel()
+
             self.styleFilter = QSortFilterProxyModel()
             self.styleFilter.setSourceModel(self.sourceModel)
             self.styleFilter.setFilterKeyColumn(4)
@@ -630,7 +894,7 @@ class NADMaps(object):
             self.proxyModel.setSourceModel(self.styleFilter)
             self.proxyModel.setFilterKeyColumn(3)
 
-            self.dlg.mapListView.setModel(self.sourceModel)
+            self.dlg.mapListView.setModel(self.proxyModel)
             self.dlg.mapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
             for layer in self.layers_nad:
@@ -638,41 +902,22 @@ class NADMaps(object):
                     self.add_source_row(layer)
 
             self.dlg.mapListView.selectionModel().selectionChanged.connect(
-                self.show_layer
+                self.get_current_layer
             )
             self.dlg.mapListView.doubleClicked.connect(
                 lambda: self.load_layer(None)
             )  # Using lambda here to prevent sending signal parameters to the loadService() function
             
-            self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema())
-
+            self.dlg.stylingGroupBox.setEnabled(False)
+            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+            self.dlg.saveThemaButton.setEnabled(False)
+            self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
             self.dlg.themaView.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
             self.dlg.mapListView.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
             self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
             self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
             # hide itemFilter column:
             self.dlg.mapListView.hideColumn(3)
-            self.dlg.themaView.hideColumn(1)
-            self.dlg.themaMapListView.hideColumn(3)
-
-        # self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Omschrijving")
-        self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema's")
-        # self.themaModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
-
-        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Service")
-        self.themaMapModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
-        self.themaMapModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
-        
-        self.dlg.themaMapListView.setColumnWidth(
-            0, 200
-        )  # set name to 300px (there are some huge layernames)
-        self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
 
         self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
         self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -693,28 +938,207 @@ class NADMaps(object):
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
+        
+        self.dlg.tabWidget.currentChanged.connect(self.active_buttons)
+
+        self.dlg.load_button.clicked.connect(lambda: self.load_button_pressed(False))
+        self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
+        self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
 
+
+        
+
+#########################################################################################
+####################  Save the current canvas function ############
+#########################################################################################
 
     # TODO: function to export current canvas as pdf or image
     def save_canvas(self):
         """Export the current map to pdf or png, including a north-arrow"""
         # qgis.utils.iface.mapCanvas().saveAsImage('test.png', None, 'PNG') 
 
-    # General translation function (can probably be deleted)
-    def tr(self, message):
-        """Get the translation for a string using Qt translation API.
 
-        We implement this ourselves since we do not inherit QObject.
+#########################################################################################
+####################  Search for locations for the zoom functionality ###################
+#########################################################################################
 
-        :param message: String for translation.
-        :type message: str, QString
-
-        :returns: Translated version of message.
-        :rtype: QString
+    def create_type_filter(self):
         """
-        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('NADMaps', message)
+        This creates a TypeFilter (Filter Query, see https://github.com/PDOK/locatieserver/wiki/Zoekvoorbeelden-Locatieserver) based on the checkboxes in the dialog. Defaults to []
+        """
+        
+        self.fq_checkboxes = {
+            LsType.gemeente,
+            LsType.woonplaats,
+            LsType.weg,
+            LsType.postcode,
+            LsType.adres,
+            LsType.perceel,
+            LsType.hectometerpaal,
+        }
+        filter = TypeFilter([])
+        for key in self.fq_checkboxes:
+            self.log(f"key is {key}")
+            filter.add_type(key)
+        return filter
+
+
+    def toolbar_search_get_suggestions(self):
+        self.log("Function toolbar_search_get_suggestions: starting")
+        def create_model(_suggestions):
+            model = QStandardItemModel()
+            for s in _suggestions:
+                key = s["weergavenaam"]
+                it = QStandardItem(key)
+                it.setData(s, Qt.ItemDataRole.UserRole)
+                model.appendRow(it)
+            return model
+
+        search_text = self.dlg.zoomLineEdit.text()
+        if len(search_text) <= 1:
+            self.dlg.zoomLineEdit.setCompleter(None)
+            return
+        results = suggest_query(search_text, self.create_type_filter())
+        self.completer = QCompleter()
+        self.model = create_model(results)
+        self.completer.setModel(self.model)
+        self.completer.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
+        self.completer.setFilterMode(Qt.MatchFlag.MatchContains)
+        self.dlg.zoomLineEdit.setCompleter(self.completer)
+        self.dlg.zoomLineEdit.show()
+        self.completer.complete()
+        self.completer.activated.connect(self.on_toolbar_suggest_activated)
+        return
+
+
+    def on_toolbar_suggest_activated(self, suggest_text):
+        items = self.model.findItems(suggest_text)
+        if len(items) == 0:  # check should not be necessary
+            return
+        item = items[0]
+        data = item.data(Qt.ItemDataRole.UserRole)
+        lookup_id = data["id"]
+        self.lookup_toolbar_search_and_zoom(lookup_id)
+
+
+    def lookup_toolbar_search_and_zoom(self, lookup_id):
+        data = None
+        try:
+            data = lookup_object(lookup_id, Projection.EPSG_28992)
+        except Exception as e:
+            self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
+        if data is None:
+            return
+        self.zoom_to_result(data)
+
+    def zoom_to_result(self, data):
+        # just always transform from 28992 to mapcanvas crs
+        crs = self.iface.mapCanvas().mapSettings().destinationCrs()
+        crs28992 = QgsCoordinateReferenceSystem.fromEpsgId(28992)
+        crsTransform = QgsCoordinateTransform(crs28992, crs, QgsProject.instance())
+
+        adrestekst = "{} - {}".format(data["type"], data["weergavenaam"])
+        adrestekst_lower = adrestekst.lower()
+
+        zoom_dict = {
+            "adres": 794,
+            "perceel": 794,
+            "hectometer": 1587,
+            "weg": 3175,
+            "postcode": 6350,
+            "woonplaats": 25398,
+            "gemeente": 50797,
+            "provincie": 812750,
+        }
+        z = 1587
+        for z_type in zoom_dict.keys():
+            if adrestekst_lower.startswith(
+                z_type
+            ):  # maybe find better way to infer return type?
+                z = zoom_dict[z_type]
+
+        geom = QgsGeometry.fromWkt(data["wkt_geom"])
+        geom.transform(crsTransform)
+        geom_type = geom.type()
+
+        geom_type_dict = {
+            QgsWkbTypes.PointGeometry: "point",
+            QgsWkbTypes.LineGeometry: "linestring",
+            QgsWkbTypes.PolygonGeometry: "polygon",
+        }
+        if geom_type not in geom_type_dict:
+            self.info(
+                f"unexpected geomtype return by ls: {geom_type}"
+            )  # TODO: better error handling
+            return
+
+        geom_bbox = geom.boundingBox()
+        rect = QgsRectangle(geom_bbox)
+        rect.scale(1.2)
+        self.iface.mapCanvas().zoomToFeatureExtent(rect)
+        # for point features it is required to zoom to predefined zoomlevel depending on return type
+        if re.match(r"^POINT", data["wkt_geom"]):
+            self.iface.mapCanvas().zoomScale(z)
+        self.iface.mapCanvas().refresh()
+
+
+
+#########################################################################################
+################################  General utility functions ########################
+#########################################################################################
+
+
+    def active_buttons(self, tabIndex):
+        """Show or hide the load layers or themas buttons at the bottom"""
+        if tabIndex == 1 or tabIndex == 2:
+            self.dlg.load_button.show()
+            self.dlg.load_close_button.show()
+        else:
+            self.dlg.load_button.hide()
+            self.dlg.load_close_button.hide()
+
+
+    def load_button_pressed(self, close):
+        """Load the layers or thema when the button is pressed in the corresponding tab"""
+        tab_index = self.dlg.tabWidget.currentIndex()
+        
+        if tab_index == 1:
+            self.load_thema_layers()
+        elif tab_index == 2:
+            self.load_layer(None)
+
+        if close:
+            self.dlg.hide()
+
+
+    def filter_layers(self, string):
+        # remove selection if one row is selected
+        self.log(f"Function filter_layers: input string is {string}")
+        self.dlg.mapListView.selectRow(0)
+        self.proxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        strlist = string.strip().split(" ")
+        string = ""
+        for s in strlist:
+            string += f"{s}.*"
+        regexp = QRegularExpression(string, QRegularExpression.PatternOption.CaseInsensitiveOption | QRegularExpression.PatternOption.InvertedGreedinessOption)
+        self.log(f"The regexp to filter on is: {regexp}")
+        self.proxyModel.setFilterRegularExpression(regexp)
+        self.proxyModel.insertRow
+
+
+    def log(self, text: str, lvl = 0):
+        if not isinstance(text, str):
+            text = str(text)
+        
+        log = QStandardItem(text)
+        log.setToolTip(text)
+        # print(text)
+        QgsMessageLog.logMessage(text, PLUGIN_NAME, lvl)
+        self.logModel.appendRow(
+            [log]
+        )
+
 
     # General add_action function to add action-buttons to the QGIS toolbar
     def add_action(
@@ -790,3 +1214,18 @@ class NADMaps(object):
         self.actions.append(action)
 
         return action
+    
+    # General translation function (can probably be deleted)
+    def tr(self, message):
+        """Get the translation for a string using Qt translation API.
+
+        We implement this ourselves since we do not inherit QObject.
+
+        :param message: String for translation.
+        :type message: str, QString
+
+        :returns: Translated version of message.
+        :rtype: QString
+        """
+        # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
+        return QCoreApplication.translate('NADMaps', message)

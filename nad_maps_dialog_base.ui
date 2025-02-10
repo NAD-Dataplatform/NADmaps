@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>558</height>
+    <width>694</width>
+    <height>654</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -33,12 +33,15 @@
    <item>
     <layout class="QGridLayout" name="gridLayoutMain">
      <item row="0" column="0">
-      <widget class="QComboBox" name="zoomComboBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <widget class="QLineEdit" name="zoomLineEdit">
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Type de naam van een gemeente of buurt om snel op dat gebied in te zoomen</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -62,32 +65,25 @@
    </item>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="focusPolicy">
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="start_tab">
+     <widget class="QWidget" name="active_tab">
       <attribute name="title">
-       <string>Start</string>
+       <string>Actieve lagen</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutTabStart">
-       <item row="0" column="0">
-        <widget class="QTableView" name="themaView"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QTableView" name="themaMapListView"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="lagen_tab">
-      <attribute name="title">
-       <string>Alle lagen</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayoutTabLayers">
+      <layout class="QGridLayout" name="gridLayoutTabActive">
        <item row="0" column="0" colspan="2">
-        <widget class="QTableView" name="mapListView">
+        <widget class="QTableView" name="activeMapListView">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -112,15 +108,96 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="stylingGroupBox">
+         <property name="title">
+          <string>Styling laden of opslaan</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="styling_label">
+            <property name="text">
+             <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande styling toe of sla de huidige styling op voor een volgende keer.</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QComboBox" name="stylingComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="loadStyleButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Styling laden</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="removeStyleButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Styling verwijderen</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QLineEdit" name="saveThemaLineEdit">
+            <property name="clearButtonEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="saveStyleButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Styling opslaan</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="themaGroupBox">
          <property name="title">
           <string>Thema opslaan</string>
          </property>
-         <layout class="QGridLayout" name="gridLayoutTabLayers">
-          <item row="0" column="0" colspan="2">
-           <widget class="QLabel" name="label">
+         <layout class="QGridLayout" name="gridLayoutThemaGroupBox">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="thema_label">
             <property name="text">
-             <string>Selecteer meerdere lagen uit de lijst (houd de CTRL-toets ingedrukt), vul een naam in voor dit thema en klik op 'Opslaan'.</string>
+             <string>Als je lagen wil opslaan als een Themaset om ze een volgende keer snel in te laden, vul dan een naam in voor dit thema. Klik op 'Alle lagen opslaan' om alle lagen, die nu ingeladen zijn, toe te voegen aan de Themaset. Je kan ook een selectie maken van meerdere lagen uit de lijst (houd de CTRL-toets ingedrukt) en klik op 'Opslaan'.</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -149,11 +226,140 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Opslaan</string>
+             <string>Selectie opslaan</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="saveAllThemaButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Alle lagen opslaan</string>
             </property>
            </widget>
           </item>
          </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="thema_tab">
+      <attribute name="title">
+       <string>Themasets</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabStart">
+       <item row="0" column="0">
+        <widget class="QTableView" name="themaView"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Kaartlagen in deze Themaset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QTableView" name="themaMapListView"/>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QGroupBox" name="stylingGroupBox">
+         <property name="title">
+          <string>Thema verwijderen</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="styling_label">
+            <property name="text">
+             <string>Om een Themaset te verwijderen, selecteer het thema en klik op verwijderen.</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="deleteThemaButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Thema verwijderen</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="lagen_tab">
+      <attribute name="title">
+       <string>Alle kaartlagen</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabLayers">
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="searchLineEdit">
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="placeholderText">
+          <string>Type de naam van een laag en/of service relevante lagen te zien</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTableView" name="mapListView">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>30</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>300</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="whatsThis">
+          <string/>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
         </widget>
        </item>
       </layout>
@@ -171,50 +377,66 @@
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="button_box">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+    <layout class="QHBoxLayout" name="footer_layout">
+     <property name="topMargin">
+      <number>0</number>
      </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="load_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Lagen inladen</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="load_close_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Inladen en Sluiten</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="close_button">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Sluiten</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>button_box</sender>
-   <signal>accepted()</signal>
-   <receiver>NADMapsDialogBase</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>button_box</sender>
-   <signal>rejected()</signal>
-   <receiver>NADMapsDialogBase</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

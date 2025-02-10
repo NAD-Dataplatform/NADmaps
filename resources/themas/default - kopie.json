@@ -22,6 +22,33 @@
 		]
 	},
 	{
+		"thema_name": "pand_test",
+		"layers": [
+			"pand"
+		]
+	},
+	{
+		"thema_name": "test2",
+		"layers": [
+			"pand"
+		]
+	},
+	{
+		"thema_name": "test_arie",
+		"layers": [
+			"Riolering WMS: Put",
+			"Riolering WFS: Put"
+		]
+	},
+	{
+		"thema_name": "Arie is cool",
+		"layers": [
+			"Achtergrondkaart",
+			"pand",
+			"Riolering WFS: Leiding"
+		]
+	},
+	{
 		"thema_name": "Waterstaatswerken",
 		"layers": [
 			"WaterstaatswerkOppervlaktewaterlichaam",
@@ -95,19 +122,19 @@
 		]
 	},
 	{
+		"thema_name": "Toplagen",
+		"layers": [
+			"DrainageBuis",
+			"Vuilvang"
+		]
+	},
+	{
 		"thema_name": "WKO",
 		"layers": [
 			"Potentieel koude open WKO buurt",
 			"Potentieel koude gesloten WKO buurt",
 			"Potentieel warmte open WKO buurt",
 			"Potentieel warmte gesloten WKO buurt"
-		]
-	},
-	{
-		"thema_name": "",
-		"layers": [
-			"Riolering WFS: Put",
-			"Riolering WFS: Leiding"
 		]
 	}
 ]
