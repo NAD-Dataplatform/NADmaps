@@ -37,7 +37,7 @@ from qgis.PyQt.QtCore import (
     QTimer
 )
 from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem, QColor
-from qgis.PyQt import QtWidgets
+# from qgis.PyQt import QtWidgets
 from qgis.gui import QgsVertexMarker
 # from qgis.PyQt import QtCore, QtGui, 
 # https://api.qgis.org/api/group__core.html
@@ -79,12 +79,17 @@ from .lib.locatieserver import (
     get_lookup_object_url,
     Projection,
 )
+
+from .lib.load_layers import LoadLayers, load_thema_layer
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
 from .lib.constants import PLUGIN_NAME, PLUGIN_ID
 
 
 
+#########################################################################################
+####################  Run main script to initiate when NAD button is pressed ############
+#########################################################################################
 
 
 class NADMaps(object):
@@ -156,15 +161,7 @@ class NADMaps(object):
             "api features": "OGC API - Features",
             "api tiles": "OGC API - Tiles",
         }
-        # Set default layer loading behaviour
-        self.default_tree_locations = {
-            "wms": "top",
-            "wmts": "bottom",
-            "wfs": "top",
-            "wcs": "top",
-            "api features": "top",
-            "api tiles": "bottom",
-        }
+
         self.layer_type_mapping = {
             0: "VectorLayer",
             1: "RasterLayer",
@@ -176,16 +173,74 @@ class NADMaps(object):
             7: "GroupLayer"
         }
         # will be set True in run()
-        self.maps_loaded = False
+        self.setup_completed = False
 
 
-    def unload(self):
-        """Removes the plugin menu item and icon from QGIS GUI."""
-        for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&NAD Waterketen Kaarten'),
-                action)
-            self.iface.removeToolBarIcon(action)
+#########################################################################################
+####################  Run main script to initiate when NAD button is pressed ############
+#########################################################################################
+
+    def run(self, hiddenDialog=False):
+        """Run method that performs all the real work"""
+
+        # Create the dialog with elements (after translation) and keep reference
+        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
+        if self.setup_completed == False:
+            self.setup_completed = True
+            # setup the (proxy)models
+            self.setup_models()
+            self.log('Start logging')
+            self.setup_interactions()
+            
+            # create an initial list of active layers
+            self.update_active_layers_list()
+            
+            # create a list of existing themas
+            self.update_thema_list()
+
+            # Create a list of all layers available via the plugin
+            self.layers_nad = []
+            layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
+            with open(layer_path, "r", encoding="utf-8") as f:
+                self.layers_nad.extend(json.load(f))
+
+            for layer in self.layers_nad:
+                if isinstance(layer["name"], str):
+                    self.add_source_row(layer)
+
+
+            # Format the list views that are not formatted in their function
+            self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
+            self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+            self.dlg.logView.horizontalHeader().setStretchLastSection(True)
+
+            self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
+            self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
+            # hide itemFilter column:
+            self.dlg.mapListView.hideColumn(3)
+            self.dlg.mapListView.setColumnWidth(
+                0, 300
+            )  # set name to 300px (there are some huge layernames)
+            self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
+            # self.dlg.mapListView.resizeColumnsToContents()
+
+            self.sourceModel.setHeaderData(2, Qt.Orientation.Horizontal, "Service")
+            self.sourceModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
+            self.sourceModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
+            self.sourceModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+            self.sourceModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+            self.sourceModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+
+        # show the dialog
+        if not hiddenDialog:
+            self.dlg.show()
+
+
+
+   
+#########################################################################################
+############################  Show and load regular layers ##############################
+#########################################################################################
 
     def add_source_row(self, serviceLayer):
         # you can attache different "data's" to to an QStandarditem
@@ -200,8 +255,9 @@ class NADMaps(object):
         # only attach the data to the first item
         # service layer = a dict/object with all props of the layer
         # https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
-        itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
-        itemType.setToolTip(f'{stype} - {serviceLayer["title"]}')
+        # tooltip = "Dubbelklik om een kaartlaag in te laden"
+        tooltip = serviceLayer["service_abstract"]
+        itemType.setToolTip(self.tr(tooltip))
         # only wms services have styles (sometimes)
         layername = serviceLayer["title"]
         styles_string = ""
@@ -211,210 +267,34 @@ class NADMaps(object):
             )
 
         itemLayername = QStandardItem(str(serviceLayer["title"]))
-        itemLayername.setToolTip(f'{stype} - {serviceLayer["service_title"]}')
+        itemLayername.setData(serviceLayer, Qt.ItemDataRole.UserRole)
+        itemLayername.setToolTip(tooltip)
         # itemFilter is the item used to search filter in. That is why layername is a combi of layername + filter here
         itemFilter = QStandardItem(
             f'{serviceLayer["service_type"]} {layername} {serviceLayer["service_title"]} {serviceLayer["service_abstract"]} {styles_string}'
         )
         itemServicetitle = QStandardItem(str(serviceLayer["service_title"]))
-        itemServicetitle.setToolTip(f'{stype} - {serviceLayer["title"]}')
+        itemServicetitle.setToolTip(tooltip)
         self.sourceModel.appendRow(
             [itemLayername, itemType, itemServicetitle, itemFilter]
         )
 
-
-    def load_layer(self, tree_location=None):
-        """Adds a QgsLayer to the project and layer tree.
-        tree_location can be 'default', 'top', 'bottom'
-        """
-        self.log(f"Inside function load_layer")
-        if self.current_layer is None:
-            self.log("self.current_layer is None")
+    def get_current_layer(self, selectedIndexes):
+        self.log(f"get_current_layer: len(selectedIndexes) is {str(len(selectedIndexes))}")
+        if len(selectedIndexes) == 0:
+            self.current_layer = None
             return
 
-        servicetype = self.current_layer["service_type"]
-        if tree_location is None:
-            tree_location = self.default_tree_locations[servicetype]
-        
-        new_layer = self.create_new_layer()
-        if new_layer is None:
-            return
-        
-        if tree_location not in ["default", "top", "bottom"]:
-            # TODO: proper error handling
-            return
-        if tree_location == "default":
-            QgsProject.instance().addMapLayer(new_layer, True)
-            return
-        QgsProject.instance().addMapLayer(new_layer, False)
-        new_layer_tree_layer = QgsLayerTreeLayer(new_layer)
-        layer_tree = self.iface.layerTreeCanvasBridge().rootGroup()
-        if tree_location == "top":
-            layer_tree.insertChildNode(0, new_layer_tree_layer)
-        if tree_location == "bottom":
-            layer_tree.insertChildNode(-1, new_layer_tree_layer)
-
-    
-    def create_new_layer(self):
-        servicetype = self.current_layer["service_type"]
-        title = self.current_layer["title"]
-        layername = self.current_layer["name"]
-        url = self.current_layer["service_url"]
-
-        if servicetype == "wms":
-            return self.create_wms_layer(layername, title, url)
-        elif servicetype == "wmts":
-            return self.create_wmts_layer(layername, title, url, servicetype)
-        elif servicetype == "wfs":
-            layer = self.create_wfs_layer(layername, title, url)
-            self.log(f"layer data type is {str(type(layer))}")
-            # styling = self.current_layer["styling"]
-            # self.log(f"styling is {str(styling)}")
-            # if styling and styling != "":
-            #     # something
-            #     self.log(f"here")
-            #     self.load_qml_style(layer, styling)
-            # else:
-            #     self.log(f"here")
-            #     return
-
-            return layer
-        elif servicetype == "wcs":
-            return self.create_wcs_layer(layername, title, url)
-        elif servicetype == "api features":
-            return self.create_oaf_layer(layername, title, url)
-        elif servicetype == "api tiles":
-            return self.create_oat_layer(title, url)
-        else:
-            self.show_warning(
-                f"""Sorry, dit type laag: '{servicetype.upper()}'
-                kan niet worden geladen door de plugin of door QGIS.
-                Is het niet beschikbaar als wms, wmts, wfs, api features of api tiles (vectortile)?
-                """
-            )
-            return
-
-    def create_wfs_layer(self, layername, title, url):
-        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
-        return QgsVectorLayer(uri, title, "wfs")
-
-    def create_wms_layer(self, layername, title, url):
-        imgformat = self.current_layer["imgformats"].split(",")[0]
-        crs = "EPSG:28992"
-
-        selected_style_name = "default"
-        uri = f"crs={crs}&layers={layername}&styles={selected_style_name}&format={imgformat}&url={url}"
-        # crs=EPSG:28992&layers=top25raster&styles=default&format=image/png&url=https://service.pdok.nl/brt/topraster/wms/v1_0?request=GetCapabilities&service=WMS
-        return QgsRasterLayer(uri, title, "wms")
-
-    def create_wcs_layer(self, layername, title, url):
-        # HACK to get WCS to work:
-        # 1) fixed format to "GEOTIFF"
-        # 2) remove the '?request=getcapabiliteis....' part from the url, unknown why this is required compared to wms/wfs
-        # better approach would be to add the supported format(s) to the layers-pdok.json file and use that - this should be the approach when more
-        # WCS services will be published by PDOK (currently it is only the AHN WCS)
-        format = "GEOTIFF"
-        uri = f"cache=AlwaysNetwork&crs=EPSG:28992&format={format}&identifier={layername}&url={url.split('?')[0]}"
-        return QgsRasterLayer(uri, title, "wcs")
-
-    def build_tileset_url(self, url, tileset_id, for_request):
-        url_template = url + "/tiles/" + tileset_id
-        if for_request:
-            return url_template + "/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt"
-        return url_template + "/{z}/{y}/{x}?f=mvt"
-
-    def create_oat_layer(self, title, url):
-        # CRS does not work as expected in qgis/gdal. We can set a crs (non-webmercator), but it is rendered incorrectly.
-        crs = "EPSG:28992"
-        used_tileset = [
-            tileset
-            for tileset in self.current_layer["tiles"][0]["tilesets"]
-            if tileset["tileset_crs"].endswith(crs.split(":")[1])
-        ][0]
-
-        # Style toevoegen in laag vanuit ui
-        # selected_style = self.get_selected_style()
-        # selected_style_url = "bgt_standaardvisualisatie__netherlandsrdnewquad"
-        name = self.current_layer["styles"][0]["name"]
-        self.log(f"name is {name}")
-        self.log(f"old title is {title}")
-        title += f" [{name}]"
-        self.log(f"new title is {title}")
-        selected_style_url = self.current_layer["styles"][0]["url"]
-        self.log(f"selected_style_url is {selected_style_url}")
-
-        # if selected_style is not None:
-        #     selected_style_url = selected_style["url"]
-        #     title += f" [{selected_style['name']}]"
-
-        url_template = self.build_tileset_url(url, used_tileset["tileset_id"], True)
-        self.log(f"url_template is {url_template}")
-        
-        maxz_coord = used_tileset["tileset_max_zoomlevel"]
-
-        # Although the vector tiles are only rendered for a specific zoom-level @PDOK (see maxz_coord),
-        # we need to set the minimum z value to 0, which gives better performance, see https://github.com/qgis/QGIS/issues/54312
-        minz_coord = 0
-
-        type = "xyz"
-        uri = f"styleUrl={selected_style_url}&url={url_template}&type={type}&zmax={maxz_coord}&zmin={minz_coord}&http-header:referer="
-        tile_layer = QgsVectorTileLayer(uri, title)
-        # styleUrl=https://api.pdok.nl/lv/bag/ogc/v1_0/styles/bag_standaardvisualisatie__netherlandsrdnewquad?f=mapbox&url=https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=17&zmin=0&http-header:referer=
-        # Set the VT layer CRS and load the styleUrl
-        tile_layer.setCrs(srs=QgsCoordinateReferenceSystem(crs))
-        tile_layer.loadDefaultStyle()
-        return tile_layer
-
-    def create_wmts_layer(self, layername, title, url, servicetype):
-        if Qgis.QGIS_VERSION_INT < 10900:
-            self.show_warning(
-                f"""Sorry, dit type layer: '{servicetype.upper()}'
-                kan niet worden geladen in deze versie van QGIS.
-                Misschien kunt u QGIS 2.0 installeren (die kan het WEL)?
-                Of is de laag niet ook beschikbaar als wms of wfs?"""
-            )
-            return None
-        url = self.quote_wmts_url(url)
-        imgformat = self.current_layer["imgformats"].split(",")[0]
-        # some fiddling with tilematrixset names and crs's (which sometimes are the same, but other times are not)
-        tilematrixset = self.current_layer["tilematrixsets"]
-        if tilematrixset.startswith("EPSG:"):
-            crs = tilematrixset
-            i = crs.find(":", 5)
-            if i > -1:
-                crs = crs[:i]
-        elif tilematrixset.startswith("OGC:1.0"):
-            crs = "EPSG:3857"
-        else:
-            # non PDOK services do not have a strict tilematrixset naming based on crs...
-            crs = self.current_layer["crs"]
-
-        uri = f"crs={crs}&tileMatrixSet={tilematrixset}&layers={layername}&styles=default&format={imgformat}&url={url}"
-        return QgsRasterLayer(
-            uri, title, "wms"
-        )  # LET OP: `wms` is correct, zie ook quote_wmts_url
-
-    def quote_wmts_url(self, url):
-        """
-        Quoten wmts url is nodig omdat qgis de query param `SERVICE=WMS` erachter plakt als je de wmts url niet quote.
-        Dit vermoedelijk omdat de wmts laag wordt toegevoegd mbv de wms provider: `return QgsRasterLayer(uri, title, "wms")`.
-        Wat op basis van de documentatie wel de manier is om een wmts laag toe te voegen.
-        """
-        parse_result = urllib.parse.urlparse(url)
-        location = f"{parse_result.scheme}://{parse_result.netloc}/{parse_result.path}"
-        query = parse_result.query
-        query_escaped_quoted = urllib.parse.quote_plus(query)
-        url = f"{location}?{query_escaped_quoted}"
-        return url
+        self.dlg.mapListView.scrollTo(self.dlg.mapListView.selectedIndexes()[0])
+        # itemType holds the data (== column 1) hence self.dlg.mapListView.selectedIndexes()[1], see itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
+        self.current_layer = self.dlg.mapListView.selectedIndexes()[0].data(
+            Qt.ItemDataRole.UserRole
+        )
 
 
-#########################################################################################
-##############  Zoom function to go to selected locations ####################
-#########################################################################################
-
-    def zoom_to(self):
-        """Zoom to desired location"""
-        self.log("inside zoom_to function")
+    def load_layer(self, tree_location):
+        load = LoadLayers(self.iface, self.current_layer, tree_location)
+        load.load_layer()     
 
 
 
@@ -445,20 +325,19 @@ class NADMaps(object):
 
 
     def save_thema(self, all: bool):
-        """Save a collection of layers in order to later quickly load them"""
+        """
+        Save a collection of layers in order to later quickly load them
+        """
         self.log("Starting the save_thema function")
         self.log(f"Save all? {all}")
-        # TODO: does this work properly?
-        if not os.path.isfile(self.thema_path):
-            with open(self.thema_path, "w", encoding="utf-8") as f:
-                json.dump([], f)
         
         # Collect a json string with a thema_name and a list of layer names
         thema_name = self.dlg.saveThemaLineEdit.text()
         self.log(f"Thema name given is {thema_name}")
+    
 
         string = "{\"thema_name\": \"" + thema_name + "\", "
-        string = string + "\"layers\": ["
+        string = string + "\"layers\": [{"
 
         # https://doc.qt.io/qt-6/qabstractitemmodel.html#details # documentation p1
         # https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum # documentation p2
@@ -470,21 +349,30 @@ class NADMaps(object):
 
         self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
         for i, layer in enumerate(selected_layers):
-            self.log(layer.name())
-            string = string + "\"" + layer.name() + "\""
+            layer_type = self.layer_type_mapping[layer.type()]
+            self.log(f"Info of layer {layer.name()}, source: {layer.source()}, provider_type: {layer.providerType()}, layer_type: {layer_type}, styling: todo")
+            string = f"{string}\"name\": \"{layer.name()}\"," # layer name
+            string = f"{string}\"source\": \"{layer.source()}\"," # source
+            string = f"{string}\"provider_type\": \"{layer.providerType()}\"," # provider_type
+            string = f"{string}\"layer_type\": \"{layer_type}\"" # service_type
+            # string = string + "\"styling\": \"" + layer.styling() + "\"," # styling
             if i == len(selected_layers) - 1:
                 self.log("end")
-                string = string + "]"
+                string = string + "}]"
             else:
                 self.log("going")
-                string = string + ", "
+                string = string + "}, {"
         string = string + "}"
         self.log(string)
 
         data = json.loads(string)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
-        with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
-            feeds = json.load(feedsjson)
+        try:
+            with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
+                feeds = json.load(feedsjson)
+        except:
+            feeds = []
+        
         with open(self.thema_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
             json.dump(feeds, feedsjson, indent='\t')
@@ -497,19 +385,30 @@ class NADMaps(object):
         """Add a thema to the thema model"""
         self.themaModel.clear()
         
-        self.themas = []
-        with open(self.thema_path, "r", encoding="utf-8") as f:
-            self.themas.extend(json.load(f))
-        
-        for thema in self.themas:
-            itemThema = QStandardItem(str(thema["thema_name"]))
-            itemSource = QStandardItem(str("Plugin"))
-            itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
-            # https://doc.qt.io/qt-6/qstandarditem.html#setData
-            itemThema.setData(thema, Qt.ItemDataRole.UserRole)
+        themas = []
+        try:
+            with open(self.thema_path, "r", encoding="utf-8") as f:
+                themas.extend(json.load(f))
+        except:
+            return
+
+        if len(themas) < 1:
+            itemThema = QStandardItem(str(""))
+            itemSource = QStandardItem(str(""))
+            itemFilter = QStandardItem(str(""))
             self.themaModel.appendRow(
                 [itemThema, itemSource, itemFilter]
             )
+        else:
+            for thema in themas:
+                itemThema = QStandardItem(str(thema["thema_name"]))
+                itemSource = QStandardItem(str("Plugin"))
+                itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
+                # https://doc.qt.io/qt-6/qstandarditem.html#setData
+                itemThema.setData(thema, Qt.ItemDataRole.UserRole)
+                self.themaModel.appendRow(
+                    [itemThema, itemSource, itemFilter]
+                )
             
         self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Bron")
         self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema")
@@ -537,34 +436,30 @@ class NADMaps(object):
         self.current_thema = self.dlg.themaView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
-
-        layers = self.current_thema["layers"]
-        layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
-        self.thema_layers = []
-        for layer in layers:
-            with open(layer_path, "r", encoding="utf-8") as f:
-                all_layers = json.load(f)
-                for i, r in enumerate(all_layers):
-                    title = all_layers[i]["title"]
-                    if layer == title:
-                        self.thema_layers.append(all_layers[i])
-        self.update_thema_layers()
-        self.log("Finished the show_thema_layers function")
+        if not self.current_thema == None:
+            self.thema_layers = self.current_thema["layers"]
+            self.update_thema_layers()
 
 
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
         self.log(f"load_thema_layers: current_thema is {self.current_thema["thema_name"]}")
         thema_layers = self.thema_layers
+        # create a group to load into to
         for layer in thema_layers:
             name = layer["name"]
+            layer_type = layer["layer_type"]
+            uri = layer["source"]
+            provider_type = layer["provider_type"]
+            # styling = layer["styling"]
+            # title, layer_type, provider_type, uri
             self.log(name)
             self.current_layer = layer
-            # self.load_layer(None)
-            self.load_layer(None)
+            load_thema_layer(name, uri, layer_type, provider_type)
+            # check if styling is saved in .resources.styling styling.json
+            # if so, then apply that style, else apply no style
         self.iface.layerTreeView().collapseAllNodes()
-        self.update_active_map_list()
-        self.log("Finished the load_thema_layers function")
+        self.update_active_layers_list()
 
 
     def update_thema_layers(self):
@@ -573,27 +468,36 @@ class NADMaps(object):
         
         self.themaMapModel.clear()
 
-        for layer in thema_layers:
-            itemLayername = QStandardItem(str(layer["title"]))
-            stype = (
-                self.service_type_mapping[layer["service_type"]]
-                if layer["service_type"] in self.service_type_mapping
-                else layer["service_type"].upper()
-            )
-            itemType = QStandardItem(str(stype))
-            itemServicetitle = QStandardItem(str(layer["service_title"]))
+        self.log(f"Number of layers: {len(thema_layers)}")
+        if len(thema_layers) < 1:
+            itemLayername = QStandardItem(str(""))
+            itemProvider = QStandardItem(str(""))
+            itemSource = QStandardItem(str(""))
             self.themaMapModel.appendRow(
-                [itemLayername, itemType, itemServicetitle]
+                [itemLayername, itemProvider, itemSource]
             )
-            
-        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Service")
+        else:
+            for layer in thema_layers:
+                itemLayername = QStandardItem(str(layer["name"]))
+                stype = (
+                    self.service_type_mapping[layer["provider_type"]]
+                    if layer["provider_type"] in self.service_type_mapping
+                    else layer["provider_type"].upper()
+                )
+                itemProvider = QStandardItem(str(stype))
+                itemSource = QStandardItem(str(layer["source"]))
+                self.themaMapModel.appendRow(
+                    [itemLayername, itemProvider, itemSource]
+                )
+        
+        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
         self.themaMapModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.themaMapModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
         self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
-        self.dlg.themaMapListView.hideColumn(3)
+        # self.dlg.themaMapListView.hideColumn(3)
         
         self.dlg.themaMapListView.setColumnWidth(
             0, 200
@@ -601,21 +505,6 @@ class NADMaps(object):
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
 
 
-#########################################################################################
-############################  Show a regular layer ########################
-#########################################################################################
-
-    def get_current_layer(self, selectedIndexes):
-        self.log(f"get_current_layer: len(selectedIndexes) is {str(len(selectedIndexes))}")
-        if len(selectedIndexes) == 0:
-            self.current_layer = None
-            return
-
-        self.dlg.mapListView.scrollTo(self.dlg.mapListView.selectedIndexes()[0])
-        # itemType holds the data (== column 1) hence self.dlg.mapListView.selectedIndexes()[1], see itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
-        self.current_layer = self.dlg.mapListView.selectedIndexes()[1].data(
-            Qt.ItemDataRole.UserRole
-        )
 
 #########################################################################################
 ######################  Show current loaded layers on the canvas ########################
@@ -638,22 +527,36 @@ class NADMaps(object):
 
     def save_styling(self, layer, styling):
         """Save the styling of the current layer to a qml file"""
+        # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
+        # TODO: what about services where you define the styling when you send the request? remove and reload?
+
         # https://gis.stackexchange.com/search?q=%5Bqml%5Dsave
         # very old blog: https://snorfalorpagus.net/blog/2014/03/04/symbology-of-vector-layers-in-qgis-python-plugins/
         # https://anitagraser.com/pyqgis-101-introduction-to-qgis-python-programming-for-non-programmers/pyqgis-101-styling-vector-layers/
         # https://opensourceoptions.com/loading-and-symbolizing-raster-layers/
 
+        # styling_name = self.dlg.saveStylingLineEdit.text()
         path = self.styling_path + f"{layer.name()}/{styling}.qml"
         self.log(path)
         if layer.type() == QgsMapLayer.VectorLayer:
             layer.saveNamedStyle(path)
             # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
             # lyr.saveNamedStyle(path, categories = QgsMapLayer.Symbology | QgsMapLayer.Labeling | QgsMapLayer.Forms)
+            
+            # styling = self.current_layer["styling"]
+            # self.log(f"styling is {str(styling)}")
+            # if styling and styling != "":
+            #     # something
+            #     self.log(f"here")
+            #     self.load_qml_style(layer, styling)
+            # else:
+            #     self.log(f"here")
+            #     return
 
 
-    def update_active_map_list(self):
+    def update_active_layers_list(self):
         """Update the table with active layers in the project"""
-        self.log(f"update_active_map_list function started")        
+        self.log(f"update_active_layers_list function started")        
         self.mapsModel.clear()
 
         # self.iface.layerTreeView()
@@ -669,25 +572,26 @@ class NADMaps(object):
             )
         else:
             for i, layer in enumerate(layers):
+                # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
-                layer_type = self.layer_type_mapping[layer.type()]
-                self.log(f"layer is {layer}")
-                # l is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
+                # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
+                provider_type = layer.providerType()
 
                 itemLayername = QStandardItem(str(layer.name()))
-                itemType = QStandardItem(str(layer_type))
+                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+                stype = (
+                    self.service_type_mapping[provider_type]
+                    if provider_type in self.service_type_mapping
+                    else provider_type.upper()
+                )
+                itemType = QStandardItem(str(stype))
                 styling = "default"
-                # if l.type() == 0:
-                #     self.log(str(styling))
-                #     styling = l.writeStyle()
-                #     self.log(str(styling))
                 itemStylingTitle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
                 self.mapsModel.appendRow(
                     [itemLayername, itemType, itemStylingTitle, itemSource]
                 )
-                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
 
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Styling")
@@ -706,36 +610,10 @@ class NADMaps(object):
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
 
 
-
-# OGC API - Tiles
-# Layer 0 has name: Bestuurlijke Gebieden - Tiles [Bestuurlijke Gebieden Standaardvisualisatie (NetherlandsRDNewQuad)] of type 4 with source styleUrl=https://api.pdok.nl/kadaster/bestuurlijkegebieden/ogc/v1_0/styles/bestuurlijkegebieden_standaardvisualisatie__netherlandsrdnewquad?f=mapbox&url=https://api.pdok.nl/kadaster/bestuurlijkegebieden/ogc/v1_0/tiles/WebMercatorQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=17&zmin=0&http-header:referer=
-# <QgsVectorTileLayer: 'Bestuurlijke Gebieden - Tiles [Bestuurlijke Gebieden Standaardvisualisatie (NetherlandsRDNewQuad)]'>
-
-# WMTS
-# Layer 1 has name: Luchtfoto Actueel Ortho 8cm RGB of type 1 with source crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=Actueel_orthoHR&styles=default&format=image/jpeg&url=https://service.pdok.nl//hwh/luchtfotorgb/wmts/v1_0?request%3DGetCapabilities%26service%3DWMTS
-# <QgsRasterLayer: 'Luchtfoto Actueel Ortho 8cm RGB' (wms)>
-
-# WFS
-# Layer 2 has name: Riolering WFS: Put of type 0 with source  pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'
-# <QgsVectorLayer: 'Riolering WFS: Put' (WFS)>
-
-# WMS
-# Layer 4 has name: Riolering WMS: Put of type 1 with source crs=EPSG:28992&layers=BeheerPut&styles=default&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS
-# <QgsRasterLayer: 'Riolering WMS: Put' (wms)>
-
-# OGC API - Features
-# Layer 5 has name: Wegdeel (WGD) of type 0 with source  pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='wegdeel' url='https://api.pdok.nl/lv/bgt/ogc/v1'
-# <QgsVectorLayer: 'Wegdeel (WGD)' (OAPIF)>
-
-# WMTS
-# Layer 6 has name: standaard of type 1 with source crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=standaard&styles=default&format=image/png&url=https://service.pdok.nl//brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS
-# <QgsRasterLayer: 'standaard' (wms)>
-
-# WCS
-# Layer 0 has name: Digital Surface Model (DSM) 0.5m of type 1 with source cache=AlwaysNetwork&crs=EPSG:28992&format=GEOTIFF&identifier=dsm_05m&url=https://service.pdok.nl/rws/ahn/wcs/v1_0
-# <QgsRasterLayer: 'Digital Surface Model (DSM) 0.5m' (wcs)>
-
     def get_selected_active_layers(self):
+        """
+        Get the selected layers from the active layers-tab
+        """
         selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
         first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
@@ -777,179 +655,6 @@ class NADMaps(object):
 
 
 #########################################################################################
-####################  Run main script to initiate when NAD button is pressed ############
-#########################################################################################
-
-    def run(self, hiddenDialog=False):
-        """Run method that performs all the real work"""
-
-        # Create the dialog with elements (after translation) and keep reference
-        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
-        if self.maps_loaded == False:
-            self.maps_loaded = True
-            # general functions
-            # self.dlg.zoomComboBox.addItems(self.municipality_list)
-            self.dlg.zoomButton.clicked.connect(lambda: self.zoom_to())
-            self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
-
-            self.timer_toolbar_search = QTimer()
-            self.timer_toolbar_search.setSingleShot(True)
-            self.timer_toolbar_search.setInterval(200)
-            self.timer_toolbar_search.timeout.connect(self.toolbar_search_get_suggestions)
-            self.dlg.zoomLineEdit.textEdited.connect(
-                lambda: self.timer_toolbar_search.start()
-            )
-            
-            self.logModel = QStandardItemModel()
-            self.dlg.logView.setModel(self.logModel)
-            self.dlg.logView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-            self.log('started logging')
-            # active maps tab
-            
-            ### maps list
-            self.mapsModel = QStandardItemModel()
-            self.styleFilterMaps = QSortFilterProxyModel()
-            self.styleFilterMaps.setSourceModel(self.mapsModel)
-            self.styleFilterMaps.setFilterKeyColumn(2)
-
-            self.proxyModelMaps = QSortFilterProxyModel()
-            self.proxyModelMaps.setSourceModel(self.styleFilterMaps)
-            self.proxyModelMaps.setFilterKeyColumn(1)
-
-            self.dlg.activeMapListView.setModel(self.mapsModel)
-            self.dlg.activeMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-            
-            # create a list of existing themas
-            self.update_active_map_list()
-            
-            self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
-                self.get_selected_active_layers
-            )
-
-            # TODO: make these functions
-            self.dlg.loadStyleButton.clicked.connect(lambda: self.load_styling())
-            self.dlg.removeStyleButton.clicked.connect(lambda: self.delete_styling())
-            self.dlg.saveStyleButton.clicked.connect(lambda: self.save_styling())
-
-            self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
-            self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
-
-            # thema tab
-            
-            ### thema list
-            self.themaModel = QStandardItemModel()
-            self.styleFilterThema = QSortFilterProxyModel()
-            self.styleFilterThema.setSourceModel(self.themaModel)
-            self.styleFilterThema.setFilterKeyColumn(2)
-
-            self.proxyModelThema = QSortFilterProxyModel()
-            self.proxyModelThema.setSourceModel(self.styleFilterThema)
-            self.proxyModelThema.setFilterKeyColumn(1)
-
-            self.dlg.themaView.setModel(self.proxyModelThema)
-            self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-            
-            # create a list of existing themas
-            self.update_thema_list()
-
-            # update the display with a list of map layers within the selected thema
-            self.dlg.themaView.selectionModel().selectionChanged.connect(
-                self.show_thema_layers
-            )
-            ### thema layers list
-            self.themaMapModel = QStandardItemModel()
-            self.styleFilterThemaMaps = QSortFilterProxyModel()
-            self.styleFilterThemaMaps.setSourceModel(self.themaMapModel)
-            self.styleFilterThemaMaps.setFilterKeyColumn(4)
-            
-            self.proxyModelThemaMaps = QSortFilterProxyModel()
-            self.proxyModelThemaMaps.setSourceModel(self.styleFilterThemaMaps)
-            self.proxyModelThemaMaps.setFilterKeyColumn(3)
-
-            self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
-            self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-            self.dlg.themaView.selectionModel().select(
-                self.themaModel.index(0,0), QtCore.QItemSelectionModel.Select | QtCore.QItemSelectionModel.Rows
-            )
-            self.dlg.themaView.doubleClicked.connect(
-                lambda: self.load_thema_layers()
-            )  # Using lambda here to prevent sending signal parameters to the loadService() function
-
-            self.dlg.deleteThemaButton.clicked.connect(lambda: self.delete_thema())
-            
-            # layers tab
-            self.layers_nad = []
-            layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
-            with open(layer_path, "r", encoding="utf-8") as f:
-                self.layers_nad.extend(json.load(f))
-
-            self.sourceModel = QStandardItemModel()
-
-            self.styleFilter = QSortFilterProxyModel()
-            self.styleFilter.setSourceModel(self.sourceModel)
-            self.styleFilter.setFilterKeyColumn(4)
-
-            self.proxyModel = QSortFilterProxyModel()
-            self.proxyModel.setSourceModel(self.styleFilter)
-            self.proxyModel.setFilterKeyColumn(3)
-
-            self.dlg.mapListView.setModel(self.proxyModel)
-            self.dlg.mapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-            for layer in self.layers_nad:
-                if isinstance(layer["name"], str):
-                    self.add_source_row(layer)
-
-            self.dlg.mapListView.selectionModel().selectionChanged.connect(
-                self.get_current_layer
-            )
-            self.dlg.mapListView.doubleClicked.connect(
-                lambda: self.load_layer(None)
-            )  # Using lambda here to prevent sending signal parameters to the loadService() function
-            
-            self.dlg.stylingGroupBox.setEnabled(False)
-            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
-            self.dlg.saveThemaButton.setEnabled(False)
-            self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
-            self.dlg.themaView.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
-            self.dlg.mapListView.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
-            self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
-            self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
-            # hide itemFilter column:
-            self.dlg.mapListView.hideColumn(3)
-
-        self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
-        self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.dlg.logView.horizontalHeader().setStretchLastSection(True)
-        
-        self.sourceModel.setHeaderData(2, Qt.Orientation.Horizontal, "Service")
-        self.sourceModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
-        self.sourceModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.sourceModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.sourceModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.sourceModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-
-        self.dlg.mapListView.setColumnWidth(
-            0, 200
-        )  # set name to 300px (there are some huge layernames)
-        self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
-        # self.dlg.mapListView.resizeColumnsToContents()
-        # show the dialog
-        if not hiddenDialog:
-            self.dlg.show()
-        
-        self.dlg.tabWidget.currentChanged.connect(self.active_buttons)
-
-        self.dlg.load_button.clicked.connect(lambda: self.load_button_pressed(False))
-        self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
-        self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
-
-
-
-        
-
-#########################################################################################
 ####################  Save the current canvas function ############
 #########################################################################################
 
@@ -976,16 +681,15 @@ class NADMaps(object):
             LsType.adres,
             LsType.perceel,
             LsType.hectometerpaal,
+            LsType.waterschap,
         }
         filter = TypeFilter([])
         for key in self.fq_checkboxes:
-            self.log(f"key is {key}")
             filter.add_type(key)
         return filter
 
 
     def toolbar_search_get_suggestions(self):
-        self.log("Function toolbar_search_get_suggestions: starting")
         def create_model(_suggestions):
             model = QStandardItemModel()
             for s in _suggestions:
@@ -1083,6 +787,131 @@ class NADMaps(object):
         self.iface.mapCanvas().refresh()
 
 
+    def setup_models(self):
+        """
+        This does a setup of all the models for list views.
+        """
+        # Timer on the search bar
+        self.timer_toolbar_search = QTimer()
+        self.timer_toolbar_search.setSingleShot(True)
+        self.timer_toolbar_search.setInterval(200)
+        self.timer_toolbar_search.timeout.connect(self.toolbar_search_get_suggestions)
+    
+        ### Model for the active layer table
+        self.mapsModel = QStandardItemModel()
+        self.styleFilterMaps = QSortFilterProxyModel()
+        self.styleFilterMaps.setSourceModel(self.mapsModel)
+        self.styleFilterMaps.setFilterKeyColumn(2)
+
+        self.proxyModelMaps = QSortFilterProxyModel()
+        self.proxyModelMaps.setSourceModel(self.styleFilterMaps)
+        self.proxyModelMaps.setFilterKeyColumn(1)
+
+        self.dlg.activeMapListView.setModel(self.mapsModel)
+        self.dlg.activeMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+    
+        ### Model for the list of thema sets
+        self.themaModel = QStandardItemModel()
+        self.styleFilterThema = QSortFilterProxyModel()
+        self.styleFilterThema.setSourceModel(self.themaModel)
+        self.styleFilterThema.setFilterKeyColumn(2)
+
+        self.proxyModelThema = QSortFilterProxyModel()
+        self.proxyModelThema.setSourceModel(self.styleFilterThema)
+        self.proxyModelThema.setFilterKeyColumn(1) # change this when you want to order by something else (like order in layer panel)
+
+        self.dlg.themaView.setModel(self.proxyModelThema)
+        self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+    
+        ### Model for the list of layers within a thema set
+        self.themaMapModel = QStandardItemModel()
+        self.styleFilterThemaMaps = QSortFilterProxyModel()
+        self.styleFilterThemaMaps.setSourceModel(self.themaMapModel)
+        self.styleFilterThemaMaps.setFilterKeyColumn(4)
+        
+        self.proxyModelThemaMaps = QSortFilterProxyModel()
+        self.proxyModelThemaMaps.setSourceModel(self.styleFilterThemaMaps)
+        self.proxyModelThemaMaps.setFilterKeyColumn(3)
+
+        self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
+        self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+        # Model for the list of all layers available via the plugin
+        self.sourceModel = QStandardItemModel()
+        self.styleFilter = QSortFilterProxyModel()
+        self.styleFilter.setSourceModel(self.sourceModel)
+        self.styleFilter.setFilterKeyColumn(4)
+
+        self.proxyModel = QSortFilterProxyModel()
+        self.proxyModel.setSourceModel(self.styleFilter)
+        self.proxyModel.setFilterKeyColumn(3)
+
+        self.dlg.mapListView.setModel(self.proxyModel)
+        self.dlg.mapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+    
+        # Table with logging information
+        self.logModel = QStandardItemModel()
+        self.dlg.logView.setModel(self.logModel)
+        self.dlg.logView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+
+    def setup_interactions(self):
+        """
+        This does a setup of all the button interactions.
+        """
+        # Search bars
+        self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
+        self.dlg.zoomLineEdit.textEdited.connect(
+            lambda: self.timer_toolbar_search.start()
+        )
+        # Click functions
+        self.dlg.zoomButton.clicked.connect(lambda: self.zoom_to())
+        self.dlg.loadStyleButton.clicked.connect(lambda: self.load_styling())
+        # TODO: make these functions
+        self.dlg.removeStyleButton.clicked.connect(lambda: self.delete_styling())
+        self.dlg.saveStyleButton.clicked.connect(lambda: self.save_styling())
+
+        self.dlg.saveThemaButton.setEnabled(False)
+        self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
+        self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
+
+        self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
+        self.dlg.deleteThemaButton.clicked.connect(lambda: self.delete_thema())
+        self.dlg.tabWidget.currentChanged.connect(self.active_buttons)
+        self.dlg.load_button.clicked.connect(lambda: self.load_button_pressed(False))
+        self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
+        self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
+
+        self.dlg.stylingGroupBox.setEnabled(False)
+        # update the information on the current selection of active layers
+        self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
+            self.get_selected_active_layers
+        )
+    
+        # Update the display with a list of map layers within the selected thema
+        self.dlg.themaView.selectionModel().selectionChanged.connect(
+            self.show_thema_layers
+        )
+        # TODO: what does this do?
+        self.dlg.themaView.selectionModel().select(
+            self.themaModel.index(0,0), QtCore.QItemSelectionModel.Select | QtCore.QItemSelectionModel.Rows
+        )
+        self.dlg.themaView.doubleClicked.connect(
+            lambda: self.load_thema_layers()
+        )  # Using lambda here to prevent sending signal parameters to the loadService() function
+
+        # All layers
+        self.dlg.mapListView.selectionModel().selectionChanged.connect(
+            self.get_current_layer
+        )
+        self.dlg.mapListView.doubleClicked.connect(
+            lambda: self.load_layer(None)
+        )  # Using lambda here to prevent sending signal parameters to the loadService() function
+
+        self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+        # Tracking and updating        
+        QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
 
 #########################################################################################
 ################################  General utility functions ########################
@@ -1107,7 +936,6 @@ class NADMaps(object):
             self.load_thema_layers()
         elif tab_index == 2:
             self.load_layer(None)
-
         if close:
             self.dlg.hide()
 
@@ -1127,7 +955,7 @@ class NADMaps(object):
         self.proxyModel.insertRow
 
 
-    def log(self, text: str, lvl = 0):
+    def log(self, text, lvl = 0):
         if not isinstance(text, str):
             text = str(text)
         
@@ -1138,6 +966,15 @@ class NADMaps(object):
         self.logModel.appendRow(
             [log]
         )
+
+
+    def unload(self):
+        """Removes the plugin menu item and icon from QGIS GUI."""
+        for action in self.actions:
+            self.iface.removePluginMenu(
+                self.tr(u'&NAD Waterketen Kaarten'),
+                action)
+            self.iface.removeToolBarIcon(action)
 
 
     # General add_action function to add action-buttons to the QGIS toolbar

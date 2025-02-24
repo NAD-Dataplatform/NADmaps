@@ -166,7 +166,7 @@
            </widget>
           </item>
           <item row="2" column="0" colspan="2">
-           <widget class="QLineEdit" name="saveThemaLineEdit">
+           <widget class="QLineEdit" name="saveStylingLineEdit">
             <property name="clearButtonEnabled">
              <bool>true</bool>
             </property>

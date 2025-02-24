@@ -1,0 +1,16 @@
+[
+	{
+		"layer_name": "Riolering WFS: Put",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_leiding.qml"
+			},
+			{
+				"name": "Leeftijd",
+				"file": "leiding_leeftijd"
+			}
+		]
+	}
+]
