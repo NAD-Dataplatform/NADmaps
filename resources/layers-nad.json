@@ -1,7 +1,53 @@
 [
     {
-        "name": "HoofdrioolDenHaag",
-        "title": "Hoofdriool Den Haag",
+        "name": "pastel",
+        "title": "Achtergrondkaart",
+        "abstract": "pastel",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+        "service_title": "BRT Achtergrondkaart WMTS",
+        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_orthoHR",
+        "title": "Luchtfoto Actueel Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "osm",
+        "title": "OpenBasisKaart - OSM - EPSG:28992",
+        "abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "styles": [ { "title": "", "name": "default" } ],
+        "tilematrixsets": "rd",
+        "imgformats": "image/png",
+        "service_url": "https://www.openbasiskaart.nl/mapcache/wmts/?SERVICE=WMTS&REQUEST=GETCAPABILITIES",
+        "service_title": "OpenBasisKaart.nl",
+        "service_abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "DUOPP",
+        "title": "Den Haag: Hoofdriool",
         "abstract": "Hoofdriool van de gemeente Den Haag",
         "styles": [
             {
@@ -10,8 +56,24 @@
             }
         ],
         "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
-        "service_url": "https://www.viewer-duopp.nl/cgi-bin/mapserv?map=/home/gisarts/apps/cook/duopp/map/authenticatie/denhaag_type.map",
+        "service_url": "https://mapserver.viewer-duopp.nl/?map=/etc/mapserver/denhaag_type.map",
         "service_title": "Hoofdriool",
+        "service_abstract": "info",
+        "service_type": "wms"
+    },
+    {
+        "name": "DUOPP",
+        "title": "Den Haag: Aansluitleidingen",
+        "abstract": "Aansluitleidingen van de gemeente Den Haag",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://mapserver.viewer-duopp.nl/?map=/etc/mapserver/denhaag_aansluitingen.map",
+        "service_title": "Aansluitleidingen",
         "service_abstract": "info",
         "service_type": "wms"
     },
@@ -80,6 +142,70 @@
         "service_type": "api tiles"
     },
     {
+        "name": "Basisregistratie Grootschalige Topografie - Tiles",
+        "title": "Basisregistratie Grootschalige Topografie - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in meerdere projecties. Ook worden er \u00e9\u00e9n of meerdere styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "bgt_standaardvisualisatie__netherlandsrdnewquad",
+                "name": "BGT Standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bgt_standaardvisualisatie__europeanetrs89_laeaquad",
+                "name": "BGT Standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bgt_standaardvisualisatie__webmercatorquad",
+                "name": "BGT Standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__netherlandsrdnewquad",
+                "name": "BGT Achtergrondvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__europeanetrs89_laeaquad",
+                "name": "BGT Achtergrondvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__webmercatorquad",
+                "name": "BGT Achtergrondvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__webmercatorquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "Basisregistratie Grootschalige Topografie - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in meerdere projecties. Ook worden er \u00e9\u00e9n of meerdere styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/lv/bgt/ogc/v1",
+        "service_title": "Basisregistratie Grootschalige Topografie",
+        "service_abstract": "De Basisregistratie Grootschalige Topografie (BGT) is de gedetailleerde grootschalige basiskaart (digitaal) van Nederland, waarin de ligging van alle fysieke objecten zoals gebouwen, wegen, water, spoorlijnen en (landbouw)terreinen is geregistreerd. Lees meer over de BGT en bekijk de BGT vector tiles in de Vectortile Viewer.",
+        "service_type": "api tiles"
+    },
+    {
         "name": "BeheerLeiding",
         "title": "Rioolleiding",
         "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
@@ -113,7 +239,7 @@
     },
     {
         "name": "beheerstedelijkwater:BeheerPut",
-        "title": "Riolering WFS: Put",
+        "title": "Rioolput",
         "abstract": "Putten met kenmerken gericht op beheeractiviteiten",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
         "service_title": "Stedelijk Water (Riolering) WFS",
@@ -122,7 +248,7 @@
     },
     {
         "name": "beheerstedelijkwater:BeheerLeiding",
-        "title": "Riolering WFS: Leiding",
+        "title": "Rioolleiding",
         "abstract": "Leidingen met kenmerken gericht op beheeractiviteiten",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
         "service_title": "Stedelijk Water (Riolering) WFS",
@@ -279,52 +405,6 @@
         "service_title": "Basisregistratie Grootschalige Topografie",
         "service_abstract": "De Basisregistratie Grootschalige Topografie (BGT) is de gedetailleerde grootschalige basiskaart (digitaal) van Nederland, waarin de ligging van alle fysieke objecten zoals gebouwen, wegen, water, spoorlijnen en (landbouw)terreinen is geregistreerd. Lees meer over de BGT en bekijk de BGT vector tiles in de Vectortile Viewer.",
         "service_type": "api features"
-    },
-    {
-        "name": "pastel",
-        "title": "Achtergrondkaart",
-        "abstract": "pastel",
-        "styles": [
-            {
-                "title": "",
-                "name": "default"
-            }
-        ],
-        "tilematrixsets": "EPSG:28992",
-        "imgformats": "image/png",
-        "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
-        "service_title": "BRT Achtergrondkaart WMTS",
-        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
-        "service_type": "wmts"
-    },
-    {
-        "name": "Actueel_orthoHR",
-        "title": "Luchtfoto Actueel Ortho 8cm RGB",
-        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
-        "styles": [
-            {
-                "title": "",
-                "name": "default"
-            }
-        ],
-        "tilematrixsets": "EPSG:28992",
-        "imgformats": "image/jpeg",
-        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=WMTS",
-        "service_title": "Landelijke Voorziening Beeldmateriaal",
-        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.",
-        "service_type": "wmts"
-    },
-    {
-        "name": "osm",
-        "title": "OpenBasisKaart - OSM - EPSG:28992",
-        "abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
-        "styles": [ { "title": "", "name": "default" } ],
-        "tilematrixsets": "rd",
-        "imgformats": "image/png",
-        "service_url": "https://www.openbasiskaart.nl/mapcache/wmts/?SERVICE=WMTS&REQUEST=GETCAPABILITIES",
-        "service_title": "OpenBasisKaart.nl",
-        "service_abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
-        "service_type": "wmts"
     },
     {
         "name": "waterdiepte_neerslag_70mm_2uur",

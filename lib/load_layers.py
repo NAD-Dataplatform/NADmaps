@@ -23,16 +23,17 @@ default_tree_locations = {
 }
 
 
+# This functions loads a layer where the uri is already known and saved to a thema
 def load_thema_layer(title, uri, layer_type, provider_type):
     "Create and load a layer from the thema layer-list"
     if layer_type == "VectorLayer":
         result = QgsVectorLayer(uri, title, provider_type)
     elif layer_type == "RasterLayer":
         result = QgsRasterLayer(uri, title, provider_type)
-    QgsProject.instance().addMapLayer(result, True)
-    # return result
+    # return QgsProject.instance().addMapLayer(result, True)
+    return result
 
-
+# These are functions to load webservice-layers for the first time from the list of all layers
 class LoadLayers(object):
     def __init__(self, iface, current_layer, tree_location=None):
         self.iface = iface
@@ -128,31 +129,35 @@ class LoadLayers(object):
         uri = f"cache=AlwaysNetwork&crs=EPSG:28992&format={format}&identifier={layername}&url={url.split('?')[0]}"
         return QgsRasterLayer(uri, title, "wcs")
 
+    def create_oaf_layer(self, layername, title, url):
+        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"
+        return QgsVectorLayer(uri, title, "OAPIF")
+
     def build_tileset_url(self, url, tileset_id, for_request):
         url_template = url + "/tiles/" + tileset_id
         if for_request:
             return url_template + "/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt"
         return url_template + "/{z}/{y}/{x}?f=mvt"
 
-    def create_oaf_layer(self, layername, title, url):
-        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"
-        return QgsVectorLayer(uri, title, "OAPIF")
-
     def create_oat_layer(self, title, url):
         # CRS does not work as expected in qgis/gdal. We can set a crs (non-webmercator), but it is rendered incorrectly.
-        crs = "EPSG:28992"
+        crs = "EPSG:3857"
         used_tileset = [
             tileset
             for tileset in self.current_layer["tiles"][0]["tilesets"]
             if tileset["tileset_crs"].endswith(crs.split(":")[1])
         ][0]
 
+        # styleUrl=https://api.pdok.nl/lv/bag/ogc/v1_0/styles/bag_standaardvisualisatie_compleet__webmercatorquad?f=mapbox&url=https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/WebMercatorQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=17&zmin=0&http-header:referer=
+        # styleUrl=https://api.pdok.nl/lv/bag/ogc/v1_0/styles/bag_standaardvisualisatie__europeanetrs89_laeaquad?f=mapbox&url=https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/NetherlandsRDNewQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=12&zmin=0&http-header:referer=
+        # styleUrl=https://api.pdok.nl/lv/bag/ogc/v1_0/styles/bag_standaardvisualisatie_compleet__europeanetrs89_laeaquad?f=mapbox&url=https://api.pdok.nl/lv/bag/ogc/v1_0/tiles/NetherlandsRDNewQuad/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt&type=xyz&zmax=12&zmin=0&http-header:referer=
         # Style toevoegen in laag vanuit ui
         # selected_style = self.get_selected_style()
         # selected_style_url = "bgt_standaardvisualisatie__netherlandsrdnewquad"
-        name = self.current_layer["styles"][1]["name"]
+        style = 0
+        name = self.current_layer["styles"][style]["name"]
         title += f" [{name}]"
-        selected_style_url = self.current_layer["styles"][1]["url"]
+        selected_style_url = self.current_layer["styles"][style]["url"]
 
         # if selected_style is not None:
         #     selected_style_url = selected_style["url"]

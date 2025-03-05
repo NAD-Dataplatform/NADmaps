@@ -25,6 +25,7 @@
 import os.path
 import json
 import re
+import hashlib
 import urllib.request, urllib.parse, urllib.error
 
 # PyQGIS packages
@@ -83,6 +84,7 @@ from .lib.locatieserver import (
 from .lib.load_layers import LoadLayers, load_thema_layer
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
+from .nad_maps_popup import NADMapsPopup
 from .lib.constants import PLUGIN_NAME, PLUGIN_ID
 
 
@@ -108,6 +110,7 @@ class NADMaps(object):
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         self.dlg = NADMapsDialog(parent=self.iface.mainWindow())
+        self.popup = NADMapsPopup(parent=self.iface.mainWindow())
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
         # initialize locale (find language of the user)
         locale = QSettings().value('locale/userLocale')[0:2]
@@ -116,15 +119,22 @@ class NADMaps(object):
             'i18n',
             'NADMaps_{}.qm'.format(locale))
 
+        self.creator = "Gebruiker" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
         thema_filename = "default.json"
         self.thema_path = os.path.join(
             self.plugin_dir,
             "resources\\themas",
             thema_filename)
 
+        styling_filename = "styling.json"
         self.styling_path = os.path.join(
             self.plugin_dir,
-            "resources\\styling")
+            "resources\\styling",
+            styling_filename)
+        
+        self.styling_files_path = os.path.join(
+            self.plugin_dir,
+            "resources\\styling\\qml_files")
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
@@ -137,7 +147,8 @@ class NADMaps(object):
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
-        self.first_start = None
+        # will be set True in run()
+        self.setup_completed = False
         self.current_layer = None
 
     def initGui(self):
@@ -172,8 +183,6 @@ class NADMaps(object):
             6: "PointCloudLayer",
             7: "GroupLayer"
         }
-        # will be set True in run()
-        self.setup_completed = False
 
 
 #########################################################################################
@@ -219,7 +228,7 @@ class NADMaps(object):
             # hide itemFilter column:
             self.dlg.mapListView.hideColumn(3)
             self.dlg.mapListView.setColumnWidth(
-                0, 300
+                0, 250
             )  # set name to 300px (there are some huge layernames)
             self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
             # self.dlg.mapListView.resizeColumnsToContents()
@@ -231,13 +240,18 @@ class NADMaps(object):
             self.sourceModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
             self.sourceModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
 
+            # TODO: set projection to ESPG:28992
+            projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
+            QgsProject.instance().setCrs(projectCrs)
+        
+        # set which buttons should be shown
+        tab_index = self.dlg.tabWidget.currentIndex()
+        self.active_buttons(tab_index)
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
 
 
-
-   
 #########################################################################################
 ############################  Show and load regular layers ##############################
 #########################################################################################
@@ -291,19 +305,15 @@ class NADMaps(object):
             Qt.ItemDataRole.UserRole
         )
 
-
     def load_layer(self, tree_location):
         load = LoadLayers(self.iface, self.current_layer, tree_location)
         load.load_layer()     
-
-
 
 
 #########################################################################################
 ##############  Manage thema sets (a list of one or more map layers) ####################
 #########################################################################################
 
-    # TODO: First implement the UI
     def delete_thema(self):
         """Delete an existing thema (only user defined themas should be deleted)"""
         self.log("Starting the delete_thema function")
@@ -324,20 +334,18 @@ class NADMaps(object):
         self.update_thema_list()
         self.log("Finished the delete_thema function")
 
-
     def save_thema(self, all: bool):
         """
         Save a collection of layers in order to later quickly load them
         """
-        self.log("Starting the save_thema function")
-        self.log(f"Save all? {all}")
+        self.log(f"Save thema function: save all? {all}")
         
         # Collect a json string with a thema_name and a list of layer names
         thema_name = self.dlg.saveThemaLineEdit.text()
         self.log(f"Thema name given is {thema_name}")
-    
 
         string = "{\"thema_name\": \"" + thema_name + "\", "
+        string = f"{string}\"creator\": \"{self.creator}\"," # creator
         string = string + "\"layers\": [{"
 
         # https://doc.qt.io/qt-6/qabstractitemmodel.html#details # documentation p1
@@ -345,8 +353,8 @@ class NADMaps(object):
         if all == False:
             selected_layers = self.selected_active_layers
         else:
-            selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
-            selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
+            selected_layers = QgsProject.instance().mapLayers().values()
+            # selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
 
         self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
         for i, layer in enumerate(selected_layers):
@@ -380,7 +388,6 @@ class NADMaps(object):
         
         self.update_thema_list()
         self.dlg.saveThemaLineEdit.clear()
-        self.log("Finished the save_thema function")
 
     def update_thema_list(self):
         """Add a thema to the thema model"""
@@ -393,38 +400,55 @@ class NADMaps(object):
         except:
             return
 
-        if len(themas) < 1:
+        self.log(f"themas: {themas}")
+        plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
+        user_thema_check = self.dlg.userThemaCheckBox.isChecked()
+        fav_thema_check = self.dlg.favoriteThemaCheckBox.isChecked()
+        self.log(f"Filters checked: plugin = {plugin_thema_check}, user = {user_thema_check}, favorite = {fav_thema_check}")
+        themas_exist = False
+        for thema in themas:
+            if (plugin_thema_check and thema["creator"] == "Plugin") or (user_thema_check and thema["creator"] == "Gebruiker"):
+                # if fav_thema_check == False or thema["favorite"] != "":
+                if fav_thema_check == False:
+                    itemThema = QStandardItem(str(thema["thema_name"]))
+                    itemFavorite = QStandardItem(str(""))
+                    itemSource = QStandardItem(str(thema["creator"]))
+                    itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
+                    # https://doc.qt.io/qt-6/qstandarditem.html#setData
+                    itemThema.setData(thema, Qt.ItemDataRole.UserRole)
+                    self.themaModel.appendRow(
+                        [itemThema, itemFavorite, itemSource, itemFilter]
+                    )
+                    themas_exist = True
+        
+        # if no thema is leftover after selection, then present an empty row
+        if not themas_exist:
             itemThema = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
             itemFilter = QStandardItem(str(""))
             self.themaModel.appendRow(
                 [itemThema, itemSource, itemFilter]
             )
-        else:
-            for thema in themas:
-                itemThema = QStandardItem(str(thema["thema_name"]))
-                itemSource = QStandardItem(str("Plugin"))
-                itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
-                # https://doc.qt.io/qt-6/qstandarditem.html#setData
-                itemThema.setData(thema, Qt.ItemDataRole.UserRole)
-                self.themaModel.appendRow(
-                    [itemThema, itemSource, itemFilter]
-                )
-            
-        self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Bron")
+
+
+        self.themaModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
+        self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Favoriet")
         self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema")
+        self.themaModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
-        self.dlg.themaView.hideColumn(2)
+        self.dlg.themaView.hideColumn(3)
         self.dlg.themaView.setColumnWidth(
             0, 300
         )  # set name to 300px (there are some huge layernames)
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
+        self.dlg.themaView.sortByColumn(0, QtCore.Qt.AscendingOrder)
+
 
 
 #########################################################################################
-##############  Updating the layers that are part of a thema set ########################
+############  Update and load list of layers that are part of a thema set ###############
 #########################################################################################
 
     def show_thema_layers(self, selectedIndexes):
@@ -441,12 +465,16 @@ class NADMaps(object):
             self.thema_layers = self.current_thema["layers"]
             self.update_thema_layers()
 
-
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
         self.log(f"load_thema_layers: current_thema is {self.current_thema["thema_name"]}")
         thema_layers = self.thema_layers
         # create a group to load into to
+        root = QgsProject.instance().layerTreeRoot()
+        group_name = self.current_thema["thema_name"]
+        group = root.insertGroup(0, group_name)
+        # QgsProject.instance().addMapLayer(layer, False)
+        # mygroup.addLayer(layer)
         for layer in thema_layers:
             name = layer["name"]
             layer_type = layer["layer_type"]
@@ -456,12 +484,14 @@ class NADMaps(object):
             # title, layer_type, provider_type, uri
             self.log(name)
             self.current_layer = layer
-            load_thema_layer(name, uri, layer_type, provider_type)
+            result = load_thema_layer(name, uri, layer_type, provider_type)
+            self.log(f"Loading thema layer {layer}")
+            QgsProject.instance().addMapLayer(result, False) # If True (by default), the layer will be added to the legend and to the main canvas
+            group.addLayer(result) # Add the layer to the group
             # check if styling is saved in .resources.styling styling.json
             # if so, then apply that style, else apply no style
         self.iface.layerTreeView().collapseAllNodes()
         self.update_active_layers_list()
-
 
     def update_thema_layers(self):
         """Update the list of layers contained with this thema"""
@@ -486,14 +516,17 @@ class NADMaps(object):
                     else layer["provider_type"].upper()
                 )
                 itemProvider = QStandardItem(str(stype))
+                itemStyle = QStandardItem(str(""))
                 itemSource = QStandardItem(str(layer["source"]))
                 self.themaMapModel.appendRow(
-                    [itemLayername, itemProvider, itemSource]
+                    [itemLayername, itemProvider, itemStyle, itemSource]
                 )
         
-        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
+        self.themaMapModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
+        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.themaMapModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.themaMapModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
+        self.themaMapModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -506,58 +539,246 @@ class NADMaps(object):
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
 
 
-
 #########################################################################################
 ######################  Show current loaded layers on the canvas ########################
 #########################################################################################
 
+    def style_code(self, style_name: str, source: str):
+        """
+        Create the name for a styling file. Encoded with md5 for better readability.
 
-    def load_qml_style(self, layer, styling):
-        if not styling:
-            return
-        else:
-            path = self.styling_path + f"{layer.name()}/{styling}.qml"
-            self.log(path)
+        :param style_name: Name given by a user to a styling.
+        :type style_name: str
+
+        :param source: Uri path to the layer source.
+        :type source: str
+        """
+        md = hashlib.md5(str(source).encode("utf"))
+        text = md.hexdigest()
+        return str(style_name.lower() + '_' + text) 
+
+    def load_styling(self):
+        style_name = self.dlg.stylingComboBox.currentText()
+        layer = self.dlg.stylingComboBox.currentData()
+        style_code = self.style_code(style_name, layer.source())
+
+        if not layer == None:
+            path = f"{self.styling_files_path}/{style_code}.qml"
             layer.loadNamedStyle(path)
             layer.triggerRepaint()
-            # print(layer.name())
-        # self.configure_dropdown()
+
         # vlayer.renderer().symbol().setSize(6)
         # vlayer.triggerRepaint()
-
-
-    def save_styling(self, layer, styling):
-        """Save the styling of the current layer to a qml file"""
-        # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
-        # TODO: what about services where you define the styling when you send the request? remove and reload?
-
         # https://gis.stackexchange.com/search?q=%5Bqml%5Dsave
         # very old blog: https://snorfalorpagus.net/blog/2014/03/04/symbology-of-vector-layers-in-qgis-python-plugins/
         # https://anitagraser.com/pyqgis-101-introduction-to-qgis-python-programming-for-non-programmers/pyqgis-101-styling-vector-layers/
         # https://opensourceoptions.com/loading-and-symbolizing-raster-layers/
 
-        # styling_name = self.dlg.saveStylingLineEdit.text()
-        path = self.styling_path + f"{layer.name()}/{styling}.qml"
-        self.log(path)
+    def delete_styling(self):
+        """Delete an existing style (only user defined styles should be deleted)"""
+        self.log("Starting the delete_styling function")
+
+        # Find the style name to be deleted
+        style_name = self.dlg.stylingComboBox.currentText()
+        data = self.dlg.stylingComboBox.currentData()
+        self.log(f"Style to be deleted is {style_name}")
+        self.log(f"Style data is {data}")
+        if not data == None:
+            source = data.source()
+            style_code = self.style_code(style_name, source)
+            self.log(f"Style code is {style_code}")
+            self.log(f"data.source() is {source}")
+
+            try:
+                with open(self.styling_path, "r", encoding="utf-8") as f:
+                    jsondata = json.load(f)
+            except Exception as e:
+                self.log(f"Error with message: {e}")
+
+            new_jsondata = []
+            for layer in jsondata:
+                if layer["source"] == source:
+                    current_layer = layer
+                else:
+                    new_jsondata.append(layer)
+            
+            existing_styles = current_layer["styles"]
+            # if there are other style options, then we want to preserve those
+            if len(existing_styles) > 1:
+                styles = [obj for obj in existing_styles if obj["file"] != style_code]
+                new_data = {}
+                new_data["layer_name"] = current_layer["layer_name"]
+                new_data["source"] = current_layer["source"]
+                new_data["styles"] = styles
+            
+                new_jsondata.append(new_data)
+
+            try:
+                with open(self.styling_path, "w", encoding="utf-8") as f:
+                    json.dump(new_jsondata, f, indent='\t')
+            except Exception as e:
+                self.log(f"Error with message: {e}")
+            file_path = f"{self.styling_files_path}\\{style_code}.qml"
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+            self.update_styling_list()
+
+    def style_overwrite(self, show_popup: bool):
+        """
+        Save the styling of the current layer to a qml file
+
+        :param show_popup: Show or close the popup asking about overwriting an existing style. Also disables the main dialogue window.
+        :type show_popup: bool
+        """
+        if show_popup:
+            self.popup.show()
+            self.dlg.setEnabled(False)
+        else:
+            self.popup.hide()
+            self.dlg.setEnabled(True)
+
+    def check_existing_style(self):
+        """Check if a style already exists for this layer with the same name"""
+        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
+        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
+        self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
+
+        # enable or disable the styling-functions
+        if nr_of_selected_rows == 1:
+            # first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
+            self.layer_to_style = self.dlg.activeMapListView.selectedIndexes()[0].data(
+                Qt.ItemDataRole.UserRole
+            )
+            style_name = self.dlg.saveStylingLineEdit.text()
+            if not style_name == "":
+                source = self.layer_to_style.source()
+                style_code = self.style_code(style_name, source)
+                self.log(f"style_code = {style_code}")
+
+                try:
+                    with open(self.styling_path, "r", encoding="utf-8") as feedsjson:
+                        feeds = json.load(feedsjson)
+                except:
+                    return
+
+                existing_styles = []
+                for feed in feeds:
+                    if feed["source"] == source:
+                        existing_styles = feed["styles"]
+
+                # Check if a style with the same name exists
+                check_overwrite = False
+                for i, style in enumerate(existing_styles):
+                    if style["file"] == style_code:
+                        check_overwrite = True
+                
+                if check_overwrite == False:
+                    self.save_styling()
+                else:
+                    # popup
+                    self.style_overwrite(True)
+
+    def save_styling(self):
+        """
+        Save the styling of the current layer to a qml file
+        """
+        # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
+        # TODO: what about services where you define the styling when you send the request? remove and reload?
+        layer = self.layer_to_style
+        self.log(f"name of selected layer is {layer.name()}, source is {layer.source()}")
+        style_name = self.dlg.saveStylingLineEdit.text()
+        self.dlg.saveStylingLineEdit.clear()
+        source = layer.source()
+        layer_name = layer.name()
+        style_code = self.style_code(style_name, source)
+        self.log(f"style_code = {style_code}")
+        path = f"{self.styling_files_path}\\{style_code}.qml"
+
         if layer.type() == QgsMapLayer.VectorLayer:
             layer.saveNamedStyle(path)
-            # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
-            # lyr.saveNamedStyle(path, categories = QgsMapLayer.Symbology | QgsMapLayer.Labeling | QgsMapLayer.Forms)
-            
-            # styling = self.current_layer["styling"]
-            # self.log(f"styling is {str(styling)}")
-            # if styling and styling != "":
-            #     # something
-            #     self.log(f"here")
-            #     self.load_qml_style(layer, styling)
-            # else:
-            #     self.log(f"here")
-            #     return
+        else:
+            return
+        # layer is the data in the layer
+        creator = "plugin"
 
+        try:
+            with open(self.styling_path, "r", encoding="utf-8") as feedsjson:
+                feeds = json.load(feedsjson)
+        except:
+            feeds = []
+
+        existing_data = []
+        existing_styles = []
+        for feed in feeds:
+            if feed["source"] == source:
+                existing_styles = feed["styles"]
+            else:
+                existing_data.append(feed)
+
+        # Remove the old style information
+        for i, style in enumerate(existing_styles):
+            if style["file"] == style_code:
+                existing_styles.pop(i)
+
+        # add the new style to the list of styles
+        style_string = "{" + f"\"name\": \"{style_name}\"," # style name
+        style_string = f"{style_string}\"file\": \"{style_code}\"," # source
+        style_string = f"{style_string}\"creator\": \"{creator}\"" + "}" # creator (base plugin style or user defined)
+        new_style = json.loads(style_string)
+        existing_styles.append(new_style)
+        existing_styles = str(existing_styles).replace('\'', '\"')
+
+        # create the layer info and add the list of styles
+        string = "{\"layer_name\": \"" + layer_name + "\", "
+        string = string + "\"source\": \"" + source + "\", "
+        string = string + "\"styles\": "
+        string = string + str(existing_styles)
+        string = string + "}"
+
+        new_data = json.loads(string)
+        existing_data.append(new_data)
+            
+        with open(self.styling_path, "w", encoding="utf-8") as feedsjson:
+            json.dump(existing_data, feedsjson, indent='\t')
+        self.update_styling_list()
+        # TODO: update active_layer_list
+
+    def update_styling_list(self):
+        """Update the dropdown menu with saved styling options"""
+        self.dlg.stylingComboBox.clear()
+        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
+        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
+        self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
+
+        # enable or disable the styling-functions
+        if nr_of_selected_rows == 1:
+            # first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
+            data = self.dlg.activeMapListView.selectedIndexes()[0].data(
+                Qt.ItemDataRole.UserRole
+            )
+            self.log(f"Data of this layer is {data.source()}")
+            layer_style_list = []
+            path = self.styling_path
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    layer_style_list.extend(json.load(f))
+            except:
+                self.log("Failed")
+                return
+
+            for layer in layer_style_list:
+                if data.source() == layer["source"]:
+                    styles = layer["styles"]
+                    for style in styles:
+                        name = style["name"]
+                        self.dlg.stylingComboBox.addItem(name, data)
+
+            # self.dlg.comboSelectProj.setCurrentIndex(1)
 
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
-        self.log(f"update_active_layers_list function started")        
+        self.log(f"update_active_layers_list function started")
         self.mapsModel.clear()
 
         # self.iface.layerTreeView()
@@ -595,7 +816,7 @@ class NADMaps(object):
                 )
 
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
-        self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Styling")
+        self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
         self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -610,18 +831,17 @@ class NADMaps(object):
         )  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
 
-
     def get_selected_active_layers(self):
         """
         Get the selected layers from the active layers-tab
         """
         selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
-        first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
         self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
 
         # enable or disable the styling-functions
         if nr_of_selected_rows == 1:
+            self.update_styling_list()
             self.dlg.stylingGroupBox.setEnabled(True)
             self.dlg.stylingGroupBox.setToolTip("")
             self.dlg.saveThemaButton.setEnabled(True)
@@ -652,15 +872,12 @@ class NADMaps(object):
             self.selected_active_layers.append(active_layer)
 
 
-
-
-
 #########################################################################################
 ####################  Save the current canvas function ############
 #########################################################################################
 
     # TODO: function to export current canvas as pdf or image
-    def save_canvas(self):
+    def export_canvas(self):
         """Export the current map to pdf or png, including a north-arrow"""
         # qgis.utils.iface.mapCanvas().saveAsImage('test.png', None, 'PNG') 
 
@@ -668,6 +885,14 @@ class NADMaps(object):
 #########################################################################################
 ####################  Search for locations for the zoom functionality ###################
 #########################################################################################
+
+    def zoom_button(self):
+        # self.toolbar_search_get_suggestions
+        search_text = self.dlg.zoomLineEdit.text()
+        result = suggest_query(search_text, self.create_type_filter())[0]["weergavenaam"]
+        self.dlg.zoomLineEdit.setText(result)
+        suggest_text = self.dlg.zoomLineEdit.text()
+        self.on_toolbar_suggest_activated(suggest_text)
 
     def create_type_filter(self):
         """
@@ -689,7 +914,6 @@ class NADMaps(object):
             filter.add_type(key)
         return filter
 
-
     def toolbar_search_get_suggestions(self):
         def create_model(_suggestions):
             model = QStandardItemModel()
@@ -699,12 +923,12 @@ class NADMaps(object):
                 it.setData(s, Qt.ItemDataRole.UserRole)
                 model.appendRow(it)
             return model
-
         search_text = self.dlg.zoomLineEdit.text()
         if len(search_text) <= 1:
             self.dlg.zoomLineEdit.setCompleter(None)
             return
         results = suggest_query(search_text, self.create_type_filter())
+        # https://stackoverflow.com/questions/5129211/qcompleter-custom-completion-rules
         self.completer = QCompleter()
         self.model = create_model(results)
         self.completer.setModel(self.model)
@@ -716,7 +940,6 @@ class NADMaps(object):
         self.completer.activated.connect(self.on_toolbar_suggest_activated)
         return
 
-
     def on_toolbar_suggest_activated(self, suggest_text):
         items = self.model.findItems(suggest_text)
         if len(items) == 0:  # check should not be necessary
@@ -725,7 +948,6 @@ class NADMaps(object):
         data = item.data(Qt.ItemDataRole.UserRole)
         lookup_id = data["id"]
         self.lookup_toolbar_search_and_zoom(lookup_id)
-
 
     def lookup_toolbar_search_and_zoom(self, lookup_id):
         data = None
@@ -786,7 +1008,6 @@ class NADMaps(object):
         if re.match(r"^POINT", data["wkt_geom"]):
             self.iface.mapCanvas().zoomScale(z)
         self.iface.mapCanvas().refresh()
-
 
     def setup_models(self):
         """
@@ -855,7 +1076,6 @@ class NADMaps(object):
         self.dlg.logView.setModel(self.logModel)
         self.dlg.logView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
-
     def setup_interactions(self):
         """
         This does a setup of all the button interactions.
@@ -866,24 +1086,34 @@ class NADMaps(object):
             lambda: self.timer_toolbar_search.start()
         )
         # Click functions
-        self.dlg.zoomButton.clicked.connect(lambda: self.zoom_to())
+        self.dlg.zoomButton.clicked.connect(lambda: self.zoom_button())
         self.dlg.loadStyleButton.clicked.connect(lambda: self.load_styling())
         # TODO: make these functions
         self.dlg.removeStyleButton.clicked.connect(lambda: self.delete_styling())
-        self.dlg.saveStyleButton.clicked.connect(lambda: self.save_styling())
+        self.dlg.saveStyleButton.clicked.connect(lambda: self.check_existing_style())
 
         self.dlg.saveThemaButton.setEnabled(False)
         self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
         self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
-
         self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
+
+        self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
+        self.dlg.userThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
+        self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
+        
         self.dlg.deleteThemaButton.clicked.connect(lambda: self.delete_thema())
+
         self.dlg.tabWidget.currentChanged.connect(self.active_buttons)
         self.dlg.load_button.clicked.connect(lambda: self.load_button_pressed(False))
         self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
         self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
         self.dlg.stylingGroupBox.setEnabled(False)
+
+        self.popup.accept_button.clicked.connect(lambda: self.save_styling())
+        self.popup.accept_button.clicked.connect(lambda: self.style_overwrite(False))
+        self.popup.close_button.clicked.connect(lambda: self.style_overwrite(False))
+
         # update the information on the current selection of active layers
         self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
             self.get_selected_active_layers
@@ -928,7 +1158,6 @@ class NADMaps(object):
             self.dlg.load_button.hide()
             self.dlg.load_close_button.hide()
 
-
     def load_button_pressed(self, close):
         """Load the layers or thema when the button is pressed in the corresponding tab"""
         tab_index = self.dlg.tabWidget.currentIndex()
@@ -939,7 +1168,6 @@ class NADMaps(object):
             self.load_layer(None)
         if close:
             self.dlg.hide()
-
 
     def filter_layers(self, string):
         # remove selection if one row is selected
@@ -955,7 +1183,6 @@ class NADMaps(object):
         self.proxyModel.setFilterRegularExpression(regexp)
         self.proxyModel.insertRow
 
-
     def log(self, text, lvl = 0):
         if not isinstance(text, str):
             text = str(text)
@@ -968,7 +1195,6 @@ class NADMaps(object):
             [log]
         )
 
-
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
@@ -976,7 +1202,6 @@ class NADMaps(object):
                 self.tr(u'&NAD Waterketen Kaarten'),
                 action)
             self.iface.removeToolBarIcon(action)
-
 
     # General add_action function to add action-buttons to the QGIS toolbar
     def add_action(

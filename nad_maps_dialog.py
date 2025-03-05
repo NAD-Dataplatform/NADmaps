@@ -56,5 +56,5 @@ class NADMapsDialog(QtWidgets.QDialog, FORM_CLASS):
         self.themaMapListView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.NoSelection)
 
         self.mapListView = self.ui.mapListView
-        self.mapListView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.mapListView.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
         self.mapListView.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)

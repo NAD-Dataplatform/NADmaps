@@ -1,140 +1,44 @@
 [
 	{
-		"thema_name": "Riolering WMS",
+		"thema_name": "Lokale overstorten",
+		"creator": "Basis thema",
 		"layers": [
-			"Riolering WMS: Leiding",
-			"Riolering WMS: Put"
+			{
+				"name": "overstorten",
+				"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/13. GIS bestanden/01. Algemeen/overstorten/20241017/overstorten.gpkg|layername=overstorten",
+				"provider_type": "ogr",
+				"layer_type": "VectorLayer"
+			},
+			{
+				"name": "overstorten",
+				"source": "file:///C:/Users/svanderhoeven/OneDrive%20-%20Hoogheemraadschap%20van%20Delfland/NAD%20dataplatform/13.%20GIS%20bestanden/01.%20Algemeen/overstorten/20241017/overstorten.csv?type=regexp&delimiter=;&maxFields=10000&detectTypes=yes&wktField=WKT&geomType=Punt&crs=EPSG:4326&spatialIndex=no&subsetIndex=no&watchFile=no",
+				"provider_type": "delimitedtext",
+				"layer_type": "VectorLayer"
+			}
 		]
 	},
 	{
-		"thema_name": "Riolering WFS",
+		"thema_name": "Achtergrondkaarten",
+		"creator": "Basis thema",
 		"layers": [
-			"Riolering WFS: Put",
-			"Riolering WFS: Leiding"
-		]
-	},
-	{
-		"thema_name": "Achtergrond",
-		"layers": [
-			"Achtergrondkaart",
-			"Luchtfoto Actueel Ortho 8cm RGB",
-			"OpenBasisKaart - OSM - EPSG:28992"
-		]
-	},
-	{
-		"thema_name": "pand_test",
-		"layers": [
-			"pand"
-		]
-	},
-	{
-		"thema_name": "test2",
-		"layers": [
-			"pand"
-		]
-	},
-	{
-		"thema_name": "test_arie",
-		"layers": [
-			"Riolering WMS: Put",
-			"Riolering WFS: Put"
-		]
-	},
-	{
-		"thema_name": "Arie is cool",
-		"layers": [
-			"Achtergrondkaart",
-			"pand",
-			"Riolering WFS: Leiding"
-		]
-	},
-	{
-		"thema_name": "Waterstaatswerken",
-		"layers": [
-			"WaterstaatswerkOppervlaktewaterlichaam",
-			"Waterbergingsgebied",
-			"Beschermingszone",
-			"ProfielVoorVrijeRuimte",
-			"WaterstaatswerkWaterkering"
-		]
-	},
-	{
-		"thema_name": "Kunstwerken",
-		"layers": [
-			"Stuw",
-			"Voorde",
-			"DrainageBuis",
-			"Vuilvang",
-			"Bodemval",
-			"Duiker",
-			"Vispassage",
-			"Gemaal",
-			"Zandvang",
-			"Afsluitmiddel",
-			"Aquaduct",
-			"Brug",
-			"Sluis",
-			"Put",
-			"DrainagePut",
-			"Hevel",
-			"Sifon",
-			"VasteDam",
-			"Coupure"
-		]
-	},
-	{
-		"thema_name": "Oppervlaktewateren",
-		"layers": [
-			"Oever",
-			"Waterdeel",
-			"KRWOppervlaktewaterlichaamStromend",
-			"Profielverdediging",
-			"KRWOppervlaktewaterlichaamStilstaand",
-			"Oppervlaktewaterlichaam"
-		]
-	},
-	{
-		"thema_name": "Waterbeheergebieden",
-		"layers": [
-			"Vaarweg",
-			"Peilafwijkinggebied",
-			"AfvoergebiedAanvoergebied",
-			"Peilbesluitgebied",
-			"Peilgebied"
-		]
-	},
-	{
-		"thema_name": "Keringen",
-		"layers": [
-			"Kenmerkende profiellijn",
-			"Toplaag",
-			"Basismateriaal",
-			"Referentiepunt",
-			"Uitvullaag",
-			"FilterVlijlaag",
-			"Flexibele Waterkering",
-			"Wandconstructie",
-			"Geotextiel",
-			"Waterkeringsectie",
-			"Waterkering",
-			"Bodemlaag",
-			"Kistdam"
-		]
-	},
-	{
-		"thema_name": "Toplagen",
-		"layers": [
-			"DrainageBuis",
-			"Vuilvang"
-		]
-	},
-	{
-		"thema_name": "WKO",
-		"layers": [
-			"Potentieel koude open WKO buurt",
-			"Potentieel koude gesloten WKO buurt",
-			"Potentieel warmte open WKO buurt",
-			"Potentieel warmte gesloten WKO buurt"
+			{
+				"name": "Achtergrondkaart",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl//brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS",
+				"provider_type": "wms",
+				"layer_type": "RasterLayer"
+			},
+			{
+				"name": "OpenBasisKaart - OSM - EPSG:28992",
+				"source": "crs=EPSG:28992&tileMatrixSet=rd&layers=osm&styles=default&format=image/png&url=https://www.openbasiskaart.nl//mapcache/wmts/?SERVICE%3DWMTS%26REQUEST%3DGETCAPABILITIES",
+				"provider_type": "wms",
+				"layer_type": "RasterLayer"
+			},
+			{
+				"name": "Luchtfoto Actueel Ortho 8cm RGB",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=Actueel_orthoHR&styles=default&format=image/jpeg&url=https://service.pdok.nl//hwh/luchtfotorgb/wmts/v1_0?request%3DGetCapabilities%26service%3DWMTS",
+				"provider_type": "wms",
+				"layer_type": "RasterLayer"
+			}
 		]
 	}
 ]

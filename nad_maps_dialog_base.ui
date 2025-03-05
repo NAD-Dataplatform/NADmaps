@@ -6,15 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>654</height>
+    <width>700</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>750</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>NAD Waterketen Kaarten</string>
@@ -22,6 +28,12 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string>Een plugin om waterketen-kaarten gemakkelijk in te laden en te organiseren.</string>
      </property>
@@ -53,6 +65,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>125</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="layoutDirection">
         <enum>Qt::LeftToRight</enum>
        </property>
@@ -66,7 +84,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -88,7 +106,7 @@
           <bool>true</bool>
          </property>
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
            <horstretch>30</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -96,25 +114,40 @@
          <property name="minimumSize">
           <size>
            <width>300</width>
-           <height>0</height>
+           <height>200</height>
           </size>
          </property>
          <property name="whatsThis">
           <string/>
          </property>
          <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustToContents</enum>
+          <enum>QAbstractScrollArea::AdjustIgnored</enum>
          </property>
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
         <widget class="QGroupBox" name="stylingGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>Styling laden of opslaan</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="styling_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande styling toe of sla de huidige styling op voor een volgende keer.</string>
             </property>
@@ -147,6 +180,12 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Styling laden</string>
             </property>
@@ -159,6 +198,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="text">
              <string>Styling verwijderen</string>
@@ -180,6 +225,12 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Styling opslaan</string>
             </property>
@@ -190,12 +241,24 @@
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QGroupBox" name="themaGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="title">
           <string>Thema opslaan</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutThemaGroupBox">
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="thema_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Als je lagen wil opslaan als een Themaset om ze een volgende keer snel in te laden, vul dan een naam in voor dit thema. Klik op 'Alle lagen opslaan' om alle lagen, die nu ingeladen zijn, toe te voegen aan de Themaset. Je kan ook een selectie maken van meerdere lagen uit de lijst (houd de CTRL-toets ingedrukt) en klik op 'Opslaan'.</string>
             </property>
@@ -225,6 +288,12 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
              <string>Selectie opslaan</string>
             </property>
@@ -237,6 +306,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="text">
              <string>Alle lagen opslaan</string>
@@ -254,24 +329,137 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayoutTabStart">
        <item row="0" column="0">
-        <widget class="QTableView" name="themaView"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Kaartlagen in deze Themaset</string>
+        <widget class="QTableView" name="themaView">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>180</height>
+          </size>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QTableView" name="themaMapListView"/>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="filterThemaGroupBox">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Kaartlagen in deze Themaset</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutFilterThemaGroupBox">
+          <item row="2" column="0">
+           <widget class="QTableView" name="themaMapListView">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="filterThemaGroupBox">
+         <property name="title">
+          <string>Filteren</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutFilterThemaGroupBox">
+          <item row="0" column="0" colspan="3">
+           <widget class="QLabel" name="styling_label">
+            <property name="text">
+             <string>Filter een thema of voeg een geselecteerd thema toe aan je favorieten.</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="pluginThemaCheckBox">
+            <property name="text">
+             <string>Toon plugin-thema's</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="userThemaCheckBox">
+            <property name="text">
+             <string>Toon gebruikers-thema's</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="favoriteThemaCheckBox">
+            <property name="text">
+             <string>Toon alleen favorieten</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="favoriteThemaButton">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Favoriet maken</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="unfavoriteThemaButton">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Ongedaan maken</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
        <item row="3" column="0" colspan="2">
-        <widget class="QGroupBox" name="stylingGroupBox">
+        <widget class="QGroupBox" name="deletaThemaGroupBox">
          <property name="title">
           <string>Thema verwijderen</string>
          </property>
-         <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
+         <layout class="QGridLayout" name="gridLayoutDeleteThemaGroupBox">
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="styling_label">
             <property name="text">
@@ -308,6 +496,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="text">
              <string>Thema verwijderen</string>
@@ -402,6 +596,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>125</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="text">
         <string>Lagen inladen</string>
        </property>
@@ -415,6 +615,12 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>125</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="text">
         <string>Inladen en Sluiten</string>
        </property>
@@ -427,6 +633,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>125</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Sluiten</string>

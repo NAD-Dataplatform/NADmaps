@@ -1,15 +1,44 @@
 [
 	{
-		"layer_name": "Riolering WFS: Put",
+		"layer_name": "Rioolleiding",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
 			{
-				"name": "GWSW",
-				"file": "gwsw_leiding.qml"
+				"name": "Diameter",
+				"file": "diameter",
+				"creator": "plugin"
 			},
 			{
-				"name": "Leeftijd",
-				"file": "leiding_leeftijd"
+				"name": "GWSW",
+				"file": "gwsw",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Digital Surface Model (DSM) 0.5m",
+		"source": "cache=AlwaysNetwork&crs=EPSG:28992&format=GEOTIFF&identifier=dsm_05m&url=https://service.pdok.nl/rws/ahn/wcs/v1_0",
+		"styles": [
+			{
+				"name": "Nederland Laag",
+				"file": "nederland laag",
+				"creator": "plugin"
+			},
+			{
+				"name": "Nederland Hoog",
+				"file": "nederland hoog",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "test",
+				"file": "test",
+				"creator": "plugin"
 			}
 		]
 	}
