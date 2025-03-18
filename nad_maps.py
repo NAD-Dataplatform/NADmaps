@@ -35,7 +35,8 @@ from qgis.PyQt.QtCore import (
     QCoreApplication,
     QSortFilterProxyModel,
     QRegularExpression,
-    QTimer
+    QTimer,
+    QSize
 )
 from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem, QColor
 # from qgis.PyQt import QtWidgets
@@ -56,7 +57,7 @@ from qgis.core import (
     QgsGeometry,
     QgsWkbTypes,
     QgsPointXY,
-    QgsMapLayer
+    QgsMapLayer,
 )
 from qgis.PyQt.QtWidgets import (
     QSizePolicy,
@@ -67,6 +68,13 @@ from qgis.PyQt.QtWidgets import (
     QGridLayout,
     QDialogButtonBox,
     QCompleter,
+    QSlider,
+    QWidget,
+    QVBoxLayout,
+    QHBoxLayout,
+    QLayout,
+    QLabel,
+    QStackedWidget
 )
 
 # Initialize Qt resources from file resources.py
@@ -119,8 +127,8 @@ class NADMaps(object):
             'i18n',
             'NADMaps_{}.qm'.format(locale))
 
-        self.creator = "Gebruiker" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
-        thema_filename = "default.json"
+        self.creator = "Plugin" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
+        thema_filename = "thema.json"
         self.thema_path = os.path.join(
             self.plugin_dir,
             "resources\\themas",
@@ -155,6 +163,12 @@ class NADMaps(object):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
         self.run_icon = QIcon(
             os.path.join(self.plugin_dir, "resources", "nad.png")
+        )
+        self.filled_star = QIcon(
+            os.path.join(self.plugin_dir, "resources", "filled-star-50.png")
+        )
+        self.outlined_star = QIcon(
+            os.path.join(self.plugin_dir, "resources", "outlined-star-50.png")
         )
 
         self.add_action(
@@ -306,7 +320,7 @@ class NADMaps(object):
 
     def load_layer(self, tree_location):
         load = LoadLayers(self.iface, self.current_layer, tree_location)
-        load.load_layer()     
+        load.load_layer()
 
 
 #########################################################################################
@@ -358,22 +372,23 @@ class NADMaps(object):
         self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
         for i, layer in enumerate(selected_layers):
             layer_type = self.layer_type_mapping[layer.type()]
-            self.log(f"Info of layer {layer.name()}, source: {layer.source()}, provider_type: {layer.providerType()}, layer_type: {layer_type}, styling: todo")
+            self.log(f"Info of layer {layer.name()}, styling is {layer.customProperty( "layerStyle", "" )}, provider_type: {layer.providerType()}, layer_type: {layer_type}, source: {layer.source()}")
             string = f"{string}\"name\": \"{layer.name()}\"," # layer name
             string = f"{string}\"source\": \"{layer.source()}\"," # source
+            string = f"{string}\"styling\": \"{layer.customProperty( "layerStyle", "" )}\"," # styling
             string = f"{string}\"provider_type\": \"{layer.providerType()}\"," # provider_type
             string = f"{string}\"layer_type\": \"{layer_type}\"" # service_type
             # string = string + "\"styling\": \"" + layer.styling() + "\"," # styling
             if i == len(selected_layers) - 1:
-                self.log("end")
                 string = string + "}]"
             else:
-                self.log("going")
                 string = string + "}, {"
         string = string + "}"
         self.log(string)
 
+
         data = json.loads(string)
+        self.log(data)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
         try:
             with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
@@ -410,7 +425,9 @@ class NADMaps(object):
                 # if fav_thema_check == False or thema["favorite"] != "":
                 if fav_thema_check == False:
                     itemThema = QStandardItem(str(thema["thema_name"]))
-                    itemFavorite = QStandardItem(str(""))
+                    # itemFavorite = self.update_favorite(thema)
+                    itemFavorite = QStandardItem()
+                    itemFavorite.setCheckable(True)
                     itemSource = QStandardItem(str(thema["creator"]))
                     itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
                     # https://doc.qt.io/qt-6/qstandarditem.html#setData
@@ -428,7 +445,6 @@ class NADMaps(object):
             self.themaModel.appendRow(
                 [itemThema, itemSource, itemFilter]
             )
-
 
         self.themaModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
         self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Favoriet")
@@ -472,14 +488,13 @@ class NADMaps(object):
         root = QgsProject.instance().layerTreeRoot()
         group_name = self.current_thema["thema_name"]
         group = root.insertGroup(0, group_name)
-        # QgsProject.instance().addMapLayer(layer, False)
-        # mygroup.addLayer(layer)
+        # https://gis.stackexchange.com/questions/397789/sorting-layers-by-name-in-one-specific-group-of-qgis-layer-tree
         for layer in thema_layers:
             name = layer["name"]
             layer_type = layer["layer_type"]
             uri = layer["source"]
             provider_type = layer["provider_type"]
-            # styling = layer["styling"]
+            style = layer["styling"]
             # title, layer_type, provider_type, uri
             self.log(name)
             self.current_layer = layer
@@ -489,8 +504,16 @@ class NADMaps(object):
             group.addLayer(result) # Add the layer to the group
             # check if styling is saved in .resources.styling styling.json
             # if so, then apply that style, else apply no style
-        self.iface.layerTreeView().collapseAllNodes()
-        self.update_active_layers_list()
+
+            if not style == "":
+                style_code = self.style_code(style, uri)
+                path = f"{self.styling_files_path}/{style_code}.qml"
+                result.loadNamedStyle(path)
+                result.triggerRepaint()
+                result.setCustomProperty( "layerStyle", style )
+
+        # self.iface.layerTreeView().collapseAllNodes()
+        # self.update_active_layers_list()
 
     def update_thema_layers(self):
         """Update the list of layers contained with this thema"""
@@ -515,7 +538,8 @@ class NADMaps(object):
                     else layer["provider_type"].upper()
                 )
                 itemProvider = QStandardItem(str(stype))
-                itemStyle = QStandardItem(str(""))
+                itemStyle = QStandardItem(str(layer["styling"]))
+                # itemStyle = QStandardItem(str("styling"))
                 itemSource = QStandardItem(str(layer["source"]))
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]
@@ -539,7 +563,7 @@ class NADMaps(object):
 
 
 #########################################################################################
-######################  Show current loaded layers on the canvas ########################
+#########################  Show and load styling for layers #############################
 #########################################################################################
 
     def style_code(self, style_name: str, source: str):
@@ -565,6 +589,8 @@ class NADMaps(object):
             path = f"{self.styling_files_path}/{style_code}.qml"
             layer.loadNamedStyle(path)
             layer.triggerRepaint()
+            layer.setCustomProperty( "layerStyle", style_name )
+            self.update_active_layers_list()
 
         # vlayer.renderer().symbol().setSize(6)
         # vlayer.triggerRepaint()
@@ -740,8 +766,10 @@ class NADMaps(object):
             
         with open(self.styling_path, "w", encoding="utf-8") as feedsjson:
             json.dump(existing_data, feedsjson, indent='\t')
+        layer.setCustomProperty( "layerStyle", style_name )
+        self.update_active_layers_list()
         self.update_styling_list()
-        # TODO: update active_layer_list
+        # TODO: reselect layer (selectedIndexes = self.dlg.activeMapListView.selectedIndexes())
 
     def update_styling_list(self):
         """Update the dropdown menu with saved styling options"""
@@ -775,6 +803,20 @@ class NADMaps(object):
 
             # self.dlg.comboSelectProj.setCurrentIndex(1)
 
+#########################################################################################
+######################  Show current loaded layers on the canvas ########################
+#########################################################################################
+
+    # order = []
+    # model = self.iface.layerTreeView().layerTreeModel()
+    # root = QgsProject.instance().layerTreeRoot()
+    # node = root.findLayer(layer.id())
+    # index = model.node2index( node )
+    # order.append(index.row())
+    # self.log(order)
+    # # sorted_layers = list(selected_layers)
+    # # self.log(f"Sorted layers is {sorted_layers}")
+
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
         self.log(f"update_active_layers_list function started")
@@ -782,7 +824,9 @@ class NADMaps(object):
 
         # self.iface.layerTreeView()
         layers = QgsProject.instance().mapLayers().values()
-        self.log(f"Number of layers: {len(layers)}")
+        model = self.iface.layerTreeView().layerTreeModel()
+        root = QgsProject.instance().layerTreeRoot()
+        # self.log(f"Number of layers: {len(layers)}")
         if len(layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemType = QStandardItem(str(""))
@@ -792,7 +836,18 @@ class NADMaps(object):
                 [itemLayername, itemType, itemStylingTitle, itemSource]
             )
         else:
+            # QgsProject.instance().mapLayersByName("countries")[0]
+            # d = self.iface.openLayoutDesigners()[0]
+            # l = d.layout()
+            # legend = l.selectedItems()[0]
+            # m = legend.model()
+            # self.log(m.rowCount())
             for i, layer in enumerate(layers):
+                index = model.node2index( root.findLayer(layer.id()) )
+                index2 = model.index2legendNode( root.findLayer(layer.id()) )
+                # findLegendNode → QgsLayerTreeModelLegendNode
+                # QgsLayerTreeModelLegendNode
+                self.log(f"Index is {index.row()} and i is {i}, and index2 is {index2}")
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
@@ -806,18 +861,23 @@ class NADMaps(object):
                     else provider_type.upper()
                 )
                 itemType = QStandardItem(str(stype))
-                styling = "default"
-                itemStylingTitle = QStandardItem(str(styling))
+                # self.log(f"Styling is {layer.customProperty( "layerStyle", "" )}")
+                # styling = "default"
+                styling = layer.customProperty( "layerStyle", "" )
+                itemStyle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
+                itemOrder = QStandardItem(str(index.row()))
                 self.mapsModel.appendRow(
-                    [itemLayername, itemType, itemStylingTitle, itemSource]
+                    [itemLayername, itemType, itemStyle, itemSource, itemOrder]
                 )
 
+        self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
+        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -829,6 +889,7 @@ class NADMaps(object):
             0, 150
         )  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
+        self.dlg.activeMapListView.sortByColumn(4, QtCore.Qt.AscendingOrder)
 
     def get_selected_active_layers(self):
         """
@@ -1008,6 +1069,12 @@ class NADMaps(object):
             self.iface.mapCanvas().zoomScale(z)
         self.iface.mapCanvas().refresh()
 
+
+#########################################################################################
+#################################  Setup functions ######################################
+#########################################################################################
+
+
     def setup_models(self):
         """
         This does a setup of all the models for list views.
@@ -1142,6 +1209,7 @@ class NADMaps(object):
         # Tracking and updating        
         QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
         QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+
 
 #########################################################################################
 ################################  General utility functions ########################
@@ -1279,6 +1347,7 @@ class NADMaps(object):
     
     # General translation function (can probably be deleted)
     def tr(self, message):
+
         """Get the translation for a string using Qt translation API.
 
         We implement this ourselves since we do not inherit QObject.
@@ -1291,3 +1360,35 @@ class NADMaps(object):
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('NADMaps', message)
+    
+
+    # def beoordeling(self, star):
+    #     # Hier kun je de beoordeling opslaan of uitvoeren
+    #     self.log(f"Beoordeling: {star}")
+    # https://doc.qt.io/qt-6/stylesheet-examples.html
+    # def update_favorite(self, thema):
+    #     """Update the number of stars that a thema gets"""
+    #     self.log(thema["thema_name"])
+    #     stars = 0
+    #     # if thema["score"]:
+    #     #     stars = thema["score"]
+    #     widget = QWidget()
+    #     layout_stars = QHBoxLayout()
+    #     size_hint = QSize(22, 22)
+    #     for i in range(5):
+    #         star = QPushButton(str(""))
+    #         star.setCheckable(True)
+    #         if i > stars:
+    #             icon = self.outlined_star
+    #         else:
+    #             icon = self.filled_star
+    #         star.setIcon(icon)
+    #         star.setFixedSize(size_hint)
+    #         star.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+    #         star.clicked.connect(lambda: self.beoordeling(i))
+    #         layout_stars.addWidget(star)
+    #     widget.setLayout(layout_stars)
+    #     widget = self.update_favorite(thema)
+    #     self.log(f"Result widget is {widget}")
+    #     self.dlg.themaView.setIndexWidget(itemFavorite.index(), widget)
+    #     return widget

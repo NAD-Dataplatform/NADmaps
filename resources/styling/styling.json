@@ -1,42 +1,5 @@
 [
 	{
-		"layer_name": "overstorten",
-		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/13. GIS bestanden/01. Algemeen/overstorten/20241017/overstorten.gpkg|layername=overstorten",
-		"styles": [
-			{
-				"name": "test",
-				"file": "test_4f3f1339d34617af9f295e42e9ea69ba",
-				"creator": "plugin"
-			},
-			{
-				"name": "test3",
-				"file": "test3_4f3f1339d34617af9f295e42e9ea69ba",
-				"creator": "plugin"
-			}
-		]
-	},
-	{
-		"layer_name": "Rioolleiding",
-		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-		"styles": [
-			{
-				"name": "Diameter",
-				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			},
-			{
-				"name": "GWSW",
-				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			},
-			{
-				"name": "GWSW plus",
-				"file": "gwsw plus_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			}
-		]
-	},
-	{
 		"layer_name": "Rioolput",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
@@ -92,6 +55,48 @@
 			{
 				"name": "BGT",
 				"file": "bgt_f58ef68237a1ac4b1494dfcd4b25f4ad",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "overstorten",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/13. GIS bestanden/01. Algemeen/overstorten/20241017/overstorten.gpkg|layername=overstorten",
+		"styles": [
+			{
+				"name": "NoLabel",
+				"file": "nolabel_4f3f1339d34617af9f295e42e9ea69ba",
+				"creator": "plugin"
+			},
+			{
+				"name": "Label",
+				"file": "label_4f3f1339d34617af9f295e42e9ea69ba",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "Diameter",
+				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW",
+				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW plus",
+				"file": "gwsw plus_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "Pijl",
+				"file": "pijl_a5f908d6628bfc552663688d11fec4bd",
 				"creator": "plugin"
 			}
 		]
