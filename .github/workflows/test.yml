@@ -20,4 +20,4 @@ jobs:
 
       - name: test
         run: |
-          docker compose run --rm make test
+          docker compose run --rm nadmap make test
