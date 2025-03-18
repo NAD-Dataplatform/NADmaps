@@ -823,14 +823,16 @@ class NADMaps(object):
         # self.log(f"update_active_layers_list function started")
         self.mapsModel.clear()
 
+        root = QgsProject.instance().layerTreeRoot()
+        layers = root.children()
         # self.iface.layerTreeView()
         # layers = QgsProject.instance().mapLayers().values()
         # model = self.iface.layerTreeView().layerTreeModel()
         # root = QgsProject.instance().layerTreeRoot()
         # treeview = self.iface.layerTreeView()
         # self.log(f"treeview is {treeview}")
-        layers = self.iface.layerTreeCanvasBridge().mapCanvas().layers()
-
+        
+        # layers = self.iface.layerTreeCanvasBridge().mapCanvas().layers()
 
         # bridge = self.iface.layerTreeCanvasBridge()
         self.log(f"layers is {layers}")
@@ -841,8 +843,9 @@ class NADMaps(object):
             itemType = QStandardItem(str(""))
             itemStylingTitle = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
+            itemOrder = QStandardItem(str(""))
             self.mapsModel.appendRow(
-                [itemLayername, itemType, itemStylingTitle, itemSource]
+                [itemLayername, itemType, itemStylingTitle, itemSource, itemOrder]
             )
         else:
             # QgsProject.instance().mapLayersByName("countries")[0]
@@ -1218,12 +1221,12 @@ class NADMaps(object):
 
         self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
         # Tracking and updating
-        QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
-        QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+        # QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
+        # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
         # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
         # bridge = self.iface.layerTreeCanvasBridge() 
         # self.iface.layerTreeCanvasBridge().canvasLayersChanged.connect(lambda: self.update_active_layers_list())
-        # self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list())
+        self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list())
 
 
 #########################################################################################
