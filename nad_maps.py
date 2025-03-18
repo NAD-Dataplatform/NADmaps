@@ -212,7 +212,7 @@ class NADMaps(object):
             self.setup_completed = True
             # setup the (proxy)models
             self.setup_models()
-            # self.log('Start logging')
+            self.log('Start logging')
             self.setup_interactions()
             
             # create an initial list of active layers
