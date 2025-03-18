@@ -233,8 +233,8 @@ class NADMaps(object):
 
 
             # Format the list views that are not formatted in their function
-            # self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
-            # self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+            self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
+            self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
             self.dlg.logView.horizontalHeader().setStretchLastSection(True)
 
             self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
@@ -1139,7 +1139,7 @@ class NADMaps(object):
         self.dlg.mapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
     
         # Table with logging information
-        # self.logModel = QStandardItemModel()
+        self.logModel = QStandardItemModel()
         self.dlg.logView.setModel(self.logModel)
         self.dlg.logView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
 
