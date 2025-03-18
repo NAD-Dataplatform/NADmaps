@@ -127,7 +127,7 @@ class NADMaps(object):
             'i18n',
             'NADMaps_{}.qm'.format(locale))
 
-        self.creator = "Plugin" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
+        self.creator = "Gebruiker" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
         thema_filename = "thema.json"
         self.thema_path = os.path.join(
             self.plugin_dir,
@@ -385,11 +385,8 @@ class NADMaps(object):
             else:
                 string = string + "}, {"
         string = string + "}"
-        # self.log(string)
-
 
         data = json.loads(string)
-        # self.log(data)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
         try:
             with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
@@ -818,16 +815,27 @@ class NADMaps(object):
     # # sorted_layers = list(selected_layers)
     # # # self.log(f"Sorted layers is {sorted_layers}")
 
+    # bridge = iface.layerTreeCanvasBridge() 
+    # order = bridge.customLayerOrder()
+
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
         # self.log(f"update_active_layers_list function started")
         self.mapsModel.clear()
 
         # self.iface.layerTreeView()
-        layers = QgsProject.instance().mapLayers().values()
-        model = self.iface.layerTreeView().layerTreeModel()
-        root = QgsProject.instance().layerTreeRoot()
-        # # self.log(f"Number of layers: {len(layers)}")
+        # layers = QgsProject.instance().mapLayers().values()
+        # model = self.iface.layerTreeView().layerTreeModel()
+        # root = QgsProject.instance().layerTreeRoot()
+        # treeview = self.iface.layerTreeView()
+        # self.log(f"treeview is {treeview}")
+        layers = self.iface.layerTreeCanvasBridge().mapCanvas().layers()
+
+
+        # bridge = self.iface.layerTreeCanvasBridge()
+        self.log(f"layers is {layers}")
+        self.log(f"length is {len(layers)}")
+
         if len(layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemType = QStandardItem(str(""))
@@ -846,9 +854,10 @@ class NADMaps(object):
             for i, layer in enumerate(layers):
                 # index = model.node2index( root.findLayer(layer.id()) )
                 # index2 = model.index2legendNode( root.findLayer(layer.id()) )
-                # # findLegendNode → QgsLayerTreeModelLegendNode
+                # index2 = model.index2legendNode( root.findLayer(layer.id()) )
+                # # findLegendNode ; QgsLayerTreeModelLegendNode
                 # # QgsLayerTreeModelLegendNode
-                # # self.log(f"Index is {index.row()} and i is {i}, and index2 is {index2}")
+                # self.log(f"Index is {index.row()} and i is {i}, and index2 is")
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
@@ -868,17 +877,17 @@ class NADMaps(object):
                 itemStyle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
-                # itemOrder = QStandardItem(str(index.row()))
+                itemOrder = QStandardItem(str(i))
                 self.mapsModel.appendRow(
-                    [itemLayername, itemType, itemStyle, itemSource]
+                    [itemLayername, itemType, itemStyle, itemSource, itemOrder]
                 )
 
-        # self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
+        self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        # self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -941,6 +950,7 @@ class NADMaps(object):
     def export_canvas(self):
         """Export the current map to pdf or png, including a north-arrow"""
         # qgis.utils.iface.mapCanvas().saveAsImage('test.png', None, 'PNG') 
+        # https://qgis.org/pyqgis/3.40/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas
 
 
 #########################################################################################
@@ -1210,6 +1220,10 @@ class NADMaps(object):
         # Tracking and updating
         QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
         QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+        # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+        # bridge = self.iface.layerTreeCanvasBridge() 
+        # self.iface.layerTreeCanvasBridge().canvasLayersChanged.connect(lambda: self.update_active_layers_list())
+        # self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list())
 
 
 #########################################################################################
