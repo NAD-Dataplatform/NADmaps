@@ -1,21 +1,5 @@
 [
 	{
-		"layer_name": "Rioolput",
-		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-		"styles": [
-			{
-				"name": "GWSW",
-				"file": "gwsw_931b1db636231ff5fa3f89c046f036d4",
-				"creator": "plugin"
-			},
-			{
-				"name": "GWSW plus",
-				"file": "gwsw plus_931b1db636231ff5fa3f89c046f036d4",
-				"creator": "plugin"
-			}
-		]
-	},
-	{
 		"layer_name": "Pand (PND)",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='pand' url='https://api.pdok.nl/lv/bgt/ogc/v1'",
 		"styles": [
@@ -76,14 +60,30 @@
 		]
 	},
 	{
+		"layer_name": "Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW plus",
+				"file": "gwsw plus_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW zonder label",
+				"file": "gwsw zonder label_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
 		"layer_name": "Rioolleiding",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
-			{
-				"name": "Diameter",
-				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			},
 			{
 				"name": "GWSW",
 				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
@@ -97,6 +97,11 @@
 			{
 				"name": "Pijl",
 				"file": "pijl_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "Diameter",
+				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
 				"creator": "plugin"
 			}
 		]

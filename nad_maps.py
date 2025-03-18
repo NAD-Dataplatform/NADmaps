@@ -468,7 +468,7 @@ class NADMaps(object):
 
     def show_thema_layers(self, selectedIndexes):
         """Show the layers that are part of a thema"""
-        self.log(f"show_thema_layers: len(selectedIndexes) is {str(len(selectedIndexes))}")
+        # self.log(f"show_thema_layers: len(selectedIndexes) is {str(len(selectedIndexes))}")
         if len(selectedIndexes) == 0:
             self.current_layer = None
             return
@@ -482,7 +482,7 @@ class NADMaps(object):
 
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
-        self.log(f"load_thema_layers: current_thema is {self.current_thema["thema_name"]}")
+        # self.log(f"load_thema_layers: current_thema is {self.current_thema["thema_name"]}")
         thema_layers = self.thema_layers
         # create a group to load into to
         root = QgsProject.instance().layerTreeRoot()
@@ -499,7 +499,7 @@ class NADMaps(object):
             self.log(name)
             self.current_layer = layer
             result = load_thema_layer(name, uri, layer_type, provider_type)
-            self.log(f"Loading thema layer {layer}")
+            # self.log(f"Loading thema layer {layer}")
             QgsProject.instance().addMapLayer(result, False) # If True (by default), the layer will be added to the legend and to the main canvas
             group.addLayer(result) # Add the layer to the group
             # check if styling is saved in .resources.styling styling.json
@@ -843,11 +843,11 @@ class NADMaps(object):
             # m = legend.model()
             # self.log(m.rowCount())
             for i, layer in enumerate(layers):
-                index = model.node2index( root.findLayer(layer.id()) )
-                index2 = model.index2legendNode( root.findLayer(layer.id()) )
-                # findLegendNode → QgsLayerTreeModelLegendNode
-                # QgsLayerTreeModelLegendNode
-                self.log(f"Index is {index.row()} and i is {i}, and index2 is {index2}")
+                # index = model.node2index( root.findLayer(layer.id()) )
+                # index2 = model.index2legendNode( root.findLayer(layer.id()) )
+                # # findLegendNode → QgsLayerTreeModelLegendNode
+                # # QgsLayerTreeModelLegendNode
+                # self.log(f"Index is {index.row()} and i is {i}, and index2 is {index2}")
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
@@ -867,17 +867,17 @@ class NADMaps(object):
                 itemStyle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
-                itemOrder = QStandardItem(str(index.row()))
+                # itemOrder = QStandardItem(str(index.row()))
                 self.mapsModel.appendRow(
-                    [itemLayername, itemType, itemStyle, itemSource, itemOrder]
+                    [itemLayername, itemType, itemStyle, itemSource]
                 )
 
-        self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
+        # self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        # self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -1206,7 +1206,7 @@ class NADMaps(object):
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
         self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
-        # Tracking and updating        
+        # Tracking and updating
         QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
         QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
 
