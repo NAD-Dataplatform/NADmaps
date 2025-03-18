@@ -1,0 +1,23 @@
+name: test
+
+on:
+  push:
+    branches:
+      - "action"
+    tags:
+      - "*"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build
+        run: docker compose build
+
+      - name: test
+        run: |
+          docker compose run --rm make test

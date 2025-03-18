@@ -1,0 +1,8 @@
+version: '3.0'
+
+services:
+  nadmap:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
