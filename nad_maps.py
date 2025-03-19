@@ -34,8 +34,8 @@ from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
                        QgsRectangle, QgsWkbTypes)
 from qgis.PyQt import QtCore
 # from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression, QSettings,
-                              QSortFilterProxyModel, Qt, QTimer, QTranslator)
+from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression,
+                              QSortFilterProxyModel, Qt, QTimer)
 from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
                                  QSizePolicy)
