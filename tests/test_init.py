@@ -2,8 +2,10 @@ import configparser
 import logging
 from pathlib import Path
 
-logger = logging.getLogger(__name__)
 PLUGIN_DIR = Path(__file__).parent.parent
+
+from ..nad_maps import NADMaps
+
 
 def test_metadata():
 
@@ -20,7 +22,6 @@ def test_metadata():
     ]
 
     metadata_file = PLUGIN_DIR / "metadata.txt"
-    logger.info(metadata_file)
     metadata = []
     parser = configparser.ConfigParser()
     parser.optionxform = str
@@ -35,3 +36,7 @@ def test_metadata():
             metadata_file,
         )
         assert key in dict(metadata), message
+
+def test_smoke(iface_mock):
+    assert NADMaps(iface_mock)
+    
