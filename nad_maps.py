@@ -99,13 +99,6 @@ class NADMaps(object):
                 "styling\\qml_files"
             )
 
-        # initialize locale (find language of the user)
-        locale = QSettings().value('locale/userLocale', "nl")[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'NADMaps_{}.qm'.format(locale))
-
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
             self.plugin_dir,
@@ -121,11 +114,6 @@ class NADMaps(object):
         self.plugin_styling_files_path = os.path.join(
             self.plugin_dir,
             "resources\\styling\\qml_files")
-
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-            QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
         self.actions = []
