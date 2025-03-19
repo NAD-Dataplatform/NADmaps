@@ -23,82 +23,35 @@
 """
 # General packages
 import getpass
-import os.path
-import json
-import re
 import hashlib
-import urllib.request, urllib.parse, urllib.error
+import json
+import os.path
+import re
 
-# PyQGIS packages
-from qgis.PyQt.QtCore import (
-    Qt, QSettings,
-    QTranslator,
-    QCoreApplication,
-    QSortFilterProxyModel,
-    QRegularExpression,
-    QTimer,
-    QSize
-)
-from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem, QColor
-# from qgis.PyQt import QtWidgets
-from qgis.gui import QgsVertexMarker
-# from qgis.PyQt import QtCore, QtGui, 
 # https://api.qgis.org/api/group__core.html
-from qgis.core import (
-    Qgis,
-    QgsProject,
-    QgsLayerTreeLayer,
-    QgsRasterLayer,
-    QgsMessageLog,
-    QgsVectorLayer,
-    QgsVectorTileLayer,
-    QgsCoordinateReferenceSystem,
-    QgsRectangle,
-    QgsCoordinateTransform,
-    QgsGeometry,
-    QgsWkbTypes,
-    QgsPointXY,
-    QgsMapLayer,
-)
-from qgis.PyQt.QtWidgets import (
-    QSizePolicy,
-    QAction,
-    QAbstractItemView,
-    QPushButton,
-    QDialog,
-    QGridLayout,
-    QDialogButtonBox,
-    QCompleter,
-    QSlider,
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QLayout,
-    QLabel,
-    QStackedWidget
-)
+from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
+                       QgsGeometry, QgsMapLayer, QgsMessageLog, QgsProject,
+                       QgsRectangle, QgsWkbTypes)
+from qgis.PyQt import QtCore
+# from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression,
+                              QSortFilterProxyModel, Qt, QTimer)
+from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
+from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
+                                 QSizePolicy)
 
-# Initialize Qt resources from file resources.py
-from .resources import *
-# Import code for the search and zoom function
-from .lib.locatieserver import (
-    suggest_query,
-    TypeFilter,
-    LsType,
-    lookup_object,
-    get_lookup_object_url,
-    Projection,
-)
-
+from .lib.constants import PLUGIN_NAME
 from .lib.load_layers import LoadLayers, load_thema_layer
+# Import code for the search and zoom function
+from .lib.locatieserver import (LsType, Projection, TypeFilter, lookup_object,
+                                suggest_query)
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
-from .lib.constants import PLUGIN_NAME, PLUGIN_ID
 
 ADMIN_USERNAMES = ['svanderhoeven']
 
-TEST_WORKING_DIRECTORY = r"C:\Users\stijn.overmeen\Desktop\test_working_dir"
+# TEST_WORKING_DIRECTORY = r"C:\Users\ben.vanbasten\Desktop\test_working_dir"
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -128,7 +81,7 @@ class NADMaps(object):
             self.creator = "Plugin" 
         else:
             self.creator = "Gebruiker"
-            working_dir = TEST_WORKING_DIRECTORY # TODO temp
+            working_dir = self.plugin_dir
 
             # init working directory if it does not exist
             if not os.path.exists(working_dir):
@@ -146,13 +99,6 @@ class NADMaps(object):
                 "styling\\qml_files"
             )
 
-        # initialize locale (find language of the user)
-        locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'NADMaps_{}.qm'.format(locale))
-
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
             self.plugin_dir,
@@ -168,11 +114,6 @@ class NADMaps(object):
         self.plugin_styling_files_path = os.path.join(
             self.plugin_dir,
             "resources\\styling\\qml_files")
-
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-            QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
         self.actions = []
