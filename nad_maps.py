@@ -27,35 +27,23 @@ import hashlib
 import json
 import os.path
 import re
-import urllib.error
-import urllib.parse
-import urllib.request
 
-# from qgis.PyQt import QtCore, QtGui, 
 # https://api.qgis.org/api/group__core.html
-from qgis.core import (Qgis, QgsCoordinateReferenceSystem,
-                       QgsCoordinateTransform, QgsGeometry, QgsLayerTreeLayer,
-                       QgsMapLayer, QgsMessageLog, QgsPointXY, QgsProject,
-                       QgsRasterLayer, QgsRectangle, QgsVectorLayer,
-                       QgsVectorTileLayer, QgsWkbTypes)
+from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
+                       QgsGeometry, QgsMapLayer, QgsMessageLog, QgsProject,
+                       QgsRectangle, QgsWkbTypes)
+from qgis.PyQt import QtCore
 # from qgis.PyQt import QtWidgets
-from qgis.gui import QgsVertexMarker
-# PyQGIS packages
 from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression, QSettings,
-                              QSize, QSortFilterProxyModel, Qt, QTimer,
-                              QTranslator)
-from qgis.PyQt.QtGui import QColor, QIcon, QStandardItem, QStandardItemModel
+                              QSortFilterProxyModel, Qt, QTimer, QTranslator)
+from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
-                                 QDialog, QDialogButtonBox, QGridLayout,
-                                 QHBoxLayout, QLabel, QLayout, QPushButton,
-                                 QSizePolicy, QSlider, QStackedWidget,
-                                 QVBoxLayout, QWidget)
+                                 QSizePolicy)
 
-from .lib.constants import PLUGIN_ID, PLUGIN_NAME
+from .lib.constants import PLUGIN_NAME
 from .lib.load_layers import LoadLayers, load_thema_layer
 # Import code for the search and zoom function
-from .lib.locatieserver import (LsType, Projection, TypeFilter,
-                                get_lookup_object_url, lookup_object,
+from .lib.locatieserver import (LsType, Projection, TypeFilter, lookup_object,
                                 suggest_query)
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
@@ -63,7 +51,7 @@ from .nad_maps_popup import NADMapsPopup
 
 ADMIN_USERNAMES = ['svanderhoeven']
 
-TEST_WORKING_DIRECTORY = r"C:\Users\ben.vanbasten\Desktop\test_working_dir"
+# TEST_WORKING_DIRECTORY = r"C:\Users\ben.vanbasten\Desktop\test_working_dir"
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -93,7 +81,7 @@ class NADMaps(object):
             self.creator = "Plugin" 
         else:
             self.creator = "Gebruiker"
-            working_dir = TEST_WORKING_DIRECTORY # TODO temp
+            working_dir = self.plugin_dir
 
             # init working directory if it does not exist
             if not os.path.exists(working_dir):
