@@ -1,5 +1,6 @@
 import pytest
 from qgis.core import QgsApplication
+from qgis.gui import QgsLayerTreeView
 from qgis.PyQt.QtCore import QSettings
 
 _singletons = {}
@@ -15,6 +16,8 @@ def qgis_app_initialized():
 class QgisInterfaceMock(object):
     def __getattr__(self, name):
         def mock(*args, **kwargs):
+            if name == "layerTreeView":
+                return QgsLayerTreeView()
             return None
         return mock
     

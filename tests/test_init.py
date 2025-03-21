@@ -8,7 +8,7 @@ from ..nad_maps import NADMaps
 
 
 def test_metadata():
-
+    # Some minor validation of the metadata file
     required_metadata = [
         "name",
         "description",
@@ -38,5 +38,9 @@ def test_metadata():
         assert key in dict(metadata), message
 
 def test_smoke(iface_mock):
-    assert NADMaps(iface_mock)
+    # Just instantiate the plugin and see whether it breaks
+    nadmap = NADMaps(iface_mock)
+    nadmap.initGui()
+    nadmap.run()
+    assert nadmap
     
