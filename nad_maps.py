@@ -805,36 +805,15 @@ class NADMaps(object):
 ######################  Show current loaded layers on the canvas ########################
 #########################################################################################
 
-    # order = []
-    # model = self.iface.layerTreeView().layerTreeModel()
-    # root = QgsProject.instance().layerTreeRoot()
-    # node = root.findLayer(layer.id())
-    # index = model.node2index( node )
-    # order.append(index.row())
-    # # self.log(order)
-    # # sorted_layers = list(selected_layers)
-    # # # self.log(f"Sorted layers is {sorted_layers}")
-
-    # bridge = iface.layerTreeCanvasBridge() 
-    # order = bridge.customLayerOrder()
-
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
         # self.log(f"update_active_layers_list function started")
         self.mapsModel.clear()
 
+        # https://doc.qt.io/qt-6/qtwidgets-itemviews-simpletreemodel-example.html
         root = QgsProject.instance().layerTreeRoot()
-        layers = root.children()
-        # self.iface.layerTreeView()
-        # layers = QgsProject.instance().mapLayers().values()
-        # model = self.iface.layerTreeView().layerTreeModel()
-        # root = QgsProject.instance().layerTreeRoot()
-        # treeview = self.iface.layerTreeView()
-        # self.log(f"treeview is {treeview}")
-        
-        # layers = self.iface.layerTreeCanvasBridge().mapCanvas().layers()
-
-        # bridge = self.iface.layerTreeCanvasBridge()
+        group = root.children()
+        layers = [ item.layer() for item in group ]
         self.log(f"layers is {layers}")
         self.log(f"length is {len(layers)}")
 
@@ -848,22 +827,13 @@ class NADMaps(object):
                 [itemLayername, itemType, itemStylingTitle, itemSource, itemOrder]
             )
         else:
-            # QgsProject.instance().mapLayersByName("countries")[0]
-            # d = self.iface.openLayoutDesigners()[0]
-            # l = d.layout()
-            # legend = l.selectedItems()[0]
-            # m = legend.model()
-            # # self.log(m.rowCount())
             for i, layer in enumerate(layers):
-                # index = model.node2index( root.findLayer(layer.id()) )
-                # index2 = model.index2legendNode( root.findLayer(layer.id()) )
-                # index2 = model.index2legendNode( root.findLayer(layer.id()) )
-                # # findLegendNode ; QgsLayerTreeModelLegendNode
-                # # QgsLayerTreeModelLegendNode
-                # self.log(f"Index is {index.row()} and i is {i}, and index2 is")
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
+
+                # layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer
+                # isVisible = layer_tree_layer.isVisible()
                 provider_type = layer.providerType()
 
                 itemLayername = QStandardItem(str(layer.name()))
@@ -896,10 +866,10 @@ class NADMaps(object):
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
-        # self.dlg.activeMapListView.hideColumn(3)
+        self.dlg.activeMapListView.hideColumn(4)
         
         self.dlg.activeMapListView.setColumnWidth(
-            0, 150
+            0, 200
         )  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
         self.dlg.activeMapListView.sortByColumn(4, QtCore.Qt.AscendingOrder)
