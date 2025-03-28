@@ -1,3 +1,5 @@
+import tempfile
+
 import pytest
 from qgis.core import QgsApplication
 from qgis.gui import QgsLayerTreeView
@@ -27,4 +29,6 @@ def iface_mock():
 
 @pytest.fixture(autouse=True)
 def settings_mock():
+    temp_dir = tempfile.TemporaryDirectory()
     QSettings().setValue('locale/userLocale', "nl")
+    QSettings().setValue('working_dir', temp_dir.name)
