@@ -50,7 +50,6 @@ from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
 
 ADMIN_USERNAMES = ['svanderhoeven']
-TEST_WORKING_DIR = r"C:\Users\stijn.overmeen\Desktop\test_working_dir"
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -84,8 +83,16 @@ class NADMaps(object):
             # initialize the working directory from settings
             self.working_dir = QSettings().value('working_dir')
             if self.working_dir == None:
-                self.working_dir = TEST_WORKING_DIR
-                self.set_working_directory(self.working_dir)
+                # Show message to user to select a working directory
+                self.iface.messageBar().pushMessage(
+                    "NAD Maps",
+                    self.tr("Selecteer een werkmap"),
+                    duration=3,
+                )
+                # Use the file dialog to select a directory
+                self.set_working_directory(
+                    QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
+                )
             else:
                 self.set_working_directory(self.working_dir)
 
@@ -1158,7 +1165,7 @@ class NADMaps(object):
         # Set working directory by using the file dialog to select a folder
         self.dlg.set_working_dir.clicked.connect(
             lambda: self.set_working_directory(
-                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een map", self.working_dir)
+                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
             )
         )
 
