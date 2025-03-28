@@ -35,10 +35,10 @@ from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
 from qgis.PyQt import QtCore
 # from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression,
-                              QSortFilterProxyModel, Qt, QTimer)
+                              QSortFilterProxyModel, Qt, QTimer, QSettings)
 from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
-                                 QSizePolicy)
+                                 QSizePolicy, QFileDialog)
 
 from .lib.constants import PLUGIN_NAME
 from .lib.load_layers import LoadLayers, load_thema_layer
@@ -50,8 +50,7 @@ from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
 
 ADMIN_USERNAMES = ['svanderhoeven']
-
-# TEST_WORKING_DIRECTORY = r"C:\Users\ben.vanbasten\Desktop\test_working_dir"
+TEST_WORKING_DIR = r"C:\Users\stijn.overmeen\Desktop\test_working_dir"
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -81,23 +80,14 @@ class NADMaps(object):
             self.creator = "Plugin" 
         else:
             self.creator = "Gebruiker"
-            working_dir = self.plugin_dir
 
-            # init working directory if it does not exist
-            if not os.path.exists(working_dir):
-                os.makedirs(working_dir)
-                os.makedirs(os.path.join(working_dir, "themas"))
-                os.makedirs(os.path.join(working_dir, "styling"))
-                os.makedirs(os.path.join(working_dir, "styling\\qml_files"))
-
-            self.user_thema_path = os.path.join(
-                working_dir,
-                "themas\\user_themas.json"
-            )
-            self.user_styling_files_path = os.path.join(
-                working_dir,
-                "styling\\qml_files"
-            )
+            # initialize the working directory from settings
+            self.working_dir = QSettings().value('working_dir')
+            if self.working_dir == None:
+                self.working_dir = TEST_WORKING_DIR
+                self.set_working_directory(self.working_dir)
+            else:
+                self.set_working_directory(self.working_dir)
 
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
@@ -391,14 +381,12 @@ class NADMaps(object):
         self.themaModel.clear()
         
         themas = []
-        try:
-            with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
-                themas.extend(json.load(f))
-            if self.creator == "Gebruiker":
+        with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
+            themas.extend(json.load(f))
+        if self.creator == "Gebruiker":
+            if os.path.exists(self.user_thema_path):
                 with open(self.user_thema_path, "r", encoding="utf-8") as f:
                     themas.extend(json.load(f))
-        except:
-            return
 
         # self.log(f"themas: {themas}")
         plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
@@ -1167,6 +1155,13 @@ class NADMaps(object):
         self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
         self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
+        # Set working directory by using the file dialog to select a folder
+        self.dlg.set_working_dir.clicked.connect(
+            lambda: self.set_working_directory(
+                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een map", self.working_dir)
+            )
+        )
+
         self.dlg.stylingGroupBox.setEnabled(False)
 
         self.popup.accept_button.clicked.connect(lambda: self.save_styling())
@@ -1207,6 +1202,28 @@ class NADMaps(object):
 #########################################################################################
 ################################  General utility functions ########################
 #########################################################################################
+
+    def set_working_directory(self, path):
+        """Set the working directory for the plugin"""
+        os.makedirs(path, exist_ok=True)
+        os.makedirs(os.path.join(path, "themas"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling\\qml_files"), exist_ok=True)
+
+        self.user_thema_path = os.path.join(
+            path,
+            "themas\\user_themas.json"
+        )
+        self.user_styling_files_path = os.path.join(
+            path,
+            "styling\\qml_files"
+        )
+
+        # save the working directory to the settings, such that it is available next time the plugin is started
+        QSettings().setValue("working_dir", path)
+
+        self.working_dir = path
+        self.dlg.lineEditFilePath.setText(path)
 
 
     def active_buttons(self, tabIndex):
