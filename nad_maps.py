@@ -34,11 +34,11 @@ from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
                        QgsRectangle, QgsWkbTypes)
 from qgis.PyQt import QtCore
 # from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression,
-                              QSortFilterProxyModel, Qt, QTimer, QSettings)
+from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression, QSettings,
+                              QSortFilterProxyModel, Qt, QTimer)
 from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
-                                 QSizePolicy, QFileDialog)
+                                 QFileDialog, QSizePolicy)
 
 from .lib.constants import PLUGIN_NAME
 from .lib.load_layers import LoadLayers, load_thema_layer
@@ -92,19 +92,18 @@ class NADMaps(object):
 
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
-            self.plugin_dir,
-            "resources\\themas",
+            self.plugin_dir, "resources", "themas",
             plugin_thema_filename)
 
         plugin_styling_filename = "styling.json"
         self.plugin_styling_path = os.path.join(
-            self.plugin_dir,
-            "resources\\styling",
+            self.plugin_dir, "resources", "styling",
             plugin_styling_filename)
         
         self.plugin_styling_files_path = os.path.join(
             self.plugin_dir,
-            "resources\\styling\\qml_files")
+            "resources", "styling", "qml_files"
+        )
 
         # Declare instance attributes
         self.actions = []
