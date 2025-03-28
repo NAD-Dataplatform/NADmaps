@@ -83,12 +83,6 @@ class NADMaps(object):
             # initialize the working directory from settings
             self.working_dir = QSettings().value('working_dir')
             if self.working_dir == None:
-                # Show message to user to select a working directory
-                self.iface.messageBar().pushMessage(
-                    "NAD Maps",
-                    self.tr("Selecteer een werkmap"),
-                    duration=3,
-                )
                 # Use the file dialog to select a directory
                 self.set_working_directory(
                     QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
