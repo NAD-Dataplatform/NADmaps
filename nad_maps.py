@@ -47,6 +47,7 @@ from qgis.core import (
     Qgis,
     QgsProject,
     QgsLayerTreeLayer,
+    QgsLayerTreeGroup,
     QgsRasterLayer,
     QgsMessageLog,
     QgsVectorLayer,
@@ -366,7 +367,9 @@ class NADMaps(object):
         if all == False:
             selected_layers = self.selected_active_layers
         else:
-            selected_layers = QgsProject.instance().mapLayers().values()
+            # selected_layers = QgsProject.instance().mapLayers().values()
+            root = QgsProject.instance().layerTreeRoot()
+            selected_layers = root.layerOrder()
             # selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
 
         # self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
@@ -811,11 +814,11 @@ class NADMaps(object):
         self.mapsModel.clear()
 
         # https://doc.qt.io/qt-6/qtwidgets-itemviews-simpletreemodel-example.html
+        # layers = QgsProject.instance().mapLayers().values() # https://qgis.org/pyqgis/3.40/core/QgsMapLayer.html
         root = QgsProject.instance().layerTreeRoot()
-        group = root.children()
-        layers = [ item.layer() for item in group ]
-        self.log(f"layers is {layers}")
-        self.log(f"length is {len(layers)}")
+        layers = root.layerOrder()
+        self.log(f"length maplayers is {len(layers)}")
+        self.log(f"maplayers is {layers}")
 
         if len(layers) < 1:
             itemLayername = QStandardItem(str(""))
@@ -831,26 +834,26 @@ class NADMaps(object):
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
-
-                # layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer
-                # isVisible = layer_tree_layer.isVisible()
+                self.log(f"layer is {layer} with {layer.properties()}")
+                layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
                 provider_type = layer.providerType()
 
                 itemLayername = QStandardItem(str(layer.name()))
-                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
                 stype = (
                     self.service_type_mapping[provider_type]
                     if provider_type in self.service_type_mapping
                     else provider_type.upper()
                 )
                 itemType = QStandardItem(str(stype))
-                # # self.log(f"Styling is {layer.customProperty( "layerStyle", "" )}")
-                # styling = "default"
-                styling = layer.customProperty( "layerStyle", "" )
+                styling = layer.customProperty("layerStyle", "")
                 itemStyle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
                 itemOrder = QStandardItem(str(i))
+                
+                itemLayername.setData(layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[0].data(Qt.ItemDataRole.UserRole)
+                itemType.setData(layer_tree_layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[1].data(Qt.ItemDataRole.UserRole)
+
                 self.mapsModel.appendRow(
                     [itemLayername, itemType, itemStyle, itemSource, itemOrder]
                 )
@@ -1190,13 +1193,13 @@ class NADMaps(object):
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
         self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+
         # Tracking and updating
         # QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
         # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
-        # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
-        # bridge = self.iface.layerTreeCanvasBridge() 
-        # self.iface.layerTreeCanvasBridge().canvasLayersChanged.connect(lambda: self.update_active_layers_list())
-        self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layerTreeRoot().nameChanged.connect(lambda: self.update_active_layers_list())
+        # self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list()) # this only works for layers visible in canvas
 
 
 #########################################################################################
