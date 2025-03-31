@@ -105,5 +105,16 @@
 				"creator": "plugin"
 			}
 		]
+	},
+	{
+		"layer_name": "BGT Inlooptabel",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
+		"styles": [
+			{
+				"name": "BGT inloop",
+				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
+				"creator": "plugin"
+			}
+		]
 	}
 ]

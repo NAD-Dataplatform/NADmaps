@@ -337,7 +337,9 @@ class NADMaps(object):
         if all == False:
             selected_layers = self.selected_active_layers
         else:
-            selected_layers = QgsProject.instance().mapLayers().values()
+            # selected_layers = QgsProject.instance().mapLayers().values()
+            root = QgsProject.instance().layerTreeRoot()
+            selected_layers = root.layerOrder()
             # selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
 
         # self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
@@ -356,11 +358,8 @@ class NADMaps(object):
             else:
                 string = string + "}, {"
         string = string + "}"
-        # self.log(string)
-
 
         data = json.loads(string)
-        # self.log(data)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
         try:
             with open(json_path, "r", encoding="utf-8") as feedsjson:
@@ -788,86 +787,71 @@ class NADMaps(object):
 ######################  Show current loaded layers on the canvas ########################
 #########################################################################################
 
-    # order = []
-    # model = self.iface.layerTreeView().layerTreeModel()
-    # root = QgsProject.instance().layerTreeRoot()
-    # node = root.findLayer(layer.id())
-    # index = model.node2index( node )
-    # order.append(index.row())
-    # # self.log(order)
-    # # sorted_layers = list(selected_layers)
-    # # # self.log(f"Sorted layers is {sorted_layers}")
-
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
         # self.log(f"update_active_layers_list function started")
         self.mapsModel.clear()
 
-        # self.iface.layerTreeView()
-        layers = QgsProject.instance().mapLayers().values()
-        model = self.iface.layerTreeView().layerTreeModel()
+        # https://doc.qt.io/qt-6/qtwidgets-itemviews-simpletreemodel-example.html
+        # layers = QgsProject.instance().mapLayers().values() # https://qgis.org/pyqgis/3.40/core/QgsMapLayer.html
         root = QgsProject.instance().layerTreeRoot()
-        # # self.log(f"Number of layers: {len(layers)}")
+        layers = root.layerOrder()
+        self.log(f"length maplayers is {len(layers)}")
+        self.log(f"maplayers is {layers}")
+
         if len(layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemType = QStandardItem(str(""))
             itemStylingTitle = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
+            itemOrder = QStandardItem(str(""))
             self.mapsModel.appendRow(
-                [itemLayername, itemType, itemStylingTitle, itemSource]
+                [itemLayername, itemType, itemStylingTitle, itemSource, itemOrder]
             )
         else:
-            # QgsProject.instance().mapLayersByName("countries")[0]
-            # d = self.iface.openLayoutDesigners()[0]
-            # l = d.layout()
-            # legend = l.selectedItems()[0]
-            # m = legend.model()
-            # # self.log(m.rowCount())
             for i, layer in enumerate(layers):
-                # index = model.node2index( root.findLayer(layer.id()) )
-                # index2 = model.index2legendNode( root.findLayer(layer.id()) )
-                # # findLegendNode → QgsLayerTreeModelLegendNode
-                # # QgsLayerTreeModelLegendNode
-                # # self.log(f"Index is {index.row()} and i is {i}, and index2 is {index2}")
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
+                self.log(f"layer is {layer} with {layer.properties()}")
+                layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
                 provider_type = layer.providerType()
 
                 itemLayername = QStandardItem(str(layer.name()))
-                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
                 stype = (
                     self.service_type_mapping[provider_type]
                     if provider_type in self.service_type_mapping
                     else provider_type.upper()
                 )
                 itemType = QStandardItem(str(stype))
-                # # self.log(f"Styling is {layer.customProperty( "layerStyle", "" )}")
-                # styling = "default"
-                styling = layer.customProperty( "layerStyle", "" )
+                styling = layer.customProperty("layerStyle", "")
                 itemStyle = QStandardItem(str(styling))
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
-                # itemOrder = QStandardItem(str(index.row()))
+                itemOrder = QStandardItem(str(i))
+                
+                itemLayername.setData(layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[0].data(Qt.ItemDataRole.UserRole)
+                itemType.setData(layer_tree_layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[1].data(Qt.ItemDataRole.UserRole)
+
                 self.mapsModel.appendRow(
-                    [itemLayername, itemType, itemStyle, itemSource]
+                    [itemLayername, itemType, itemStyle, itemSource, itemOrder]
                 )
 
-        # self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
+        self.mapsModel.setHeaderData(4, Qt.Orientation.Horizontal, "Index")
         self.mapsModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Style")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        # self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.mapsModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
-        # self.dlg.activeMapListView.hideColumn(3)
+        self.dlg.activeMapListView.hideColumn(4)
         
         self.dlg.activeMapListView.setColumnWidth(
-            0, 150
+            0, 200
         )  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
         self.dlg.activeMapListView.sortByColumn(4, QtCore.Qt.AscendingOrder)
@@ -921,6 +905,7 @@ class NADMaps(object):
     def export_canvas(self):
         """Export the current map to pdf or png, including a north-arrow"""
         # qgis.utils.iface.mapCanvas().saveAsImage('test.png', None, 'PNG') 
+        # https://qgis.org/pyqgis/3.40/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas
 
 
 #########################################################################################
@@ -1194,9 +1179,13 @@ class NADMaps(object):
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
         self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+
         # Tracking and updating
-        QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
-        QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+        # QgsProject.instance().layersAdded.connect(lambda: self.update_active_layers_list())
+        # QgsProject.instance().layersRemoved.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layerTreeRoot().nameChanged.connect(lambda: self.update_active_layers_list())
+        # self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list()) # this only works for layers visible in canvas
 
 
 #########################################################################################
