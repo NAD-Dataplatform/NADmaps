@@ -2,11 +2,13 @@ import configparser
 import logging
 from pathlib import Path
 
-logger = logging.getLogger(__name__)
 PLUGIN_DIR = Path(__file__).parent.parent
 
-def test_metadata():
+from ..nad_maps import NADMaps
 
+
+def test_metadata():
+    # Some minor validation of the metadata file
     required_metadata = [
         "name",
         "description",
@@ -20,7 +22,6 @@ def test_metadata():
     ]
 
     metadata_file = PLUGIN_DIR / "metadata.txt"
-    logger.info(metadata_file)
     metadata = []
     parser = configparser.ConfigParser()
     parser.optionxform = str
@@ -35,3 +36,11 @@ def test_metadata():
             metadata_file,
         )
         assert key in dict(metadata), message
+
+def test_smoke(iface_mock):
+    # Just instantiate the plugin and see whether it breaks
+    nadmap = NADMaps(iface_mock)
+    nadmap.initGui()
+    nadmap.run()
+    assert nadmap
+    

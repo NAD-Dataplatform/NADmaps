@@ -22,81 +22,34 @@
  ***************************************************************************/
 """
 # General packages
-import os.path
-import json
-import re
+import getpass
 import hashlib
-import urllib.request, urllib.parse, urllib.error
+import json
+import os.path
+import re
 
-# PyQGIS packages
-from qgis.PyQt.QtCore import (
-    Qt, QSettings,
-    QTranslator,
-    QCoreApplication,
-    QSortFilterProxyModel,
-    QRegularExpression,
-    QTimer,
-    QSize
-)
-from qgis.PyQt.QtGui import QIcon, QStandardItemModel, QStandardItem, QColor
-# from qgis.PyQt import QtWidgets
-from qgis.gui import QgsVertexMarker
-# from qgis.PyQt import QtCore, QtGui, 
 # https://api.qgis.org/api/group__core.html
-from qgis.core import (
-    Qgis,
-    QgsProject,
-    QgsLayerTreeLayer,
-    QgsLayerTreeGroup,
-    QgsRasterLayer,
-    QgsMessageLog,
-    QgsVectorLayer,
-    QgsVectorTileLayer,
-    QgsCoordinateReferenceSystem,
-    QgsRectangle,
-    QgsCoordinateTransform,
-    QgsGeometry,
-    QgsWkbTypes,
-    QgsPointXY,
-    QgsMapLayer,
-)
-from qgis.PyQt.QtWidgets import (
-    QSizePolicy,
-    QAction,
-    QAbstractItemView,
-    QPushButton,
-    QDialog,
-    QGridLayout,
-    QDialogButtonBox,
-    QCompleter,
-    QSlider,
-    QWidget,
-    QVBoxLayout,
-    QHBoxLayout,
-    QLayout,
-    QLabel,
-    QStackedWidget
-)
+from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
+                       QgsGeometry, QgsMapLayer, QgsMessageLog, QgsProject,
+                       QgsRectangle, QgsWkbTypes)
+from qgis.PyQt import QtCore
+# from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression, QSettings,
+                              QSortFilterProxyModel, Qt, QTimer)
+from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
+from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
+                                 QFileDialog, QSizePolicy)
 
-# Initialize Qt resources from file resources.py
-from .resources import *
-# Import code for the search and zoom function
-from .lib.locatieserver import (
-    suggest_query,
-    TypeFilter,
-    LsType,
-    lookup_object,
-    get_lookup_object_url,
-    Projection,
-)
-
+from .lib.constants import PLUGIN_NAME
 from .lib.load_layers import LoadLayers, load_thema_layer
+# Import code for the search and zoom function
+from .lib.locatieserver import (LsType, Projection, TypeFilter, lookup_object,
+                                suggest_query)
 # Import the code for the dialog
 from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
-from .lib.constants import PLUGIN_NAME, PLUGIN_ID
 
-
+ADMIN_USERNAMES = ['svanderhoeven']
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -121,34 +74,36 @@ class NADMaps(object):
         self.dlg = NADMapsDialog(parent=self.iface.mainWindow())
         self.popup = NADMapsPopup(parent=self.iface.mainWindow())
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        # initialize locale (find language of the user)
-        locale = QSettings().value('locale/userLocale')[0:2]
-        locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'NADMaps_{}.qm'.format(locale))
 
-        self.creator = "Gebruiker" # name of creator (eg. user or plugin) of themas. Base themas cannot be deleted by users
-        thema_filename = "thema.json"
-        self.thema_path = os.path.join(
-            self.plugin_dir,
-            "resources\\themas",
-            thema_filename)
+        if getpass.getuser() in ADMIN_USERNAMES:
+            self.creator = "Plugin" 
+        else:
+            self.creator = "Gebruiker"
 
-        styling_filename = "styling.json"
-        self.styling_path = os.path.join(
-            self.plugin_dir,
-            "resources\\styling",
-            styling_filename)
+            # initialize the working directory from settings
+            self.working_dir = QSettings().value('working_dir')
+            if self.working_dir == None:
+                # Use the file dialog to select a directory
+                self.set_working_directory(
+                    QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
+                )
+            else:
+                self.set_working_directory(self.working_dir)
+
+        plugin_thema_filename = "thema.json"
+        self.plugin_thema_path = os.path.join(
+            self.plugin_dir, "resources", "themas",
+            plugin_thema_filename)
+
+        plugin_styling_filename = "styling.json"
+        self.plugin_styling_path = os.path.join(
+            self.plugin_dir, "resources", "styling",
+            plugin_styling_filename)
         
-        self.styling_files_path = os.path.join(
+        self.plugin_styling_files_path = os.path.join(
             self.plugin_dir,
-            "resources\\styling\\qml_files")
-
-        if os.path.exists(locale_path):
-            self.translator = QTranslator()
-            self.translator.load(locale_path)
-            QCoreApplication.installTranslator(self.translator)
+            "resources", "styling", "qml_files"
+        )
 
         # Declare instance attributes
         self.actions = []
@@ -336,13 +291,23 @@ class NADMaps(object):
         thema_name = self.current_thema["thema_name"]
         # self.log(f"Thema to be deleted is {thema_name}")
 
-        with open(self.thema_path, "r", encoding="utf-8") as f:
+        # Check whether the thema is a plugin or user defined thema
+        if self.current_thema["creator"] == "Plugin" and self.creator == "Gebruiker":
+            self.log("Plugin thema's cannot be deleted")
+            return
+        
+        if self.current_thema["creator"] == "Plugin":
+            json_path = self.plugin_thema_path
+        elif self.current_thema["creator"] == "Gebruiker":
+            json_path = self.user_thema_path
+            
+        with open(json_path, "r", encoding="utf-8") as f:
             jsondata = json.load(f)
 
         # Iterate through the json list and remove the object with the selected name
         jsondata = [obj for obj in jsondata if obj["thema_name"] != thema_name]
         
-        with open(self.thema_path, "w", encoding="utf-8") as feedsjson:
+        with open(json_path, "w", encoding="utf-8") as feedsjson:
             json.dump(jsondata, feedsjson, indent='\t')
 
         self.update_thema_list()
@@ -352,6 +317,11 @@ class NADMaps(object):
         """
         Save a collection of layers in order to later quickly load them
         """
+        if self.creator == "Plugin":
+            json_path = self.plugin_thema_path
+        elif self.creator == "Gebruiker":
+            json_path = self.user_thema_path
+
         # self.log(f"Save thema function: save all? {all}")
         
         # Collect a json string with a thema_name and a list of layer names
@@ -392,12 +362,13 @@ class NADMaps(object):
         data = json.loads(string)
         # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
         try:
-            with open(self.thema_path, "r", encoding="utf-8") as feedsjson:
+            with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
         except:
             feeds = []
+
         
-        with open(self.thema_path, "w", encoding="utf-8") as feedsjson:
+        with open(json_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
             json.dump(feeds, feedsjson, indent='\t')
         
@@ -409,11 +380,12 @@ class NADMaps(object):
         self.themaModel.clear()
         
         themas = []
-        try:
-            with open(self.thema_path, "r", encoding="utf-8") as f:
-                themas.extend(json.load(f))
-        except:
-            return
+        with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
+            themas.extend(json.load(f))
+        if self.creator == "Gebruiker":
+            if os.path.exists(self.user_thema_path):
+                with open(self.user_thema_path, "r", encoding="utf-8") as f:
+                    themas.extend(json.load(f))
 
         # self.log(f"themas: {themas}")
         plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
@@ -508,7 +480,7 @@ class NADMaps(object):
 
             if not style == "":
                 style_code = self.style_code(style, uri)
-                path = f"{self.styling_files_path}/{style_code}.qml"
+                path = f"{self.plugin_styling_files_path}/{style_code}.qml"
                 result.loadNamedStyle(path)
                 result.triggerRepaint()
                 result.setCustomProperty( "layerStyle", style )
@@ -587,7 +559,7 @@ class NADMaps(object):
         style_code = self.style_code(style_name, layer.source())
 
         if not layer == None:
-            path = f"{self.styling_files_path}/{style_code}.qml"
+            path = f"{self.plugin_styling_files_path}/{style_code}.qml"
             layer.loadNamedStyle(path)
             layer.triggerRepaint()
             layer.setCustomProperty( "layerStyle", style_name )
@@ -616,7 +588,7 @@ class NADMaps(object):
             # self.log(f"data.source() is {source}")
 
             try:
-                with open(self.styling_path, "r", encoding="utf-8") as f:
+                with open(self.plugin_styling_path, "r", encoding="utf-8") as f:
                     jsondata = json.load(f)
             except Exception as e:
                 self.log(f"Error with message: {e}")
@@ -640,11 +612,11 @@ class NADMaps(object):
                 new_jsondata.append(new_data)
 
             try:
-                with open(self.styling_path, "w", encoding="utf-8") as f:
+                with open(self.plugin_styling_path, "w", encoding="utf-8") as f:
                     json.dump(new_jsondata, f, indent='\t')
             except Exception as e:
                 self.log(f"Error with message: {e}")
-            file_path = f"{self.styling_files_path}\\{style_code}.qml"
+            file_path = f"{self.plugin_styling_files_path}\\{style_code}.qml"
             if os.path.exists(file_path):
                 os.remove(file_path)
 
@@ -683,7 +655,7 @@ class NADMaps(object):
                 # self.log(f"style_code = {style_code}")
 
                 try:
-                    with open(self.styling_path, "r", encoding="utf-8") as feedsjson:
+                    with open(self.plugin_styling_path, "r", encoding="utf-8") as feedsjson:
                         feeds = json.load(feedsjson)
                 except:
                     return
@@ -709,6 +681,13 @@ class NADMaps(object):
         """
         Save the styling of the current layer to a qml file
         """
+        if self.creator == "Plugin":
+            json_path = self.plugin_thema_path
+            qml_folder = self.plugin_styling_files_path
+        elif self.creator == "Gebruiker":
+            json_path = self.user_thema_path
+            qml_folder = self.user_styling_files_path
+
         # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
         # TODO: what about services where you define the styling when you send the request? remove and reload?
         layer = self.layer_to_style
@@ -719,17 +698,17 @@ class NADMaps(object):
         layer_name = layer.name()
         style_code = self.style_code(style_name, source)
         # self.log(f"style_code = {style_code}")
-        path = f"{self.styling_files_path}\\{style_code}.qml"
+        qml_path = f"{qml_folder}\\{style_code}.qml"
 
         if layer.type() == QgsMapLayer.VectorLayer:
-            layer.saveNamedStyle(path)
+            layer.saveNamedStyle(qml_path)
         else:
             return
         # layer is the data in the layer
         creator = "plugin"
 
         try:
-            with open(self.styling_path, "r", encoding="utf-8") as feedsjson:
+            with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
         except:
             feeds = []
@@ -765,7 +744,7 @@ class NADMaps(object):
         new_data = json.loads(string)
         existing_data.append(new_data)
             
-        with open(self.styling_path, "w", encoding="utf-8") as feedsjson:
+        with open(json_path, "w", encoding="utf-8") as feedsjson:
             json.dump(existing_data, feedsjson, indent='\t')
         layer.setCustomProperty( "layerStyle", style_name )
         self.update_active_layers_list()
@@ -787,7 +766,7 @@ class NADMaps(object):
             )
             # self.log(f"Data of this layer is {data.source()}")
             layer_style_list = []
-            path = self.styling_path
+            path = self.plugin_styling_path
             try:
                 with open(path, "r", encoding="utf-8") as f:
                     layer_style_list.extend(json.load(f))
@@ -1161,6 +1140,13 @@ class NADMaps(object):
         self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
         self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
+        # Set working directory by using the file dialog to select a folder
+        self.dlg.set_working_dir.clicked.connect(
+            lambda: self.set_working_directory(
+                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
+            )
+        )
+
         self.dlg.stylingGroupBox.setEnabled(False)
 
         self.popup.accept_button.clicked.connect(lambda: self.save_styling())
@@ -1205,6 +1191,28 @@ class NADMaps(object):
 #########################################################################################
 ################################  General utility functions ########################
 #########################################################################################
+
+    def set_working_directory(self, path):
+        """Set the working directory for the plugin"""
+        os.makedirs(path, exist_ok=True)
+        os.makedirs(os.path.join(path, "themas"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling\\qml_files"), exist_ok=True)
+
+        self.user_thema_path = os.path.join(
+            path,
+            "themas\\user_themas.json"
+        )
+        self.user_styling_files_path = os.path.join(
+            path,
+            "styling\\qml_files"
+        )
+
+        # save the working directory to the settings, such that it is available next time the plugin is started
+        QSettings().setValue("working_dir", path)
+
+        self.working_dir = path
+        self.dlg.lineEditFilePath.setText(path)
 
 
     def active_buttons(self, tabIndex):
