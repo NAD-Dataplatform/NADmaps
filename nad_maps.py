@@ -35,7 +35,7 @@ from qgis.core import (QgsCoordinateReferenceSystem, QgsCoordinateTransform,
 from qgis.PyQt import QtCore
 # from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import (QCoreApplication, QRegularExpression, QSettings,
-                              QSortFilterProxyModel, Qt, QTimer)
+                              QSortFilterProxyModel, Qt, QTimer, QItemSelectionModel)
 from qgis.PyQt.QtGui import QIcon, QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import (QAbstractItemView, QAction, QCompleter,
                                  QFileDialog, QSizePolicy)
@@ -49,7 +49,8 @@ from .lib.locatieserver import (LsType, Projection, TypeFilter, lookup_object,
 from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
 
-ADMIN_USERNAMES = ['svanderhoeven']
+# ADMIN_USERNAMES = ['svanderhoeven']
+ADMIN_USERNAMES = ['']
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -76,7 +77,12 @@ class NADMaps(object):
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
 
         if getpass.getuser() in ADMIN_USERNAMES:
-            self.creator = "Plugin" 
+            self.creator = "Plugin"
+            
+            self.working_dir = QSettings().value('working_dir')
+            self.user_thema_path = os.path.join(
+                self.plugin_dir, "resources", "themas",
+                "thema.json")
         else:
             self.creator = "Gebruiker"
 
@@ -263,7 +269,6 @@ class NADMaps(object):
         )
 
     def get_current_layer(self, selectedIndexes):
-        # self.log(f"get_current_layer: len(selectedIndexes) is {str(len(selectedIndexes))}")
         if len(selectedIndexes) == 0:
             self.current_layer = None
             return
@@ -285,11 +290,9 @@ class NADMaps(object):
 
     def delete_thema(self):
         """Delete an existing thema (only user defined themas should be deleted)"""
-        # self.log("Starting the delete_thema function")
 
         # Find the thema name to be deleted
         thema_name = self.current_thema["thema_name"]
-        # self.log(f"Thema to be deleted is {thema_name}")
 
         # Check whether the thema is a plugin or user defined thema
         if self.current_thema["creator"] == "Plugin" and self.creator == "Gebruiker":
@@ -311,7 +314,6 @@ class NADMaps(object):
             json.dump(jsondata, feedsjson, indent='\t')
 
         self.update_thema_list()
-        # self.log("Finished the delete_thema function")
 
     def save_thema(self, all: bool):
         """
@@ -321,12 +323,9 @@ class NADMaps(object):
             json_path = self.plugin_thema_path
         elif self.creator == "Gebruiker":
             json_path = self.user_thema_path
-
-        # self.log(f"Save thema function: save all? {all}")
         
         # Collect a json string with a thema_name and a list of layer names
         thema_name = self.dlg.saveThemaLineEdit.text()
-        # self.log(f"Thema name given is {thema_name}")
 
         string = "{\"thema_name\": \"" + thema_name + "\", "
         string = f"{string}\"creator\": \"{self.creator}\"," # creator
@@ -375,6 +374,31 @@ class NADMaps(object):
         self.update_thema_list()
         self.dlg.saveThemaLineEdit.clear()
 
+    def filter_thema_list(self):
+        plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
+        user_thema_check = self.dlg.userThemaCheckBox.isChecked()
+        fav_thema_check = self.dlg.favoriteThemaCheckBox.isChecked()
+
+        if plugin_thema_check and user_thema_check:
+            string = "Plugin|Gebruiker"
+        elif plugin_thema_check:
+            string = "Plugin"
+        elif user_thema_check:
+            string = "Gebruiker"
+        else:
+            string = "leeg" # exact string is unimportant, any other string will empty the list
+
+        regexp = QRegularExpression(string)
+        self.userFilterThema.setFilterRegularExpression(regexp)
+
+        if fav_thema_check:
+            value = "2"
+        else:
+            value = "0|1|2"
+
+        regexp_fav = QRegularExpression(value)
+        self.favoriteFilterThema.setFilterRegularExpression(regexp_fav)
+
     def update_thema_list(self):
         """Add a thema to the thema model"""
         self.themaModel.clear()
@@ -387,28 +411,27 @@ class NADMaps(object):
                 with open(self.user_thema_path, "r", encoding="utf-8") as f:
                     themas.extend(json.load(f))
 
-        # self.log(f"themas: {themas}")
-        plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
-        user_thema_check = self.dlg.userThemaCheckBox.isChecked()
-        fav_thema_check = self.dlg.favoriteThemaCheckBox.isChecked()
-        # self.log(f"Filters checked: plugin = {plugin_thema_check}, user = {user_thema_check}, favorite = {fav_thema_check}")
+        try:
+            with open(self.user_thema_favorite_path, "r", encoding="utf-8") as f:
+                favorites = json.load(f)
+        except:
+            favorites = None
+        
         themas_exist = False
         for thema in themas:
-            if (plugin_thema_check and thema["creator"] == "Plugin") or (user_thema_check and thema["creator"] == "Gebruiker"):
-                # if fav_thema_check == False or thema["favorite"] != "":
-                if fav_thema_check == False:
-                    itemThema = QStandardItem(str(thema["thema_name"]))
-                    # itemFavorite = self.update_favorite(thema)
-                    itemFavorite = QStandardItem()
-                    itemFavorite.setCheckable(True)
-                    itemSource = QStandardItem(str(thema["creator"]))
-                    itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
-                    # https://doc.qt.io/qt-6/qstandarditem.html#setData
-                    itemThema.setData(thema, Qt.ItemDataRole.UserRole)
-                    self.themaModel.appendRow(
-                        [itemThema, itemFavorite, itemSource, itemFilter]
-                    )
-                    themas_exist = True
+            itemThema = QStandardItem(str(thema["thema_name"]))
+            itemFavorite = QStandardItem()
+            itemFavorite.setCheckable(True)
+            if favorites and favorites[thema["thema_name"]] == "favorite":
+                itemFavorite.setCheckState(2)
+            itemSource = QStandardItem(str(thema["creator"]))
+            itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
+            # https://doc.qt.io/qt-6/qstandarditem.html#setData
+            itemThema.setData(thema, Qt.ItemDataRole.UserRole)
+            self.themaModel.appendRow(
+                [itemThema, itemFavorite, itemSource, itemFilter]
+            )
+            themas_exist = True
         
         # if no thema is leftover after selection, then present an empty row
         if not themas_exist:
@@ -433,6 +456,34 @@ class NADMaps(object):
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
         self.dlg.themaView.sortByColumn(0, QtCore.Qt.AscendingOrder)
 
+    def update_favorites(self, cell):
+        if cell.column() == 1:
+            model = self.dlg.themaView.model()
+            # self.log(f"cell is {cell} (row: {cell.row()}, col: {cell.column()}) and model row count: {model.rowCount()}")
+            string = "{"
+            for r in range(model.rowCount()):
+                thema = model.index(r, 0)
+                thema_name = thema.data()
+                favorite = model.index(r, 1)
+                value = favorite.data(Qt.ItemDataRole.CheckStateRole) # https://doc.qt.io/qt-6/qt.html#CheckState-enum
+                self.log(f"Update favorites: CheckStateRole is {value} and DisplayRole is {thema.data(Qt.ItemDataRole.DisplayRole)}")
+                if value == 2:
+                    checkstate = "favorite"
+                else:
+                    checkstate = "regular"
+
+                string = string + "\"" + thema_name + "\": \"" + checkstate + "\""
+                if r == model.rowCount() - 1:
+                    string = string + "}"
+                else:
+                    string = string + ","
+
+            data = json.loads(string)
+            try:
+                with open(self.user_thema_favorite_path, "w", encoding="utf-8") as file:
+                    json.dump(data, file, indent='\t')
+            except Exception as e:
+                self.log(f"Tried to write favorite themas to json file, but received this error: {e}")
 
 
 #########################################################################################
@@ -441,7 +492,6 @@ class NADMaps(object):
 
     def show_thema_layers(self, selectedIndexes):
         """Show the layers that are part of a thema"""
-        # # self.log(f"show_thema_layers: len(selectedIndexes) is {str(len(selectedIndexes))}")
         if len(selectedIndexes) == 0:
             self.current_layer = None
             return
@@ -455,7 +505,6 @@ class NADMaps(object):
 
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
-        # # self.log(f"load_thema_layers: current_thema is {self.current_thema["thema_name"]}")
         thema_layers = self.thema_layers
         # create a group to load into to
         root = QgsProject.instance().layerTreeRoot()
@@ -469,10 +518,8 @@ class NADMaps(object):
             provider_type = layer["provider_type"]
             style = layer["styling"]
             # title, layer_type, provider_type, uri
-            # self.log(name)
             self.current_layer = layer
             result = load_thema_layer(name, uri, layer_type, provider_type)
-            # # self.log(f"Loading thema layer {layer}")
             QgsProject.instance().addMapLayer(result, False) # If True (by default), the layer will be added to the legend and to the main canvas
             group.addLayer(result) # Add the layer to the group
             # check if styling is saved in .resources.styling styling.json
@@ -494,7 +541,6 @@ class NADMaps(object):
         
         self.themaMapModel.clear()
 
-        # self.log(f"Number of layers: {len(thema_layers)}")
         if len(thema_layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemProvider = QStandardItem(str(""))
@@ -574,18 +620,13 @@ class NADMaps(object):
 
     def delete_styling(self):
         """Delete an existing style (only user defined styles should be deleted)"""
-        # self.log("Starting the delete_styling function")
 
         # Find the style name to be deleted
         style_name = self.dlg.stylingComboBox.currentText()
         data = self.dlg.stylingComboBox.currentData()
-        # self.log(f"Style to be deleted is {style_name}")
-        # self.log(f"Style data is {data}")
         if not data == None:
             source = data.source()
             style_code = self.style_code(style_name, source)
-            # self.log(f"Style code is {style_code}")
-            # self.log(f"data.source() is {source}")
 
             try:
                 with open(self.plugin_styling_path, "r", encoding="utf-8") as f:
@@ -620,6 +661,7 @@ class NADMaps(object):
             if os.path.exists(file_path):
                 os.remove(file_path)
 
+            self.update_active_layers_list()
             self.update_styling_list()
 
     def style_overwrite(self, show_popup: bool):
@@ -640,7 +682,6 @@ class NADMaps(object):
         """Check if a style already exists for this layer with the same name"""
         selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-        # self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
 
         # enable or disable the styling-functions
         if nr_of_selected_rows == 1:
@@ -652,7 +693,6 @@ class NADMaps(object):
             if not style_name == "":
                 source = self.layer_to_style.source()
                 style_code = self.style_code(style_name, source)
-                # self.log(f"style_code = {style_code}")
 
                 try:
                     with open(self.plugin_styling_path, "r", encoding="utf-8") as feedsjson:
@@ -682,22 +722,20 @@ class NADMaps(object):
         Save the styling of the current layer to a qml file
         """
         if self.creator == "Plugin":
-            json_path = self.plugin_thema_path
+            json_path = self.plugin_styling_path
             qml_folder = self.plugin_styling_files_path
         elif self.creator == "Gebruiker":
-            json_path = self.user_thema_path
+            json_path = self.user_styling_path
             qml_folder = self.user_styling_files_path
 
         # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
         # TODO: what about services where you define the styling when you send the request? remove and reload?
         layer = self.layer_to_style
-        # self.log(f"name of selected layer is {layer.name()}, source is {layer.source()}")
         style_name = self.dlg.saveStylingLineEdit.text()
         self.dlg.saveStylingLineEdit.clear()
         source = layer.source()
         layer_name = layer.name()
         style_code = self.style_code(style_name, source)
-        # self.log(f"style_code = {style_code}")
         qml_path = f"{qml_folder}\\{style_code}.qml"
 
         if layer.type() == QgsMapLayer.VectorLayer:
@@ -715,7 +753,9 @@ class NADMaps(object):
 
         existing_data = []
         existing_styles = []
+        self.log(f"source: {source}")
         for feed in feeds:
+            self.log(f"feed[source]: {feed}")
             if feed["source"] == source:
                 existing_styles = feed["styles"]
             else:
@@ -747,16 +787,15 @@ class NADMaps(object):
         with open(json_path, "w", encoding="utf-8") as feedsjson:
             json.dump(existing_data, feedsjson, indent='\t')
         layer.setCustomProperty( "layerStyle", style_name )
+
         self.update_active_layers_list()
         self.update_styling_list()
-        # TODO: reselect layer (selectedIndexes = self.dlg.activeMapListView.selectedIndexes())
 
     def update_styling_list(self):
         """Update the dropdown menu with saved styling options"""
         self.dlg.stylingComboBox.clear()
         selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-        # self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
 
         # enable or disable the styling-functions
         if nr_of_selected_rows == 1:
@@ -771,7 +810,6 @@ class NADMaps(object):
                 with open(path, "r", encoding="utf-8") as f:
                     layer_style_list.extend(json.load(f))
             except:
-                # self.log("Failed")
                 return
 
             for layer in layer_style_list:
@@ -789,15 +827,14 @@ class NADMaps(object):
 
     def update_active_layers_list(self):
         """Update the table with active layers in the project"""
-        # self.log(f"update_active_layers_list function started")
+        selectedIndexes = self.dlg.activeMapListView.selectedIndexes() # TODO: reselect after the update if these layers are still available
+        # self.log(f"selectedIndexes: {selectedIndexes}")
         self.mapsModel.clear()
 
         # https://doc.qt.io/qt-6/qtwidgets-itemviews-simpletreemodel-example.html
         # layers = QgsProject.instance().mapLayers().values() # https://qgis.org/pyqgis/3.40/core/QgsMapLayer.html
         root = QgsProject.instance().layerTreeRoot()
         layers = root.layerOrder()
-        self.log(f"length maplayers is {len(layers)}")
-        self.log(f"maplayers is {layers}")
 
         if len(layers) < 1:
             itemLayername = QStandardItem(str(""))
@@ -813,7 +850,6 @@ class NADMaps(object):
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}")
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
-                self.log(f"layer is {layer} with {layer.properties()}")
                 layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
                 provider_type = layer.providerType()
 
@@ -862,7 +898,6 @@ class NADMaps(object):
         """
         selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-        # self.log(f"get_active_layer: nr of rows selected is {nr_of_selected_rows}")
 
         # enable or disable the styling-functions
         if nr_of_selected_rows == 1:
@@ -887,13 +922,9 @@ class NADMaps(object):
         self.selected_active_layers = []
         first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
         for index in first_index_list:
-            # self.log(f"active_layer is {index}, at row {index.row()} and column {index.column()}")
             active_layer = index.data(
                     Qt.ItemDataRole.UserRole
                 )
-            # # self.log(f"active_layer is {active_layer}")
-            # # self.log(f"active_layer name is {active_layer.name()}")
-            # # self.log(f"active_layer source is {active_layer.source()}")
             self.selected_active_layers.append(active_layer)
 
 
@@ -1053,39 +1084,34 @@ class NADMaps(object):
     
         ### Model for the active layer table
         self.mapsModel = QStandardItemModel()
-        self.styleFilterMaps = QSortFilterProxyModel()
-        self.styleFilterMaps.setSourceModel(self.mapsModel)
-        self.styleFilterMaps.setFilterKeyColumn(2)
 
         self.proxyModelMaps = QSortFilterProxyModel()
-        self.proxyModelMaps.setSourceModel(self.styleFilterMaps)
-        self.proxyModelMaps.setFilterKeyColumn(1)
+        self.proxyModelMaps.setSourceModel(self.mapsModel)
+        # self.proxyModelMaps.setFilterKeyColumn(1)
 
-        self.dlg.activeMapListView.setModel(self.mapsModel)
+        self.dlg.activeMapListView.setModel(self.proxyModelMaps)
         self.dlg.activeMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
     
         ### Model for the list of thema sets
         self.themaModel = QStandardItemModel()
-        self.styleFilterThema = QSortFilterProxyModel()
-        self.styleFilterThema.setSourceModel(self.themaModel)
-        self.styleFilterThema.setFilterKeyColumn(2)
+        self.favoriteFilterThema = QSortFilterProxyModel()
+        self.favoriteFilterThema.setSourceModel(self.themaModel)
+        self.favoriteFilterThema.setFilterKeyColumn(1)
+        self.favoriteFilterThema.setFilterRole(Qt.CheckStateRole) # https://doc.qt.io/qtforpython-6/PySide6/QtCore/QSortFilterProxyModel.html#PySide6.QtCore.QSortFilterProxyModel.setFilterRole
 
-        self.proxyModelThema = QSortFilterProxyModel()
-        self.proxyModelThema.setSourceModel(self.styleFilterThema)
-        self.proxyModelThema.setFilterKeyColumn(1) # change this when you want to order by something else (like order in layer panel)
+        self.userFilterThema = QSortFilterProxyModel()
+        self.userFilterThema.setSourceModel(self.favoriteFilterThema)
+        self.userFilterThema.setFilterKeyColumn(2) # change this when you want to order by something else (like order in layer panel)
 
-        self.dlg.themaView.setModel(self.proxyModelThema)
+        self.dlg.themaView.setModel(self.userFilterThema)
         self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.themaViewSelectionModel = QItemSelectionModel(self.dlg.themaView.model())
     
         ### Model for the list of layers within a thema set
         self.themaMapModel = QStandardItemModel()
-        self.styleFilterThemaMaps = QSortFilterProxyModel()
-        self.styleFilterThemaMaps.setSourceModel(self.themaMapModel)
-        self.styleFilterThemaMaps.setFilterKeyColumn(4)
         
         self.proxyModelThemaMaps = QSortFilterProxyModel()
-        self.proxyModelThemaMaps.setSourceModel(self.styleFilterThemaMaps)
-        self.proxyModelThemaMaps.setFilterKeyColumn(3)
+        self.proxyModelThemaMaps.setSourceModel(self.themaMapModel)
 
         self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
         self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
@@ -1129,9 +1155,9 @@ class NADMaps(object):
         self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
         self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
 
-        self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
-        self.dlg.userThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
-        self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
+        self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
+        self.dlg.userThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
+        self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
         
         self.dlg.deleteThemaButton.clicked.connect(lambda: self.delete_thema())
 
@@ -1158,6 +1184,9 @@ class NADMaps(object):
             self.get_selected_active_layers
         )
     
+        self.dlg.themaView.clicked.connect(
+            lambda cell: self.update_favorites(cell)
+        )
         # Update the display with a list of map layers within the selected thema
         self.dlg.themaView.selectionModel().selectionChanged.connect(
             self.show_thema_layers
@@ -1166,6 +1195,7 @@ class NADMaps(object):
         self.dlg.themaView.selectionModel().select(
             self.themaModel.index(0,0), QtCore.QItemSelectionModel.Select | QtCore.QItemSelectionModel.Rows
         )
+        
         self.dlg.themaView.doubleClicked.connect(
             lambda: self.load_thema_layers()
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
@@ -1186,7 +1216,8 @@ class NADMaps(object):
         QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(lambda: self.update_active_layers_list())
         QgsProject.instance().layerTreeRoot().nameChanged.connect(lambda: self.update_active_layers_list())
         # self.iface.mapCanvas().layersChanged.connect(lambda: self.update_active_layers_list()) # this only works for layers visible in canvas
-
+        
+       
 
 #########################################################################################
 ################################  General utility functions ########################
@@ -1203,6 +1234,14 @@ class NADMaps(object):
             path,
             "themas\\user_themas.json"
         )
+        self.user_thema_favorite_path = os.path.join(
+            path,
+            "themas\\favorites.json"
+        )
+        self.user_styling_path = os.path.join(
+            path,
+            "styling\\qml_files"
+        )
         self.user_styling_files_path = os.path.join(
             path,
             "styling\\qml_files"
@@ -1213,7 +1252,6 @@ class NADMaps(object):
 
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
-
 
     def active_buttons(self, tabIndex):
         """Show or hide the load layers or themas buttons at the bottom"""
@@ -1237,7 +1275,6 @@ class NADMaps(object):
 
     def filter_layers(self, string):
         # remove selection if one row is selected
-        # self.log(f"Function filter_layers: input string is {string}")
         self.dlg.mapListView.selectRow(0)
         self.proxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
         strlist = string.strip().split(" ")
@@ -1245,7 +1282,6 @@ class NADMaps(object):
         for s in strlist:
             string += f"{s}.*"
         regexp = QRegularExpression(string, QRegularExpression.PatternOption.CaseInsensitiveOption | QRegularExpression.PatternOption.InvertedGreedinessOption)
-        # self.log(f"The regexp to filter on is: {regexp}")
         self.proxyModel.setFilterRegularExpression(regexp)
         self.proxyModel.insertRow
 
@@ -1359,35 +1395,3 @@ class NADMaps(object):
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('NADMaps', message)
-    
-
-    # def beoordeling(self, star):
-    #     # Hier kun je de beoordeling opslaan of uitvoeren
-    #     # self.log(f"Beoordeling: {star}")
-    # https://doc.qt.io/qt-6/stylesheet-examples.html
-    # def update_favorite(self, thema):
-    #     """Update the number of stars that a thema gets"""
-    #     # self.log(thema["thema_name"])
-    #     stars = 0
-    #     # if thema["score"]:
-    #     #     stars = thema["score"]
-    #     widget = QWidget()
-    #     layout_stars = QHBoxLayout()
-    #     size_hint = QSize(22, 22)
-    #     for i in range(5):
-    #         star = QPushButton(str(""))
-    #         star.setCheckable(True)
-    #         if i > stars:
-    #             icon = self.outlined_star
-    #         else:
-    #             icon = self.filled_star
-    #         star.setIcon(icon)
-    #         star.setFixedSize(size_hint)
-    #         star.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-    #         star.clicked.connect(lambda: self.beoordeling(i))
-    #         layout_stars.addWidget(star)
-    #     widget.setLayout(layout_stars)
-    #     widget = self.update_favorite(thema)
-    #     # self.log(f"Result widget is {widget}")
-    #     self.dlg.themaView.setIndexWidget(itemFavorite.index(), widget)
-    #     return widget
