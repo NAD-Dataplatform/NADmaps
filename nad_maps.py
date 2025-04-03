@@ -417,27 +417,21 @@ class NADMaps(object):
         except:
             favorites = None
         
-        plugin_thema_check = self.dlg.pluginThemaCheckBox.isChecked()
-        user_thema_check = self.dlg.userThemaCheckBox.isChecked()
-        fav_thema_check = self.dlg.favoriteThemaCheckBox.isChecked()
         themas_exist = False
         for thema in themas:
-            if (favorites and favorites[thema["thema_name"]] == "favorite" and fav_thema_check) or (plugin_thema_check and thema["creator"] == "Plugin") or (user_thema_check and thema["creator"] == "Gebruiker"):
-                # if fav_thema_check == False or thema["favorite"] != "":
-                if fav_thema_check == False:
-                    itemThema = QStandardItem(str(thema["thema_name"]))
-                    itemFavorite = QStandardItem()
-                    itemFavorite.setCheckable(True)
-                    if favorites and favorites[thema["thema_name"]] == "favorite":
-                        itemFavorite.setCheckState(2)
-                    itemSource = QStandardItem(str(thema["creator"]))
-                    itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
-                    # https://doc.qt.io/qt-6/qstandarditem.html#setData
-                    itemThema.setData(thema, Qt.ItemDataRole.UserRole)
-                    self.themaModel.appendRow(
-                        [itemThema, itemFavorite, itemSource, itemFilter]
-                    )
-                    themas_exist = True
+            itemThema = QStandardItem(str(thema["thema_name"]))
+            itemFavorite = QStandardItem()
+            itemFavorite.setCheckable(True)
+            if favorites and favorites[thema["thema_name"]] == "favorite":
+                itemFavorite.setCheckState(2)
+            itemSource = QStandardItem(str(thema["creator"]))
+            itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
+            # https://doc.qt.io/qt-6/qstandarditem.html#setData
+            itemThema.setData(thema, Qt.ItemDataRole.UserRole)
+            self.themaModel.appendRow(
+                [itemThema, itemFavorite, itemSource, itemFilter]
+            )
+            themas_exist = True
         
         # if no thema is leftover after selection, then present an empty row
         if not themas_exist:
@@ -1161,9 +1155,6 @@ class NADMaps(object):
         self.dlg.saveThemaButton.clicked.connect(lambda: self.save_thema(False))
         self.dlg.saveAllThemaButton.clicked.connect(lambda: self.save_thema(True))
 
-        # self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
-        # self.dlg.userThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
-        # self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.update_thema_list())
         self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
         self.dlg.userThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
         self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.filter_thema_list())
