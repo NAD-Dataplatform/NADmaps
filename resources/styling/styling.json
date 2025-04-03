@@ -81,6 +81,17 @@
 		]
 	},
 	{
+		"layer_name": "BGT Inlooptabel",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
+		"styles": [
+			{
+				"name": "BGT inloop",
+				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
 		"layer_name": "Rioolleiding",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
@@ -102,17 +113,6 @@
 			{
 				"name": "Diameter",
 				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			}
-		]
-	},
-	{
-		"layer_name": "BGT Inlooptabel",
-		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
-		"styles": [
-			{
-				"name": "BGT inloop",
-				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
 				"creator": "plugin"
 			}
 		]
