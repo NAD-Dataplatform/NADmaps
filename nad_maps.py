@@ -83,13 +83,34 @@ class NADMaps(object):
 
         # initialize the working directory from settings
         self.working_dir = QSettings().value('working_dir')
-        if self.working_dir == None:
-            # Use the file dialog to select a directory
-            self.set_working_directory(
-                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
-            )
-        else:
-            self.set_working_directory(self.working_dir)
+        while self.working_dir in ["", None]:
+            self.working_dir = QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", "")           
+        
+        os.makedirs(self.working_dir, exist_ok=True)
+        os.makedirs(os.path.join(self.working_dir, "themas"), exist_ok=True)
+        os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
+        os.makedirs(os.path.join(self.working_dir, "styling\\qml_files"), exist_ok=True)
+
+        self.user_thema_path = os.path.join(
+            self.working_dir,
+            "themas\\user_themas.json"
+        )
+        self.user_thema_favorite_path = os.path.join(
+            self.working_dir,
+            "themas\\favorites.json"
+        )
+        self.user_styling_path = os.path.join(
+            self.working_dir,
+            "styling\\styling.json"
+        )
+        self.user_styling_files_path = os.path.join(
+            self.working_dir,
+            "styling\\qml_files"
+        )
+
+        # save the working directory to the settings, such that it is available next time the plugin is started
+        QSettings().setValue("working_dir", self.working_dir)
+        self.dlg.lineEditFilePath.setText(self.working_dir)
 
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
