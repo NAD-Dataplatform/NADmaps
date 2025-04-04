@@ -78,23 +78,18 @@ class NADMaps(object):
 
         if getpass.getuser() in ADMIN_USERNAMES:
             self.creator = "Plugin"
-            
-            self.working_dir = QSettings().value('working_dir')
-            self.user_thema_path = os.path.join(
-                self.plugin_dir, "resources", "themas",
-                "thema.json")
         else:
             self.creator = getpass.getuser()
 
-            # initialize the working directory from settings
-            self.working_dir = QSettings().value('working_dir')
-            if self.working_dir == None:
-                # Use the file dialog to select a directory
-                self.set_working_directory(
-                    QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
-                )
-            else:
-                self.set_working_directory(self.working_dir)
+        # initialize the working directory from settings
+        self.working_dir = QSettings().value('working_dir')
+        if self.working_dir == None:
+            # Use the file dialog to select a directory
+            self.set_working_directory(
+                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
+            )
+        else:
+            self.set_working_directory(self.working_dir)
 
         plugin_thema_filename = "thema.json"
         self.plugin_thema_path = os.path.join(
