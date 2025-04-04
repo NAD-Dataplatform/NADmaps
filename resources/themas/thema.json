@@ -1,39 +1,5 @@
 [
 	{
-		"thema_name": "Kwintsheul",
-		"creator": "Gebruiker",
-		"layers": [
-			{
-				"name": "GWSW Putten \u2014 gwsw_putten",
-				"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/GWSW Putten.gpkg|layername=gwsw_putten",
-				"styling": "",
-				"provider_type": "ogr",
-				"layer_type": "VectorLayer"
-			},
-			{
-				"name": "GWSW Leidingen \u2014 gwsw_leidingen",
-				"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/GWSW Leidingen.gpkg|layername=gwsw_leidingen",
-				"styling": "",
-				"provider_type": "ogr",
-				"layer_type": "VectorLayer"
-			},
-			{
-				"name": "BGT Inlooptabel",
-				"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
-				"styling": "",
-				"provider_type": "ogr",
-				"layer_type": "VectorLayer"
-			},
-			{
-				"name": "Achtergrondkaart",
-				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl//brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "RasterLayer"
-			}
-		]
-	},
-	{
 		"thema_name": "Riolering WFS",
 		"creator": "Plugin",
 		"layers": [
