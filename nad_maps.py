@@ -49,8 +49,9 @@ from .lib.locatieserver import (LsType, Projection, TypeFilter, lookup_object,
 from .nad_maps_dialog import NADMapsDialog
 from .nad_maps_popup import NADMapsPopup
 
-ADMIN_USERNAMES = ['svanderhoeven']
-# ADMIN_USERNAMES = ['']
+# ADMIN_USERNAMES = ['svanderhoeven']
+# ADMIN_USERNAMES = ['Stijn.Overmeen']
+ADMIN_USERNAMES = ['']
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
