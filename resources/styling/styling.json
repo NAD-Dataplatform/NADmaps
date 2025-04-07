@@ -114,6 +114,16 @@
 				"name": "Diameter",
 				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
 				"creator": "plugin"
+			},
+			{
+				"name": "Check ontbrekende waarde",
+				"file": "check ontbrekende waarde_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "Check onlogische waarde",
+				"file": "check onlogische waarde_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
 			}
 		]
 	}
