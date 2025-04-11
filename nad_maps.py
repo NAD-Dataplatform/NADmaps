@@ -431,14 +431,19 @@ class NADMaps(object):
                 favorites = json.load(f)
         except:
             favorites = None
+        self.log(f"thema favorites: {favorites}")
         
         themas_exist = False
         for thema in themas:
             itemThema = QStandardItem(str(thema["thema_name"]))
             itemFavorite = QStandardItem()
             itemFavorite.setCheckable(True)
-            if favorites and favorites[thema["thema_name"]] == "favorite":
-                itemFavorite.setCheckState(2)
+            try:
+                if favorites and favorites[thema["thema_name"]] == "favorite":
+                    itemFavorite.setCheckState(2)
+            except:
+                itemFavorite.setCheckState(0)
+
             itemSource = QStandardItem(str(thema["creator"]))
             itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
             # https://doc.qt.io/qt-6/qstandarditem.html#setData
