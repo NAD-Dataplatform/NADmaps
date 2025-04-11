@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>650</height>
+    <height>686</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -516,6 +516,128 @@
           <enum>QAbstractScrollArea::AdjustToContents</enum>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="export_tab">
+      <attribute name="title">
+       <string>Exporteren</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayoutFile">
+       <item>
+        <widget class="QGroupBox" name="groupBoxExport">
+         <property name="title">
+          <string>Export instellingen</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QLabel" name="labelMapName">
+            <property name="text">
+             <string>Voer kaartnaam in:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayoutFile">
+            <item>
+             <widget class="QLineEdit" name="exportMapName"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_Schaal">
+            <property name="text">
+             <string>Schaal:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxSchaal"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_Rotatie">
+            <property name="text">
+             <string>Rotatie:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_AddToLayout">
+            <property name="text">
+             <string>Voeg toe aan mijn layout:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_Noordpijl">
+            <property name="text">
+             <string>Noordpijl</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_Legenda">
+            <property name="text">
+             <string>Legenda</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_Schaalbalk">
+            <property name="text">
+             <string>Schaalbalk</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_PapierFormaat">
+            <property name="text">
+             <string>Papierformaat:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_PapierFormaat">
+            <property name="currentText">
+             <string extracomment="selecteer papierformaat..."/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_BestandsFormaat">
+            <property name="text">
+             <string>Bestandsformaat:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_BestandsFormaat"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_ExporteerMap">
+         <property name="text">
+          <string>Exporteer</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
