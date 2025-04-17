@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>686</height>
+    <height>730</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -540,7 +540,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayoutFile">
             <item>
-             <widget class="QLineEdit" name="exportMapName"/>
+             <widget class="QLineEdit" name="lineEdit_MapName"/>
             </item>
            </layout>
           </item>
@@ -552,7 +552,17 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBoxSchaal"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_Schaal">
+            <property name="minimum">
+             <double>1.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>10000000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>10000.000000000000000</double>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_Rotatie">
@@ -562,7 +572,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
+            <property name="maximum">
+             <double>359.000000000000000</double>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_AddToLayout">
