@@ -27,9 +27,9 @@ import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy
+from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox
 
-from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES
+from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_popup import NADMapsPopup
@@ -39,8 +39,8 @@ from .lib.layer import LayerManager
 from .lib.thema import ThemaManager
 from .lib.style import StyleManager
 from .lib.log import LoggingManager
+from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
-### ExportManager
 
 
 #########################################################################################
@@ -71,7 +71,7 @@ class NADMaps(object):
             self.creator = getpass.getuser()
 
         # initialize the working directory from settings
-        self.working_dir = QSettings().value('working_dir')
+        self.working_dir = QSettings().value('NADmaps/working_dir')
         while self.working_dir in ["", None]:
             self.working_dir = QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", "")           
         
@@ -80,7 +80,7 @@ class NADMaps(object):
         os.makedirs(os.path.join(self.working_dir, "styling\\qml_files"), exist_ok=True)
 
         # save the working directory to the settings, such that it is available next time the plugin is started
-        QSettings().setValue("working_dir", self.working_dir)
+        QSettings().setValue("NADmaps/working_dir", self.working_dir)
         self.dlg.lineEditFilePath.setText(self.working_dir)
 
         self.user_styling_path = os.path.join(self.working_dir, "styling", "styling.json")
@@ -150,6 +150,12 @@ class NADMaps(object):
         # set which buttons should be shown
         tab_index = self.dlg.tabWidget.currentIndex()
         self.active_buttons(tab_index)
+
+        # init the values for the export settings
+        self.init_export_comboboxes()
+        self.load_export_settings()
+        self.check_map_name() # To enable or disable pushbutton
+
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
@@ -205,6 +211,17 @@ class NADMaps(object):
             )
         )
 
+        # Export_tab interactions
+        self.dlg.lineEdit_MapName.textChanged.connect(self.check_map_name)
+        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(self.on_paper_format_changed)
+        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(self.on_file_format_changed)
+        self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
+        self.dlg.doubleSpinBox_Schaal.valueChanged.connect(self.on_scale_changed)
+        self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
+        self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
+        self.dlg.checkBox_Schaalbalk.stateChanged.connect(self.on_scale_checkbox_changed)
+        self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
+
         self.dlg.stylingGroupBox.setEnabled(False)
 
         self.popup.accept_button.clicked.connect(lambda: self.save_styling())
@@ -248,7 +265,7 @@ class NADMaps(object):
         )
 
         # save the working directory to the settings, such that it is available next time the plugin is started
-        QSettings().setValue("working_dir", path)
+        QSettings().setValue("NADmaps/working_dir", path)
 
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
@@ -408,3 +425,126 @@ class NADMaps(object):
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate('NADMaps', message)
+    
+    def init_export_comboboxes(self):
+        paper_items = [str(self.dlg.comboBox_PapierFormaat.itemText(i)) for i in range(self.dlg.comboBox_PapierFormaat.count())]
+        file_items = [str(self.dlg.comboBox_BestandsFormaat.itemText(i)) for i in range(self.dlg.comboBox_BestandsFormaat.count())]
+
+        if paper_items != PAPER_OPTIONS:
+            self.dlg.comboBox_PapierFormaat.clear()
+            for item in PAPER_OPTIONS:
+                self.dlg.comboBox_PapierFormaat.addItem(item)
+        
+        if file_items != FORMAT_OPTIONS:
+            self.dlg.comboBox_BestandsFormaat.clear()
+            for item in FORMAT_OPTIONS:
+                self.dlg.comboBox_BestandsFormaat.addItem(item)
+
+    def save_export_settings(self):
+        QSettings().setValue("NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText())
+        QSettings().setValue("NADmaps/export/file_format", self.dlg.comboBox_BestandsFormaat.currentText())
+        QSettings().setValue("NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value()))
+        QSettings().setValue("NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value()))
+        QSettings().setValue("NADmaps/export/include_north", "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/include_legend", "true" if self.dlg.checkBox_Legenda.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/include_scale", "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false")
+
+    def load_export_settings(self):
+        saved_paper = str(QSettings().value("NADmaps/export/paper_format", "A4 staand"))
+        if saved_paper in [str(self.dlg.comboBox_PapierFormaat.itemText(i)) for i in range(self.dlg.comboBox_PapierFormaat.count())]:
+            self.dlg.comboBox_PapierFormaat.setCurrentText(saved_paper)
+        else:
+            self.dlg.comboBox_PapierFormaat.setCurrentIndex(0)
+
+        saved_format = str(QSettings().value("NADmaps/export/file_format", "PNG"))
+        format_items = [str(self.dlg.comboBox_BestandsFormaat.itemText(i)) for i in range(self.dlg.comboBox_BestandsFormaat.count())]
+        if saved_format in format_items:
+            self.dlg.comboBox_BestandsFormaat.setCurrentText(saved_format)
+        else:
+            self.dlg.comboBox_BestandsFormaat.setCurrentIndex(0)
+
+        self.dlg.doubleSpinBox_Rotatie.setValue(float(QSettings().value("NADmaps/export/rotation", 0)))
+        self.dlg.doubleSpinBox_Schaal.setValue(float(QSettings().value("NADmaps/export/scale", 10000)))
+
+        self.dlg.checkBox_Noordpijl.setChecked(QSettings().value("NADmaps/export/include_north", "false") == "true")
+        self.dlg.checkBox_Legenda.setChecked(QSettings().value("NADmaps/export/include_legend", "false") == "true")
+        self.dlg.checkBox_Schaalbalk.setChecked(QSettings().value("NADmaps/export/include_scale", "false") == "true")
+
+    def on_paper_format_changed(self):
+        self.save_export_settings()
+
+    def on_file_format_changed(self):
+        self.save_export_settings()
+
+    def on_rotation_changed(self):
+        self.save_export_settings()
+
+    def on_scale_changed(self):
+        self.save_export_settings()
+
+    def on_north_checkbox_changed(self):
+        self.save_export_settings()
+
+    def on_legend_checkbox_changed(self):
+        self.save_export_settings()
+
+    def on_scale_checkbox_changed(self):
+        self.save_export_settings()
+
+    def check_map_name(self):
+        map_name = self.dlg.lineEdit_MapName.text()
+        self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
+
+    def export_map_button_pressed(self):
+        file_path = self.generate_export_path()
+        if not file_path:
+            self.log("Geen bestandsnaam opgegeven", 1)
+            return
+        if os.path.exists(file_path):
+            overwrite = QMessageBox.question(
+                self.dlg,
+                "Bestand bestaat al",
+                f"Het bestand {file_path} bestaat al. Wilt u het overschrijven?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            )
+            if overwrite == QMessageBox.StandardButton.No:
+                return
+    
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+
+        manager = ExportManager()
+
+        settings_dict = {
+            "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
+            "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
+            "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
+            "include_legend": self.dlg.checkBox_Legenda.isChecked(),
+            "include_scale": self.dlg.checkBox_Schaalbalk.isChecked(),
+            "canvas": self.iface.mapCanvas()
+        }
+        layout = manager.build_layout(settings_dict)
+
+        success = manager.export(layout, file_path)
+        if success:
+            self.log(f"Kaart succesvol geëxporteerd naar {file_path}")
+            QMessageBox.information(
+                self.dlg,
+                "Export succesvol",
+                f"De kaart is succesvol geëxporteerd naar {file_path}.",
+            )
+        else:
+            self.log(f"Fout bij het exporteren van de kaart naar {file_path}", 1)
+            QMessageBox.critical(
+                self.dlg,
+                "Export mislukt",
+                f"Het exporteren van de kaart naar {file_path} is mislukt.",
+            )
+
+    def generate_export_path(self):
+        map_name = self.dlg.lineEdit_MapName.text()
+        if not map_name:
+            return
+
+        file_format = self.dlg.comboBox_BestandsFormaat.currentText()
+        return os.path.join(self.working_dir, "export", f"{map_name}.{file_format.lower()}")
