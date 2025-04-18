@@ -8,14 +8,14 @@
 				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 				"styling": "GWSW plus",
 				"provider_type": "wfs",
-				"layer_type": "VectorLayer"
+				"layer_type": "Vector"
 			},
 			{
 				"name": "Rioolleiding",
 				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 				"styling": "GWSW plus",
 				"provider_type": "wfs",
-				"layer_type": "VectorLayer"
+				"layer_type": "Vector"
 			}
 		]
 	},
@@ -25,51 +25,51 @@
 		"layers": [
 			{
 				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW",
-				"provider_type": "wfs",
-				"layer_type": "VectorLayer"
+				"source": "crs=EPSG:28992&layers=BeheerLeiding&styles=GWSW_Leiding&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
+				"styling": "",
+				"provider_type": "wms",
+				"layer_type": "Raster"
 			},
 			{
 				"name": "Waterdiepte: 140mm in 2 uur",
 				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_140mm_2uur&styles=waterdiepte_neerslag_1-1000_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
 				"styling": "",
 				"provider_type": "wms",
-				"layer_type": "RasterLayer"
-			},
-			{
-				"name": "Achtergrondkaart",
-				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl//brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "RasterLayer"
+				"layer_type": "Raster"
 			}
 		]
 	},
 	{
-		"thema_name": "test",
+		"thema_name": "Datacheck leidingen",
 		"creator": "Plugin",
 		"layers": [
 			{
 				"name": "Rioolput",
-				"source": "crs=EPSG:28992&layers=BeheerPut&styles=GWSW_Put&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "RasterLayer"
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "GWSW zonder label",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
+			},
+			{
+				"name": "Leiding check: onlogische waarde",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "Check onlogische waarde",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
+			},
+			{
+				"name": "Leiding check: ontbrekende waarde",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "Check ontbrekende waarde",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
 			},
 			{
 				"name": "Rioolleiding",
-				"source": "crs=EPSG:28992&layers=BeheerLeiding&styles=GWSW_Leiding&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "RasterLayer"
-			},
-			{
-				"name": "Luchtfoto Actueel Ortho 8cm RGB",
-				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=Actueel_orthoHR&styles=default&format=image/jpeg&url=https://service.pdok.nl//hwh/luchtfotorgb/wmts/v1_0?request%3DGetCapabilities%26service%3DWMTS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "RasterLayer"
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "GWSW",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
 			}
 		]
 	}

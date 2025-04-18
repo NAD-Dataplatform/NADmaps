@@ -27,7 +27,7 @@ tags=python, wfs
 
 homepage=http://homepage
 category=Plugins
-icon=icon.png
+icon=nad.png
 # experimental flag
 experimental=True
 
