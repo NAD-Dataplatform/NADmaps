@@ -134,7 +134,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Styling laden of opslaan</string>
+          <string>Opmaak inladen of opslaan</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
           <property name="sizeConstraint">
@@ -149,7 +149,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande styling toe of sla de huidige styling op voor een volgende keer.</string>
+             <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande opmaak toe of sla de huidige opmaak op voor een volgende keer.</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -187,7 +187,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling laden</string>
+             <string>Opmaak inladen</string>
             </property>
            </widget>
           </item>
@@ -206,7 +206,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling verwijderen</string>
+             <string>Opmaak verwijderen</string>
             </property>
            </widget>
           </item>
@@ -232,7 +232,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling opslaan</string>
+             <string>Opmaak opslaan</string>
             </property>
            </widget>
           </item>
