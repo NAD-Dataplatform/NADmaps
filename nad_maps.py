@@ -27,9 +27,9 @@ import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy
+from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox
 
-from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES
+from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_popup import NADMapsPopup
@@ -39,6 +39,7 @@ from .lib.layer import LayerManager
 from .lib.thema import ThemaManager
 from .lib.style import StyleManager
 from .lib.log import LoggingManager
+from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
 ### ExportManager
 
