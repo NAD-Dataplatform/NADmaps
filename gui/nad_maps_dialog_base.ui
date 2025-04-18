@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>730</height>
+    <height>650</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -134,7 +134,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Styling laden of opslaan</string>
+          <string>Opmaak inladen of opslaan</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutStylingGroupBox">
           <property name="sizeConstraint">
@@ -149,7 +149,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande styling toe of sla de huidige styling op voor een volgende keer.</string>
+             <string>Alleen beschikbaar wanneer één laag is geselecteerd en niet meer. Selecteer een laag en pas een bestaande opmaak toe of sla de huidige opmaak op voor een volgende keer.</string>
             </property>
             <property name="textFormat">
              <enum>Qt::PlainText</enum>
@@ -187,7 +187,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling laden</string>
+             <string>Opmaak inladen</string>
             </property>
            </widget>
           </item>
@@ -206,7 +206,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling verwijderen</string>
+             <string>Opmaak verwijderen</string>
             </property>
            </widget>
           </item>
@@ -232,7 +232,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Styling opslaan</string>
+             <string>Opmaak opslaan</string>
             </property>
            </widget>
           </item>
@@ -516,142 +516,6 @@
           <enum>QAbstractScrollArea::AdjustToContents</enum>
          </property>
         </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="export_tab">
-      <attribute name="title">
-       <string>Exporteren</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayoutFile">
-       <item>
-        <widget class="QGroupBox" name="groupBoxExport">
-         <property name="title">
-          <string>Export instellingen</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QLabel" name="labelMapName">
-            <property name="text">
-             <string>Voer kaartnaam in:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayoutFile">
-            <item>
-             <widget class="QLineEdit" name="lineEdit_MapName"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_Schaal">
-            <property name="text">
-             <string>Schaal:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Schaal">
-            <property name="minimum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10000000.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>10000.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_Rotatie">
-            <property name="text">
-             <string>Rotatie:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
-            <property name="maximum">
-             <double>359.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_AddToLayout">
-            <property name="text">
-             <string>Voeg toe aan mijn layout:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_Noordpijl">
-            <property name="text">
-             <string>Noordpijl</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_Legenda">
-            <property name="text">
-             <string>Legenda</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_Schaalbalk">
-            <property name="text">
-             <string>Schaalbalk</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_PapierFormaat">
-            <property name="text">
-             <string>Papierformaat:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_PapierFormaat">
-            <property name="currentText">
-             <string extracomment="selecteer papierformaat..."/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_BestandsFormaat">
-            <property name="text">
-             <string>Bestandsformaat:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_BestandsFormaat"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_ExporteerMap">
-         <property name="text">
-          <string>Exporteer</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
