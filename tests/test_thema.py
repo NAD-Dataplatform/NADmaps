@@ -20,7 +20,7 @@ def nadmap_mock(iface_mock, tmp_path):
 
 def test_save_thema(nadmap_mock):
     # Save a theme with dummy layer and check the resulting json
-    nadmap_mock.thema_manager.save_thema(all=False)
+    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values
     with open(nadmap_mock.user_thema_path) as json_file:
@@ -40,9 +40,9 @@ def test_save_thema(nadmap_mock):
 
 def test_delete_thema(nadmap_mock):
     # Save two themes with dummy layer, remove one and check the resulting json
-    nadmap_mock.thema_manager.save_thema(all=False)
+    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
     nadmap_mock.dlg.saveThemaLineEdit.setText("test theme name_2")
-    nadmap_mock.thema_manager.save_thema(all=False)
+    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values for two themes
     with open(nadmap_mock.user_thema_path) as json_file:
