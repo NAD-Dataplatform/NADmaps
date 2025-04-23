@@ -15,6 +15,7 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
+    print(nadmap.creator)
     nadmap.working_dir = QSettings().value('NADmaps/working_dir')
     print(nadmap.working_dir)
     nadmap.user_thema_path = os.path.join(nadmap.working_dir, "themas/user_themas.json")
@@ -25,6 +26,7 @@ def nadmap_mock(iface_mock, tmp_path):
 
 def test_save_thema(nadmap_mock):
     # Save a theme with dummy layer and check the resulting json
+    print(nadmap_mock.creator)
     nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values

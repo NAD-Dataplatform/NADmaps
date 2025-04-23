@@ -156,10 +156,9 @@ class ThemaManager:
         else:
             json_path = self.user_thema_path
         
-        print(json_path)
         # Collect a json string with a thema_name and a list of layer names
         thema_name = self.dlg.saveThemaLineEdit.text()
-
+        print(self.creator)
         string = "{\"thema_name\": \"" + thema_name + "\", "
         string = f"{string}\"creator\": \"{self.creator}\"," # creator
         string = string + "\"layers\": [{"
