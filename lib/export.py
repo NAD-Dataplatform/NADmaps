@@ -52,6 +52,11 @@ class ExportManager:
         if settings.get("include_north"):
             pass # skip for now
 
+        # Add title if needed
+        if settings.get("include_title"):
+            title = settings.get("title", "")
+            pass # skip for now
+
         # Add legend if needed
         if settings.get("include_legend"):
             legend = QgsLayoutItemLegend(layout)

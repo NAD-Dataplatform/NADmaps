@@ -25,7 +25,7 @@
 import getpass
 import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
-from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox
 
@@ -211,8 +211,12 @@ class NADMaps(object):
             )
         )
 
+        # Canvas interactions
+        self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
+        self.iface.mapCanvas().scaleChanged.connect(self.on_canvas_scale_changed)
+
         # Export_tab interactions
-        self.dlg.lineEdit_MapName.textChanged.connect(self.check_map_name)
+        self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
         self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(self.on_paper_format_changed)
         self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(self.on_file_format_changed)
         self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
@@ -220,6 +224,7 @@ class NADMaps(object):
         self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
         self.dlg.checkBox_Schaalbalk.stateChanged.connect(self.on_scale_checkbox_changed)
+        self.dlg.checkBox_Titel.stateChanged.connect(self.on_titel_checkbox_changed)
         self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
 
         self.dlg.stylingGroupBox.setEnabled(False)
@@ -448,6 +453,8 @@ class NADMaps(object):
         QSettings().setValue("NADmaps/export/include_north", "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false")
         QSettings().setValue("NADmaps/export/include_legend", "true" if self.dlg.checkBox_Legenda.isChecked() else "false")
         QSettings().setValue("NADmaps/export/include_scale", "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/include_title", "true" if self.dlg.checkBox_Titel.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/title", self.dlg.lineEdit_Titel.text())
 
     def load_export_settings(self):
         saved_paper = str(QSettings().value("NADmaps/export/paper_format", "A4 staand"))
@@ -469,6 +476,9 @@ class NADMaps(object):
         self.dlg.checkBox_Noordpijl.setChecked(QSettings().value("NADmaps/export/include_north", "false") == "true")
         self.dlg.checkBox_Legenda.setChecked(QSettings().value("NADmaps/export/include_legend", "false") == "true")
         self.dlg.checkBox_Schaalbalk.setChecked(QSettings().value("NADmaps/export/include_scale", "false") == "true")
+        self.dlg.checkBox_Titel.setChecked(QSettings().value("NADmaps/export/include_title", "false") == "true")
+        self.set_titel_line_edit()
+        self.dlg.lineEdit_Titel.setText(QSettings().value("NADmaps/export/title", ""))
 
     def on_paper_format_changed(self):
         self.save_export_settings()
@@ -477,9 +487,43 @@ class NADMaps(object):
         self.save_export_settings()
 
     def on_rotation_changed(self):
+        value = self.dlg.doubleSpinBox_Rotatie.value()
+        canvas = self.iface.mapCanvas()
+        if canvas.rotation() != value:
+            canvas.setRotation(value)
+            QTimer.singleShot(200, canvas.refresh)
+        
+        self.save_export_settings()
+
+    def on_canvas_rotation_changed(self):
+        canvas = self.iface.mapCanvas()
+        current_rotation = canvas.rotation()
+
+        if self.dlg.doubleSpinBox_Rotatie.value() != current_rotation:
+            self.dlg.doubleSpinBox_Rotatie.blockSignals(True)
+            self.dlg.doubleSpinBox_Rotatie.setValue(current_rotation)
+            self.dlg.doubleSpinBox_Rotatie.blockSignals(False)
+        
         self.save_export_settings()
 
     def on_scale_changed(self):
+        value = self.dlg.doubleSpinBox_Schaal.value()
+        canvas = self.iface.mapCanvas()
+        if canvas.scale() != value:
+            canvas.zoomScale(value)
+            QTimer.singleShot(200, canvas.refresh)
+
+        self.save_export_settings()
+
+    def on_canvas_scale_changed(self):
+        canvas = self.iface.mapCanvas()
+        current_scale = canvas.scale()
+
+        if self.dlg.doubleSpinBox_Schaal.value() != current_scale:
+            self.dlg.doubleSpinBox_Schaal.blockSignals(True)
+            self.dlg.doubleSpinBox_Schaal.setValue(current_scale)
+            self.dlg.doubleSpinBox_Schaal.blockSignals(False)
+
         self.save_export_settings()
 
     def on_north_checkbox_changed(self):
@@ -491,8 +535,20 @@ class NADMaps(object):
     def on_scale_checkbox_changed(self):
         self.save_export_settings()
 
+    def on_titel_checkbox_changed(self):
+        self.save_export_settings()
+        self.set_titel_line_edit()
+
+    def set_titel_line_edit(self):
+        if self.dlg.checkBox_Titel.isChecked():
+            self.dlg.lineEdit_Titel.setEnabled(True)
+            self.dlg.lineEdit_Titel.setFocus()
+        else:
+            self.dlg.lineEdit_Titel.setEnabled(False)
+            self.dlg.lineEdit_Titel.clear()
+
     def check_map_name(self):
-        map_name = self.dlg.lineEdit_MapName.text()
+        map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
 
     def export_map_button_pressed(self):
@@ -521,6 +577,8 @@ class NADMaps(object):
             "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
             "include_legend": self.dlg.checkBox_Legenda.isChecked(),
             "include_scale": self.dlg.checkBox_Schaalbalk.isChecked(),
+            "include_title": self.dlg.checkBox_Titel.isChecked(),
+            "title": self.dlg.lineEdit_Titel.text(),
             "canvas": self.iface.mapCanvas()
         }
         layout = manager.build_layout(settings_dict)
@@ -542,7 +600,7 @@ class NADMaps(object):
             )
 
     def generate_export_path(self):
-        map_name = self.dlg.lineEdit_MapName.text()
+        map_name = self.dlg.lineEdit_FileName.text()
         if not map_name:
             return
 

@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -531,16 +531,16 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="labelMapName">
+           <widget class="QLabel" name="label_FileName">
             <property name="text">
-             <string>Voer kaartnaam in:</string>
+             <string>Voer bestandsnaam in:</string>
             </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayoutFile">
             <item>
-             <widget class="QLineEdit" name="lineEdit_MapName"/>
+             <widget class="QLineEdit" name="lineEdit_FileName"/>
             </item>
            </layout>
           </item>
@@ -573,8 +573,11 @@
           </item>
           <item>
            <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
+            <property name="minimum">
+             <double>-360.000000000000000</double>
+            </property>
             <property name="maximum">
-             <double>359.000000000000000</double>
+             <double>360.000000000000000</double>
             </property>
            </widget>
           </item>
@@ -603,6 +606,20 @@
            <widget class="QCheckBox" name="checkBox_Schaalbalk">
             <property name="text">
              <string>Schaalbalk</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_Titel">
+            <property name="text">
+             <string>Titel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_Titel">
+            <property name="placeholderText">
+             <string>Voer titel in</string>
             </property>
            </widget>
           </item>
