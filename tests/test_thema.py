@@ -13,7 +13,7 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
-    nadmap.user_thema_path = tmp_path / "thema.json"
+    nadmap.working_dir = tmp_path / "thema.json"
     nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsRasterLayer("source_2", "name_2")]
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
@@ -23,7 +23,7 @@ def test_save_thema(nadmap_mock):
     nadmap_mock.save_thema(all=False)
 
     # Check whether the json contains expected values
-    with open(nadmap_mock.user_thema_path) as json_file:
+    with open(nadmap_mock.working_dir  / "thema.json") as json_file:
         json_data = json.load(json_file)
         assert len(json_data) == 1
         assert json_data[0]["thema_name"] == "test theme name"
@@ -57,7 +57,7 @@ def test_delete_thema(nadmap_mock):
     nadmap_mock.current_thema["creator"] = "Gebruiker"
     nadmap_mock.delete_thema()
 
-     # Check whether the json contains expected values for one theme
+    # Check whether the json contains expected values for one theme
     with open(nadmap_mock.user_thema_path) as json_file:
         json_data = json.load(json_file)
         assert len(json_data) == 1  # 1 theme
