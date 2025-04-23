@@ -160,12 +160,6 @@ class NADMaps(object):
         if not hiddenDialog:
             self.dlg.show()
 
-    # TODO: function to export current canvas as pdf or image
-    def export_canvas(self):
-        """Export the current map to pdf or png, including a north-arrow"""
-        # qgis.utils.iface.mapCanvas().saveAsImage('test.png', None, 'PNG') 
-        # https://qgis.org/pyqgis/3.40/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas
-
 
 #########################################################################################
 #################################  Setup functions ######################################
