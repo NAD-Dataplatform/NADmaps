@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from qgis.core import QgsRasterLayer
+from qgis.core import QgsRasterLayer, QgsVectorLayer
 
 from ..nad_maps import NADMaps
 
@@ -13,13 +13,14 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
-    nadmap.user_thema_path = tmp_path / "thema.json"
-    nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsRasterLayer("source_2", "name_2")]
+    nadmap.user_thema_path = tmp_path / "resources/themas/thema.json"
+    nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
 
 def test_save_thema(nadmap_mock):
     # Save a theme with dummy layer and check the resulting json
+    print(f"print: {nadmap_mock.user_thema_path}")
     nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values
@@ -32,11 +33,11 @@ def test_save_thema(nadmap_mock):
         assert json_data[0]["layers"][0]["name"] == "name_1"
         assert json_data[0]["layers"][0]["source"] == "source_1"
         assert json_data[0]["layers"][0]["provider_type"] == "gdal"
-        assert json_data[0]["layers"][0]["layer_type"] == "RasterLayer"
+        assert json_data[0]["layers"][0]["layer_type"] == "Raster"
         assert json_data[0]["layers"][1]["name"] == "name_2"
         assert json_data[0]["layers"][1]["source"] == "source_2"
         assert json_data[0]["layers"][1]["provider_type"] == "gdal"
-        assert json_data[0]["layers"][1]["layer_type"] == "RasterLayer"
+        assert json_data[0]["layers"][1]["layer_type"] == "Vector"
 
 def test_delete_thema(nadmap_mock):
     # Save two themes with dummy layer, remove one and check the resulting json

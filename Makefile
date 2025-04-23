@@ -32,7 +32,7 @@ QGISDIR=C:\Users\svanderhoeven\AppData/Roaming/QGIS/QGIS3/profiles/default/pytho
 #################################################
 
 test:
-	QT_QPA_PLATFORM=offscreen pytest
+	QT_QPA_PLATFORM=offscreen pytest -s
 
 clean:
 	@echo "-----------------------------------"
