@@ -11,7 +11,7 @@ def nadmap_mock(iface_mock, tmp_path):
     # Preset some member of NADMaps to allow testing
     nadmap = NADMaps(iface_mock)
     nadmap.initGui()
-    nadmap.setup_models()
+    # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
     nadmap.user_thema_path = tmp_path / "thema.json"
     nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsRasterLayer("source_2", "name_2")]
