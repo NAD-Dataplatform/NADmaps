@@ -1,4 +1,5 @@
 import json
+import os.path
 
 import pytest
 from qgis.core import QgsRasterLayer, QgsVectorLayer
@@ -15,15 +16,15 @@ def nadmap_mock(iface_mock, tmp_path):
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
     nadmap.working_dir = QSettings().value('NADmaps/working_dir')
-    nadmap.user_thema_path = nadmap.working_dir / "themas/thema.json"
+    print(nadmap.working_dir)
+    nadmap.user_thema_path = os.path.join(nadmap.working_dir, "themas/thema.json")
+    print(nadmap.user_thema_path)
     nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
 
 def test_save_thema(nadmap_mock):
     # Save a theme with dummy layer and check the resulting json
-    print(nadmap_mock.working_dir)
-    print(nadmap_mock.user_thema_path)
     nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values
