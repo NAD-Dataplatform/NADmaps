@@ -31,4 +31,4 @@ def iface_mock():
 def settings_mock():
     temp_dir = tempfile.TemporaryDirectory()
     QSettings().setValue('locale/userLocale', "nl")
-    QSettings().setValue('working_dir', temp_dir.name)
+    QSettings().setValue('NADmaps/working_dir', temp_dir.name)
