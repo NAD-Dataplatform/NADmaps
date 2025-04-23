@@ -13,6 +13,7 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
+    nadmap.working_dir = tmp_path
     nadmap.user_thema_path = tmp_path / "themas/thema.json"
     nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
@@ -20,7 +21,8 @@ def nadmap_mock(iface_mock, tmp_path):
 
 def test_save_thema(nadmap_mock):
     # Save a theme with dummy layer and check the resulting json
-    print(f"print: {nadmap_mock.user_thema_path}")
+    print(f"working_dir: {nadmap_mock.working_dir}")
+    print(f"user_thema_path: {nadmap_mock.user_thema_path}")
     nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
 
     # Check whether the json contains expected values
