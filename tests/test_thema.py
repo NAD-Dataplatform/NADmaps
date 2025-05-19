@@ -15,6 +15,7 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
+    nadmap.thema_manager.creator = "Gebruiker"
     print(f"nadmap_mock: {nadmap.creator}")
     nadmap.working_dir = QSettings().value('NADmaps/working_dir')
     print(nadmap.working_dir)
