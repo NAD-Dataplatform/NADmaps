@@ -27,11 +27,12 @@ import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox
+from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox, QDockWidget
 
 from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS, PLACEMENT_OPTIONS, PRINT_QUALITY_OPTIONS
 
 from .gui.nad_maps_dialog import NADMapsDialog
+from .gui.nad_maps_dockwidget import NADMapsDockWidget
 from .gui.nad_maps_popup import NADMapsPopup
 
 # from .lib.load_layers import LoadLayers ### LayerManager
@@ -47,7 +48,7 @@ from .lib.search_location import SearchLocationManager
 ####################  Run main script to initiate when NAD button is pressed ############
 #########################################################################################
 
-class NADMaps(object):
+class NADMaps():
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -61,7 +62,7 @@ class NADMaps(object):
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
-        self.dlg = NADMapsDialog(parent=self.iface.mainWindow())
+        self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
         self.popup = NADMapsPopup(parent=self.iface.mainWindow())
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
 
@@ -72,8 +73,10 @@ class NADMaps(object):
 
         # initialize the working directory from settings
         self.working_dir = QSettings().value('NADmaps/working_dir')
-        while self.working_dir in ["", None]:
-            self.working_dir = QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", "")           
+        if self.working_dir in ["", None]:
+            self.working_dir = QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", "")
+            if self.working_dir in ["", None]: # check if still empty
+                self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1) # set warning message          
         
         os.makedirs(self.working_dir, exist_ok=True)
         os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
@@ -107,6 +110,10 @@ class NADMaps(object):
         self.current_layer = None
         self.selected_active_layers = None
 
+        # Check if the autostart option is set to true in the settings
+        if QSettings().value("NADmaps/autostart", "false") == "true":
+            QTimer.singleShot(3000, self.run)  # delay 3 seconds
+
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
         self.run_icon = QIcon(
@@ -119,14 +126,12 @@ class NADMaps(object):
             callback=self.run,
             parent=self.iface.mainWindow())
 
-
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
 #########################################################################################
 
     def run(self, hiddenDialog=False):
         """Run method that performs all the real work"""
-
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.setup_completed == False:
@@ -144,7 +149,7 @@ class NADMaps(object):
 
             # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            QgsProject.instance().setCrs(projectCrs)
+            #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
             self.setup_completed = True
         
         # set which buttons should be shown
@@ -156,10 +161,15 @@ class NADMaps(object):
         self.load_export_settings()
         self.check_map_name() # To enable or disable pushbutton
 
+        # init autostart checkbox
+        self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", "false") == "true")
+
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
 
+        self.dlg.raise_()
+        self.dlg.activateWindow()
 
 #########################################################################################
 #################################  Setup functions ######################################
@@ -198,12 +208,14 @@ class NADMaps(object):
         self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
         self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
-        # Set working directory by using the file dialog to select a folder
+        # Setting interactions
         self.dlg.set_working_dir.clicked.connect(
             lambda: self.set_working_directory(
                 QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
             )
         )
+        self.dlg.checkBox_AutoStart.stateChanged.connect(
+            lambda: QSettings().setValue("NADmaps/autostart", "true" if self.dlg.checkBox_AutoStart.isChecked() else "false"))
 
         # Canvas interactions
         self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)

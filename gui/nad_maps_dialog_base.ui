@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -862,6 +862,22 @@
              </widget>
             </item>
            </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxAutoStart">
+         <property name="title">
+          <string>Automatisch opstarten</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QCheckBox" name="checkBox_AutoStart">
+            <property name="text">
+             <string>Start plug-in automatisch op bij opstarten QGIS</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
