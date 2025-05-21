@@ -1,8 +1,9 @@
 import tempfile
+from unittest.mock import Mock
 
 import pytest
 from qgis.core import QgsApplication
-from qgis.gui import QgsLayerTreeView
+from qgis.gui import QgsLayerTreeView, QgsMapCanvas
 from qgis.PyQt.QtCore import QSettings
 
 _singletons = {}
@@ -15,11 +16,13 @@ def qgis_app_initialized():
         app.initQgis()
         _singletons["app"] = app
 
-class QgisInterfaceMock(object):
+class QgisInterfaceMock():
     def __getattr__(self, name):
         def mock(*args, **kwargs):
             if name == "layerTreeView":
                 return QgsLayerTreeView()
+            if name == "mapCanvas":
+                return Mock()
             return None
         return mock
     
