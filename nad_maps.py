@@ -152,9 +152,6 @@ class NADMaps():
             #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
             self.setup_completed = True
         
-        if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
-            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-
         # set which buttons should be shown
         tab_index = self.dlg.tabWidget.currentIndex()
         self.active_buttons(tab_index)

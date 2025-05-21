@@ -23,8 +23,6 @@ class QgisInterfaceMock():
                 return QgsLayerTreeView()
             if name == "mapCanvas":
                 return Mock()
-            if name == "mainWindow":
-                return Mock()
             return None
         return mock
     
