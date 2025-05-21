@@ -328,49 +328,32 @@
        <string>Themasets</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutTabStart">
-       <item row="0" column="0">
-        <widget class="QTableView" name="themaView">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>180</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QGroupBox" name="filterThemaGroupBox">
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>200</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Kaartlagen in deze Themaset</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayoutFilterThemaGroupBox">
-          <item row="2" column="0">
-           <widget class="QTableView" name="themaMapListView">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item row="2" column="0" colspan="2">
         <widget class="QGroupBox" name="filterThemaGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
          <property name="title">
           <string>Filteren</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutFilterThemaGroupBox">
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="styling_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Filter een thema of voeg een geselecteerd thema toe aan je favorieten.</string>
             </property>
@@ -415,14 +398,79 @@
          </layout>
         </widget>
        </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="filterThemaGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Kaartlagen in deze Themaset</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutFilterThemaGroupBox">
+          <item row="2" column="0">
+           <widget class="QTableView" name="themaMapListView">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QTableView" name="themaView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>200</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="0" colspan="2">
         <widget class="QGroupBox" name="deletaThemaGroupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
          <property name="title">
           <string>Thema verwijderen</string>
          </property>
          <layout class="QGridLayout" name="gridLayoutDeleteThemaGroupBox">
           <item row="0" column="0" colspan="3">
            <widget class="QLabel" name="styling_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Om een Themaset te verwijderen, selecteer het thema en klik op verwijderen.</string>
             </property>
