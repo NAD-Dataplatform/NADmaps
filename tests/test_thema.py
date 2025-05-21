@@ -43,7 +43,7 @@ def test_save_thema(nadmap_mock):
         assert json_data[0]["layers"][0]["layer_type"] == "Raster"
         assert json_data[0]["layers"][1]["name"] == "name_2"
         assert json_data[0]["layers"][1]["source"] == "source_2"
-        assert json_data[0]["layers"][1]["provider_type"] == "gdal"
+        assert json_data[0]["layers"][1]["provider_type"] == "ogr"
         assert json_data[0]["layers"][1]["layer_type"] == "Vector"
 
 def test_delete_thema(nadmap_mock):
