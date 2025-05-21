@@ -56,6 +56,8 @@ class LayerManager():
         self.dlg.mapListView.selectionModel().selectionChanged.connect(self.get_current_layer)
         self.dlg.mapListView.doubleClicked.connect(lambda: self.load_layer(None))  # Using lambda here to prevent sending signal parameters to the loadService() function
 
+        self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
+
         QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(lambda: self.update_active_layers_list())
         QgsProject.instance().layerTreeRoot().nameChanged.connect(lambda: self.update_active_layers_list())
 
@@ -77,6 +79,23 @@ class LayerManager():
             "api features": "top",
             "api tiles": "bottom",
         }
+
+    ############################# Search in all layers list ######################
+
+    def filter_layers(self, string):
+        # remove selection if one row is selected
+        self.dlg.mapListView.selectRow(0)
+        self.layerProxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        strlist = string.strip().split(" ")
+        string = ""
+        for s in strlist:
+            string += f"{s}.*"
+        # print(f"string: {string}")
+        # self.log(f"List string {string}")
+        regexp = QRegularExpression(string, QRegularExpression.PatternOption.CaseInsensitiveOption | QRegularExpression.PatternOption.InvertedGreedinessOption)
+        self.layerProxyModel.setFilterRegularExpression(regexp)
+        self.layerProxyModel.insertRow
+
 
     ############################# Active layer list #############################
 
