@@ -50,7 +50,7 @@
         <bool>false</bool>
        </property>
        <property name="placeholderText">
-        <string>Type de naam van een gemeente of buurt om snel op dat gebied in te zoomen</string>
+        <string>Typ de naam van een gemeente of buurt om snel op dat gebied in te zoomen</string>
        </property>
        <property name="clearButtonEnabled">
         <bool>true</bool>
@@ -821,6 +821,43 @@
              <widget class="QPushButton" name="set_working_dir">
               <property name="text">
                <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxZoomArea">
+         <property name="title">
+          <string>Werkgebied</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Selecteer een standaard werkgebied:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QLineEdit" name="lineEdit">
+              <property name="placeholderText">
+               <string>Typ de naam van het werkgebied</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>Opslaan</string>
               </property>
              </widget>
             </item>
