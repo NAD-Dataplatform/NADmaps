@@ -215,6 +215,10 @@ class SearchLocationManager:
         self.completer.activated.connect(self.on_toolbar_suggest_activated)
         return
 
+    def update_standard_work_area(self, text):
+        text2 = self.dlg.zoomLineEdit.text()
+        self.log(f"text at this point is {text2}")
+
 
     def on_toolbar_suggest_activated(self, suggest_text):
         object = None

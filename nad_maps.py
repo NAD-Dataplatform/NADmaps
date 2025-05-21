@@ -264,6 +264,9 @@ class NADMaps(object):
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
 
+    def get_active_zoom_result(self):
+        "Get the active zoom result from the search bar at the top"
+
     def get_selected_active_layers(self):
         """
         Get the selected layers from the active layers-tab
