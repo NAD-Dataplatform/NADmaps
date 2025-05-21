@@ -106,7 +106,6 @@ class SearchLocationManager:
         self.timer_toolbar_search.timeout.connect(self.toolbar_search_get_suggestions)
 
         # Search bars
-        self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
         self.dlg.zoomLineEdit.textEdited.connect(
             lambda: self.timer_toolbar_search.start()
         )
@@ -128,18 +127,6 @@ class SearchLocationManager:
             "provincie": 812750,
         }
 
-
-    def filter_layers(self, string):
-        # remove selection if one row is selected
-        self.dlg.mapListView.selectRow(0)
-        self.proxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
-        strlist = string.strip().split(" ")
-        string = ""
-        for s in strlist:
-            string += f"{s}.*"
-        regexp = QRegularExpression(string, QRegularExpression.PatternOption.CaseInsensitiveOption | QRegularExpression.PatternOption.InvertedGreedinessOption)
-        self.proxyModel.setFilterRegularExpression(regexp)
-        self.proxyModel.insertRow
 
     def zoom_button(self):
         search_text = self.dlg.zoomLineEdit.text()
