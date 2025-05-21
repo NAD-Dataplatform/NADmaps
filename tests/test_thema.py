@@ -60,7 +60,7 @@ def test_delete_thema(nadmap_mock):
         assert json_data[1]["thema_name"] == "test theme name_2"
     
     # Now we'll delete the first theme
-    setattr(nadmap_mock, "current_thema", dict())
+    setattr(nadmap_mock.thema_manager, "current_thema", dict())
     nadmap_mock.thema_manager.current_thema["thema_name"] = "test theme name"
     nadmap_mock.thema_manager.current_thema["creator"] = "Gebruiker"
     nadmap_mock.thema_manager.delete_thema()
