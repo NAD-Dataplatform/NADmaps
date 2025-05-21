@@ -531,16 +531,16 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="labelMapName">
+           <widget class="QLabel" name="label_FileName">
             <property name="text">
-             <string>Voer kaartnaam in:</string>
+             <string>Voer bestandsnaam in:</string>
             </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayoutFile">
             <item>
-             <widget class="QLineEdit" name="lineEdit_MapName"/>
+             <widget class="QLineEdit" name="lineEdit_FileName"/>
             </item>
            </layout>
           </item>
@@ -573,8 +573,11 @@
           </item>
           <item>
            <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
+            <property name="minimum">
+             <double>-360.000000000000000</double>
+            </property>
             <property name="maximum">
-             <double>359.000000000000000</double>
+             <double>360.000000000000000</double>
             </property>
            </widget>
           </item>
@@ -586,25 +589,125 @@
            </widget>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkBox_Noordpijl">
-            <property name="text">
-             <string>Noordpijl</string>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
             </property>
-           </widget>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="checkBox_Noordpijl">
+              <property name="text">
+               <string>Noordpijl</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox_NoordpijlPlacement"/>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkBox_Legenda">
-            <property name="text">
-             <string>Legenda</string>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <property name="leftMargin">
+             <number>0</number>
             </property>
-           </widget>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="checkBox_Legenda">
+              <property name="text">
+               <string>Legenda</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox_LegendaPlacement">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="currentText">
+               <string extracomment="Selecteer de locatie van de legenda"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QCheckBox" name="checkBox_Schaalbalk">
-            <property name="text">
-             <string>Schaalbalk</string>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="leftMargin">
+             <number>0</number>
             </property>
-           </widget>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="checkBox_Schaalbalk">
+              <property name="text">
+               <string>Schaalbalk</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBox_SchaalbalkPlacement"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="checkBox_Titel">
+              <property name="text">
+               <string>Titel</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_Titel">
+              <property name="placeholderText">
+               <string>Voer titel in</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBox_TitelFontSize"/>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QLabel" name="label_PapierFormaat">
@@ -629,6 +732,16 @@
           </item>
           <item>
            <widget class="QComboBox" name="comboBox_BestandsFormaat"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_PrintQuality">
+            <property name="text">
+             <string>Kwaliteit van afdruk:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_PrintQuality"/>
           </item>
          </layout>
         </widget>
@@ -749,6 +862,22 @@
              </widget>
             </item>
            </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBoxAutoStart">
+         <property name="title">
+          <string>Automatisch opstarten</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QCheckBox" name="checkBox_AutoStart">
+            <property name="text">
+             <string>Start plug-in automatisch op bij opstarten QGIS</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

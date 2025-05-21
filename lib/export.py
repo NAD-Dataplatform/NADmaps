@@ -3,10 +3,10 @@ import os
 from qgis.core import (
     QgsProject, QgsLayout, QgsLayoutExporter, QgsLayoutItemMap,
     QgsLayoutItemLegend, QgsLayoutItemScaleBar, QgsLayoutItemPicture,
-    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes
+    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel, QgsLayoutPoint, QgsUnitTypes
 )
 from PyQt5.QtCore import QSizeF
-from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QColor, QFont
 
 class ExportManager:
     def __init__(self, project=None):
@@ -52,6 +52,13 @@ class ExportManager:
         if settings.get("include_north"):
             pass # skip for now
 
+        # Add title if needed
+        if settings.get("include_title"):
+            title = settings.get("title", "")
+            if title:
+                font_size = settings.get("title_font_size", 20)
+                self._add_title(layout, title, font_size)
+
         # Add legend if needed
         if settings.get("include_legend"):
             legend = QgsLayoutItemLegend(layout)
@@ -73,6 +80,18 @@ class ExportManager:
             layout.addLayoutItem(scale_bar)
 
         return layout
+
+    def _add_title(self, layout, title_text, font_size=20):
+        title = QgsLayoutItemLabel(layout)
+        title.setText(title_text)
+        title.setFont(QFont("Arial", font_size))
+
+        # Center at the top of the page
+        page = layout.pageCollection().pages()[0]
+        x = page.pageSize().width() / 2
+
+        title.attemptMove(QgsLayoutPoint(x, 10, QgsUnitTypes.LayoutMillimeters))
+        layout.addLayoutItem(title)
 
     def _get_page_size(self, format_string: str) -> QSizeF:
         parts = format_string.lower().split()

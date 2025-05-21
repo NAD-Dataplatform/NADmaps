@@ -11,3 +11,16 @@ PAPER_OPTIONS = [
     "A0 liggend"
 ]
 FORMAT_OPTIONS = ["PNG", "PDF"]
+PLACEMENT_OPTIONS = [
+    "Linksboven",
+    "Rechtsboven",
+    "Linksonder",
+    "Rechtonder"
+]
+PRINT_QUALITY_OPTIONS = {
+    "Lage kwaliteit": 72,
+    "Normale kwaliteit": 150,
+    "Hoge kwaliteit": 300,
+    "Zeer hoge kwaliteit": 600,
+    "Maximale kwaliteit": 1200
+}
