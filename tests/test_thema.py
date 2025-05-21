@@ -22,7 +22,7 @@ def nadmap_mock(iface_mock, tmp_path):
     nadmap.user_thema_path = os.path.join(nadmap.working_dir, "themas/user_themas.json")
     print(nadmap.user_thema_path)
     nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
-    nadmap_mock.dlg.saveThemaLineEdit.setText("test theme name")
+    nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
 
 def test_save_thema(nadmap_mock):
