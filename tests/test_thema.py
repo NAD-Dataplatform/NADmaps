@@ -7,31 +7,35 @@ from qgis.PyQt.QtCore import QSettings
 
 from ..nad_maps import NADMaps
 
+@pytest.fixture()
+def selected_active_layers():
+    return [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
 
 @pytest.fixture()
-def nadmap_mock(iface_mock, tmp_path):
+def nadmap_mock(iface_mock, selected_active_layers):
     # Preset some member of NADMaps to allow testing
     nadmap = NADMaps(iface_mock)
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
     nadmap.thema_manager.creator = "Gebruiker"
-    print(f"nadmap_mock: {nadmap.creator}")
     nadmap.working_dir = QSettings().value('NADmaps/working_dir')
-    print(nadmap.working_dir)
-    nadmap.user_thema_path = os.path.join(nadmap.working_dir, "themas/user_themas.json")
-    print(nadmap.user_thema_path)
-    nadmap.selected_active_layers = [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
+    nadmap.thema_manager.user_thema_path = os.path.join(nadmap.working_dir, "themas/user_themas.json")
+    nadmap.selected_active_layers = selected_active_layers
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
 
-def test_save_thema(nadmap_mock):
+@pytest.fixture()
+def thema_manager_mock(nadmap_mock):
+    # Returns a fully initialized thema_manager
+    return nadmap_mock.thema_manager
+
+def test_save_thema(thema_manager_mock, selected_active_layers):
     # Save a theme with dummy layer and check the resulting json
-    print(f"test_save_thema: {nadmap_mock.creator}")
-    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
+    thema_manager_mock.save_thema(all=False, selected_active_layers = selected_active_layers)
 
     # Check whether the json contains expected values
-    with open(nadmap_mock.user_thema_path) as json_file:
+    with open(thema_manager_mock.user_thema_path) as json_file:
         json_data = json.load(json_file)
         assert len(json_data) == 1
         assert json_data[0]["thema_name"] == "test theme name"
@@ -46,27 +50,27 @@ def test_save_thema(nadmap_mock):
         assert json_data[0]["layers"][1]["provider_type"] == "ogr"
         assert json_data[0]["layers"][1]["layer_type"] == "Vector"
 
-def test_delete_thema(nadmap_mock):
+def test_delete_thema(nadmap_mock, thema_manager_mock, selected_active_layers):
     # Save two themes with dummy layer, remove one and check the resulting json
-    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
+    thema_manager_mock.save_thema(all=False, selected_active_layers = selected_active_layers)
     nadmap_mock.dlg.saveThemaLineEdit.setText("test theme name_2")
-    nadmap_mock.thema_manager.save_thema(all=False, selected_active_layers = nadmap_mock.selected_active_layers)
+    thema_manager_mock.save_thema(all=False, selected_active_layers = selected_active_layers)
 
     # Check whether the json contains expected values for two themes
-    with open(nadmap_mock.user_thema_path) as json_file:
+    with open(thema_manager_mock.user_thema_path) as json_file:
         json_data = json.load(json_file)
         assert len(json_data) == 2  # two themes
         assert json_data[0]["thema_name"] == "test theme name"
         assert json_data[1]["thema_name"] == "test theme name_2"
     
     # Now we'll delete the first theme
-    setattr(nadmap_mock.thema_manager, "current_thema", dict())
-    nadmap_mock.thema_manager.current_thema["thema_name"] = "test theme name"
-    nadmap_mock.thema_manager.current_thema["creator"] = "Gebruiker"
-    nadmap_mock.thema_manager.delete_thema()
+    setattr(thema_manager_mock, "current_thema", dict())
+    thema_manager_mock.current_thema["thema_name"] = "test theme name"
+    thema_manager_mock.current_thema["creator"] = "Gebruiker"
+    thema_manager_mock.delete_thema()
 
     # Check whether the json contains expected values for one theme
-    with open(nadmap_mock.user_thema_path) as json_file:
+    with open(thema_manager_mock.user_thema_path) as json_file:
         json_data = json.load(json_file)
         assert len(json_data) == 1  # 1 theme
         assert json_data[0]["thema_name"] == "test theme name_2"

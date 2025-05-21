@@ -25,11 +25,11 @@
 import getpass
 import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
-from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox
 
-from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS
+from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS, PLACEMENT_OPTIONS, PRINT_QUALITY_OPTIONS
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_popup import NADMapsPopup
@@ -205,15 +205,21 @@ class NADMaps(object):
             )
         )
 
+        # Canvas interactions
+        self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
+        self.iface.mapCanvas().scaleChanged.connect(self.on_canvas_scale_changed)
+
         # Export_tab interactions
-        self.dlg.lineEdit_MapName.textChanged.connect(self.check_map_name)
+        self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
         self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(self.on_paper_format_changed)
         self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(self.on_file_format_changed)
+        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(self.on_print_quality_changed)
         self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
         self.dlg.doubleSpinBox_Schaal.valueChanged.connect(self.on_scale_changed)
         self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
         self.dlg.checkBox_Schaalbalk.stateChanged.connect(self.on_scale_checkbox_changed)
+        self.dlg.checkBox_Titel.stateChanged.connect(self.on_titel_checkbox_changed)
         self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
 
         self.dlg.stylingGroupBox.setEnabled(False)
@@ -423,6 +429,11 @@ class NADMaps(object):
     def init_export_comboboxes(self):
         paper_items = [str(self.dlg.comboBox_PapierFormaat.itemText(i)) for i in range(self.dlg.comboBox_PapierFormaat.count())]
         file_items = [str(self.dlg.comboBox_BestandsFormaat.itemText(i)) for i in range(self.dlg.comboBox_BestandsFormaat.count())]
+        print_quality_items = [str(self.dlg.comboBox_PrintQuality.itemText(i)) for i in range(self.dlg.comboBox_PrintQuality.count())]
+
+        legend_placement_items = [str(self.dlg.comboBox_LegendaPlacement.itemText(i)) for i in range(self.dlg.comboBox_LegendaPlacement.count())]
+        schaalbalk_placement_items = [str(self.dlg.comboBox_SchaalbalkPlacement.itemText(i)) for i in range(self.dlg.comboBox_SchaalbalkPlacement.count())]
+        noordpijl_placement_items = [str(self.dlg.comboBox_NoordpijlPlacement.itemText(i)) for i in range(self.dlg.comboBox_NoordpijlPlacement.count())]
 
         if paper_items != PAPER_OPTIONS:
             self.dlg.comboBox_PapierFormaat.clear()
@@ -434,14 +445,36 @@ class NADMaps(object):
             for item in FORMAT_OPTIONS:
                 self.dlg.comboBox_BestandsFormaat.addItem(item)
 
+        print_quality_options = list(PRINT_QUALITY_OPTIONS.keys())
+        if print_quality_items != print_quality_options:
+            self.dlg.comboBox_PrintQuality.clear()
+            for item in print_quality_options:
+                self.dlg.comboBox_PrintQuality.addItem(item)
+        
+        if legend_placement_items != PLACEMENT_OPTIONS or schaalbalk_placement_items != PLACEMENT_OPTIONS or noordpijl_placement_items != PLACEMENT_OPTIONS:
+            self.dlg.comboBox_LegendaPlacement.clear()
+            self.dlg.comboBox_SchaalbalkPlacement.clear()
+            self.dlg.comboBox_NoordpijlPlacement.clear()
+            for item in PLACEMENT_OPTIONS:
+                self.dlg.comboBox_LegendaPlacement.addItem(item)
+                self.dlg.comboBox_SchaalbalkPlacement.addItem(item)
+                self.dlg.comboBox_NoordpijlPlacement.addItem(item)
+        
     def save_export_settings(self):
         QSettings().setValue("NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText())
         QSettings().setValue("NADmaps/export/file_format", self.dlg.comboBox_BestandsFormaat.currentText())
+        QSettings().setValue("NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText())
         QSettings().setValue("NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value()))
         QSettings().setValue("NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value()))
         QSettings().setValue("NADmaps/export/include_north", "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/noordpijl_placement", self.dlg.comboBox_NoordpijlPlacement.currentText())
         QSettings().setValue("NADmaps/export/include_legend", "true" if self.dlg.checkBox_Legenda.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/legend_placement", self.dlg.comboBox_LegendaPlacement.currentText())
         QSettings().setValue("NADmaps/export/include_scale", "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/scale_placement", self.dlg.comboBox_SchaalbalkPlacement.currentText())
+        QSettings().setValue("NADmaps/export/include_title", "true" if self.dlg.checkBox_Titel.isChecked() else "false")
+        QSettings().setValue("NADmaps/export/title", self.dlg.lineEdit_Titel.text())
+        QSettings().setValue("NADmaps/export/title_font_size", str(self.dlg.spinBox_TitelFontSize.value()))
 
     def load_export_settings(self):
         saved_paper = str(QSettings().value("NADmaps/export/paper_format", "A4 staand"))
@@ -457,12 +490,28 @@ class NADMaps(object):
         else:
             self.dlg.comboBox_BestandsFormaat.setCurrentIndex(0)
 
+        saved_quality = str(QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit"))
+        quality_items = [str(self.dlg.comboBox_PrintQuality.itemText(i)) for i in range(self.dlg.comboBox_PrintQuality.count())]
+        if saved_quality in quality_items:
+            #self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
+            self.dlg.comboBox_PrintQuality.setCurrentText('Iets geks')
+        else:
+            #self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
+            self.dlg.comboBox_PrintQuality.setCurrentText(f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}")
+
         self.dlg.doubleSpinBox_Rotatie.setValue(float(QSettings().value("NADmaps/export/rotation", 0)))
         self.dlg.doubleSpinBox_Schaal.setValue(float(QSettings().value("NADmaps/export/scale", 10000)))
 
         self.dlg.checkBox_Noordpijl.setChecked(QSettings().value("NADmaps/export/include_north", "false") == "true")
+        self.set_noordpijl_placement_combobox()
         self.dlg.checkBox_Legenda.setChecked(QSettings().value("NADmaps/export/include_legend", "false") == "true")
+        self.set_legenda_placement_combobox()
         self.dlg.checkBox_Schaalbalk.setChecked(QSettings().value("NADmaps/export/include_scale", "false") == "true")
+        self.set_schaalbalk_placement_combobox()
+        self.dlg.checkBox_Titel.setChecked(QSettings().value("NADmaps/export/include_title", "false") == "true")
+        self.set_titel_line_edit()
+        self.dlg.lineEdit_Titel.setText(QSettings().value("NADmaps/export/title", ""))
+        self.dlg.spinBox_TitelFontSize.setValue(int(QSettings().value("NADmaps/export/title_font_size", 20)))
 
     def on_paper_format_changed(self):
         self.save_export_settings()
@@ -470,23 +519,101 @@ class NADMaps(object):
     def on_file_format_changed(self):
         self.save_export_settings()
 
+    def on_print_quality_changed(self):
+        self.save_export_settings()
+
     def on_rotation_changed(self):
+        value = self.dlg.doubleSpinBox_Rotatie.value()
+        canvas = self.iface.mapCanvas()
+        if canvas.rotation() != value:
+            canvas.setRotation(value)
+            QTimer.singleShot(200, canvas.refresh)
+        
+        self.save_export_settings()
+
+    def on_canvas_rotation_changed(self):
+        canvas = self.iface.mapCanvas()
+        current_rotation = canvas.rotation()
+
+        if self.dlg.doubleSpinBox_Rotatie.value() != current_rotation:
+            self.dlg.doubleSpinBox_Rotatie.blockSignals(True)
+            self.dlg.doubleSpinBox_Rotatie.setValue(current_rotation)
+            self.dlg.doubleSpinBox_Rotatie.blockSignals(False)
+        
         self.save_export_settings()
 
     def on_scale_changed(self):
+        value = self.dlg.doubleSpinBox_Schaal.value()
+        canvas = self.iface.mapCanvas()
+        if canvas.scale() != value:
+            canvas.zoomScale(value)
+            QTimer.singleShot(200, canvas.refresh)
+
+        self.save_export_settings()
+
+    def on_canvas_scale_changed(self):
+        canvas = self.iface.mapCanvas()
+        current_scale = canvas.scale()
+
+        if self.dlg.doubleSpinBox_Schaal.value() != current_scale:
+            self.dlg.doubleSpinBox_Schaal.blockSignals(True)
+            self.dlg.doubleSpinBox_Schaal.setValue(current_scale)
+            self.dlg.doubleSpinBox_Schaal.blockSignals(False)
+
         self.save_export_settings()
 
     def on_north_checkbox_changed(self):
+        self.set_noordpijl_placement_combobox()
         self.save_export_settings()
 
     def on_legend_checkbox_changed(self):
+        self.set_legenda_placement_combobox()
         self.save_export_settings()
 
     def on_scale_checkbox_changed(self):
+        self.set_schaalbalk_placement_combobox()
         self.save_export_settings()
 
+    def on_titel_checkbox_changed(self):
+        self.save_export_settings()
+        self.set_titel_line_edit()
+
+    def set_noordpijl_placement_combobox(self):
+        if self.dlg.checkBox_Noordpijl.isChecked():
+            self.dlg.comboBox_NoordpijlPlacement.setVisible(True)
+            self.dlg.comboBox_NoordpijlPlacement.setEnabled(True)
+            self.dlg.comboBox_NoordpijlPlacement.setFocus()
+        else:
+            self.dlg.comboBox_NoordpijlPlacement.setVisible(False)
+
+    def set_legenda_placement_combobox(self):
+        if self.dlg.checkBox_Legenda.isChecked():
+            self.dlg.comboBox_LegendaPlacement.setVisible(True)
+            self.dlg.comboBox_LegendaPlacement.setEnabled(True)
+            self.dlg.comboBox_LegendaPlacement.setFocus()
+        else:
+            self.dlg.comboBox_LegendaPlacement.setVisible(False)
+
+    def set_schaalbalk_placement_combobox(self):
+        if self.dlg.checkBox_Schaalbalk.isChecked():
+            self.dlg.comboBox_SchaalbalkPlacement.setVisible(True)
+            self.dlg.comboBox_SchaalbalkPlacement.setEnabled(True)
+            self.dlg.comboBox_SchaalbalkPlacement.setFocus()
+        else:
+            self.dlg.comboBox_SchaalbalkPlacement.setVisible(False)
+
+    def set_titel_line_edit(self):
+        if self.dlg.checkBox_Titel.isChecked():
+            self.dlg.lineEdit_Titel.setVisible(True)
+            self.dlg.spinBox_TitelFontSize.setVisible(True)
+            self.dlg.lineEdit_Titel.setEnabled(True)
+            self.dlg.lineEdit_Titel.setFocus()
+        else:
+            self.dlg.lineEdit_Titel.setVisible(False)
+            self.dlg.spinBox_TitelFontSize.setVisible(False)
+
     def check_map_name(self):
-        map_name = self.dlg.lineEdit_MapName.text()
+        map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
 
     def export_map_button_pressed(self):
@@ -513,8 +640,14 @@ class NADMaps(object):
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
             "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
             "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
+            "north_placement": self.dlg.comboBox_NoordpijlPlacement.currentText(),
             "include_legend": self.dlg.checkBox_Legenda.isChecked(),
+            "legend_placement": self.dlg.comboBox_LegendaPlacement.currentText(),
             "include_scale": self.dlg.checkBox_Schaalbalk.isChecked(),
+            "scale_placement": self.dlg.comboBox_SchaalbalkPlacement.currentText(),
+            "include_title": self.dlg.checkBox_Titel.isChecked(),
+            "title": self.dlg.lineEdit_Titel.text(),
+            "title_font_size": self.dlg.spinBox_TitelFontSize.value(),
             "canvas": self.iface.mapCanvas()
         }
         layout = manager.build_layout(settings_dict)
@@ -536,7 +669,7 @@ class NADMaps(object):
             )
 
     def generate_export_path(self):
-        map_name = self.dlg.lineEdit_MapName.text()
+        map_name = self.dlg.lineEdit_FileName.text()
         if not map_name:
             return
 
