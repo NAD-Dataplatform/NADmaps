@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -879,31 +879,49 @@
        </item>
        <item>
         <widget class="QGroupBox" name="groupBoxZoomArea">
+         <property name="toolTip">
+          <string/>
+         </property>
          <property name="title">
           <string>Werkgebied</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QLabel" name="label">
+            <property name="toolTip">
+             <string>Als QGIS opnieuw wordt gestart dan wordt dit gebied ingeladen</string>
+            </property>
             <property name="text">
-             <string>Selecteer een standaard werkgebied:</string>
+             <string>Gemeente of buurt opslaan als standaard werkgebied</string>
             </property>
            </widget>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="lineEdit_StandardArea">
+              <property name="toolTip">
+               <string/>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="placeholderText">
-               <string>Typ de naam van het werkgebied</string>
+               <string>Wordt automatisch gevuld na opslaan</string>
               </property>
               <property name="clearButtonEnabled">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="pushButtonSaveStandardArea">
+              <property name="toolTip">
+               <string/>
+              </property>
               <property name="text">
                <string>Opslaan</string>
               </property>
@@ -919,11 +937,18 @@
          <property name="title">
           <string>Automatisch opstarten</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="QCheckBox" name="checkBox_AutoStart">
             <property name="text">
              <string>Start plug-in automatisch op bij opstarten QGIS</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_WorkArea">
+            <property name="text">
+             <string>Zoomen naar standaard werkgebied bij opstarten</string>
             </property>
            </widget>
           </item>

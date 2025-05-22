@@ -170,6 +170,9 @@ class NADMaps():
 
         self.dlg.raise_()
         self.dlg.activateWindow()
+        
+        std_area = self.update_standard_work_area()
+        self.log(f"waarde is: {std_area}")
 
 #########################################################################################
 #################################  Setup functions ######################################
@@ -277,8 +280,13 @@ class NADMaps():
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
 
-    def get_active_zoom_result(self):
-        "Get the active zoom result from the search bar at the top"
+        #...
+
+    def update_standard_work_area(self):
+        text2 = self.dlg.zoomLineEdit.text()
+        self.log(f"text at this point is {text2}")
+        return text2
+
 
     def get_selected_active_layers(self):
         """
