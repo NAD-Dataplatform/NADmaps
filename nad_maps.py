@@ -153,8 +153,8 @@ class NADMaps():
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.setup_completed = True
         
-        if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
-            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+        # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
+        #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
         # init the values for the export settings
         self.init_export_comboboxes()
