@@ -150,11 +150,11 @@ class NADMaps():
             # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
             #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
+            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.setup_completed = True
         
-        # set which buttons should be shown
-        tab_index = self.dlg.tabWidget.currentIndex()
-        self.active_buttons(tab_index)
+        # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
+        #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
         # init the values for the export settings
         self.init_export_comboboxes()
@@ -202,11 +202,6 @@ class NADMaps():
         self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
         
         self.dlg.deleteThemaButton.clicked.connect(lambda: self.thema_manager.delete_thema())
-
-        self.dlg.tabWidget.currentChanged.connect(self.active_buttons)
-        self.dlg.load_button.clicked.connect(lambda: self.load_button_pressed(False))
-        self.dlg.load_close_button.clicked.connect(lambda: self.load_button_pressed(True))
-        self.dlg.close_button.clicked.connect(lambda: self.dlg.hide())
 
         # Setting interactions
         self.dlg.set_working_dir.clicked.connect(
@@ -318,26 +313,6 @@ class NADMaps():
                 )
             self.selected_active_layers.append(active_layer)
             # self.log(f"selected active layers = {self.selected_active_layers}")
-
-    def active_buttons(self, tabIndex):
-        """Show or hide the load layers or themas buttons at the bottom"""
-        if tabIndex == 1 or tabIndex == 2:
-            self.dlg.load_button.show()
-            self.dlg.load_close_button.show()
-        else:
-            self.dlg.load_button.hide()
-            self.dlg.load_close_button.hide()
-
-    def load_button_pressed(self, close):
-        """Load the layers or thema when the button is pressed in the corresponding tab"""
-        tab_index = self.dlg.tabWidget.currentIndex()
-        
-        if tab_index == 1:
-            self.thema_manager.load_thema_layers()
-        elif tab_index == 2:
-            self.layer_manager.load_layer(None)
-        if close:
-            self.dlg.hide()
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
