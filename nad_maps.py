@@ -280,7 +280,7 @@ class NADMaps():
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
 
-        #...
+        #TODO Create function for standard area
 
     def update_standard_work_area(self):
         text2 = self.dlg.zoomLineEdit.text()

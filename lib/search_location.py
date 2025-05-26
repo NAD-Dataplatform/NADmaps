@@ -130,6 +130,8 @@ class SearchLocationManager:
 
     def zoom_button(self):
         search_text = self.dlg.zoomLineEdit.text()
+        if search_text == "":
+            return
         result = self.suggest_query(search_text, self.create_type_filter())[0]["weergavenaam"]
         self.dlg.zoomLineEdit.setText(result)
         suggest_text = self.dlg.zoomLineEdit.text()
@@ -229,7 +231,7 @@ class SearchLocationManager:
         except Exception as e:
             self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
 
-        if object is None:
+        if object is None or object == "":
             return
         self.zoom_to_result(object)
 
