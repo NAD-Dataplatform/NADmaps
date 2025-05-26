@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -892,7 +892,7 @@
              <string>Als QGIS opnieuw wordt gestart dan wordt dit gebied ingeladen</string>
             </property>
             <property name="text">
-             <string>Gemeente of buurt opslaan als standaard werkgebied</string>
+             <string>Sla een standaard werkgebied op</string>
             </property>
            </widget>
           </item>
@@ -910,7 +910,7 @@
                <bool>true</bool>
               </property>
               <property name="placeholderText">
-               <string>Wordt automatisch gevuld na opslaan</string>
+               <string>Klik op 'Opslaan' om de bovenin gekozen gemeente of buurt op te slaan</string>
               </property>
               <property name="clearButtonEnabled">
                <bool>false</bool>
@@ -918,7 +918,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonSaveStandardArea">
+             <widget class="QPushButton" name="pushButton_SaveStandardArea">
               <property name="toolTip">
                <string/>
               </property>
@@ -928,6 +928,13 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_StandardArea">
+            <property name="text">
+             <string>Zoom naar dit gebied bij opstarten</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -942,13 +949,6 @@
            <widget class="QCheckBox" name="checkBox_AutoStart">
             <property name="text">
              <string>Start plug-in automatisch op bij opstarten QGIS</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBox_WorkArea">
-            <property name="text">
-             <string>Zoomen naar standaard werkgebied bij opstarten</string>
             </property>
            </widget>
           </item>

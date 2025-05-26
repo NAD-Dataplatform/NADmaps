@@ -164,6 +164,12 @@ class NADMaps():
         # init autostart checkbox
         self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", "false") == "true")
 
+        #init standard area
+        self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
+        
+        #init autoload standard area checkbox
+        self.dlg.checkBox_StandardArea.setChecked(QSettings().value("NADmaps/autoload_standardarea", "false") == "true")
+        
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
@@ -171,8 +177,8 @@ class NADMaps():
         self.dlg.raise_()
         self.dlg.activateWindow()
         
-        std_area = self.update_standard_work_area()
-        self.log(f"waarde is: {std_area}")
+        # std_area = self.set_standard_area()
+        # self.log(f"waarde is: {std_area}")
 
 #########################################################################################
 #################################  Setup functions ######################################
@@ -214,6 +220,17 @@ class NADMaps():
         )
         self.dlg.checkBox_AutoStart.stateChanged.connect(
             lambda: QSettings().setValue("NADmaps/autostart", "true" if self.dlg.checkBox_AutoStart.isChecked() else "false"))
+        
+        # Save button for standard work area
+        self.dlg.pushButton_SaveStandardArea.clicked.connect(
+            lambda: self.set_standard_area()
+            # lambda: Qsettings().setValue("NADmaps/standardarea", )
+        )
+        # Checkbox for autoload standard work area
+        self.dlg.checkBox_StandardArea.stateChanged.connect(
+            lambda: QSettings().setValue("NADmaps/autoload_standardarea", "true" if self.dlg.checkBox_StandardArea.isChecked() else "false")
+        )
+
 
         # Canvas interactions
         self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
@@ -280,12 +297,17 @@ class NADMaps():
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
 
-        #TODO Create function for standard area
-
-    def update_standard_work_area(self):
-        text2 = self.dlg.zoomLineEdit.text()
-        self.log(f"text at this point is {text2}")
-        return text2
+    def set_standard_area(self):
+        std_area = self.dlg.zoomLineEdit.text()
+        # self.log(f"std_area is nu: {std_area}")
+        self.dlg.lineEdit_StandardArea.setText(std_area)
+        # self.log(f"De waarde in lineEdit_StandardArea is nu: {self.dlg.lineEdit_StandardArea.text()}")
+        
+        #Save the standard area to the settings
+        QSettings().setValue("NADmaps/standard_area", std_area)
+        test = QSettings().value("NADmaps/standard_area")
+        self.log(f"SettingsValue =: {test}")
+        return std_area
 
 
     def get_selected_active_layers(self):
