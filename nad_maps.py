@@ -152,7 +152,27 @@ class NADMaps():
             #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.setup_completed = True
-        
+
+            # Load standard area if checkbox is checked
+            if QSettings().value("NADmaps/autoload_standardarea") == True:
+                std_area = QSettings().value("NADmaps/standard_area")
+                # self.log(f"standard area from settings: {std_area}")
+                # self.log(f"If statement activated, zooming to: {std_area}")
+                self.search_manager.zoom_standard_area(std_area)
+            else:
+                # self.log(f"If statement NOT activated (checkbox not checked), not zooming to std_area. Value: {QSettings().value("NADmaps/autoload_standardarea")}")
+                return
+            
+            # if self.dlg.checkBox_StandardArea.isChecked() == True:
+            #     self.log(f"checkbox checked -> if statement activated {self.dlg.checkBox_StandardArea.isChecked()}")
+            #     std_area = QSettings().value("NADmaps/standard_area")
+            #     std_area = self.dlg.lineEdit_StandardArea.text()
+            #     self.log(f"search location std_area: {std_area}")
+            #     self.search_manager.zoom_standard_area(std_area)
+            #     self.log(f"Zoomed to standard area")
+            # else:
+            #     return
+
         # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
         #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
@@ -168,7 +188,7 @@ class NADMaps():
         self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
         
         #init autoload standard area checkbox
-        self.dlg.checkBox_StandardArea.setChecked(QSettings().value("NADmaps/autoload_standardarea", "false") == "true")
+        self.dlg.checkBox_StandardArea.setChecked(QSettings().value("NADmaps/autoload_standardarea", False, type=bool))
         
         # show the dialog
         if not hiddenDialog:
@@ -176,9 +196,6 @@ class NADMaps():
 
         self.dlg.raise_()
         self.dlg.activateWindow()
-        
-        # std_area = self.set_standard_area()
-        # self.log(f"waarde is: {std_area}")
 
 #########################################################################################
 #################################  Setup functions ######################################
@@ -224,11 +241,10 @@ class NADMaps():
         # Save button for standard work area
         self.dlg.pushButton_SaveStandardArea.clicked.connect(
             lambda: self.set_standard_area()
-            # lambda: Qsettings().setValue("NADmaps/standardarea", )
         )
-        # Checkbox for autoload standard work area
+        # Save checkbox for autoload standard work area
         self.dlg.checkBox_StandardArea.stateChanged.connect(
-            lambda: QSettings().setValue("NADmaps/autoload_standardarea", "true" if self.dlg.checkBox_StandardArea.isChecked() else "false")
+            lambda: QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False)
         )
 
 
@@ -298,15 +314,15 @@ class NADMaps():
         self.dlg.lineEditFilePath.setText(path)
 
     def set_standard_area(self):
-        std_area = self.dlg.zoomLineEdit.text()
+        std_area = self.dlg.zoomLineEdit.text() #Maak een variabele aan die gelijk is aan de ingevoerde tekst in het zoekveld bovenin
         # self.log(f"std_area is nu: {std_area}")
-        self.dlg.lineEdit_StandardArea.setText(std_area)
+        self.dlg.lineEdit_StandardArea.setText(std_area) #Zet de tekst in het beschermde veld
         # self.log(f"De waarde in lineEdit_StandardArea is nu: {self.dlg.lineEdit_StandardArea.text()}")
         
         #Save the standard area to the settings
         QSettings().setValue("NADmaps/standard_area", std_area)
         test = QSettings().value("NADmaps/standard_area")
-        self.log(f"SettingsValue =: {test}")
+        self.log(f"Area saved to settings. NADmaps/standard_area =: {test}")
         return std_area
 
 

@@ -127,6 +127,14 @@ class SearchLocationManager:
             "provincie": 812750,
         }
 
+ 
+    def zoom_standard_area(self, search_text):
+        # search_text = "Gemeente Vlaardingen"
+        self.log(f"def zoom_standard_area activated | search_text: {search_text}")
+        self.dlg.zoomLineEdit.setText(search_text)
+        self.toolbar_search_get_suggestions()
+        self.on_toolbar_suggest_activated(search_text)
+    
 
     def zoom_button(self):
         search_text = self.dlg.zoomLineEdit.text()
