@@ -15,10 +15,9 @@ class ThemaManager:
     """
     Class to manage the thema sets (a list of one or more map layers)
     """
-    def __init__(self, dlg, popup, plugin_dir, working_dir, creator, log):
+    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
 
         assert dlg is not None, "ThemaManager: dlg is None"
-        assert popup is not None, "ThemaManager: popup is None"
         assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
         assert working_dir is not None, "ThemaManager: working_dir is None"
         assert creator is not None, "ThemaManager: creator is None"
@@ -34,7 +33,7 @@ class ThemaManager:
         self.dlg = dlg
         self.creator = creator
         self.log = log
-        self.style_manager = StyleManager(dlg=self.dlg, popup=popup, plugin_dir=plugin_dir, working_dir=working_dir, creator=creator, log=self.log)
+        self.style_manager = StyleManager(dlg=self.dlg, plugin_dir=plugin_dir, working_dir=working_dir, creator=creator, log=self.log)
 
         self.current_thema = None
         self.current_layer = None

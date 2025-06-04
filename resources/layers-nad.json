@@ -1591,5 +1591,62 @@
         "service_title": "Waterschappen Keringen IMWA WMS",
         "service_abstract": "Deze dataset is gebaseerd op (niet geharmoniseerde) data van alle waterschappen in Nederland conform het Informatiemodel water (IMWA). De dataset bevat de volgende IMWA objecten:Basismateriaal, Bodemlaag, FilterVlijlaag, FlexibeleWaterkering, Geotextiel, KenmerkendeProfiellijn, Kistdam, Referentiepunt, Toplaag, Uitvullaag, Wandconstructie, Waterkering en Waterkeringsectie.",
         "service_type": "wms"
+    },
+    {
+        "name": "bro-grondwaterspiegeldieptemetingen-GHG",
+        "title": "BRO Grondwaterspiegeldiepte GHG",
+        "abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. E\u00e9n van die karakteristieken in het grondwaterspiegeldieptemodel is \u2018Gemiddelde Hoogste Grondwaterspiegeldiepte (GHG). Deze laag bevat de waarden hiervoor in cm onder maaiveld.",
+        "styles": [
+            {
+                "title": "GHG Mediaan",
+                "name": "mediaan"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/bzk/bro-grondwaterspiegeldiepte/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "BRO Model Grondwaterspiegeldiepte (WDM) WMS",
+        "service_abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. Deze statistieken zijn de gemiddelde kleinste grondwaterspiegeldiepte (GHG), de gemiddelde grootste grondwaterspiegeldiepte (GLG), en de daarvan afgeleide grondwatertrap (Gt). De grondwatertrap maakte tot voor kort deel uit van een ander registratieobject, te weten de Bodemkaart van Nederland schaal 1:50000. Voor onder meer ecologische toepassingen is ook de gemiddelde voorjaarsgrondwaterspiegeldiepte (GVG) aan het grondwaterspiegeldieptemodel toegevoegd.",
+        "service_type": "wms"
+    },
+    {
+        "name": "bro-grondwaterspiegeldieptemetingen-GLG",
+        "title": "BRO Grondwaterspiegeldiepte GLG",
+        "abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. E\u00e9n van die karakteristieken in het grondwaterspiegeldieptemodel is \u2018Gemiddelde Laagste Grondwaterspiegeldiepte (GLG). Deze laag bevat de waarden hiervoor in cm onder maaiveld.",
+        "styles": [
+            {
+                "title": "GLG Mediaan",
+                "name": "mediaan"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/bzk/bro-grondwaterspiegeldiepte/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "BRO Model Grondwaterspiegeldiepte (WDM) WMS",
+        "service_abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. Deze statistieken zijn de gemiddelde kleinste grondwaterspiegeldiepte (GHG), de gemiddelde grootste grondwaterspiegeldiepte (GLG), en de daarvan afgeleide grondwatertrap (Gt). De grondwatertrap maakte tot voor kort deel uit van een ander registratieobject, te weten de Bodemkaart van Nederland schaal 1:50000. Voor onder meer ecologische toepassingen is ook de gemiddelde voorjaarsgrondwaterspiegeldiepte (GVG) aan het grondwaterspiegeldieptemodel toegevoegd.",
+        "service_type": "wms"
+    },
+    {
+        "name": "bro-grondwaterspiegeldieptemetingen-GVG",
+        "title": "BRO Grondwaterspiegeldiepte GVG",
+        "abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. E\u00e9n van die karakteristieken in het grondwaterspiegeldieptemodel is \u2018Gemiddelde Voorjaars Grondwaterspiegeldiepte (GVG). Voor onder meer ecologische toepassingen is ook de gemiddelde voorjaarsgrondwaterspiegeldiepte (GVG) aan het grondwaterspiegeldieptemodel toegevoegd. Deze laag bevat de waarden hiervoor in cm onder maaiveld.",
+        "styles": [
+            {
+                "title": "GVG Mediaan",
+                "name": "mediaan"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://service.pdok.nl/bzk/bro-grondwaterspiegeldiepte/wms/v2_0?request=GetCapabilities&service=WMS",
+        "service_title": "BRO Model Grondwaterspiegeldiepte (WDM) WMS",
+        "service_abstract": "Het grondwaterspiegeldieptemodel maakt deel uit van de Basisregistratieondergrond (BRO). Het bestaat uit een aantal grondwaterkarakteristieken die samen de langjarig gemiddelde fluctuatiedieptes van de grondwaterspiegel weergegeven. Deze statistieken zijn de gemiddelde kleinste grondwaterspiegeldiepte (GHG), de gemiddelde grootste grondwaterspiegeldiepte (GLG), en de daarvan afgeleide grondwatertrap (Gt). De grondwatertrap maakte tot voor kort deel uit van een ander registratieobject, te weten de Bodemkaart van Nederland schaal 1:50000. Voor onder meer ecologische toepassingen is ook de gemiddelde voorjaarsgrondwaterspiegeldiepte (GVG) aan het grondwaterspiegeldieptemodel toegevoegd.",
+        "service_type": "wms"
+    },
+    {
+        "name": "gm_gmn",
+        "title": "Grondwatermonitoringnet (GMN)",
+        "abstract": "De meest karakteristieke (ken)gegevens van nederlandse grondwatermonitoringnetten (GMN) uit de Basisregistratie Ondergrond (BRO). Een grondwatermonitoringnet is een verzameling meetpunten (gevormd door monitoringbuizen van grondwatermonitoringputten (GMW)), waarin onderzoek wordt gedaan om de toestand van het grondwater te kunnen bepalen en veranderingen erin te kunnen monitoren. De GMN gegevenscatalogus is opgenomen op de BRO Productomgeving. Hier vindt men ook de gegevensdefinitie, met daarin onder andere een omschrijving van alle entiteiten en attributen.",
+        "service_url": "https://api.pdok.nl/bzk/bro-gminsamenhang-karakteristieken/ogc/v1",
+        "service_title": "BRO - Grondwatermonitoring (GM) in samenhang - karakteristieken",
+        "service_abstract": "Deze dataset bevat de gegevens van nederlandse grondwatermonitoring afkomstig uit de Basisregistratie Ondergrond (BRO). Het betreft de meest karakteristieke (ken)gegevens van grondwatermonitoringputten en de daarmee samenhangende kengegevens van de grondwatermonitoringnetten waarvoor die putten zijn gebruikt, plus de karakteristieken van in die putten gemeten grondwaterstands- en grondwatersamenstellingsgegevens.  Grondwatermonitoring houdt in dat de toestand van het grondwater in een bepaald gebied, of eigenlijk in een bepaald deel van de ondergrond, over langere tijd gevolgd wordt. De grootte van het gebied en de diepte van monitoring verschillen per grondwatermonitoringnet. Er wordt daarbij gekeken naar de grondwaterstand (kwantiteit) en/of naar de samenstelling van het grondwater (kwaliteit). Hiervoor worden periodiek metingen uitgevoerd. Een beschrijving van deze dataset is opgenomen op de BRO Productomgeving.",
+        "service_type": "api features"
     }
 ]
