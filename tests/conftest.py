@@ -29,9 +29,8 @@ class QgisInterfaceMock():
     
     def mainWindow(self):
         """Mock the main window to return a mock mainwindow with a dockWidgetArea."""
-        mock_canvas = Mock(spec=QMainWindow)
+        mock_canvas = QMainWindow()
         mock_canvas.dockWidgetArea = Qt.LeftDockWidgetArea
-
         return mock_canvas
     
 @pytest.fixture()
