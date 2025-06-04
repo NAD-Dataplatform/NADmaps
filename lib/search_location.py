@@ -127,14 +127,6 @@ class SearchLocationManager:
             "provincie": 812750,
         }
 
- 
-    def zoom_standard_area(self, search_text):
-        # search_text = "Gemeente Vlaardingen"
-        self.log(f"def zoom_standard_area activated | search_text: {search_text}")
-        self.dlg.zoomLineEdit.setText(search_text)
-        self.toolbar_search_get_suggestions()
-        self.on_toolbar_suggest_activated(search_text)
-    
 
     def zoom_button(self):
         search_text = self.dlg.zoomLineEdit.text()
@@ -197,6 +189,28 @@ class SearchLocationManager:
         content_obj = get_request_json(url)
         result = content_obj["response"]["docs"]
         return result
+    
+
+    def get_lookup_id_and_zoom(
+            self,
+            query,
+            type_filter=TypeFilter.new_with_default_values(),
+            rows=1, #Kan op 1 gezet worden?
+        ):
+        self.log(f"API call started")
+        if len(type_filter.types) == 0:
+            return []
+        # TODO: add fields filter, with fl=id,geometrie_ll/rd or *
+        query = self.url_encode_query_string(query)
+        query_string = f"q={query}&rows={rows}&fq={type_filter}"
+        url = f"{SERVICE_ENDPOINT}/suggest?{query_string}"
+        content_obj = get_request_json(url)
+        #result = content_obj["response"]["docs"] #list of 1 element
+        #result_list = result[0] #grab first element which is dict
+        #lookup_id = result_list["id"] #Extract lookup_id from dict
+        lookup_id = content_obj["response"]["docs"][0]["id"]
+        self.log(f"lookup_id: {lookup_id}")
+        self.zoom_standard_area(lookup_id)
 
 
     def toolbar_search_get_suggestions(self):
@@ -223,17 +237,33 @@ class SearchLocationManager:
         self.dlg.zoomLineEdit.show()
         self.completer.complete()
         self.completer.activated.connect(self.on_toolbar_suggest_activated)
-        return
 
     def on_toolbar_suggest_activated(self, suggest_text):
         object = None
         
         items = self.model.findItems(suggest_text) # get a list of suggested items
+        # self.log(f"items: {items}")
         if len(items) == 0:  # check should not be necessary
             return
         item = items[0] # take selected item
+        # self.log(f"item: {item}")
         data = item.data(Qt.ItemDataRole.UserRole)
+        # self.log(f"data: {data}")
         lookup_id = data["id"] # eg. gem-0b2a8b92856b27f86fbd67ab35808ebf
+        try:
+            object = self.lookup_object(lookup_id, Projection.EPSG_28992)
+            # self.log(f"Object datatype: {type(object)}. Object content: {object}")
+        except Exception as e:
+            self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
+
+        if object is None or object == "":
+            return
+        self.zoom_to_result(object)
+
+
+    def zoom_standard_area(self, lookup_id):
+        # lookup_id = "weg-bea2232acdcecc1bb8e87fb5b264852e"
+        self.log(f"zoom_standard_area_LOOKUP activated | search_text: {lookup_id}")
         try:
             object = self.lookup_object(lookup_id, Projection.EPSG_28992)
         except Exception as e:
@@ -242,7 +272,6 @@ class SearchLocationManager:
         if object is None or object == "":
             return
         self.zoom_to_result(object)
-
 
     def lookup_object(self, object_id: str, proj: Projection) -> dict:
         """
@@ -282,6 +311,7 @@ class SearchLocationManager:
 
     def zoom_to_result(self, data):
         # just always transform from 28992 to mapcanvas crs
+        self.log(f"zoom_to_result activated.")
         crs = self.iface.mapCanvas().mapSettings().destinationCrs()
         crs28992 = QgsCoordinateReferenceSystem.fromEpsgId(28992)
         crsTransform = QgsCoordinateTransform(crs28992, crs, QgsProject.instance())
