@@ -153,9 +153,6 @@ class NADMaps():
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.setup_completed = True
         
-        # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
-        #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-
         # init the values for the export settings
         self.init_export_comboboxes()
         self.load_export_settings()
@@ -168,8 +165,15 @@ class NADMaps():
         if not hiddenDialog:
             self.dlg.show()
 
-        self.dlg.raise_()
-        self.dlg.activateWindow()
+            area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea: 
+                self.log("NADMaps dialog is floating or not in the right dock area, moving it to the right area.")
+                self.iface.mainWindow().removeDockWidget(self.dlg)
+                self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+                self.dlg.setFloating(False)
+
+            self.dlg.raise_()
+            self.dlg.activateWindow()
 
 #########################################################################################
 #################################  Setup functions ######################################
