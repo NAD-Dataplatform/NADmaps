@@ -60,6 +60,17 @@
 		]
 	},
 	{
+		"layer_name": "BGT Inlooptabel",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
+		"styles": [
+			{
+				"name": "BGT inloop",
+				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
 		"layer_name": "Rioolput",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
@@ -77,53 +88,37 @@
 				"name": "GWSW zonder label",
 				"file": "gwsw zonder label_931b1db636231ff5fa3f89c046f036d4",
 				"creator": "plugin"
-			}
-		]
-	},
-	{
-		"layer_name": "BGT Inlooptabel",
-		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
-		"styles": [
+			},
 			{
-				"name": "BGT inloop",
-				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
-				"creator": "plugin"
+				"name": "Check onlogische waarde",
+				"file": "check onlogische waarde_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "Plugin"
 			}
 		]
 	},
 	{
-		"layer_name": "Rioolleiding",
+		"layer_name": "Leiding check: onlogische waarde",
 		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
 		"styles": [
-			{
-				"name": "GWSW",
-				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			},
 			{
 				"name": "GWSW plus",
 				"file": "gwsw plus_a5f908d6628bfc552663688d11fec4bd",
 				"creator": "plugin"
 			},
 			{
-				"name": "Pijl",
-				"file": "pijl_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
-			},
-			{
-				"name": "Diameter",
-				"file": "diameter_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
+				"name": "GWSW",
+				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "Plugin"
 			},
 			{
 				"name": "Check ontbrekende waarde",
 				"file": "check ontbrekende waarde_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
+				"creator": "Plugin"
 			},
 			{
 				"name": "Check onlogische waarde",
 				"file": "check onlogische waarde_a5f908d6628bfc552663688d11fec4bd",
-				"creator": "plugin"
+				"creator": "Plugin"
 			}
 		]
 	}

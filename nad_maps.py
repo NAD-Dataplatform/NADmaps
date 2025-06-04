@@ -33,7 +33,6 @@ from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_O
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
-from .gui.nad_maps_popup import NADMapsPopup
 
 # from .lib.load_layers import LoadLayers ### LayerManager
 from .lib.layer import LayerManager
@@ -63,7 +62,6 @@ class NADMaps():
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
-        self.popup = NADMapsPopup(parent=self.iface.mainWindow())
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
 
         if getpass.getuser() in ADMIN_USERNAMES:
@@ -94,10 +92,10 @@ class NADMaps():
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
 
-        self.style_manager = StyleManager(dlg=self.dlg, popup=self.popup, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
+        self.style_manager = StyleManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
         self.search_manager = SearchLocationManager(dlg=self.dlg, iface=self.iface, log=self.log)
         self.layer_manager = LayerManager(dlg=self.dlg, iface=self.iface, plugin_dir=self.plugin_dir, tr=self.tr, style_manager=self.style_manager, log=self.log)
-        self.thema_manager = ThemaManager(dlg=self.dlg, popup=self.popup, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
+        self.thema_manager = ThemaManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
 
         # Declare instance attributes
         self.actions = []
@@ -185,16 +183,16 @@ class NADMaps():
         self.dlg.loadStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
         self.dlg.removeStyleButton.clicked.connect(lambda: self.style_manager.delete_styling())
         self.dlg.removeStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
-        self.dlg.saveStyleButton.clicked.connect(lambda: self.style_manager.check_existing_style())
+        self.dlg.saveStyleButton.clicked.connect(lambda: self.style_manager.save_styling(self.selected_active_layers))
         self.dlg.saveStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
 
         self.dlg.saveThemaButton.setEnabled(False)
         self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
         self.dlg.saveThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(False, selected_active_layers = self.selected_active_layers)
+            lambda: self.thema_manager.save_thema(False, self.selected_active_layers)
         )
         self.dlg.saveAllThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(True, selected_active_layers = self.selected_active_layers)
+            lambda: self.thema_manager.save_thema(True, self.selected_active_layers)
         )
 
         self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
@@ -230,10 +228,6 @@ class NADMaps():
         self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
 
         self.dlg.stylingGroupBox.setEnabled(False)
-
-        self.popup.accept_button.clicked.connect(lambda: self.save_styling())
-        self.popup.accept_button.clicked.connect(lambda: self.style_overwrite(False))
-        self.popup.close_button.clicked.connect(lambda: self.style_overwrite(False))
 
         # update the information on the current selection of active layers
         self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
