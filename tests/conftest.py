@@ -18,6 +18,10 @@ def qgis_app_initialized():
         _singletons["app"] = app
 
 class QgisInterfaceMock():
+    def __init__(self):
+        self._main_win = QMainWindow()
+        self._main_win.dockWidgetArea = Qt.LeftDockWidgetArea
+
     def __getattr__(self, name):
         def mock(*args, **kwargs):
             if name == "layerTreeView":
@@ -28,10 +32,7 @@ class QgisInterfaceMock():
         return mock
     
     def mainWindow(self):
-        """Mock the main window to return a mock mainwindow with a dockWidgetArea."""
-        mock_canvas = QMainWindow()
-        mock_canvas.dockWidgetArea = Qt.LeftDockWidgetArea
-        return mock_canvas
+        return self._main_win
     
 @pytest.fixture()
 def iface_mock():
