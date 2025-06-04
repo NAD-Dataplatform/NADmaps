@@ -4,7 +4,8 @@ from unittest.mock import Mock
 import pytest
 from qgis.core import QgsApplication
 from qgis.gui import QgsLayerTreeView, QgsMapCanvas
-from qgis.PyQt.QtCore import QSettings
+from qgis.PyQt.QtCore import QSettings, Qt
+from qgis.PyQt.QtWidgets import QMainWindow
 
 _singletons = {}
 
@@ -25,6 +26,13 @@ class QgisInterfaceMock():
                 return Mock()
             return None
         return mock
+    
+    def mainWindow(self):
+        """Mock the main window to return a mock mainwindow with a dockWidgetArea."""
+        mock_canvas = Mock(spec=QMainWindow)
+        mock_canvas.dockWidgetArea = Qt.LeftDockWidgetArea
+
+        return mock_canvas
     
 @pytest.fixture()
 def iface_mock():
