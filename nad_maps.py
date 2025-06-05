@@ -153,9 +153,7 @@ class NADMaps():
             #QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             
-            # Zoom to standard area when there's already an active layer
-            self.check_and_execute_zoom()
-           
+         
             self.setup_completed = True
             
         # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
