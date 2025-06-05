@@ -258,17 +258,6 @@ class SearchLocationManager:
         self.zoom_to_result(object)
 
 
-    # def zoom_standard_area(self, lookup_id):
-        # lookup_id = "weg-bea2232acdcecc1bb8e87fb5b264852e"
-        try:
-            object = self.lookup_object(lookup_id, Projection.EPSG_28992)
-        except Exception as e:
-            self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
-
-        if object is None or object == "":
-            return
-        self.zoom_to_result(object)
-
     def lookup_object(self, object_id: str, proj: Projection) -> dict:
         """
         Raises PdokServicesNetworkException when request fails
