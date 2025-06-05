@@ -6,7 +6,7 @@ import os
 import json
 from qgis.PyQt.QtCore import Qt, QRegularExpression, QSortFilterProxyModel, QItemSelectionModel
 from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer
-from qgis.PyQt.QtWidgets import QAbstractItemView
+from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 # from .load_layers import load_thema_layer
 from .style import StyleManager
 
@@ -150,40 +150,67 @@ class ThemaManager:
         """
         Save a collection of layers in order to later quickly load them
         """
+        if all == False and len(selected_active_layers) < 1:
+            return
+        
         if self.creator == "Plugin":
             json_path = self.plugin_thema_path
         else:
             json_path = self.user_thema_path
         
-        # Collect a json string with a thema_name and a list of layer names
+        # load the layers
+        try:
+            with open(json_path, "r", encoding="utf-8") as feedsjson:
+                feeds = json.load(feedsjson)
+        except:
+            feeds = []
+
+        # get thema name
         thema_name = self.dlg.saveThemaLineEdit.text()
-        print(f"save_thema: {self.creator}")
+        if thema_name == "":
+            return
+
+
+        # Check if a style with the same name exists
+        check_overwrite = False
+        for feed in feeds:
+            if feed["thema_name"] == thema_name:
+                check_overwrite = True
+        
+        if check_overwrite == True:
+            overwrite = QMessageBox.question(
+                self.dlg,
+                "Bestand bestaat al",
+                f"Het thema {thema_name} bestaat al. Wilt u het overschrijven?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            )
+            if overwrite == QMessageBox.StandardButton.No:
+                return
+
+            # Remove the old thema information
+            for i, thema in enumerate(feeds):
+                if thema["thema_name"] == thema_name:
+                    feeds.pop(i)
+
+        # Collect a json string with a thema_name and a list of layer names
         string = "{\"thema_name\": \"" + thema_name + "\", "
         string = f"{string}\"creator\": \"{self.creator}\"," # creator
         string = string + "\"layers\": [{"
 
-        # https://doc.qt.io/qt-6/qabstractitemmodel.html#details # documentation p1
-        # https://doc.qt.io/qt-6/qt.html#ItemDataRole-enum # documentation p2
         if all == False:
             selected_layers = selected_active_layers
         else:
-            # selected_layers = QgsProject.instance().mapLayers().values()
             root = QgsProject.instance().layerTreeRoot()
             selected_layers = root.layerOrder()
-            # selected_layers = set(index.siblingAtColumn(0) for index in selectedIndexes)
 
-        # self.log(f"List of active selected layers is {selected_layers}, with length is {len(selected_layers)}")
         for i, layer in enumerate(selected_layers):
             layer_type = self.layer_type_mapping[layer.type()]
-            # self.log(f"layer.type is {layer.type()} and layer_type is {layer_type}")
             styling = layer.customProperty( 'layerStyle', '' )
-            # self.log(f"Info of layer {layer.name()}, styling is {layer.customProperty( "layerStyle", "" )}, provider_type: {layer.providerType()}, layer_type: {layer_type}, source: {layer.source()}")
             string = f"{string}\"name\": \"{layer.name()}\"," # layer name
             string = f"{string}\"source\": \"{layer.source()}\"," # source
             string = f"{string}\"styling\": \"{styling}\"," # styling
             string = f"{string}\"provider_type\": \"{layer.providerType()}\"," # provider_type
             string = f"{string}\"layer_type\": \"{layer_type}\"" # service_type
-            # string = string + "\"styling\": \"" + layer.styling() + "\"," # styling
             if i == len(selected_layers) - 1:
                 string = string + "}]"
             else:
@@ -191,12 +218,6 @@ class ThemaManager:
         string = string + "}"
 
         data = json.loads(string)
-        # https://stackoverflow.com/questions/12994442/how-to-append-data-to-a-json-file
-        try:
-            with open(json_path, "r", encoding="utf-8") as feedsjson:
-                feeds = json.load(feedsjson)
-        except:
-            feeds = []
 
         with open(json_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
