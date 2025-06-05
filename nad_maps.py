@@ -151,12 +151,12 @@ class NADMaps():
 
             # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
+            #QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             
-            # Zoom to standard area if checkbox is checked and there's already an active layer
-            self.execute_zoom()
-            
+            # Zoom to standard area when there's already an active layer
+            self.check_and_execute_zoom()
+           
             self.setup_completed = True
             
         # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
@@ -183,35 +183,35 @@ class NADMaps():
         self.dlg.raise_()
         self.dlg.activateWindow()
 
-        # Trigger zoom_to_standard_area when a layer is added/ removed/ changed
-        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(
-            self.execute_zoom
-            # lambda: QTimer.singleShot(3000, lambda: self.execute_zoom())
-        )
+        # Zoom to standard area after render when no layer was active at startup
+        self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
 
 #########################################################################################
 #################################  Setup functions ######################################
 #########################################################################################
 
+    #Check if zoom should be executed
+    def check_zoom_required(self):
+        #Load settingsinfo
+        zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False)
+        standard_area = QSettings().value("NADmaps/standard_area", "")
+        #Load layer info
+        # TODO: variabele 'active_layers' opnemen in __init__ en updaten na layer change/ render complete
+        root = QgsProject.instance().layerTreeRoot()
+        layers = root.layerOrder()
+        if self.zoom_completed == True:
+            return False, None
+        elif zoom_checkbox == True and standard_area != "" and len(layers) >= 1:
+            return True, standard_area
+        
+        return False, None
+
     # Zoom to standard area     
-    def execute_zoom(self):
-        if self.zoom_completed == False:
-
-            root = QgsProject.instance().layerTreeRoot() # TODO Check hoe dit werkt
-            layers = root.layerOrder() # TODO Check hoe dit werkt
-
-            zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False)
-            standard_area = QSettings().value("NADmaps/standard_area", "")
-            self.log(f"execute_zoom activated. zoom_checkbox = {zoom_checkbox}, standard_area = {standard_area}, zoom_completed = {self.zoom_completed}")
-            self.log(f"layers len: {len(layers)}")
-            if len(layers) >= 1 and zoom_checkbox == True and standard_area != "":
-                # self.search_manager.zoom_standard_area(standard_area)
-                QTimer().timeout.connect(self.search_manager.get_lookup_id_and_zoom(standard_area)).start(3000) #op advies van pythonfixing.com
-                self.log(f"zoom_standard_area activated. zoom_checkbox = {zoom_checkbox}, zoom_completed = {self.zoom_completed}")
-                self.zoom_completed = True
-                self.log(f"zoom_standard_area executed zoom_completed is now: {self.zoom_completed}")
-            else:
-                self.log(f"Else route > do nothing. zoom_box = {QSettings().value("NADmaps/autoload_standardarea")}, zoom_completed = {self.zoom_completed}")
+    def check_and_execute_zoom(self):
+        zoom_required, standard_area = self.check_zoom_required()
+        if zoom_required == True:
+            self.search_manager.get_lookup_id_and_zoom(standard_area)
+            self.zoom_completed = True
 
     def setup_interactions(self):
         """
@@ -256,7 +256,7 @@ class NADMaps():
 
         # Save checkbox for autoload standard work area
         self.dlg.checkBox_StandardArea.stateChanged.connect(
-            lambda: QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False)
+            lambda: self.set_autoload_checkbox()
         )
 
         # Canvas interactions
@@ -327,9 +327,12 @@ class NADMaps():
     def set_standard_area(self):
         self.dlg.lineEdit_StandardArea.setText(self.dlg.zoomLineEdit.text()) #Insert search area text into protected field
         QSettings().setValue("NADmaps/standard_area", self.dlg.zoomLineEdit.text()) #Save the standard area to the settings
-        # TODO ID opslaan naar settings zodat deze omgezet kan worden naar een object tbv zoom_to_result
-        # TODO Of nog beter: het object opslaan maar wat is dat??
 
+
+    def set_autoload_checkbox(self):
+        QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False) 
+            # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
+        # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
 
     def get_selected_active_layers(self):
         """
