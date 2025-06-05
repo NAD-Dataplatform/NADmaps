@@ -23,7 +23,6 @@
 """
 # General packages
 import getpass
-from time import sleep
 import os.path
 from qgis.core import QgsCoordinateReferenceSystem, QgsProject
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
