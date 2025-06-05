@@ -6,6 +6,8 @@ from qgis.PyQt.QtWidgets import QAbstractItemView
 from qgis.PyQt.QtCore import Qt
 from qgis.core import QgsMessageLog
 from .constants import PLUGIN_NAME
+import time
+
 
 class LoggingManager:
     """
@@ -26,8 +28,15 @@ class LoggingManager:
         self.logModel.setHeaderData(0, Qt.Orientation.Horizontal, "Log bericht")
         self.logModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         self.dlg.logView.horizontalHeader().setStretchLastSection(True)
-    
-    def log(self, text, lvl=0):
+        
+    def start_time(self):
+        self.tic = time.perf_counter()
+
+    def stop_time(self):
+        toc = time.perf_counter()
+        self.log(f"Rendering finished in {toc - self.tic:0.4f} seconds.", 0)
+
+    def log(self, text, lvl=1):
         if not isinstance(text, str):
             text = str(text)
         

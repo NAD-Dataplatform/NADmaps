@@ -24,7 +24,8 @@
 # General packages
 import getpass
 import os.path
-from qgis.core import QgsCoordinateReferenceSystem, QgsProject
+
+from qgis.core import QgsCoordinateReferenceSystem, QgsProject, QgsProcessingFeedback
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox, QDockWidget
@@ -238,6 +239,8 @@ class NADMaps():
             self.get_selected_active_layers
         )
 
+        self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
+        self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 
 

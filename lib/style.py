@@ -169,38 +169,39 @@ class StyleManager:
             qml_folder = self.user_styling_files_path
 
         style_name = self.dlg.saveStylingLineEdit.text()
-        if not style_name == "":
-            source = layer.source()
-            style_code = self.style_code(style_name, source)
+        if style_name == "":
+            return
+        
+        source = layer.source()
+        style_code = self.style_code(style_name, source)
 
-            try:
-                with open(json_path, "r", encoding="utf-8") as feedsjson:
-                    feeds = json.load(feedsjson)
-            except:
+        try:
+            with open(json_path, "r", encoding="utf-8") as feedsjson:
+                feeds = json.load(feedsjson)
+        except:
+            return
+
+        existing_styles = []
+        for feed in feeds:
+            if feed["source"] == source:
+                existing_styles = feed["styles"]
+
+        # Check if a style with the same name exists
+        check_overwrite = False
+        for i, style in enumerate(existing_styles):
+            if style["file"] == style_code:
+                check_overwrite = True
+        
+        if check_overwrite == True:
+            overwrite = QMessageBox.question(
+                self.dlg,
+                "Bestand bestaat al",
+                f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            )
+            if overwrite == QMessageBox.StandardButton.No:
                 return
 
-            existing_styles = []
-            for feed in feeds:
-                if feed["source"] == source:
-                    existing_styles = feed["styles"]
-
-            # Check if a style with the same name exists
-            check_overwrite = False
-            for i, style in enumerate(existing_styles):
-                if style["file"] == style_code:
-                    check_overwrite = True
-            
-            if check_overwrite == True:
-                overwrite = QMessageBox.question(
-                    self.dlg,
-                    "Bestand bestaat al",
-                    f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
-                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                )
-                if overwrite == QMessageBox.StandardButton.No:
-                    return
-        else:
-            return
 
         # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
         # TODO: what about services where you define the styling when you send the request? remove and reload?
