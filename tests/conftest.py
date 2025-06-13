@@ -4,7 +4,8 @@ from unittest.mock import Mock
 import pytest
 from qgis.core import QgsApplication
 from qgis.gui import QgsLayerTreeView, QgsMapCanvas
-from qgis.PyQt.QtCore import QSettings
+from qgis.PyQt.QtCore import QSettings, Qt
+from qgis.PyQt.QtWidgets import QMainWindow, QDockWidget
 
 _singletons = {}
 
@@ -16,7 +17,21 @@ def qgis_app_initialized():
         app.initQgis()
         _singletons["app"] = app
 
+class MainWinWithDockArea(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self._docked_widgets = []
+
+    def dockWidgetArea(self, widget: QDockWidget):
+        return Qt.LeftDockWidgetArea
+
+    def addDockWidget(self, area, widget):
+        self._docked_widgets.append((area, widget))
+
 class QgisInterfaceMock():
+    def __init__(self):
+        self._main_win = MainWinWithDockArea()
+
     def __getattr__(self, name):
         def mock(*args, **kwargs):
             if name == "layerTreeView":
@@ -25,6 +40,12 @@ class QgisInterfaceMock():
                 return Mock()
             return None
         return mock
+    
+    def mainWindow(self):
+        return self._main_win
+
+    def addDockWidget(self, area, widget):
+        self._main_win.addDockWidget(area, widget)
     
 @pytest.fixture()
 def iface_mock():

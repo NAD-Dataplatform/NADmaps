@@ -24,8 +24,10 @@
 # General packages
 import getpass
 import os.path
-from qgis.core import QgsCoordinateReferenceSystem, QgsProject
-from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
+import time
+
+from qgis.core import QgsCoordinateReferenceSystem, QgsProject, QgsProcessingFeedback, QgsApplication
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox, QDockWidget
 
@@ -33,7 +35,6 @@ from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_O
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
-from .gui.nad_maps_popup import NADMapsPopup
 
 # from .lib.load_layers import LoadLayers ### LayerManager
 from .lib.layer import LayerManager
@@ -42,7 +43,6 @@ from .lib.style import StyleManager
 from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
-
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -63,7 +63,6 @@ class NADMaps():
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
-        self.popup = NADMapsPopup(parent=self.iface.mainWindow())
         self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
 
         if getpass.getuser() in ADMIN_USERNAMES:
@@ -94,10 +93,10 @@ class NADMaps():
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
 
-        self.style_manager = StyleManager(dlg=self.dlg, popup=self.popup, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
+        self.style_manager = StyleManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
         self.search_manager = SearchLocationManager(dlg=self.dlg, iface=self.iface, log=self.log)
         self.layer_manager = LayerManager(dlg=self.dlg, iface=self.iface, plugin_dir=self.plugin_dir, tr=self.tr, style_manager=self.style_manager, log=self.log)
-        self.thema_manager = ThemaManager(dlg=self.dlg, popup=self.popup, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
+        self.thema_manager = ThemaManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
 
         # Declare instance attributes
         self.actions = []
@@ -114,6 +113,15 @@ class NADMaps():
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
             QTimer.singleShot(3000, self.run)  # delay 3 seconds
+        
+        # parallel rendering
+        QSettings().setValue("/qgis/parallel_rendering", True)
+        threadcount = QThread.idealThreadCount()
+        QgsApplication.setMaxThreads(threadcount)
+        QSettings().setValue("/core/OpenClEnabled", True)
+
+
+
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
@@ -155,9 +163,7 @@ class NADMaps():
             
          
             self.setup_completed = True
-            
-        # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
-        #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+
 
         # init the values for the export settings
         self.init_export_comboboxes()
@@ -177,8 +183,15 @@ class NADMaps():
         if not hiddenDialog:
             self.dlg.show()
 
-        self.dlg.raise_()
-        self.dlg.activateWindow()
+            area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea: 
+                self.log("NADMaps dialog is floating or not in the right dock area, moving it to the right area.")
+                self.iface.mainWindow().removeDockWidget(self.dlg)
+                self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+                self.dlg.setFloating(False)
+
+            self.dlg.raise_()
+            self.dlg.activateWindow()
 
         # Zoom to standard area after render when no layer was active at startup
         self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
@@ -219,16 +232,16 @@ class NADMaps():
         self.dlg.loadStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
         self.dlg.removeStyleButton.clicked.connect(lambda: self.style_manager.delete_styling())
         self.dlg.removeStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
-        self.dlg.saveStyleButton.clicked.connect(lambda: self.style_manager.check_existing_style())
+        self.dlg.saveStyleButton.clicked.connect(lambda: self.style_manager.save_styling(self.selected_active_layers))
         self.dlg.saveStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
 
         self.dlg.saveThemaButton.setEnabled(False)
         self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
         self.dlg.saveThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(False, selected_active_layers = self.selected_active_layers)
+            lambda: self.thema_manager.save_thema(False, self.selected_active_layers)
         )
         self.dlg.saveAllThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(True, selected_active_layers = self.selected_active_layers)
+            lambda: self.thema_manager.save_thema(True, self.selected_active_layers)
         )
 
         self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
@@ -275,15 +288,13 @@ class NADMaps():
 
         self.dlg.stylingGroupBox.setEnabled(False)
 
-        self.popup.accept_button.clicked.connect(lambda: self.save_styling())
-        self.popup.accept_button.clicked.connect(lambda: self.style_overwrite(False))
-        self.popup.close_button.clicked.connect(lambda: self.style_overwrite(False))
-
         # update the information on the current selection of active layers
         self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
             self.get_selected_active_layers
         )
 
+        self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
+        self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 
 

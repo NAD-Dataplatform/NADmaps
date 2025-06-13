@@ -6,22 +6,21 @@ import json
 import hashlib
 from qgis.core import QgsMapLayer
 from qgis.PyQt.QtCore import Qt
+from qgis.PyQt.QtWidgets import QMessageBox
 
 class StyleManager:
     """
     Class to manage the styling of layers
     """
-    def __init__(self, dlg, popup, plugin_dir, working_dir, creator, log):
+    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
 
         assert dlg is not None, "StyleManager: dlg is None"
-        assert popup is not None, "StyleManager: popup is None"
         assert plugin_dir is not None, "StyleManager: plugin_dir is None"
         assert working_dir is not None, "StyleManager: working_dir is None"
         assert creator is not None, "StyleManager: creator is None"
         assert log is not None, "StyleManager: log is None"
         
         self.dlg = dlg
-        self.popup = popup
         self.creator = creator
         self.log = log
 
@@ -152,63 +151,16 @@ class StyleManager:
 
         # TODO naam blijft staan in de lijst van de lagen
 
-    def style_overwrite(self, show_popup: bool):
+    def save_styling(self, selected_layers):
         """
         Save the styling of the current layer to a qml file
-
-        :param show_popup: Show or close the popup asking about overwriting an existing style. Also disables the main dialogue window.
-        :type show_popup: bool
         """
-        if show_popup:
-            self.popup.show()
-            self.dlg.setEnabled(False)
-        else:
-            self.popup.hide()
-            self.dlg.setEnabled(True)
-
-    def check_existing_style(self):
-        """Check if a style already exists for this layer with the same name"""
-        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
-        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-
         # enable or disable the styling-functions
-        if nr_of_selected_rows == 1:
-            # first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
-            self.layer_to_style = self.dlg.activeMapListView.selectedIndexes()[0].data(
-                Qt.ItemDataRole.UserRole
-            )
-            style_name = self.dlg.saveStylingLineEdit.text()
-            if not style_name == "":
-                source = self.layer_to_style.source()
-                style_code = self.style_code(style_name, source)
-
-                try:
-                    with open(self.plugin_styling_path, "r", encoding="utf-8") as feedsjson:
-                        feeds = json.load(feedsjson)
-                except:
-                    return
-
-                existing_styles = []
-                for feed in feeds:
-                    if feed["source"] == source:
-                        existing_styles = feed["styles"]
-
-                # Check if a style with the same name exists
-                check_overwrite = False
-                for i, style in enumerate(existing_styles):
-                    if style["file"] == style_code:
-                        check_overwrite = True
-                
-                if check_overwrite == False:
-                    self.save_styling()
-                else:
-                    # popup
-                    self.style_overwrite(True)
-
-    def save_styling(self):
-        """
-        Save the styling of the current layer to a qml file
-        """
+        if len(selected_layers) != 1:
+            return
+        else:
+            layer = selected_layers[0]
+        
         if self.creator == "Plugin":
             json_path = self.plugin_styling_path
             qml_folder = self.plugin_styling_files_path
@@ -216,10 +168,43 @@ class StyleManager:
             json_path = self.user_styling_path
             qml_folder = self.user_styling_files_path
 
+        style_name = self.dlg.saveStylingLineEdit.text()
+        if style_name == "":
+            return
+        
+        source = layer.source()
+        style_code = self.style_code(style_name, source)
+
+        try:
+            with open(json_path, "r", encoding="utf-8") as feedsjson:
+                feeds = json.load(feedsjson)
+        except:
+            return
+
+        existing_styles = []
+        for feed in feeds:
+            if feed["source"] == source:
+                existing_styles = feed["styles"]
+
+        # Check if a style with the same name exists
+        check_overwrite = False
+        for i, style in enumerate(existing_styles):
+            if style["file"] == style_code:
+                check_overwrite = True
+        
+        if check_overwrite == True:
+            overwrite = QMessageBox.question(
+                self.dlg,
+                "Bestand bestaat al",
+                f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            )
+            if overwrite == QMessageBox.StandardButton.No:
+                return
+
+
         # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
         # TODO: what about services where you define the styling when you send the request? remove and reload?
-        layer = self.layer_to_style
-        style_name = self.dlg.saveStylingLineEdit.text()
         self.dlg.saveStylingLineEdit.clear()
         source = layer.source()
         layer_name = layer.name()

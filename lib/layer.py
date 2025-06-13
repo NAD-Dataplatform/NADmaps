@@ -10,7 +10,8 @@ from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 from qgis.PyQt.QtCore import Qt, QRegularExpression, QSortFilterProxyModel, QItemSelectionModel
 from qgis.PyQt.QtWidgets import QAbstractItemView
 from qgis.core import (Qgis, QgsProject, QgsLayerTreeLayer, QgsRasterLayer,
-                       QgsVectorLayer, QgsVectorTileLayer, QgsCoordinateReferenceSystem)
+                       QgsVectorLayer, QgsVectorTileLayer, QgsCoordinateReferenceSystem,
+                       QgsFeatureRequest)
 
 
 class LayerManager():
@@ -79,6 +80,11 @@ class LayerManager():
             "api features": "top",
             "api tiles": "bottom",
         }
+        
+        # bounding polygon
+        # self.bound_file_path = "C:\Users\svanderhoeven\Documents\BGT Inlooptool 2024\gemeentegrens\naam_Delft.gpkg"
+        # Get the polygon layer
+        # polygon_name = "naam_Delft"
 
     ############################# Search in all layers list ######################
 
@@ -286,8 +292,9 @@ class LayerManager():
         elif servicetype == "wmts":
             return self.create_wmts_layer(layername, title, url, servicetype)
         elif servicetype == "wfs":
-            layer = self.create_wfs_layer(layername, title, url)
-            return layer
+            return self.create_wfs_layer(layername, title, url)
+            # layer = self.create_wfs_layer(layername, title, url)
+            # return layer
         elif servicetype == "wcs":
             return self.create_wcs_layer(layername, title, url)
         elif servicetype == "api features":
@@ -305,8 +312,11 @@ class LayerManager():
 
     def create_wfs_layer(self, layername, title, url):
         uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
-        return QgsVectorLayer(uri, title, "wfs")
+        # uri = f" pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
 
+        # pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Maassluis' version='auto'
+        return QgsVectorLayer(uri, title, "wfs")
+        
     def create_wms_layer(self, layername, title, url):
         imgformat = self.current_layer["imgformats"].split(",")[0]
         crs = "EPSG:28992"
