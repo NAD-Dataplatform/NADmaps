@@ -4,7 +4,6 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 import os.path
-import shapely.wkt
 from .constants import PLUGIN_NAME
 
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
