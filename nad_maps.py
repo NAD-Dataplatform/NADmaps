@@ -174,8 +174,15 @@ class NADMaps():
         if not hiddenDialog:
             self.dlg.show()
 
-        self.dlg.raise_()
-        self.dlg.activateWindow()
+            area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea: 
+                self.log("NADMaps dialog is floating or not in the right dock area, moving it to the right area.")
+                self.iface.mainWindow().removeDockWidget(self.dlg)
+                self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+                self.dlg.setFloating(False)
+
+            self.dlg.raise_()
+            self.dlg.activateWindow()
 
 #########################################################################################
 #################################  Setup functions ######################################
