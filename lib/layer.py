@@ -188,9 +188,19 @@ class LayerManager():
 
     def load_layer_list(self):
         self.layers_nad = []
-        layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
-        with open(layer_path, "r", encoding="utf-8") as f:
-            self.layers_nad.extend(json.load(f))
+        # add a new json file with layer description to the resources/layers folder
+        self.layer_files = [
+            "layers-nad.json", # eigen kaartlagen
+            "layers-gwsw.json", # gwsw
+            "layers-pzh.json", # provincie zuid-holland
+            "layers-klimaatatlas.json", # klimaatatlas
+            "layers-pdok.json", # pdok
+        ]
+        
+        for file in self.layer_files:
+            layer_path = os.path.join(self.plugin_dir, "resources/layers", file)
+            with open(layer_path, "r", encoding="utf-8") as f:
+                self.layers_nad.extend(json.load(f))
 
         for layer in self.layers_nad:
             if isinstance(layer["name"], str):

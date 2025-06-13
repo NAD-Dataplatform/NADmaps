@@ -1,0 +1,27 @@
+[
+    {
+        "name": "NNN",
+        "title": "Natuurnetwerk Nederland",
+        "abstract": "Zuid-Hollandse deel van de Natura 2000, het samenhangend netwerk van beschermde natuurgebieden in de Europese Unie bestaande uit Vogelrichtlijn- en Habitatrichtlijngebieden. Natura 2000-gebieden zijn een samenvoeging van beide en de daarin gelegen beschermde natuurmonumenten.",
+        "styles": [
+            {
+                "title": "Natuurnetwerk Nederland",
+                "name": "Landelijk_gebied_algemeen_Natuurnetwerk_Nederland"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Het Zuid-Hollands Programa Landelijk Gebied",
+        "service_abstract": "Het GIS-bestand is een extract van het beschermd gebiedenregister dat door Alterra in opdracht van de Programmadirectie Natura 2000 van het ministerie van EZ wordt beheerd en geactualiseerd.",
+        "service_type": "wms"
+    },
+    {
+        "name": "landelijk_gebied:NNN",
+        "title": "Natuurnetwerk Nederland",
+        "abstract": "Wijkgrenzen",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Het Zuid-Hollands Programa Landelijk Gebied",
+        "service_abstract": "Het Bestand Wijk- en Buurtkaart 2024 bevat de geometrie van alle gemeenten, wijken en buurten in Nederland met als attribuut een aantal statistische kerncijfers. De begrenzingen van wijken en buurten zijn gebaseerd op wat de gemeenten aan het CBS doorgeven. De gemeentegrens is afkomstig uit de BRK van het Kadaster. De land-watergrens uit het Bestand Bodemgebruik 2017. Deze eerste versie bevat minder kerncijfers dan in eerdere jaren. In het najaar 2025 volgt een update.",
+        "service_type": "wfs"
+    }
+]

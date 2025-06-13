@@ -1,0 +1,306 @@
+[
+    {
+        "name": "waterdiepte_neerslag_70mm_2uur",
+        "title": "Waterdiepte: 70mm in 2 uur",
+        "abstract": "waterdiepte_neerslag_70mm_2uur",
+        "styles": [
+            {
+                "title": "waterdiepte_neerslag_1-100_r_wateroverlast",
+                "name": "waterdiepte_neerslag_1-100_r_wateroverlast"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Wateroverlast, Klimaateffectatlas, 2025",
+        "service_abstract": "De maximale waterdiepte die, volgens een hydraulisch model, op een  plek kan optreden als gevolg van hevige neerslag. Om beter zicht te krijgen op het risico van kortdurende wateroverlast binnen Nederland zijn in het voorjaar van 2018 kaarten ontwikkeld. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/waterdiepte-bij-kortdurende-hevige-neerslag",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterdiepte_neerslag_140mm_2uur",
+        "title": "Waterdiepte: 140mm in 2 uur",
+        "abstract": "waterdiepte_neerslag_140mm_2uur",
+        "styles": [
+            {
+                "title": "waterdiepte_neerslag_1-1000_r_wateroverlast",
+                "name": "waterdiepte_neerslag_1-1000_r_wateroverlast"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Wateroverlast, Klimaateffectatlas, 2025",
+        "service_abstract": "De maximale waterdiepte die, volgens een hydraulisch model, op een  plek kan optreden als gevolg van hevige neerslag. Om beter zicht te krijgen op het risico van kortdurende wateroverlast binnen Nederland zijn in het voorjaar van 2018 kaarten ontwikkeld. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/waterdiepte-bij-kortdurende-hevige-neerslag",
+        "service_type": "wms"
+    },
+    {
+        "name": "kans_grondwateroverlast_2050hoog",
+        "title": "Grondwateroverlast",
+        "abstract": "kans_grondwateroverlast_2050hoog",
+        "styles": [
+            {
+                "title": "kans_grondwateroverlast_wateroverlast",
+                "name": "kans_grondwateroverlast_wateroverlast"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Wateroverlast, Klimaateffectatlas, 2025",
+        "service_abstract": "De kaart toont de mate waarin de kans op grondwateroverlast voor stedelijke functies (gebouwen, infrastructuur, tuinen en groenvoorziening) toeneemt tussen nu en 2050. De kaart zegt alleen iets over de verandering tot 2050 en niets over het voorkomen van overlast in de huidige situatie. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/grondwateroverlast",
+        "service_type": "wms"
+    },
+    {
+        "name": "stedelijke_infiltratiekansen",
+        "title": "Infiltratiekansen",
+        "abstract": "stedelijke_infiltratiekansen",
+        "styles": [
+            {
+                "title": "Stedelijke_Infiltratiekansen",
+                "name": "Stedelijke_Infiltratiekansen"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Wateroverlast, Klimaateffectatlas, 2025",
+        "service_abstract": "De kaart geeft een eerste indruk van de infiltratiekansen in een wijk of stad. De kans is berekend op basis van een combinatie van de infiltratiecapaciteit, bergingscapaciteit en helling maaiveld. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/stedelijk-infiltratiekansen",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2050laag",
+        "title": "Bodemdaling: sterke daling 2020-2050",
+        "abstract": "bodemdaling_2020_2050laag",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Droogte, Klimaateffectatlas, 2025",
+        "service_abstract": "Hoe sterk de bodem in de toekomst daalt, hangt vooral af van hoe sterk het klimaat opwarmt én van het peilbeleid. Peilbeleid en klimaatverandering zijn verwerkt in een laag en een hoog scenario: deze twee scenario's geven twee uitersten weer die goed de bandbreedte afdekken waarbinnen bodemdaling waarschijnlijkheid gaat plaatsvinden. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/bodemdalingsvoorspellings-kaarten",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2050hoog",
+        "title": "Bodemdaling: milde daling 2020-2050",
+        "abstract": "bodemdaling_2020_2050hoog",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Droogte, Klimaateffectatlas, 2025",
+        "service_abstract": "Hoe sterk de bodem in de toekomst daalt, hangt vooral af van hoe sterk het klimaat opwarmt én van het peilbeleid. Peilbeleid en klimaatverandering zijn verwerkt in een laag en een hoog scenario: deze twee scenario's geven twee uitersten weer die goed de bandbreedte afdekken waarbinnen bodemdaling waarschijnlijkheid gaat plaatsvinden. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/bodemdalingsvoorspellings-kaarten",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2100laag",
+        "title": "Bodemdaling: milde daling 2020-2100",
+        "abstract": "bodemdaling_2020_2100laag",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Droogte, Klimaateffectatlas, 2025",
+        "service_abstract": "Hoe sterk de bodem in de toekomst daalt, hangt vooral af van hoe sterk het klimaat opwarmt én van het peilbeleid. Peilbeleid en klimaatverandering zijn verwerkt in een laag en een hoog scenario: deze twee scenario's geven twee uitersten weer die goed de bandbreedte afdekken waarbinnen bodemdaling waarschijnlijkheid gaat plaatsvinden. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/bodemdalingsvoorspellings-kaarten",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2100hoog",
+        "title": "Bodemdaling: sterke daling 2020-2100",
+        "abstract": "bodemdaling_2020_2100hoog",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Droogte, Klimaateffectatlas, 2025",
+        "service_abstract": "Hoe sterk de bodem in de toekomst daalt, hangt vooral af van hoe sterk het klimaat opwarmt én van het peilbeleid. Peilbeleid en klimaatverandering zijn verwerkt in een laag en een hoog scenario: deze twee scenario's geven twee uitersten weer die goed de bandbreedte afdekken waarbinnen bodemdaling waarschijnlijkheid gaat plaatsvinden. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/bodemdalingsvoorspellings-kaarten",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_ophoging",
+        "title": "Bodemdaling scenario: door ophoging",
+        "abstract": "bodemdaling_ophoging",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050",
+                "name": "bodemdaling_2020_2050"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Droogte, Klimaateffectatlas, 2025",
+        "service_abstract": "Het belasten van slappe grond, waarna er ook consolidatie en kruip optreedt. De belasting vindt bijvoorbeeld plaats bij het ophogen van het maaiveld bij bouwprojecten of als compensatie van eerdere bodemdaling. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/bodemdalingsvoorspellings-kaarten",
+        "service_type": "wms"
+    },
+    {
+        "name": "Afstand_tot_koelte",
+        "title": "Afstand tot koelte",
+        "abstract": "Afstand van panden tot koelte",
+        "styles": [
+            {
+                "title": "Afstand_tot_koelte",
+                "name": "Afstand_tot_koelte"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Hitte, Klimaateffectatlas, 2025",
+        "service_abstract": "Deze kaart laat de afstand zien tussen gebouwen en de koele plek die daar het dichtste bij ligt. Hoe korter de afstand, hoe beter. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/afstand-tot-koeltekaart",
+        "service_type": "wms"
+    },
+    {
+        "name": "opwarming_oppervlaktewater_huidig",
+        "title": "Opwarming oppervlaktewater: huidig",
+        "abstract": "opwarming_oppervlaktewater_huidig",
+        "styles": [
+            {
+                "title": "opwarming_oppervlaktewater_huidig_hitte",
+                "name": "opwarming_oppervlaktewater_huidig_hitte"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "Voor elk jaar is de maximale lengte (in dagen) van periodes bepaald waarin de watertemperatuur zonder onderbreking hoger is dan 20°C. De gemiddelde maximale periode is weergegeven op de kaart. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "opwarming_oppervlaktewater_2050hoog",
+        "title": "Opwarming oppervlaktewater: 2050",
+        "abstract": "opwarming_oppervlaktewater_2050hoog",
+        "styles": [
+            {
+                "title": "opwarming_oppervlaktewater_2050_hitte",
+                "name": "opwarming_oppervlaktewater_2050_hitte"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "Voor elk jaar is de maximale lengte (in dagen) van periodes bepaald waarin de watertemperatuur zonder onderbreking hoger is dan 20°C. De gemiddelde maximale periode is weergegeven op de kaart. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_huidig",
+        "title": "Zoutvracht: huidig",
+        "abstract": "Zoutvracht uit grondwater",
+        "styles": [
+            {
+                "title": "Zoutvracht_huidig",
+                "name": "Zoutvracht_huidig"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "De zoutvracht is de hoeveelheid zout die vanuit het grondwater uitstroomt in het oppervlaktewater. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_05m",
+        "title": "Zoutvracht: 0,5m zeespiegelstijging",
+        "abstract": "Oppervlaktewaterverzilting",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "De zoutvracht is de hoeveelheid zout die vanuit het grondwater uitstroomt in het oppervlaktewater. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_1m",
+        "title": "Zoutvracht: 1m zeespiegelstijging",
+        "abstract": "Oppervlaktewaterverzilting",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "De zoutvracht is de hoeveelheid zout die vanuit het grondwater uitstroomt in het oppervlaktewater. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_3m",
+        "title": "Zoutvracht: 3m zeespiegelstijging",
+        "abstract": "Oppervlaktewaterverzilting",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Waterkwaliteit, Klimaateffectatlas, 2025",
+        "service_abstract": "De zoutvracht is de hoeveelheid zout die vanuit het grondwater uitstroomt in het oppervlaktewater. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "bknsn_hoofdklasse",
+        "title": "Natuurlijk Systeem: Hoofdklasse",
+        "abstract": "bknsn_hoofdklasse",
+        "styles": [
+            {
+                "title": "bknsn_hoofdklasse",
+                "name": "bknsn_hoofdklasse"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Basiskaart, Klimaateffectatlas, 2025",
+        "service_abstract": "De Basiskaart Natuurlijk Systeem helpt je om inzicht te krijgen in het natuurlijk systeem. Je komt te weten uit welke landschapstypen en -eenheden je gebied bestaat, welke klimaateffecten daar een rol kunnen spelen en wat voor kansen er liggen om het gebied klimaatbestendiger te maken. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "bknsn_subklasse",
+        "title": "Natuurlijk Systeem: Subklasse",
+        "abstract": "bknsn_subklasse",
+        "styles": [
+            {
+                "title": "bknsn_subklasse",
+                "name": "bknsn_subklasse"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Basiskaart, Klimaateffectatlas, 2025",
+        "service_abstract": "De Basiskaart Natuurlijk Systeem helpt je om inzicht te krijgen uit welke landschapstypen en -eenheden je gebied bestaat, welke klimaateffecten daar een rol kunnen spelen en wat voor kansen er liggen om het gebied klimaatbestendiger te maken. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    },
+    {
+        "name": "bkns_subklasse_2023_dreigingen_kansen",
+        "title": "Natuurlijk Systeem: Dreigingen en Kansen",
+        "abstract": "bkns_subklasse_2023_dreigingen_kansen",
+        "styles": [
+            {
+                "title": "BKNS_subklasse_2023_dreigingen_kansen",
+                "name": "BKNS_subklasse_2023_dreigingen_kansen"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "service_title": "Basiskaart, Klimaateffectatlas, 2025",
+        "service_abstract": "De Basiskaart Natuurlijk Systeem helpt je om inzicht te krijgen uit welke landschapstypen en -eenheden je gebied bestaat, welke klimaateffecten daar een rol kunnen spelen en wat voor kansen er liggen om het gebied klimaatbestendiger te maken. Voor meer informatie zie https://www.klimaateffectatlas.nl/nl/",
+        "service_type": "wms"
+    }
+]
