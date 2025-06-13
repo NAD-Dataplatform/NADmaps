@@ -108,6 +108,7 @@ class NADMaps():
         self.setup_completed = False
         self.current_layer = None
         self.selected_active_layers = None
+        self.zoom_completed = False
 
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
@@ -157,10 +158,12 @@ class NADMaps():
 
             # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            #QgsProject.instance().setCrs(projectCrs) #TODO move to layer_manager (omgang met layers)
+            #QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+            
+         
             self.setup_completed = True
-        
+
 
         # init the values for the export settings
         self.init_export_comboboxes()
@@ -170,6 +173,12 @@ class NADMaps():
         # init autostart checkbox
         self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", "false") == "true")
 
+        #init standard area
+        self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
+        
+        #init autoload standard area checkbox
+        self.dlg.checkBox_StandardArea.setChecked(QSettings().value("NADmaps/autoload_standardarea", False, type=bool))
+        
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
@@ -184,10 +193,35 @@ class NADMaps():
             self.dlg.raise_()
             self.dlg.activateWindow()
 
+        # Zoom to standard area after render when no layer was active at startup
+        self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
+
 #########################################################################################
 #################################  Setup functions ######################################
 #########################################################################################
 
+    #Check if zoom should be executed
+    def check_zoom_required(self):
+        #Load settingsinfo
+        zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False)
+        standard_area = QSettings().value("NADmaps/standard_area", "")
+        #Load layer info
+        # TODO: variabele 'active_layers' opnemen in __init__ en updaten na layer change/ render complete
+        root = QgsProject.instance().layerTreeRoot()
+        layers = root.layerOrder()
+        if self.zoom_completed == True:
+            return False, None
+        elif zoom_checkbox == True and standard_area != "" and len(layers) >= 1:
+            return True, standard_area
+        
+        return False, None
+
+    # Zoom to standard area     
+    def check_and_execute_zoom(self):
+        zoom_required, standard_area = self.check_zoom_required()
+        if zoom_required == True:
+            self.search_manager.get_lookup_id_and_zoom(standard_area)
+            self.zoom_completed = True
 
     def setup_interactions(self):
         """
@@ -224,6 +258,16 @@ class NADMaps():
         )
         self.dlg.checkBox_AutoStart.stateChanged.connect(
             lambda: QSettings().setValue("NADmaps/autostart", "true" if self.dlg.checkBox_AutoStart.isChecked() else "false"))
+        
+        # Save button for standard work area
+        self.dlg.pushButton_SaveStandardArea.clicked.connect(
+            lambda: self.set_standard_area()
+        )
+
+        # Save checkbox for autoload standard work area
+        self.dlg.checkBox_StandardArea.stateChanged.connect(
+            lambda: self.set_autoload_checkbox()
+        )
 
         # Canvas interactions
         self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
@@ -287,6 +331,16 @@ class NADMaps():
 
         self.working_dir = path
         self.dlg.lineEditFilePath.setText(path)
+
+    def set_standard_area(self):
+        self.dlg.lineEdit_StandardArea.setText(self.dlg.zoomLineEdit.text()) #Insert search area text into protected field
+        QSettings().setValue("NADmaps/standard_area", self.dlg.zoomLineEdit.text()) #Save the standard area to the settings
+
+
+    def set_autoload_checkbox(self):
+        QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False) 
+            # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
+        # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
 
     def get_selected_active_layers(self):
         """

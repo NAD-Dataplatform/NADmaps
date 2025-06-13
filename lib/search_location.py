@@ -130,6 +130,8 @@ class SearchLocationManager:
 
     def zoom_button(self):
         search_text = self.dlg.zoomLineEdit.text()
+        if search_text == "":
+            return
         result = self.suggest_query(search_text, self.create_type_filter())[0]["weergavenaam"]
         self.dlg.zoomLineEdit.setText(result)
         suggest_text = self.dlg.zoomLineEdit.text()
@@ -187,7 +189,30 @@ class SearchLocationManager:
         content_obj = get_request_json(url)
         result = content_obj["response"]["docs"]
         return result
+    
 
+    def get_lookup_id_and_zoom(
+            self,
+            query,
+            type_filter=TypeFilter.new_with_default_values(),
+            rows=1, #Kan op 1 gezet worden?
+        ):
+        if len(type_filter.types) == 0:
+            return []
+        # TODO: add fields filter, with fl=id,geometrie_ll/rd or *
+        query = self.url_encode_query_string(query)
+        query_string = f"q={query}&rows={rows}&fq={type_filter}"
+        url = f"{SERVICE_ENDPOINT}/suggest?{query_string}"
+        content_obj = get_request_json(url)
+        lookup_id = content_obj["response"]["docs"][0]["id"] #list of 1 dict > extract dict > extract lookup_id
+        try:
+            object = self.lookup_object(lookup_id, Projection.EPSG_28992)
+        except Exception as e:
+            self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
+
+        if object is None or object == "":
+            return
+        self.zoom_to_result(object)
 
     def toolbar_search_get_suggestions(self):
         def create_model(_suggestions):
@@ -213,8 +238,6 @@ class SearchLocationManager:
         self.dlg.zoomLineEdit.show()
         self.completer.complete()
         self.completer.activated.connect(self.on_toolbar_suggest_activated)
-        return
-
 
     def on_toolbar_suggest_activated(self, suggest_text):
         object = None
@@ -230,7 +253,7 @@ class SearchLocationManager:
         except Exception as e:
             self.log(f"Failed to lookup an object in the search and zoom function. Error message: {e}")
 
-        if object is None:
+        if object is None or object == "":
             return
         self.zoom_to_result(object)
 
@@ -310,5 +333,3 @@ class SearchLocationManager:
         if re.match(r"^POINT", data["wkt_geom"]):
             self.iface.mapCanvas().zoomScale(z)
         self.iface.mapCanvas().refresh()
-
-
