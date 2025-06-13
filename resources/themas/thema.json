@@ -54,22 +54,29 @@
 		]
 	},
 	{
-		"thema_name": "test",
+		"thema_name": "Gemalen",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "Rioolleiding",
-				"source": "crs=EPSG:28992&layers=BeheerLeiding&styles=GWSW_Leiding&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "Raster"
+				"name": "Waterschap: Rioolput",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'",
+				"styling": "Gemalen",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
 			},
 			{
-				"name": "Waterdiepte: 140mm in 2 uur",
-				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_140mm_2uur&styles=waterdiepte_neerslag_1-1000_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
-				"styling": "",
-				"provider_type": "wms",
-				"layer_type": "Raster"
+				"name": "Gemeente: Rioolput",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "Gemalen",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
+			},
+			{
+				"name": "Rioolleiding",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"styling": "Persleidingen",
+				"provider_type": "wfs",
+				"layer_type": "Vector"
 			}
 		]
 	}

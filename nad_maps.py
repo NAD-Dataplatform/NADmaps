@@ -24,9 +24,10 @@
 # General packages
 import getpass
 import os.path
+import time
 
-from qgis.core import QgsCoordinateReferenceSystem, QgsProject, QgsProcessingFeedback
-from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer
+from qgis.core import QgsCoordinateReferenceSystem, QgsProject, QgsProcessingFeedback, QgsApplication
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox, QDockWidget
 
@@ -42,7 +43,6 @@ from .lib.style import StyleManager
 from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
-
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -112,6 +112,15 @@ class NADMaps():
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
             QTimer.singleShot(3000, self.run)  # delay 3 seconds
+        
+        # parallel rendering
+        QSettings().setValue("/qgis/parallel_rendering", True)
+        threadcount = QThread.idealThreadCount()
+        QgsApplication.setMaxThreads(threadcount)
+        QSettings().setValue("/core/OpenClEnabled", True)
+
+
+
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
@@ -152,8 +161,6 @@ class NADMaps():
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.setup_completed = True
         
-        # if self.dlg not in self.iface.mainWindow().findChildren(QDockWidget):
-        #     self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
         # init the values for the export settings
         self.init_export_comboboxes()
