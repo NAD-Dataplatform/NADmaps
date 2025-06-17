@@ -4,6 +4,12 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 import os.path
+from owslib.wms import WebMapService
+from owslib.wfs import WebFeatureService
+# import urllib2, 
+import re
+import requests
+import xml.etree.ElementTree as ET
 from .constants import PLUGIN_NAME
 
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
@@ -187,6 +193,47 @@ class LayerManager():
     ############################# All web layer list #############################
 
     def load_layer_list(self):
+
+        # wms = WebMapService('https://service.pdok.nl/brt/topraster/wms/v1_0?', version='1.3.0')
+        # wms_list = list(wms.contents)
+        # self.log(wms_list)
+        # 
+        # wfs = WebFeatureService(url='https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0', version='3.0')
+        # self.log(f"wfs is {wfs}")
+        # wfs_title = list(wfs.contents)
+        # self.log(f"title is {wfs_title}")
+
+        # url = 'https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0?request=GetCapabilities&service=WFS'
+        # # file = urllib.request.urlopen(url)
+        # file = requests.get(url)
+        # # data = file.read()
+        # tree = ET.parse(file.content)
+        # root = tree.getroot()
+        # lst = root.iter("FeatureType")
+        # for child in lst:
+        #     self.log(child.find("Name"))
+            # Name = child.find('FeatureType').text
+            # Title = child.get('Title')
+            # self.log(f"{Name}: {Title}")
+
+        # tree = ET.parse(data)
+        # root2 = ET.fromstring(str(data))
+        # self.log(root2[0].tag)
+
+        # string = '<FeatureType><Name>(.+?)</Name><Title>'
+        # for word in data.split():
+        #     if re.search(string, str(word)):
+        #         self.log(f"first line: {word}")
+
+        #     layer = re.search(string, word)
+        #     name = layer.group(1)
+        #     self.log(f"name is {name}")
+            # if layer is not None:
+            #     uri = "https://geo.barentswatch.no/geoserver/bw/ows?srsname=EPSG:4326&typename={name}&version=1.0.0&request=vlayer=QgsVectorLayer".format(name = layer.group(1))
+            #     vlayer = QgsVectorLayer(uri, layer.group(1), "WFS")
+            #     QgsMapLayerRegistry.instance().addMapLayer(vlayer)
+
+
         self.layers_nad = []
         # add a new json file with layer description to the resources/layers folder
         self.layer_files = [
