@@ -451,7 +451,7 @@ class LayerManager:
         return QgsRasterLayer(uri, title, "wcs")
 
     def create_oaf_layer(self, layername, title, url):
-        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{self.maxnumfeatures}'"
+        uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{self.maxnumfeatures + 1}'"
         return QgsVectorLayer(uri, title, "OAPIF")
 
     def build_tileset_url(self, url, tileset_id, for_request):

@@ -964,7 +964,7 @@
           <item>
            <widget class="QLabel" name="label_MaxNumFeatures">
             <property name="text">
-             <string>Maximum aantal te laden objecten:</string>
+             <string>Maximum aantal te laden objecten (in stappen van 100):</string>
             </property>
            </widget>
           </item>
