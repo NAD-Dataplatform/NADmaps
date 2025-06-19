@@ -212,9 +212,9 @@ class LayerManager():
         # lst = root.iter("FeatureType")
         # for child in lst:
         #     self.log(child.find("Name"))
-            # Name = child.find('FeatureType').text
-            # Title = child.get('Title')
-            # self.log(f"{Name}: {Title}")
+        #     Name = child.find('FeatureType').text
+        #     Title = child.get('Title')
+        #     self.log(f"{Name}: {Title}")
 
         # tree = ET.parse(data)
         # root2 = ET.fromstring(str(data))
