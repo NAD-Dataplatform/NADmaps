@@ -165,8 +165,17 @@ class NADMaps:
         self.zoom_completed = False
 
         # Check if the autostart option is set to true in the settings
+        self.autostart_triggered = False
+
         if QSettings().value("NADmaps/autostart", "false") == "true":
-            QTimer.singleShot(3000, self.run)  # delay 3 seconds
+            self.log("Autostart is enabled...")
+            task_mgr = QgsApplication.taskManager()
+            task_mgr.allTasksFinished.connect(self.safe_autostart)
+            # ^ In case a task is already running, this will trigger the autostart
+
+            if not self.autostart_triggered:
+                # Fallback timer in case no tasks are running
+                QTimer.singleShot(1500, self.safe_autostart)
 
         # parallel rendering
         QSettings().setValue("/qgis/parallel_rendering", True)
@@ -188,6 +197,27 @@ class NADMaps:
     #########################################################################################
     ####################  Run main script to initiate when NAD button is pressed ############
     #########################################################################################
+
+    def safe_autostart(self):
+        try:
+            self.log("Running autostart...")
+            self.run(hiddenDialog=True)  # Delay the UI part
+            QTimer.singleShot(1500, self.show_dialog)
+            self.autostart_triggered = True
+            self.log("Autostart completed successfully.")
+        except Exception as e:
+            self.log(f"Autostart failed: {e}")
+
+    def show_dialog(self):
+        self.log("Showing NADMaps dialog after short delay.")
+        self.dlg.show()
+        area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+        if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
+            self.iface.mainWindow().removeDockWidget(self.dlg)
+            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+            self.dlg.setFloating(False)
+        self.dlg.raise_()
+        self.dlg.activateWindow()
 
     def run(self, hiddenDialog=False):
         """Run method that performs all the real work"""
@@ -240,19 +270,7 @@ class NADMaps:
 
         # show the dialog
         if not hiddenDialog:
-            self.dlg.show()
-
-            area = self.iface.mainWindow().dockWidgetArea(self.dlg)
-            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
-                self.log(
-                    "NADMaps dialog is floating or not in the right dock area, moving it to the right area."
-                )
-                self.iface.mainWindow().removeDockWidget(self.dlg)
-                self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-                self.dlg.setFloating(False)
-
-            self.dlg.raise_()
-            self.dlg.activateWindow()
+            self.show_dialog()
 
         # Zoom to standard area after render when no layer was active at startup
         self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
