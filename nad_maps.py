@@ -21,17 +21,36 @@
  *                                                                         *
  ***************************************************************************/
 """
+
 # General packages
 import getpass
 import os.path
 import time
 
-from qgis.core import QgsCoordinateReferenceSystem, QgsProject, QgsProcessingFeedback, QgsApplication
+from qgis.core import (
+    QgsCoordinateReferenceSystem,
+    QgsProject,
+    QgsProcessingFeedback,
+    QgsApplication,
+)
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction, QFileDialog, QSizePolicy, QMessageBox, QDockWidget
+from qgis.PyQt.QtWidgets import (
+    QAction,
+    QFileDialog,
+    QSizePolicy,
+    QMessageBox,
+    QDockWidget,
+)
 
-from .lib.constants import PLUGIN_NAME, ADMIN_USERNAMES, PAPER_OPTIONS, FORMAT_OPTIONS, PLACEMENT_OPTIONS, PRINT_QUALITY_OPTIONS
+from .lib.constants import (
+    PLUGIN_NAME,
+    ADMIN_USERNAMES,
+    PAPER_OPTIONS,
+    FORMAT_OPTIONS,
+    PLACEMENT_OPTIONS,
+    PRINT_QUALITY_OPTIONS,
+)
 
 from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
@@ -48,7 +67,8 @@ from .lib.search_location import SearchLocationManager
 ####################  Run main script to initiate when NAD button is pressed ############
 #########################################################################################
 
-class NADMaps():
+
+class NADMaps:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -71,12 +91,17 @@ class NADMaps():
             self.creator = getpass.getuser()
 
         # initialize the working directory from settings
-        self.working_dir = QSettings().value('NADmaps/working_dir')
+        self.working_dir = QSettings().value("NADmaps/working_dir")
         if self.working_dir in ["", None]:
-            self.working_dir = QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", "")
-            if self.working_dir in ["", None]: # check if still empty
-                self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1) # set warning message          
-        
+            self.working_dir = QFileDialog.getExistingDirectory(
+                self.dlg, "Selecteer een werkmap", ""
+            )
+            if self.working_dir in ["", None]:  # check if still empty
+                self.log(
+                    "Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.",
+                    1,
+                )  # set warning message
+
         os.makedirs(self.working_dir, exist_ok=True)
         os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
         os.makedirs(os.path.join(self.working_dir, "styling\\qml_files"), exist_ok=True)
@@ -85,22 +110,51 @@ class NADMaps():
         QSettings().setValue("NADmaps/working_dir", self.working_dir)
         self.dlg.lineEditFilePath.setText(self.working_dir)
 
-        self.user_styling_path = os.path.join(self.working_dir, "styling", "styling.json")
-        self.user_styling_files_path = os.path.join(self.working_dir, "styling", "qml_files")
-        self.plugin_styling_path = os.path.join(self.plugin_dir, "resources", "styling", "styling.json")
-        self.plugin_styling_files_path = os.path.join(self.plugin_dir, "resources", "styling", "qml_files")
+        self.user_styling_path = os.path.join(
+            self.working_dir, "styling", "styling.json"
+        )
+        self.user_styling_files_path = os.path.join(
+            self.working_dir, "styling", "qml_files"
+        )
+        self.plugin_styling_path = os.path.join(
+            self.plugin_dir, "resources", "styling", "styling.json"
+        )
+        self.plugin_styling_files_path = os.path.join(
+            self.plugin_dir, "resources", "styling", "qml_files"
+        )
 
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
 
-        self.style_manager = StyleManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
-        self.search_manager = SearchLocationManager(dlg=self.dlg, iface=self.iface, log=self.log)
-        self.layer_manager = LayerManager(dlg=self.dlg, iface=self.iface, plugin_dir=self.plugin_dir, tr=self.tr, style_manager=self.style_manager, log=self.log)
-        self.thema_manager = ThemaManager(dlg=self.dlg, plugin_dir=self.plugin_dir, working_dir=self.working_dir, creator=self.creator, log=self.log)
+        self.style_manager = StyleManager(
+            dlg=self.dlg,
+            plugin_dir=self.plugin_dir,
+            working_dir=self.working_dir,
+            creator=self.creator,
+            log=self.log,
+        )
+        self.search_manager = SearchLocationManager(
+            dlg=self.dlg, iface=self.iface, log=self.log
+        )
+        self.layer_manager = LayerManager(
+            dlg=self.dlg,
+            iface=self.iface,
+            plugin_dir=self.plugin_dir,
+            tr=self.tr,
+            style_manager=self.style_manager,
+            log=self.log,
+        )
+        self.thema_manager = ThemaManager(
+            dlg=self.dlg,
+            plugin_dir=self.plugin_dir,
+            working_dir=self.working_dir,
+            creator=self.creator,
+            log=self.log,
+        )
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&NAD Waterketen Kaarten')
+        self.menu = self.tr("&NAD Waterketen Kaarten")
 
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
@@ -113,31 +167,27 @@ class NADMaps():
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
             QTimer.singleShot(3000, self.run)  # delay 3 seconds
-        
+
         # parallel rendering
         QSettings().setValue("/qgis/parallel_rendering", True)
         threadcount = QThread.idealThreadCount()
         QgsApplication.setMaxThreads(threadcount)
         QSettings().setValue("/core/OpenClEnabled", True)
 
-
-
-
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-        self.run_icon = QIcon(
-            os.path.join(self.plugin_dir, "resources", "nad.png")
-        )
+        self.run_icon = QIcon(os.path.join(self.plugin_dir, "resources", "nad.png"))
 
         self.add_action(
-            icon_path = self.run_icon,
+            icon_path=self.run_icon,
             text=PLUGIN_NAME,
             callback=self.run,
-            parent=self.iface.mainWindow())
+            parent=self.iface.mainWindow(),
+        )
 
-#########################################################################################
-####################  Run main script to initiate when NAD button is pressed ############
-#########################################################################################
+    #########################################################################################
+    ####################  Run main script to initiate when NAD button is pressed ############
+    #########################################################################################
 
     def run(self, hiddenDialog=False):
         """Run method that performs all the real work"""
@@ -146,10 +196,10 @@ class NADMaps():
         if self.setup_completed == False:
             # setup the (proxy)models
             self.setup_interactions()
-            
+
             # create an initial list of active layers
             self.layer_manager.update_active_layers_list()
-            
+
             # create a list of existing themas
             self.thema_manager.update_thema_list()
 
@@ -158,34 +208,45 @@ class NADMaps():
 
             # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            #QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
+            # QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-            
-         
-            self.setup_completed = True
 
+            self.setup_completed = True
 
         # init the values for the export settings
         self.init_export_comboboxes()
         self.load_export_settings()
-        self.check_map_name() # To enable or disable pushbutton
+        self.check_map_name()  # To enable or disable pushbutton
 
         # init autostart checkbox
-        self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", "false") == "true")
+        self.dlg.checkBox_AutoStart.setChecked(
+            QSettings().value("NADmaps/autostart", "false") == "true"
+        )
 
-        #init standard area
-        self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
-        
-        #init autoload standard area checkbox
-        self.dlg.checkBox_StandardArea.setChecked(QSettings().value("NADmaps/autoload_standardarea", False, type=bool))
-        
+        # init standard area
+        self.dlg.lineEdit_StandardArea.setText(
+            QSettings().value("NADmaps/standard_area")
+        )
+
+        # init autoload standard area checkbox
+        self.dlg.checkBox_StandardArea.setChecked(
+            QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
+        )
+
+        # init maxNumFeatures spinbox
+        self.dlg.spinBox_MaxNumFeatures.setValue(
+            int(QSettings().value("NADmaps/maxNumFeatures", 5000))
+        )
+
         # show the dialog
         if not hiddenDialog:
             self.dlg.show()
 
             area = self.iface.mainWindow().dockWidgetArea(self.dlg)
-            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea: 
-                self.log("NADMaps dialog is floating or not in the right dock area, moving it to the right area.")
+            if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
+                self.log(
+                    "NADMaps dialog is floating or not in the right dock area, moving it to the right area."
+                )
                 self.iface.mainWindow().removeDockWidget(self.dlg)
                 self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
                 self.dlg.setFloating(False)
@@ -196,16 +257,16 @@ class NADMaps():
         # Zoom to standard area after render when no layer was active at startup
         self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
 
-#########################################################################################
-#################################  Setup functions ######################################
-#########################################################################################
+    #########################################################################################
+    #################################  Setup functions ######################################
+    #########################################################################################
 
-    #Check if zoom should be executed
+    # Check if zoom should be executed
     def check_zoom_required(self):
-        #Load settingsinfo
+        # Load settingsinfo
         zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False)
         standard_area = QSettings().value("NADmaps/standard_area", "")
-        #Load layer info
+        # Load layer info
         # TODO: variabele 'active_layers' opnemen in __init__ en updaten na layer change/ render complete
         root = QgsProject.instance().layerTreeRoot()
         layers = root.layerOrder()
@@ -213,10 +274,10 @@ class NADMaps():
             return False, None
         elif zoom_checkbox == True and standard_area != "" and len(layers) >= 1:
             return True, standard_area
-        
+
         return False, None
 
-    # Zoom to standard area     
+    # Zoom to standard area
     def check_and_execute_zoom(self):
         zoom_required, standard_area = self.check_zoom_required()
         if zoom_required == True:
@@ -228,12 +289,24 @@ class NADMaps():
         This does a setup of all the button interactions.
         """
         # Click functions
-        self.dlg.loadStyleButton.clicked.connect(lambda: self.style_manager.load_styling())
-        self.dlg.loadStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
-        self.dlg.removeStyleButton.clicked.connect(lambda: self.style_manager.delete_styling())
-        self.dlg.removeStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
-        self.dlg.saveStyleButton.clicked.connect(lambda: self.style_manager.save_styling(self.selected_active_layers))
-        self.dlg.saveStyleButton.clicked.connect(lambda: self.layer_manager.update_active_layers_list())
+        self.dlg.loadStyleButton.clicked.connect(
+            lambda: self.style_manager.load_styling()
+        )
+        self.dlg.loadStyleButton.clicked.connect(
+            lambda: self.layer_manager.update_active_layers_list()
+        )
+        self.dlg.removeStyleButton.clicked.connect(
+            lambda: self.style_manager.delete_styling()
+        )
+        self.dlg.removeStyleButton.clicked.connect(
+            lambda: self.layer_manager.update_active_layers_list()
+        )
+        self.dlg.saveStyleButton.clicked.connect(
+            lambda: self.style_manager.save_styling(self.selected_active_layers)
+        )
+        self.dlg.saveStyleButton.clicked.connect(
+            lambda: self.layer_manager.update_active_layers_list()
+        )
 
         self.dlg.saveThemaButton.setEnabled(False)
         self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
@@ -244,21 +317,35 @@ class NADMaps():
             lambda: self.thema_manager.save_thema(True, self.selected_active_layers)
         )
 
-        self.dlg.pluginThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
-        self.dlg.userThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
-        self.dlg.favoriteThemaCheckBox.clicked.connect(lambda: self.thema_manager.filter_thema_list())
-        
-        self.dlg.deleteThemaButton.clicked.connect(lambda: self.thema_manager.delete_thema())
+        self.dlg.pluginThemaCheckBox.clicked.connect(
+            lambda: self.thema_manager.filter_thema_list()
+        )
+        self.dlg.userThemaCheckBox.clicked.connect(
+            lambda: self.thema_manager.filter_thema_list()
+        )
+        self.dlg.favoriteThemaCheckBox.clicked.connect(
+            lambda: self.thema_manager.filter_thema_list()
+        )
+
+        self.dlg.deleteThemaButton.clicked.connect(
+            lambda: self.thema_manager.delete_thema()
+        )
 
         # Setting interactions
         self.dlg.set_working_dir.clicked.connect(
             lambda: self.set_working_directory(
-                QFileDialog.getExistingDirectory(self.dlg, "Selecteer een werkmap", self.working_dir)
+                QFileDialog.getExistingDirectory(
+                    self.dlg, "Selecteer een werkmap", self.working_dir
+                )
             )
         )
         self.dlg.checkBox_AutoStart.stateChanged.connect(
-            lambda: QSettings().setValue("NADmaps/autostart", "true" if self.dlg.checkBox_AutoStart.isChecked() else "false"))
-        
+            lambda: QSettings().setValue(
+                "NADmaps/autostart",
+                "true" if self.dlg.checkBox_AutoStart.isChecked() else "false",
+            )
+        )
+
         # Save button for standard work area
         self.dlg.pushButton_SaveStandardArea.clicked.connect(
             lambda: self.set_standard_area()
@@ -268,6 +355,10 @@ class NADMaps():
         self.dlg.checkBox_StandardArea.stateChanged.connect(
             lambda: self.set_autoload_checkbox()
         )
+        # maxNumFeatures spinbox
+        self.dlg.spinBox_MaxNumFeatures.valueChanged.connect(
+            lambda: self.set_maxnumfeatures()
+        )
 
         # Canvas interactions
         self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
@@ -275,14 +366,22 @@ class NADMaps():
 
         # Export_tab interactions
         self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
-        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(self.on_paper_format_changed)
-        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(self.on_file_format_changed)
-        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(self.on_print_quality_changed)
+        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(
+            self.on_paper_format_changed
+        )
+        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(
+            self.on_file_format_changed
+        )
+        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(
+            self.on_print_quality_changed
+        )
         self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
         self.dlg.doubleSpinBox_Schaal.valueChanged.connect(self.on_scale_changed)
         self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
-        self.dlg.checkBox_Schaalbalk.stateChanged.connect(self.on_scale_checkbox_changed)
+        self.dlg.checkBox_Schaalbalk.stateChanged.connect(
+            self.on_scale_checkbox_changed
+        )
         self.dlg.checkBox_Titel.stateChanged.connect(self.on_titel_checkbox_changed)
         self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
 
@@ -297,10 +396,9 @@ class NADMaps():
         self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 
-
-#########################################################################################
-################################  General utility functions ########################
-#########################################################################################
+    #########################################################################################
+    ################################  General utility functions ########################
+    #########################################################################################
 
     def set_working_directory(self, path):
         """Set the working directory for the plugin"""
@@ -317,14 +415,8 @@ class NADMaps():
 
         self.thema_manager.set_working_directory(path)
 
-        self.user_styling_path = os.path.join(
-            path,
-            "styling\\styling.json"
-        )
-        self.user_styling_files_path = os.path.join(
-            path,
-            "styling\\qml_files"
-        )
+        self.user_styling_path = os.path.join(path, "styling\\styling.json")
+        self.user_styling_files_path = os.path.join(path, "styling\\qml_files")
 
         # save the working directory to the settings, such that it is available next time the plugin is started
         QSettings().setValue("NADmaps/working_dir", path)
@@ -333,13 +425,19 @@ class NADMaps():
         self.dlg.lineEditFilePath.setText(path)
 
     def set_standard_area(self):
-        self.dlg.lineEdit_StandardArea.setText(self.dlg.zoomLineEdit.text()) #Insert search area text into protected field
-        QSettings().setValue("NADmaps/standard_area", self.dlg.zoomLineEdit.text()) #Save the standard area to the settings
-
+        self.dlg.lineEdit_StandardArea.setText(
+            self.dlg.zoomLineEdit.text()
+        )  # Insert search area text into protected field
+        QSettings().setValue(
+            "NADmaps/standard_area", self.dlg.zoomLineEdit.text()
+        )  # Save the standard area to the settings
 
     def set_autoload_checkbox(self):
-        QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False) 
-            # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
+        QSettings().setValue(
+            "NADmaps/autoload_standardarea",
+            True if self.dlg.checkBox_StandardArea.isChecked() else False,
+        )
+        # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
         # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
 
     def get_selected_active_layers(self):
@@ -359,12 +457,16 @@ class NADMaps():
             self.dlg.saveThemaButton.setToolTip("")
         elif nr_of_selected_rows > 1:
             self.dlg.stylingGroupBox.setEnabled(False)
-            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+            self.dlg.stylingGroupBox.setToolTip(
+                "Selecteer maar één laag om de styling aan te passen"
+            )
             self.dlg.saveThemaButton.setEnabled(True)
             self.dlg.saveThemaButton.setToolTip("")
         elif nr_of_selected_rows == 0:
             self.dlg.stylingGroupBox.setEnabled(False)
-            self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+            self.dlg.stylingGroupBox.setToolTip(
+                "Selecteer maar één laag om de styling aan te passen"
+            )
             self.dlg.saveThemaButton.setEnabled(False)
             self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
             self.selected_active_layers = None
@@ -373,18 +475,14 @@ class NADMaps():
         self.selected_active_layers = []
         first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
         for index in first_index_list:
-            active_layer = index.data(
-                    Qt.ItemDataRole.UserRole
-                )
+            active_layer = index.data(Qt.ItemDataRole.UserRole)
             self.selected_active_layers.append(active_layer)
             # self.log(f"selected active layers = {self.selected_active_layers}")
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&NAD Waterketen Kaarten'),
-                action)
+            self.iface.removePluginMenu(self.tr("&NAD Waterketen Kaarten"), action)
             self.iface.removeToolBarIcon(action)
 
     # General add_action function to add action-buttons to the QGIS toolbar
@@ -398,7 +496,8 @@ class NADMaps():
         add_to_toolbar=True,
         status_tip=None,
         whats_this=None,
-        parent=None):
+        parent=None,
+    ):
         """Add a toolbar icon to the toolbar.
 
         :param icon_path: Path to the icon for this action. Can be a resource
@@ -454,17 +553,14 @@ class NADMaps():
             self.iface.addToolBarIcon(action)
 
         if add_to_menu:
-            self.iface.addPluginToMenu(
-                self.menu,
-                action)
+            self.iface.addPluginToMenu(self.menu, action)
 
         self.actions.append(action)
 
         return action
-    
+
     # General translation function (can probably be deleted)
     def tr(self, message):
-
         """Get the translation for a string using Qt translation API.
 
         We implement this ourselves since we do not inherit QObject.
@@ -476,22 +572,40 @@ class NADMaps():
         :rtype: QString
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('NADMaps', message)
-    
-    def init_export_comboboxes(self):
-        paper_items = [str(self.dlg.comboBox_PapierFormaat.itemText(i)) for i in range(self.dlg.comboBox_PapierFormaat.count())]
-        file_items = [str(self.dlg.comboBox_BestandsFormaat.itemText(i)) for i in range(self.dlg.comboBox_BestandsFormaat.count())]
-        print_quality_items = [str(self.dlg.comboBox_PrintQuality.itemText(i)) for i in range(self.dlg.comboBox_PrintQuality.count())]
+        return QCoreApplication.translate("NADMaps", message)
 
-        legend_placement_items = [str(self.dlg.comboBox_LegendaPlacement.itemText(i)) for i in range(self.dlg.comboBox_LegendaPlacement.count())]
-        schaalbalk_placement_items = [str(self.dlg.comboBox_SchaalbalkPlacement.itemText(i)) for i in range(self.dlg.comboBox_SchaalbalkPlacement.count())]
-        noordpijl_placement_items = [str(self.dlg.comboBox_NoordpijlPlacement.itemText(i)) for i in range(self.dlg.comboBox_NoordpijlPlacement.count())]
+    def init_export_comboboxes(self):
+        paper_items = [
+            str(self.dlg.comboBox_PapierFormaat.itemText(i))
+            for i in range(self.dlg.comboBox_PapierFormaat.count())
+        ]
+        file_items = [
+            str(self.dlg.comboBox_BestandsFormaat.itemText(i))
+            for i in range(self.dlg.comboBox_BestandsFormaat.count())
+        ]
+        print_quality_items = [
+            str(self.dlg.comboBox_PrintQuality.itemText(i))
+            for i in range(self.dlg.comboBox_PrintQuality.count())
+        ]
+
+        legend_placement_items = [
+            str(self.dlg.comboBox_LegendaPlacement.itemText(i))
+            for i in range(self.dlg.comboBox_LegendaPlacement.count())
+        ]
+        schaalbalk_placement_items = [
+            str(self.dlg.comboBox_SchaalbalkPlacement.itemText(i))
+            for i in range(self.dlg.comboBox_SchaalbalkPlacement.count())
+        ]
+        noordpijl_placement_items = [
+            str(self.dlg.comboBox_NoordpijlPlacement.itemText(i))
+            for i in range(self.dlg.comboBox_NoordpijlPlacement.count())
+        ]
 
         if paper_items != PAPER_OPTIONS:
             self.dlg.comboBox_PapierFormaat.clear()
             for item in PAPER_OPTIONS:
                 self.dlg.comboBox_PapierFormaat.addItem(item)
-        
+
         if file_items != FORMAT_OPTIONS:
             self.dlg.comboBox_BestandsFormaat.clear()
             for item in FORMAT_OPTIONS:
@@ -502,8 +616,12 @@ class NADMaps():
             self.dlg.comboBox_PrintQuality.clear()
             for item in print_quality_options:
                 self.dlg.comboBox_PrintQuality.addItem(item)
-        
-        if legend_placement_items != PLACEMENT_OPTIONS or schaalbalk_placement_items != PLACEMENT_OPTIONS or noordpijl_placement_items != PLACEMENT_OPTIONS:
+
+        if (
+            legend_placement_items != PLACEMENT_OPTIONS
+            or schaalbalk_placement_items != PLACEMENT_OPTIONS
+            or noordpijl_placement_items != PLACEMENT_OPTIONS
+        ):
             self.dlg.comboBox_LegendaPlacement.clear()
             self.dlg.comboBox_SchaalbalkPlacement.clear()
             self.dlg.comboBox_NoordpijlPlacement.clear()
@@ -511,59 +629,121 @@ class NADMaps():
                 self.dlg.comboBox_LegendaPlacement.addItem(item)
                 self.dlg.comboBox_SchaalbalkPlacement.addItem(item)
                 self.dlg.comboBox_NoordpijlPlacement.addItem(item)
-        
+
     def save_export_settings(self):
-        QSettings().setValue("NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText())
-        QSettings().setValue("NADmaps/export/file_format", self.dlg.comboBox_BestandsFormaat.currentText())
-        QSettings().setValue("NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText())
-        QSettings().setValue("NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value()))
-        QSettings().setValue("NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value()))
-        QSettings().setValue("NADmaps/export/include_north", "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false")
-        QSettings().setValue("NADmaps/export/noordpijl_placement", self.dlg.comboBox_NoordpijlPlacement.currentText())
-        QSettings().setValue("NADmaps/export/include_legend", "true" if self.dlg.checkBox_Legenda.isChecked() else "false")
-        QSettings().setValue("NADmaps/export/legend_placement", self.dlg.comboBox_LegendaPlacement.currentText())
-        QSettings().setValue("NADmaps/export/include_scale", "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false")
-        QSettings().setValue("NADmaps/export/scale_placement", self.dlg.comboBox_SchaalbalkPlacement.currentText())
-        QSettings().setValue("NADmaps/export/include_title", "true" if self.dlg.checkBox_Titel.isChecked() else "false")
+        QSettings().setValue(
+            "NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText()
+        )
+        QSettings().setValue(
+            "NADmaps/export/file_format",
+            self.dlg.comboBox_BestandsFormaat.currentText(),
+        )
+        QSettings().setValue(
+            "NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText()
+        )
+        QSettings().setValue(
+            "NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value())
+        )
+        QSettings().setValue(
+            "NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value())
+        )
+        QSettings().setValue(
+            "NADmaps/export/include_north",
+            "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false",
+        )
+        QSettings().setValue(
+            "NADmaps/export/noordpijl_placement",
+            self.dlg.comboBox_NoordpijlPlacement.currentText(),
+        )
+        QSettings().setValue(
+            "NADmaps/export/include_legend",
+            "true" if self.dlg.checkBox_Legenda.isChecked() else "false",
+        )
+        QSettings().setValue(
+            "NADmaps/export/legend_placement",
+            self.dlg.comboBox_LegendaPlacement.currentText(),
+        )
+        QSettings().setValue(
+            "NADmaps/export/include_scale",
+            "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false",
+        )
+        QSettings().setValue(
+            "NADmaps/export/scale_placement",
+            self.dlg.comboBox_SchaalbalkPlacement.currentText(),
+        )
+        QSettings().setValue(
+            "NADmaps/export/include_title",
+            "true" if self.dlg.checkBox_Titel.isChecked() else "false",
+        )
         QSettings().setValue("NADmaps/export/title", self.dlg.lineEdit_Titel.text())
-        QSettings().setValue("NADmaps/export/title_font_size", str(self.dlg.spinBox_TitelFontSize.value()))
+        QSettings().setValue(
+            "NADmaps/export/title_font_size",
+            str(self.dlg.spinBox_TitelFontSize.value()),
+        )
 
     def load_export_settings(self):
         saved_paper = str(QSettings().value("NADmaps/export/paper_format", "A4 staand"))
-        if saved_paper in [str(self.dlg.comboBox_PapierFormaat.itemText(i)) for i in range(self.dlg.comboBox_PapierFormaat.count())]:
+        if saved_paper in [
+            str(self.dlg.comboBox_PapierFormaat.itemText(i))
+            for i in range(self.dlg.comboBox_PapierFormaat.count())
+        ]:
             self.dlg.comboBox_PapierFormaat.setCurrentText(saved_paper)
         else:
             self.dlg.comboBox_PapierFormaat.setCurrentIndex(0)
 
         saved_format = str(QSettings().value("NADmaps/export/file_format", "PNG"))
-        format_items = [str(self.dlg.comboBox_BestandsFormaat.itemText(i)) for i in range(self.dlg.comboBox_BestandsFormaat.count())]
+        format_items = [
+            str(self.dlg.comboBox_BestandsFormaat.itemText(i))
+            for i in range(self.dlg.comboBox_BestandsFormaat.count())
+        ]
         if saved_format in format_items:
             self.dlg.comboBox_BestandsFormaat.setCurrentText(saved_format)
         else:
             self.dlg.comboBox_BestandsFormaat.setCurrentIndex(0)
 
-        saved_quality = str(QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit"))
-        quality_items = [str(self.dlg.comboBox_PrintQuality.itemText(i)) for i in range(self.dlg.comboBox_PrintQuality.count())]
+        saved_quality = str(
+            QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit")
+        )
+        quality_items = [
+            str(self.dlg.comboBox_PrintQuality.itemText(i))
+            for i in range(self.dlg.comboBox_PrintQuality.count())
+        ]
         if saved_quality in quality_items:
-            #self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
-            self.dlg.comboBox_PrintQuality.setCurrentText('Iets geks')
+            # self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
+            self.dlg.comboBox_PrintQuality.setCurrentText("Iets geks")
         else:
-            #self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
-            self.dlg.comboBox_PrintQuality.setCurrentText(f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}")
+            # self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
+            self.dlg.comboBox_PrintQuality.setCurrentText(
+                f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}"
+            )
 
-        self.dlg.doubleSpinBox_Rotatie.setValue(float(QSettings().value("NADmaps/export/rotation", 0)))
-        self.dlg.doubleSpinBox_Schaal.setValue(float(QSettings().value("NADmaps/export/scale", 10000)))
+        self.dlg.doubleSpinBox_Rotatie.setValue(
+            float(QSettings().value("NADmaps/export/rotation", 0))
+        )
+        self.dlg.doubleSpinBox_Schaal.setValue(
+            float(QSettings().value("NADmaps/export/scale", 10000))
+        )
 
-        self.dlg.checkBox_Noordpijl.setChecked(QSettings().value("NADmaps/export/include_north", "false") == "true")
+        self.dlg.checkBox_Noordpijl.setChecked(
+            QSettings().value("NADmaps/export/include_north", "false") == "true"
+        )
         self.set_noordpijl_placement_combobox()
-        self.dlg.checkBox_Legenda.setChecked(QSettings().value("NADmaps/export/include_legend", "false") == "true")
+        self.dlg.checkBox_Legenda.setChecked(
+            QSettings().value("NADmaps/export/include_legend", "false") == "true"
+        )
         self.set_legenda_placement_combobox()
-        self.dlg.checkBox_Schaalbalk.setChecked(QSettings().value("NADmaps/export/include_scale", "false") == "true")
+        self.dlg.checkBox_Schaalbalk.setChecked(
+            QSettings().value("NADmaps/export/include_scale", "false") == "true"
+        )
         self.set_schaalbalk_placement_combobox()
-        self.dlg.checkBox_Titel.setChecked(QSettings().value("NADmaps/export/include_title", "false") == "true")
+        self.dlg.checkBox_Titel.setChecked(
+            QSettings().value("NADmaps/export/include_title", "false") == "true"
+        )
         self.set_titel_line_edit()
         self.dlg.lineEdit_Titel.setText(QSettings().value("NADmaps/export/title", ""))
-        self.dlg.spinBox_TitelFontSize.setValue(int(QSettings().value("NADmaps/export/title_font_size", 20)))
+        self.dlg.spinBox_TitelFontSize.setValue(
+            int(QSettings().value("NADmaps/export/title_font_size", 20))
+        )
 
     def on_paper_format_changed(self):
         self.save_export_settings()
@@ -580,7 +760,7 @@ class NADMaps():
         if canvas.rotation() != value:
             canvas.setRotation(value)
             QTimer.singleShot(200, canvas.refresh)
-        
+
         self.save_export_settings()
 
     def on_canvas_rotation_changed(self):
@@ -591,7 +771,7 @@ class NADMaps():
             self.dlg.doubleSpinBox_Rotatie.blockSignals(True)
             self.dlg.doubleSpinBox_Rotatie.setValue(current_rotation)
             self.dlg.doubleSpinBox_Rotatie.blockSignals(False)
-        
+
         self.save_export_settings()
 
     def on_scale_changed(self):
@@ -668,6 +848,11 @@ class NADMaps():
         map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
 
+    def set_maxnumfeatures(self):
+        maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
+        QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
+        self.layer_manager.maxnumfeatures = maxnumfeatures
+
     def export_map_button_pressed(self):
         file_path = self.generate_export_path()
         if not file_path:
@@ -682,7 +867,7 @@ class NADMaps():
             )
             if overwrite == QMessageBox.StandardButton.No:
                 return
-    
+
         if not os.path.exists(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
@@ -700,7 +885,7 @@ class NADMaps():
             "include_title": self.dlg.checkBox_Titel.isChecked(),
             "title": self.dlg.lineEdit_Titel.text(),
             "title_font_size": self.dlg.spinBox_TitelFontSize.value(),
-            "canvas": self.iface.mapCanvas()
+            "canvas": self.iface.mapCanvas(),
         }
         layout = manager.build_layout(settings_dict)
 
@@ -726,4 +911,6 @@ class NADMaps():
             return
 
         file_format = self.dlg.comboBox_BestandsFormaat.currentText()
-        return os.path.join(self.working_dir, "export", f"{map_name}.{file_format.lower()}")
+        return os.path.join(
+            self.working_dir, "export", f"{map_name}.{file_format.lower()}"
+        )
