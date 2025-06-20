@@ -41,7 +41,7 @@ Op dit moment is de plugin niet beschikbaar via de ingebouwde plugin manager van
 
 ## 👥 Eervolle vermeldingen
 
-- Richard Duivenvoorde - Zuidt: maker van de PDOK services plugin en is zo vrijgevig geweest om die code te laten gebruiken als basis voor deze plugin
+- Richard Duivenvoorde - Zuidt: maker van de PDOK services plugin en is zo vrijgevig geweest om ons die code te laten gebruiken als basis voor deze plugin
 - Stijn Overmeen & Ben van Basten: ontwikkelaars van bureau Nelen en Schuurmans die ons hebben ondersteund in het maken van de plugin
 
 ---
