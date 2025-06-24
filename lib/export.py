@@ -84,13 +84,18 @@ class ExportManager:
     def _add_title(self, layout, title_text, font_size=20):
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
-        title.setFont(QFont("Arial", font_size))
 
-        # Center at the top of the page
+        # Gebruik textFormat() in plaats van setFont()
+        fmt = title.textFormat()
+        font = QFont("Arial", font_size)
+        fmt.setFont(font)
+        title.setTextFormat(fmt)
+
+        # Center bovenaan de pagina
         page = layout.pageCollection().pages()[0]
         x = page.pageSize().width() / 2
-
         title.attemptMove(QgsLayoutPoint(x, 10, QgsUnitTypes.LayoutMillimeters))
+
         layout.addLayoutItem(title)
 
     def _get_page_size(self, format_string: str) -> QSizeF:
