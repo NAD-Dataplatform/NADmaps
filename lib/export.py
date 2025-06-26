@@ -3,7 +3,7 @@ import os
 from qgis.core import (
     QgsProject, QgsLayout, QgsLayoutExporter, QgsLayoutItemMap,
     QgsLayoutItemLegend, QgsLayoutItemScaleBar, QgsLayoutItemPicture,
-    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel, QgsLayoutPoint, QgsUnitTypes
+    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel
 )
 from PyQt5.QtCore import QSizeF
 from PyQt5.QtGui import QColor, QFont
@@ -49,8 +49,9 @@ class ExportManager:
         layout.addLayoutItem(map_item)
 
         # Add north arrow if needed
+        #TODO 1: Positie van pijl op afdruk op basis van instelling (nu altijd linksboven)
         if settings.get("include_north"):
-            pass # skip for now
+            self._add_north_arrow(layout, x=20, y=20, size_mm=20)
 
         # Add title if needed
         if settings.get("include_title"):
@@ -85,7 +86,7 @@ class ExportManager:
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
 
-        # Gebruik textFormat() in plaats van setFont()
+        # Fix 'setFont() deprecated' > use textFormat()
         fmt = title.textFormat()
         font = QFont("Arial", font_size)
         fmt.setFont(font)
@@ -97,6 +98,34 @@ class ExportManager:
         title.attemptMove(QgsLayoutPoint(x, 10, QgsUnitTypes.LayoutMillimeters))
 
         layout.addLayoutItem(title)
+
+    def _add_north_arrow(self, layout, x=10, y=10, size_mm=20):
+
+        # Path to SVG file relative to lib folder
+        base_dir = os.path.dirname(__file__)  # = path to 'lib/'
+        svg_path = os.path.abspath(os.path.join(base_dir, "..", "resources", "north-arrow.svg"))
+
+        # Create arrow
+        north_arrow = QgsLayoutItemPicture(layout)
+        north_arrow.setPicturePath(svg_path)
+        north_arrow.setSvgFillColor(QColor(0, 0, 0))
+        north_arrow.setSvgStrokeColor(QColor(255, 255, 255))
+        # Shouldn't be necessary
+        north_arrow.refreshPicture() # Fix cache
+        north_arrow.update() # Fix cache
+
+        # Set size (square)
+        north_arrow.attemptResize(QgsLayoutSize(size_mm, size_mm, QgsUnitTypes.LayoutMillimeters))
+
+        # Set position
+        north_arrow.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters))
+       
+        # Rotate according to orientation
+        rotation = layout.referenceMap().mapRotation()
+        north_arrow.setRotation(-rotation)  # to compensate
+        
+        # Add to layout
+        layout.addLayoutItem(north_arrow)
 
     def _get_page_size(self, format_string: str) -> QSizeF:
         parts = format_string.lower().split()
