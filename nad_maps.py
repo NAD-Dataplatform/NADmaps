@@ -90,6 +90,9 @@ class NADMaps:
         else:
             self.creator = getpass.getuser()
 
+        self.log_manager = LoggingManager(dlg=self.dlg)
+        self.log = self.log_manager.log
+
         # initialize the working directory from settings
         self.working_dir = QSettings().value("NADmaps/working_dir")
         if self.working_dir in ["", None]:
@@ -122,9 +125,6 @@ class NADMaps:
         self.plugin_styling_files_path = os.path.join(
             self.plugin_dir, "resources", "styling", "qml_files"
         )
-
-        self.log_manager = LoggingManager(dlg=self.dlg)
-        self.log = self.log_manager.log
 
         self.style_manager = StyleManager(
             dlg=self.dlg,
@@ -259,9 +259,11 @@ class NADMaps:
         )
 
         # init autoload standard area checkbox
-        self.dlg.checkBox_StandardArea.setChecked(
-            QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
-        )
+        checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
+        self.dlg.checkBox_StandardArea.setChecked(checked)
+        if not checked:  # if unchecked, zoom is not required during this session
+            self.log("zoom_completed is set to True", 0)
+            self.zoom_completed = True
 
         # init maxNumFeatures spinbox
         self.dlg.spinBox_MaxNumFeatures.setValue(
@@ -451,12 +453,11 @@ class NADMaps:
         )  # Save the standard area to the settings
 
     def set_autoload_checkbox(self):
+        checked = True if self.dlg.checkBox_StandardArea.isChecked() else False
         QSettings().setValue(
             "NADmaps/autoload_standardarea",
-            True if self.dlg.checkBox_StandardArea.isChecked() else False,
+            checked,
         )
-        # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
-        # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
 
     def get_selected_active_layers(self):
         """
