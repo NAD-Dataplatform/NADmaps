@@ -638,7 +638,7 @@ class NADMaps():
         if not os.path.exists(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
-        manager = ExportManager()
+        manager = ExportManager(log=self.log, project=None)
 
         settings_dict = {
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),

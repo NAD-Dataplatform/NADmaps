@@ -9,8 +9,12 @@ from PyQt5.QtCore import QSizeF
 from PyQt5.QtGui import QColor, QFont
 
 class ExportManager:
-    def __init__(self, project=None):
+    def __init__(self, log, project=None):
         self.project = project or QgsProject.instance()
+
+        assert log is not None, "ExportManager: log is None"
+
+        self.log = log
 
     def build_layout(self, settings: dict) -> QgsLayout:
         layout = QgsLayout(self.project)
@@ -108,8 +112,7 @@ class ExportManager:
 
         layout.addLayoutItem(title)
 
-    def _add_north_arrow(self, layout, x=10, y=10, size_mm=20):
-
+    def _add_north_arrow(self, layout, x=10, y=10, size_mm=20):       
         # Path to SVG file relative to lib folder
         base_dir = os.path.dirname(__file__)  # = path to 'lib/'
         svg_path = os.path.abspath(os.path.join(base_dir, "..", "resources", "north-arrow.svg"))
