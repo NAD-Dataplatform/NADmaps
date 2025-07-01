@@ -24,18 +24,22 @@ class ExportManager:
         paper_size = self._get_page_size(settings.get("paper_format", "A4 staand"))
         page = layout.pageCollection().pages()[0]
         page.setPageSize(QgsLayoutSize(paper_size.width(), paper_size.height(), QgsUnitTypes.LayoutMillimeters))
+        self.log(f"paper_size: {paper_size}")
 
         # Calculate the map item size
         map_item_width = paper_size.width() * 0.9
         map_item_height = paper_size.height() * 0.9
+        self.log("# Calculate the map item size")
+        self.log(f"map_item_width: {map_item_width}")
+        self.log(f"map_item_height: {map_item_height}")
 
         # Create map item based on current canvas
         map_item = QgsLayoutItemMap(layout)
-        map_item.setRect(paper_size.width() * 0.1, paper_size.height() * 0.1,
-                         map_item_width, map_item_height)
-        map_item.setFrameEnabled(False)
-
-        # Position the map item centered on the page
+        map_item.setFrameEnabled(False)    
+            # Set size
+        map_item.attemptResize(QgsLayoutSize(map_item_width, map_item_height, QgsUnitTypes.LayoutMillimeters))
+        self.log(f"attemptRisize. width: {map_item_width} height: {map_item_height}")
+            # Position the map item centered on the page
         x_offset = (paper_size.width() - map_item_width) / 2
         y_offset = (paper_size.height() - map_item_height) / 2
         map_item.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters))
@@ -46,12 +50,15 @@ class ExportManager:
             raise ValueError("Canvas not provided in settings.")
         
         # Set the extent, scale, and rotation from the canvas
-        map_item.setExtent(canvas.extent())
-        map_item.setScale(canvas.scale())
+        #TODO Onderstaande 2 regels geven controle over schaal en vlak maar hierdoor wordt bij staande afdruk een deel van de pagina leeg gelaten
+        # map_item.setExtent(canvas.extent())
+        # map_item.setScale(canvas.scale())
+        map_item.zoomToExtent(canvas.extent())
         map_item.setMapRotation(canvas.rotation())
 
         layout.addLayoutItem(map_item)
 
+        #TODO
         #Scaling & placement
         title_font_size = round(paper_size.height() * 0.05)
         title_margin_top = round(paper_size.height() * 0.02)

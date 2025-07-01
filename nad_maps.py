@@ -109,7 +109,6 @@ class NADMaps():
         self.current_layer = None
         self.selected_active_layers = None
         self.zoom_completed = False
-        self.log("init sets zoom_completed to False")
 
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
@@ -223,7 +222,6 @@ class NADMaps():
         if zoom_required == True:
             self.search_manager.get_lookup_id_and_zoom(standard_area)
             self.zoom_completed = True
-            self.log("check_and_execute_zoom sets zoom_completed to True")
 
     def setup_interactions(self):
         """
@@ -335,9 +333,6 @@ class NADMaps():
 
     def set_autoload_checkbox(self):
         QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False) 
-            # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
-        # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
-        # self.log("set_autoload_checkbox sets zoom_completed to True")
 
     def get_selected_active_layers(self):
         """
@@ -638,7 +633,7 @@ class NADMaps():
         if not os.path.exists(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
 
-        manager = ExportManager(log=self.log, project=None)
+        export_manager = ExportManager(log=self.log, project=None)
 
         settings_dict = {
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
@@ -654,9 +649,9 @@ class NADMaps():
             "title_font_size": self.dlg.spinBox_TitelFontSize.value(),
             "canvas": self.iface.mapCanvas()
         }
-        layout = manager.build_layout(settings_dict)
+        layout = export_manager.build_layout(settings_dict)
 
-        success = manager.export(layout, file_path)
+        success = export_manager.export(layout, file_path)
         if success:
             self.log(f"Kaart succesvol geëxporteerd naar {file_path}")
             QMessageBox.information(
