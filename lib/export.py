@@ -15,7 +15,7 @@ class ExportManager:
     def build_layout(self, settings: dict) -> QgsLayout:
         layout = QgsLayout(self.project)
         layout.initializeDefaults()
-
+       
         # Get paper size
         paper_size = self._get_page_size(settings.get("paper_format", "A4 staand"))
         page = layout.pageCollection().pages()[0]
@@ -48,10 +48,25 @@ class ExportManager:
 
         layout.addLayoutItem(map_item)
 
+        #Scaling & placement
+        title_font_size = round(paper_size.height() * 0.05)
+        title_margin_top = round(paper_size.height() * 0.02)
+
+        north_size = round(paper_size.height() * 0.03)
+        north_margin = round(north_size * 0.5)
+
+        scalebar_width = round(paper_size.width() * 0.2)
+        scalebar_height = round(paper_size.height() * 0.01)
+        scalebar_margin = north_margin
+
+        legend_width = round(paper_size.width() * 0.15)
+        legend_margin = north_margin
+
         # Add north arrow if needed
-        #TODO 1: Positie van pijl op afdruk op basis van instelling (nu altijd linksboven)
+        #TODO 1: Positie van pijl op afdruk op basis van instelling (nu altijd rechtsboven)
         if settings.get("include_north"):
-            self._add_north_arrow(layout, x=20, y=20, size_mm=20)
+            # self._add_north_arrow(layout, x=190, y=20, size_mm=20) # Hier ook positie en grootte meegeven
+            self._add_north_arrow(layout, x=190, y=20, size_mm=20) # Hier ook positie en grootte meegeven
 
         # Add title if needed
         if settings.get("include_title"):
@@ -62,13 +77,7 @@ class ExportManager:
 
         # Add legend if needed
         if settings.get("include_legend"):
-            legend = QgsLayoutItemLegend(layout)
-            legend.setLinkedMap(map_item)
-            legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
-            legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
-            legend.setTitle("Legenda")
-            legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
-            layout.addLayoutItem(legend)
+            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
 
         if settings.get("include_scale"):
             scale_bar = QgsLayoutItemScaleBar(layout)
@@ -108,8 +117,8 @@ class ExportManager:
         # Create arrow
         north_arrow = QgsLayoutItemPicture(layout)
         north_arrow.setPicturePath(svg_path)
-        north_arrow.setSvgFillColor(QColor(0, 0, 0))
-        north_arrow.setSvgStrokeColor(QColor(255, 255, 255))
+        north_arrow.setSvgFillColor(QColor(0, 0, 0)) # black
+        north_arrow.setSvgStrokeColor(QColor(255, 255, 255)) # White
         # Shouldn't be necessary
         north_arrow.refreshPicture() # Fix cache
         north_arrow.update() # Fix cache
@@ -119,6 +128,7 @@ class ExportManager:
 
         # Set position
         north_arrow.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters))
+        #TODO Instellen op basis van papierformaat en keuze van de gebruiker
        
         # Rotate according to orientation
         rotation = layout.referenceMap().mapRotation()
@@ -126,6 +136,16 @@ class ExportManager:
         
         # Add to layout
         layout.addLayoutItem(north_arrow)
+
+    def _add_legend(self, layout, x_offset, y_offset, map_item):
+            legend = QgsLayoutItemLegend(layout)
+            legend.setLinkedMap(map_item)
+            legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
+            #legend_width
+            legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
+            legend.setTitle("Legenda")
+            legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
+            layout.addLayoutItem(legend)
 
     def _get_page_size(self, format_string: str) -> QSizeF:
         parts = format_string.lower().split()

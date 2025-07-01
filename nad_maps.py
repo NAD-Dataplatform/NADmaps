@@ -109,6 +109,7 @@ class NADMaps():
         self.current_layer = None
         self.selected_active_layers = None
         self.zoom_completed = False
+        self.log("init sets zoom_completed to False")
 
         # Check if the autostart option is set to true in the settings
         if QSettings().value("NADmaps/autostart", "false") == "true":
@@ -222,6 +223,7 @@ class NADMaps():
         if zoom_required == True:
             self.search_manager.get_lookup_id_and_zoom(standard_area)
             self.zoom_completed = True
+            self.log("check_and_execute_zoom sets zoom_completed to True")
 
     def setup_interactions(self):
         """
@@ -269,17 +271,11 @@ class NADMaps():
             lambda: self.set_autoload_checkbox()
         )
 
-        # Canvas interactions
-        self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
-        self.iface.mapCanvas().scaleChanged.connect(self.on_canvas_scale_changed)
-
         # Export_tab interactions
         self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
         self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(self.on_paper_format_changed)
         self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(self.on_file_format_changed)
         self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(self.on_print_quality_changed)
-        self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
-        self.dlg.doubleSpinBox_Schaal.valueChanged.connect(self.on_scale_changed)
         self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
         self.dlg.checkBox_Schaalbalk.stateChanged.connect(self.on_scale_checkbox_changed)
@@ -341,6 +337,7 @@ class NADMaps():
         QSettings().setValue("NADmaps/autoload_standardarea", True if self.dlg.checkBox_StandardArea.isChecked() else False) 
             # TODO: Onderstaande regel zorgt ervoor dat de settings niet goed naar de interface worden geladen of juist niet opgeslagen kunnen worden
         # self.zoom_completed = True #Prevent unexpected zooming, True will disable zoom in current session
+        # self.log("set_autoload_checkbox sets zoom_completed to True")
 
     def get_selected_active_layers(self):
         """
@@ -516,8 +513,6 @@ class NADMaps():
         QSettings().setValue("NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText())
         QSettings().setValue("NADmaps/export/file_format", self.dlg.comboBox_BestandsFormaat.currentText())
         QSettings().setValue("NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText())
-        QSettings().setValue("NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value()))
-        QSettings().setValue("NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value()))
         QSettings().setValue("NADmaps/export/include_north", "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false")
         QSettings().setValue("NADmaps/export/noordpijl_placement", self.dlg.comboBox_NoordpijlPlacement.currentText())
         QSettings().setValue("NADmaps/export/include_legend", "true" if self.dlg.checkBox_Legenda.isChecked() else "false")
@@ -551,9 +546,6 @@ class NADMaps():
             #self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
             self.dlg.comboBox_PrintQuality.setCurrentText(f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}")
 
-        self.dlg.doubleSpinBox_Rotatie.setValue(float(QSettings().value("NADmaps/export/rotation", 0)))
-        self.dlg.doubleSpinBox_Schaal.setValue(float(QSettings().value("NADmaps/export/scale", 10000)))
-
         self.dlg.checkBox_Noordpijl.setChecked(QSettings().value("NADmaps/export/include_north", "false") == "true")
         self.set_noordpijl_placement_combobox()
         self.dlg.checkBox_Legenda.setChecked(QSettings().value("NADmaps/export/include_legend", "false") == "true")
@@ -572,46 +564,6 @@ class NADMaps():
         self.save_export_settings()
 
     def on_print_quality_changed(self):
-        self.save_export_settings()
-
-    def on_rotation_changed(self):
-        value = self.dlg.doubleSpinBox_Rotatie.value()
-        canvas = self.iface.mapCanvas()
-        if canvas.rotation() != value:
-            canvas.setRotation(value)
-            QTimer.singleShot(200, canvas.refresh)
-        
-        self.save_export_settings()
-
-    def on_canvas_rotation_changed(self):
-        canvas = self.iface.mapCanvas()
-        current_rotation = canvas.rotation()
-
-        if self.dlg.doubleSpinBox_Rotatie.value() != current_rotation:
-            self.dlg.doubleSpinBox_Rotatie.blockSignals(True)
-            self.dlg.doubleSpinBox_Rotatie.setValue(current_rotation)
-            self.dlg.doubleSpinBox_Rotatie.blockSignals(False)
-        
-        self.save_export_settings()
-
-    def on_scale_changed(self):
-        value = self.dlg.doubleSpinBox_Schaal.value()
-        canvas = self.iface.mapCanvas()
-        if canvas.scale() != value:
-            canvas.zoomScale(value)
-            QTimer.singleShot(200, canvas.refresh)
-
-        self.save_export_settings()
-
-    def on_canvas_scale_changed(self):
-        canvas = self.iface.mapCanvas()
-        current_scale = canvas.scale()
-
-        if self.dlg.doubleSpinBox_Schaal.value() != current_scale:
-            self.dlg.doubleSpinBox_Schaal.blockSignals(True)
-            self.dlg.doubleSpinBox_Schaal.setValue(current_scale)
-            self.dlg.doubleSpinBox_Schaal.blockSignals(False)
-
         self.save_export_settings()
 
     def on_north_checkbox_changed(self):
