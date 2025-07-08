@@ -9,11 +9,13 @@ from PyQt5.QtCore import QSizeF
 from PyQt5.QtGui import QColor, QFont
 
 class ExportManager:
-    def __init__(self, log, project=None):
+    def __init__(self, dlg, log, project=None):
         self.project = project or QgsProject.instance()
 
+        assert dlg is not None, "ExportManager: dlg is None"
         assert log is not None, "ExportManager: log is None"
 
+        self.dlg = dlg
         self.log = log
 
     def build_layout(self, settings: dict) -> QgsLayout:
@@ -63,12 +65,16 @@ class ExportManager:
         title_font_size = round(paper_size.height() * 0.05)
         title_margin_top = round(paper_size.height() * 0.02)
 
-        north_size = round(paper_size.height() * 0.03)
+        north_size = round(map_item_width * 0.1) #round(paper_size.height() * 0.03)
+        self.log(f"north_size: {north_size}")
         north_margin = round(north_size * 0.5)
+        self.log(f"north_margin: {north_margin}")
 
-        scalebar_width = round(paper_size.width() * 0.2)
-        scalebar_height = round(paper_size.height() * 0.01)
-        scalebar_margin = north_margin
+        scale_bar_width = round(paper_size.width() * 0.2)
+        scale_bar_height = round(paper_size.height() * 0.01)
+        # self.log(f"scalebar_width (calculated): {scale_bar_width}")
+        # self.log(f"scalebar_height (calculated): {scale_bar_height}")
+        scale_bar_margin = north_margin
 
         legend_width = round(paper_size.width() * 0.15)
         legend_margin = north_margin
@@ -76,9 +82,8 @@ class ExportManager:
         # Add north arrow if needed
         #TODO 1: Positie van pijl op afdruk op basis van instelling (nu altijd rechtsboven)
         if settings.get("include_north"):
-            # self._add_north_arrow(layout, x=190, y=20, size_mm=20) # Hier ook positie en grootte meegeven
-            self._add_north_arrow(layout, x=190, y=20, size_mm=20) # Hier ook positie en grootte meegeven
-
+            self._add_north_arrow(layout, map_item_width=map_item_width, map_item_height=map_item_height, x_offset=x_offset, y_offset=y_offset, north_margin=north_margin, size_mm=north_size) # Hier ook positie en grootte meegeven
+            
         # Add title if needed
         if settings.get("include_title"):
             title = settings.get("title", "")
@@ -90,14 +95,17 @@ class ExportManager:
         if settings.get("include_legend"):
             self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
 
+        #TODO In functie stoppen
         if settings.get("include_scale"):
             scale_bar = QgsLayoutItemScaleBar(layout)
             scale_bar.setStyle('Single Box')
             scale_bar.setLinkedMap(map_item)
-            scale_bar.applyDefaultSize()
+            scale_bar.applyDefaultSize() #1/5 of map item width
             scale_bar.attemptMove(
                 QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + map_item_height - 20, QgsUnitTypes.LayoutMillimeters)
             ) # Position it at the bottom right corner of the map item
+            # self.log(f"x_position: {x_offset + map_item_width - 50} y_position: {y_offset + map_item_height - 20}")
+            # self.log(f"Scale bar height (func): {scale_bar.height()}")
             layout.addLayoutItem(scale_bar)
 
         return layout
@@ -119,7 +127,7 @@ class ExportManager:
 
         layout.addLayoutItem(title)
 
-    def _add_north_arrow(self, layout, x=10, y=10, size_mm=20):       
+    def _add_north_arrow(self, layout, map_item_width, map_item_height, x_offset, y_offset, north_margin, size_mm):       
         # Path to SVG file relative to lib folder
         base_dir = os.path.dirname(__file__)  # = path to 'lib/'
         svg_path = os.path.abspath(os.path.join(base_dir, "..", "resources", "north-arrow.svg"))
@@ -137,7 +145,10 @@ class ExportManager:
         north_arrow.attemptResize(QgsLayoutSize(size_mm, size_mm, QgsUnitTypes.LayoutMillimeters))
 
         # Set position
-        north_arrow.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters))
+        north_arrow.attemptMove(QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + north_margin, QgsUnitTypes.LayoutMillimeters))
+        self.log(f"x: {x_offset + map_item_width - north_margin}")
+        self.log(f"y: {y_offset + north_margin}")
+        self.log(f"Combobox text: {self.dlg.comboBox_NoordpijlPlacement.currentText()}")
         #TODO Instellen op basis van papierformaat en keuze van de gebruiker
        
         # Rotate according to orientation
@@ -150,6 +161,7 @@ class ExportManager:
     def _add_legend(self, layout, x_offset, y_offset, map_item):
             legend = QgsLayoutItemLegend(layout)
             legend.setLinkedMap(map_item)
+            #TODO De breedte van de legenda wordt afgestemd op de langste tekst en kan de gehele breedte van de pagina innemen
             legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
             #legend_width
             legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
