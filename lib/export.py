@@ -52,9 +52,10 @@ class ExportManager:
             raise ValueError("Canvas not provided in settings.")
         
         # Set the extent, scale, and rotation from the canvas
-        #TODO Onderstaande 2 regels geven controle over schaal en vlak maar hierdoor wordt bij staande afdruk een deel van de pagina leeg gelaten
+            #TODO Onderstaande 2 regels geven controle over schaal en vlak maar hierdoor wordt bij staande afdruk een deel van de pagina leeg gelaten
         # map_item.setExtent(canvas.extent())
         # map_item.setScale(canvas.scale())
+            #TODO Met deze regel wordt de pagina netjes gevuld maar heb je geen controle over de schaal
         map_item.zoomToExtent(canvas.extent())
         map_item.setMapRotation(canvas.rotation())
 
@@ -95,35 +96,31 @@ class ExportManager:
         if settings.get("include_legend"):
             self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
 
-        #TODO In functie stoppen
+        # Add scalebar if needed
         if settings.get("include_scale"):
-            scale_bar = QgsLayoutItemScaleBar(layout)
-            scale_bar.setStyle('Single Box')
-            scale_bar.setLinkedMap(map_item)
-            scale_bar.applyDefaultSize() #1/5 of map item width
-            scale_bar.attemptMove(
-                QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + map_item_height - 20, QgsUnitTypes.LayoutMillimeters)
-            ) # Position it at the bottom right corner of the map item
-            # self.log(f"x_position: {x_offset + map_item_width - 50} y_position: {y_offset + map_item_height - 20}")
-            # self.log(f"Scale bar height (func): {scale_bar.height()}")
-            layout.addLayoutItem(scale_bar)
+            self._add_scale_bar(layout, x_offset=x_offset, y_offset=y_offset,map_item_width=map_item_width, map_item_height=map_item_height, map_item=map_item)
 
         return layout
 
     def _add_title(self, layout, title_text, font_size=20):
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
+        title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning
 
-        # Fix 'setFont() deprecated' > use textFormat()
-        fmt = title.textFormat()
-        font = QFont("Arial", font_size)
-        fmt.setFont(font)
-        title.setTextFormat(fmt)
+        #Fix 'setFont() is deprecated' > use textFormat()
+        #TODO Met onderstaande code lukt het niet om de fontsize aan te passen
+        # fmt = title.textFormat()
+        # font = QFont("Arial", font_size)
+        # self.log(f"font size: {font_size}")
+        # fmt.setFont(font)
+        # title.setTextFormat(fmt)
+        # title.adjustSizeToText() #Take font_size in account
+        # title.refresh() #Just to be sure
 
-        # Center bovenaan de pagina
+        # Center at top of page
         page = layout.pageCollection().pages()[0]
-        x = page.pageSize().width() / 2
-        title.attemptMove(QgsLayoutPoint(x, 10, QgsUnitTypes.LayoutMillimeters))
+        x_center = page.pageSize().width() / 2
+        title.attemptMove(QgsLayoutPoint(x_center, 10, QgsUnitTypes.LayoutMillimeters))
 
         layout.addLayoutItem(title)
 
@@ -169,6 +166,18 @@ class ExportManager:
             legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
             layout.addLayoutItem(legend)
 
+    def _add_scale_bar(self, layout, x_offset, y_offset,map_item_width, map_item_height, map_item):
+        scale_bar = QgsLayoutItemScaleBar(layout)
+        scale_bar.setStyle('Single Box')
+        scale_bar.setLinkedMap(map_item)
+        scale_bar.applyDefaultSize() #1/5 of map item width
+        scale_bar.attemptMove(
+            QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + map_item_height - 20, QgsUnitTypes.LayoutMillimeters)
+        ) # Position it at the bottom right corner of the map item
+        # self.log(f"x_position: {x_offset + map_item_width - 50} y_position: {y_offset + map_item_height - 20}")
+        # self.log(f"Scale bar height (func): {scale_bar.height()}")
+        layout.addLayoutItem(scale_bar)
+    
     def _get_page_size(self, format_string: str) -> QSizeF:
         parts = format_string.lower().split()
         size_lookup = {
