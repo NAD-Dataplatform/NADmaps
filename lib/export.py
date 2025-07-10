@@ -94,7 +94,7 @@ class ExportManager:
 
         # Add legend if needed
         if settings.get("include_legend"):
-            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
+            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item, project=QgsProject.instance())
 
         # Add scalebar if needed
         if settings.get("include_scale"):
@@ -108,7 +108,7 @@ class ExportManager:
         title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning
 
         #Fix 'setFont() is deprecated' > use textFormat()
-        #TODO Met onderstaande code lukt het niet om de fontsize aan te passen
+            #TODO Met onderstaande code lukt het niet om de fontsize aan te passen
         # fmt = title.textFormat()
         # font = QFont("Arial", font_size)
         # self.log(f"font size: {font_size}")
@@ -143,9 +143,9 @@ class ExportManager:
 
         # Set position
         north_arrow.attemptMove(QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + north_margin, QgsUnitTypes.LayoutMillimeters))
-        self.log(f"x: {x_offset + map_item_width - north_margin}")
-        self.log(f"y: {y_offset + north_margin}")
-        self.log(f"Combobox text: {self.dlg.comboBox_NoordpijlPlacement.currentText()}")
+        # self.log(f"x: {x_offset + map_item_width - north_margin}")
+        # self.log(f"y: {y_offset + north_margin}")
+        # self.log(f"Combobox text: {self.dlg.comboBox_NoordpijlPlacement.currentText()}")
         #TODO Instellen op basis van papierformaat en keuze van de gebruiker
        
         # Rotate according to orientation
@@ -155,16 +155,31 @@ class ExportManager:
         # Add to layout
         layout.addLayoutItem(north_arrow)
 
-    def _add_legend(self, layout, x_offset, y_offset, map_item):
-            legend = QgsLayoutItemLegend(layout)
-            legend.setLinkedMap(map_item)
-            #TODO De breedte van de legenda wordt afgestemd op de langste tekst en kan de gehele breedte van de pagina innemen
-            legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
-            #legend_width
-            legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
-            legend.setTitle("Legenda")
-            legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
-            layout.addLayoutItem(legend)
+    def _add_legend(self, layout, x_offset, y_offset, map_item, project):
+
+        #Set max length for layernames   
+        layers = project.mapLayers()
+        max_length = 25
+        if not layers:
+            self.log("Geen lagen gevonden in het project!")
+        else:      
+            for layer in layers.values():
+                old_name = layer.name()
+                self.log(f"old_name: {old_name}")
+                if len(old_name) > max_length:
+                    new_title = old_name[:max_length] + "…"
+                    self.log(f"new_title: {new_title}")
+                else:
+                    new_title = old_name
+                layer.setName(new_title) #TODO: Dit wordt blijkbaar naar het project teruggeschreven en niet alleen op de print
+        
+        legend = QgsLayoutItemLegend(layout)
+        legend.setLinkedMap(map_item)
+        legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
+        legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
+        legend.setTitle("Legenda")
+        legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
+        layout.addLayoutItem(legend)
 
     def _add_scale_bar(self, layout, x_offset, y_offset,map_item_width, map_item_height, map_item):
         scale_bar = QgsLayoutItemScaleBar(layout)
