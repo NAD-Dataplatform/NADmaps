@@ -603,6 +603,7 @@ class NADMaps():
 
     def set_titel_line_edit(self):
         if self.dlg.checkBox_Titel.isChecked():
+            self.dlg.lineEdit_Titel.setText(self.dlg.lineEdit_FileName.text())
             self.dlg.lineEdit_Titel.setVisible(True)
             self.dlg.spinBox_TitelFontSize.setVisible(True)
             self.dlg.lineEdit_Titel.setEnabled(True)

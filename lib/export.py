@@ -29,8 +29,8 @@ class ExportManager:
         self.log(f"paper_size: {paper_size}")
 
         # Calculate the map item size
-        map_item_width = paper_size.width() * 0.9
-        map_item_height = paper_size.height() * 0.9
+        map_item_width = round(paper_size.width() * 0.9)
+        map_item_height = round(paper_size.height() * 0.9)
         self.log("# Calculate the map item size")
         self.log(f"map_item_width: {map_item_width}")
         self.log(f"map_item_height: {map_item_height}")
@@ -42,8 +42,8 @@ class ExportManager:
         map_item.attemptResize(QgsLayoutSize(map_item_width, map_item_height, QgsUnitTypes.LayoutMillimeters))
         self.log(f"attemptRisize. width: {map_item_width} height: {map_item_height}")
             # Position the map item centered on the page
-        x_offset = (paper_size.width() - map_item_width) / 2
-        y_offset = (paper_size.height() - map_item_height) / 2
+        x_offset = round((paper_size.width() - map_item_width) / 2)
+        y_offset = round((paper_size.height() - map_item_height) / 2)
         map_item.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters))
 
         # Use the provided extent (from the settings_dict)
@@ -71,7 +71,7 @@ class ExportManager:
         north_margin = round(north_size * 0.5)
         self.log(f"north_margin: {north_margin}")
 
-        scale_bar_width = round(paper_size.width() * 0.2)
+        scale_bar_width = round(paper_size.width() * 0.2) #Gebruik standaard waarde (1/5)
         scale_bar_height = round(paper_size.height() * 0.01)
         # self.log(f"scalebar_width (calculated): {scale_bar_width}")
         # self.log(f"scalebar_height (calculated): {scale_bar_height}")
@@ -94,11 +94,11 @@ class ExportManager:
 
         # Add legend if needed
         if settings.get("include_legend"):
-            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item, project=QgsProject.instance())
+            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
 
         # Add scalebar if needed
         if settings.get("include_scale"):
-            self._add_scale_bar(layout, x_offset=x_offset, y_offset=y_offset,map_item_width=map_item_width, map_item_height=map_item_height, map_item=map_item)
+            self._add_scale_bar(layout, x_offset=x_offset, x_margin=scale_bar_margin, y_offset=y_offset,map_item_width=map_item_width, map_item_height=map_item_height, map_item=map_item)
 
         return layout
 
@@ -155,23 +155,23 @@ class ExportManager:
         # Add to layout
         layout.addLayoutItem(north_arrow)
 
-    def _add_legend(self, layout, x_offset, y_offset, map_item, project):
+    def _add_legend(self, layout, x_offset, y_offset, map_item):
 
         #Set max length for layernames   
-        layers = project.mapLayers()
-        max_length = 25
-        if not layers:
-            self.log("Geen lagen gevonden in het project!")
-        else:      
-            for layer in layers.values():
-                old_name = layer.name()
-                self.log(f"old_name: {old_name}")
-                if len(old_name) > max_length:
-                    new_title = old_name[:max_length] + "…"
-                    self.log(f"new_title: {new_title}")
-                else:
-                    new_title = old_name
-                layer.setName(new_title) #TODO: Dit wordt blijkbaar naar het project teruggeschreven en niet alleen op de print
+        # layers = project.mapLayers()
+        # max_length = 25
+        # if not layers:
+        #     self.log("Geen lagen gevonden in het project!")
+        # else:      
+        #     for layer in layers.values():
+        #         old_name = layer.name()
+        #         self.log(f"old_name: {old_name}")
+        #         if len(old_name) > max_length:
+        #             new_title = old_name[:max_length] + "…"
+        #             self.log(f"new_title: {new_title}")
+        #         else:
+        #             new_title = old_name
+        #         layer.setName(new_title) #TODO: Dit wordt blijkbaar naar het project teruggeschreven en niet alleen op de print
         
         legend = QgsLayoutItemLegend(layout)
         legend.setLinkedMap(map_item)
@@ -181,13 +181,14 @@ class ExportManager:
         legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
         layout.addLayoutItem(legend)
 
-    def _add_scale_bar(self, layout, x_offset, y_offset,map_item_width, map_item_height, map_item):
+    def _add_scale_bar(self, layout, x_offset, x_margin, y_offset,map_item_width, map_item_height, map_item):
+        self.log(f"_add_scale_bar x_margin: {x_margin}")
         scale_bar = QgsLayoutItemScaleBar(layout)
         scale_bar.setStyle('Single Box')
         scale_bar.setLinkedMap(map_item)
         scale_bar.applyDefaultSize() #1/5 of map item width
         scale_bar.attemptMove(
-            QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + map_item_height - 20, QgsUnitTypes.LayoutMillimeters)
+            QgsLayoutPoint(x_offset + map_item_width - x_margin, y_offset + map_item_height - 20, QgsUnitTypes.LayoutMillimeters)
         ) # Position it at the bottom right corner of the map item
         # self.log(f"x_position: {x_offset + map_item_width - 50} y_position: {y_offset + map_item_height - 20}")
         # self.log(f"Scale bar height (func): {scale_bar.height()}")
