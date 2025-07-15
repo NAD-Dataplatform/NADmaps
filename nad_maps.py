@@ -532,9 +532,10 @@ class NADMaps():
         else:
             self.dlg.comboBox_BestandsFormaat.setCurrentIndex(0)
 
-        saved_quality = str(QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit"))
+        saved_quality = str(QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit (150 DPI)"))
         quality_items = [str(self.dlg.comboBox_PrintQuality.itemText(i)) for i in range(self.dlg.comboBox_PrintQuality.count())]
         if saved_quality in quality_items:
+            #TODO
             #self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
             self.dlg.comboBox_PrintQuality.setCurrentText('Iets geks')
         else:
@@ -611,7 +612,7 @@ class NADMaps():
         else:
             self.dlg.lineEdit_Titel.setVisible(False)
             self.dlg.spinBox_TitelFontSize.setVisible(False)
-
+    
     def check_map_name(self):
         map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
@@ -639,6 +640,7 @@ class NADMaps():
         settings_dict = {
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
             "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
+            "print_quality": self.dlg.comboBox_PrintQuality.currentText().lower(),
             "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
             "north_placement": self.dlg.comboBox_NoordpijlPlacement.currentText(),
             "include_legend": self.dlg.checkBox_Legenda.isChecked(),

@@ -157,6 +157,7 @@ class ExportManager:
 
     def _add_legend(self, layout, x_offset, y_offset, map_item):
 
+        #TODO
         #Set max length for layernames   
         # layers = project.mapLayers()
         # max_length = 25
@@ -211,11 +212,29 @@ class ExportManager:
     def export(self, layout: QgsLayout, filepath: str) -> bool:
         exporter = QgsLayoutExporter(layout)
 
+        export_settings_img = QgsLayoutExporter.ImageExportSettings()
+        export_settings_img.dpi = 150
+        self.log(f"quality: {self.dlg.comboBox_PrintQuality.currentText()}")
+
+        quality = self.dlg.comboBox_PrintQuality.currentText()
+        
+        dpi = ""
+        for i in quality:
+            if i.isdigit():
+                dpi += i
+
+        dpi_int=int(dpi)
+
+        self.log(f"dpi_int: {dpi_int}")
+
+        export_settings_pdf = QgsLayoutExporter.PdfExportSettings()
+        export_settings_pdf.dpi = dpi_int
+
         filetype = os.path.splitext(filepath)[1][1:]  # Get the file extension without the dot
         if filetype.upper() == "PNG":
-            result = exporter.exportToImage(filepath, QgsLayoutExporter.ImageExportSettings())
+            result = exporter.exportToImage(filepath, export_settings_img)
         elif filetype.upper() == "PDF":
-            result = exporter.exportToPdf(filepath, QgsLayoutExporter.PdfExportSettings())
+            result = exporter.exportToPdf(filepath, export_settings_pdf)
         else:
             raise ValueError("Unsupported file type")
 
