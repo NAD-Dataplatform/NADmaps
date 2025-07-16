@@ -1,12 +1,15 @@
 import os
+from .constants import PLACEMENT_OPTIONS
 
 from qgis.core import (
     QgsProject, QgsLayout, QgsLayoutExporter, QgsLayoutItemMap,
     QgsLayoutItemLegend, QgsLayoutItemScaleBar, QgsLayoutItemPicture,
-    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel
+    QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel, QgsLegendSettings
 )
 from PyQt5.QtCore import QSizeF
 from PyQt5.QtGui import QColor, QFont
+
+QgsLegendSettings().setWrapChar(' ')
 
 class ExportManager:
     def __init__(self, dlg, log, project=None):
@@ -64,29 +67,33 @@ class ExportManager:
 
         layout.addLayoutItem(map_item)
 
-        #TODO
-        #Scaling & placement
-        title_font_size = round(paper_size.height() * 0.05)
-        title_margin_top = round(paper_size.height() * 0.02)
+        #TODO get size (widht and height can be different)
+        #Size
+        north_item_width = round(map_item_width * 0.1) #round(paper_size.height() * 0.03)
 
-        north_size = round(map_item_width * 0.1) #round(paper_size.height() * 0.03)
-        self.log(f"north_size: {north_size}")
-        north_margin = round(north_size * 0.5)
-        self.log(f"north_margin: {north_margin}")
+        location = self.dlg.comboBox_NoordpijlPlacement.currentText()
+        self.log(f"location: {location}")
+        self.log(f"Len location {len(location)}")
 
-        scale_bar_width = round(paper_size.width() * 0.2) #Gebruik standaard waarde (1/5)
-        scale_bar_height = round(paper_size.height() * 0.01)
-        # self.log(f"scalebar_width (calculated): {scale_bar_width}")
-        # self.log(f"scalebar_height (calculated): {scale_bar_height}")
-        scale_bar_margin = north_margin
+        # Get position
+        x_north, y_north = self._get_position_based_on_location(
+            location=location,
+            x_offset=x_offset,
+            y_offset=y_offset,
+            map_item_width=map_item_width,
+            map_item_height=map_item_height,
+            item_width=north_item_width*0.6,
+            item_height=north_item_width,
+            margin=10
+        )
 
-        legend_width = round(paper_size.width() * 0.15)
-        legend_margin = north_margin
+        self.log(f"x north {x_north}")
+        self.log(f"y_norht {y_north}")
 
         # Add north arrow if needed
         #TODO 1: Positie van pijl op afdruk op basis van instelling (nu altijd rechtsboven)
         if settings.get("include_north"):
-            self._add_north_arrow(layout, map_item_width=map_item_width, map_item_height=map_item_height, x_offset=x_offset, y_offset=y_offset, north_margin=north_margin, size_mm=north_size) # Hier ook positie en grootte meegeven
+            self._add_north_arrow(layout, x=x_north, y=y_north, size_mm=north_item_width) # Hier ook positie en grootte meegeven
             
         # Add title if needed
         if settings.get("include_title"):
@@ -100,10 +107,33 @@ class ExportManager:
             self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
 
         # Add scalebar if needed
+        scale_bar_margin = 0 # TODO
         if settings.get("include_scale"):
             self._add_scale_bar(layout, x_offset=x_offset, x_margin=scale_bar_margin, y_offset=y_offset,map_item_width=map_item_width, map_item_height=map_item_height, map_item=map_item)
 
         return layout
+    
+    def _get_position_based_on_location(self, location, x_offset, y_offset, map_item_width, map_item_height, item_width, item_height, margin=0):
+        if location not in PLACEMENT_OPTIONS:
+            raise ValueError(f"location not in PLACEMENT_OPTIONS: {PLACEMENT_OPTIONS}")
+        
+        if location == "Linksonder":
+            x = x_offset + margin
+            y = y_offset + map_item_height - margin - item_height
+
+        if location == "Linksboven":
+            x = x_offset + margin
+            y = y_offset + margin
+            
+        if location == "Rechtsonder":
+            x = x_offset + map_item_width - margin - item_width
+            y = y_offset + map_item_height - margin - item_height
+
+        if location == "Rechtsboven":
+            x = x_offset + map_item_width - margin - item_width
+            y = y_offset + margin
+
+        return x, y
 
     def _add_title(self, layout, title_text, font_size=20):
         title = QgsLayoutItemLabel(layout)
@@ -127,7 +157,7 @@ class ExportManager:
 
         layout.addLayoutItem(title)
 
-    def _add_north_arrow(self, layout, map_item_width, map_item_height, x_offset, y_offset, north_margin, size_mm):       
+    def _add_north_arrow(self, layout, x, y, size_mm):       
         # Path to SVG file relative to lib folder
         base_dir = os.path.dirname(__file__)  # = path to 'lib/'
         svg_path = os.path.abspath(os.path.join(base_dir, "..", "resources", "north-arrow.svg"))
@@ -145,7 +175,7 @@ class ExportManager:
         north_arrow.attemptResize(QgsLayoutSize(size_mm, size_mm, QgsUnitTypes.LayoutMillimeters))
 
         # Set position
-        north_arrow.attemptMove(QgsLayoutPoint(x_offset + map_item_width - 50, y_offset + north_margin, QgsUnitTypes.LayoutMillimeters))
+        north_arrow.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters))
         # self.log(f"x: {x_offset + map_item_width - north_margin}")
         # self.log(f"y: {y_offset + north_margin}")
         # self.log(f"Combobox text: {self.dlg.comboBox_NoordpijlPlacement.currentText()}")
@@ -160,23 +190,27 @@ class ExportManager:
 
     def _add_legend(self, layout, x_offset, y_offset, map_item):
 
-        #TODO
-        #Set max length for layernames   
-        # layers = project.mapLayers()
-        # max_length = 25
-        # if not layers:
-        #     self.log("Geen lagen gevonden in het project!")
-        # else:      
-        #     for layer in layers.values():
-        #         old_name = layer.name()
-        #         self.log(f"old_name: {old_name}")
-        #         if len(old_name) > max_length:
-        #             new_title = old_name[:max_length] + "…"
-        #             self.log(f"new_title: {new_title}")
-        #         else:
-        #             new_title = old_name
-        #         layer.setName(new_title) #TODO: Dit wordt blijkbaar naar het project teruggeschreven en niet alleen op de print
-        
+        # TODO loop over all layers, wrap name  
+        layers = self.project.mapLayers()
+        max_length = 25
+
+        self.mapping_dict = {}
+
+        if not layers:
+             self.log("Geen lagen gevonden in het project!", 0)
+        else:      
+             for layer in layers.values():
+                 old_name = layer.name()
+                 if len(old_name) > max_length:
+                     new_name = old_name[:max_length] + "…"
+                 else:
+                     new_name = old_name
+                 layer.setName(new_name)
+                # store in dict
+                 self.mapping_dict[new_name] = old_name
+
+        self.log(f"mapping_dict {self.mapping_dict}")
+
         legend = QgsLayoutItemLegend(layout)
         legend.setLinkedMap(map_item)
         legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
@@ -184,6 +218,10 @@ class ExportManager:
         legend.setTitle("Legenda")
         legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
         layout.addLayoutItem(legend)
+
+    def _wrap_text(text, max_length):
+        return '\n'.join(text[i:i+max_length] for i in range(0, len(text), max_length))
+
 
     def _add_scale_bar(self, layout, x_offset, x_margin, y_offset,map_item_width, map_item_height, map_item):
         self.log(f"_add_scale_bar x_margin: {x_margin}")
@@ -229,5 +267,15 @@ class ExportManager:
             result = exporter.exportToPdf(filepath, export_settings_pdf)
         else:
             raise ValueError("Unsupported file type")
+        
+        self._set_layer_names_to_original()
 
         return result == QgsLayoutExporter.Success
+    
+
+    def _set_layer_names_to_original(self):
+        layers = self.project.mapLayers()
+        for layer in layers.values():
+            old_name = self.mapping_dict.get(layer.name())
+            self.log(f"old_name = {old_name}")
+            layer.setName(old_name)

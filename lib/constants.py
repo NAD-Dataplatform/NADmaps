@@ -15,7 +15,7 @@ PLACEMENT_OPTIONS = [
     "Linksboven",
     "Rechtsboven",
     "Linksonder",
-    "Rechtonder"
+    "Rechtsonder"
 ]
 PRINT_QUALITY_OPTIONS = {
     "Lage kwaliteit (72 DPI)": 72,
