@@ -593,43 +593,6 @@
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="label_Schaal">
-            <property name="text">
-             <string>Schaal:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Schaal">
-            <property name="minimum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10000000.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>10000.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_Rotatie">
-            <property name="text">
-             <string>Rotatie:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
-            <property name="minimum">
-             <double>-360.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="label_AddToLayout">
             <property name="text">
              <string>Voeg toe aan mijn layout:</string>
