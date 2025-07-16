@@ -22,6 +22,9 @@ class ExportManager:
         layout = QgsLayout(self.project)
         layout.initializeDefaults()
        
+        # Get dpi
+        self.dpi = settings.get('dpi')
+
         # Get paper size
         paper_size = self._get_page_size(settings.get("paper_format", "A4 staand"))
         page = layout.pageCollection().pages()[0]
@@ -213,22 +216,11 @@ class ExportManager:
         exporter = QgsLayoutExporter(layout)
 
         export_settings_img = QgsLayoutExporter.ImageExportSettings()
-        export_settings_img.dpi = 150
-        self.log(f"quality: {self.dlg.comboBox_PrintQuality.currentText()}")
-
-        quality = self.dlg.comboBox_PrintQuality.currentText()
-        
-        dpi = ""
-        for i in quality:
-            if i.isdigit():
-                dpi += i
-
-        dpi_int=int(dpi)
-
-        self.log(f"dpi_int: {dpi_int}")
-
+        export_settings_img.dpi = self.dpi
+        self.log(f"dpi: {self.dpi}")
+     
         export_settings_pdf = QgsLayoutExporter.PdfExportSettings()
-        export_settings_pdf.dpi = dpi_int
+        export_settings_pdf.dpi = self.dpi
 
         filetype = os.path.splitext(filepath)[1][1:]  # Get the file extension without the dot
         if filetype.upper() == "PNG":

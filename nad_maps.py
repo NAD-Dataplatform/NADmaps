@@ -637,10 +637,13 @@ class NADMaps():
 
         export_manager = ExportManager(dlg=self.dlg, log=self.log, project=None)
 
+        print_quality = self.dlg.comboBox_PrintQuality.currentText()
+        dpi = PRINT_QUALITY_OPTIONS.get(print_quality)
+
         settings_dict = {
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
             "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
-            "print_quality": self.dlg.comboBox_PrintQuality.currentText().lower(),
+            "dpi" : dpi,
             "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
             "north_placement": self.dlg.comboBox_NoordpijlPlacement.currentText(),
             "include_legend": self.dlg.checkBox_Legenda.isChecked(),
