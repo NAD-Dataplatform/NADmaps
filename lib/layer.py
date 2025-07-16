@@ -4,19 +4,38 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 import os.path
+from owslib.wms import WebMapService
+from owslib.wfs import WebFeatureService
+
+# import urllib2,
+import re
+import requests
+import xml.etree.ElementTree as ET
 from .constants import PLUGIN_NAME
 
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
-from qgis.PyQt.QtCore import Qt, QRegularExpression, QSortFilterProxyModel, QItemSelectionModel
+from qgis.PyQt.QtCore import (
+    Qt,
+    QRegularExpression,
+    QSortFilterProxyModel,
+    QItemSelectionModel,
+)
 from qgis.PyQt.QtWidgets import QAbstractItemView
-from qgis.core import (Qgis, QgsProject, QgsLayerTreeLayer, QgsRasterLayer,
-                       QgsVectorLayer, QgsVectorTileLayer, QgsCoordinateReferenceSystem,
-                       QgsFeatureRequest)
+from qgis.core import QgsSettings
+from qgis.core import (
+    Qgis,
+    QgsProject,
+    QgsLayerTreeLayer,
+    QgsRasterLayer,
+    QgsVectorLayer,
+    QgsVectorTileLayer,
+    QgsCoordinateReferenceSystem,
+    QgsFeatureRequest,
+)
 
 
-class LayerManager():
+class LayerManager:
     def __init__(self, dlg, iface, plugin_dir, tr, style_manager, log):
-
         assert dlg is not None, "LayerManager: dlg is None"
         assert iface is not None, "LayerManager: iface is None"
         assert plugin_dir is not None, "LayerManager: plugin_dir is None"
@@ -30,7 +49,10 @@ class LayerManager():
         self.tr = tr
         self.style_manager = style_manager
         self.log = log
-        
+        self.maxnumfeatures = QgsSettings().value(
+            "nadmaps/wfs_maxnumfeatures", 5000, type=int
+        )
+
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
 
@@ -39,8 +61,10 @@ class LayerManager():
         # self.proxyModelMaps.setFilterKeyColumn(1)
 
         self.dlg.activeMapListView.setModel(self.proxyModelMaps)
-        self.dlg.activeMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-    
+        self.dlg.activeMapListView.setEditTriggers(
+            QAbstractItemView.EditTrigger.NoEditTriggers
+        )
+
         # Model for the list of all layers available via the plugin
         self.layerModel = QStandardItemModel()
         self.layerFilter = QSortFilterProxyModel()
@@ -52,15 +76,25 @@ class LayerManager():
         self.layerProxyModel.setFilterKeyColumn(3)
 
         self.dlg.mapListView.setModel(self.layerProxyModel)
-        self.dlg.mapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.dlg.mapListView.setEditTriggers(
+            QAbstractItemView.EditTrigger.NoEditTriggers
+        )
 
-        self.dlg.mapListView.selectionModel().selectionChanged.connect(self.get_current_layer)
-        self.dlg.mapListView.doubleClicked.connect(lambda: self.load_layer(None))  # Using lambda here to prevent sending signal parameters to the loadService() function
+        self.dlg.mapListView.selectionModel().selectionChanged.connect(
+            self.get_current_layer
+        )
+        self.dlg.mapListView.doubleClicked.connect(
+            lambda: self.load_layer(None)
+        )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
         self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
 
-        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(lambda: self.update_active_layers_list())
-        QgsProject.instance().layerTreeRoot().nameChanged.connect(lambda: self.update_active_layers_list())
+        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect(
+            lambda: self.update_active_layers_list()
+        )
+        QgsProject.instance().layerTreeRoot().nameChanged.connect(
+            lambda: self.update_active_layers_list()
+        )
 
         # Set default layer loading behaviour
         self.service_type_mapping = {
@@ -80,7 +114,7 @@ class LayerManager():
             "api features": "top",
             "api tiles": "bottom",
         }
-        
+
         # bounding polygon
         # self.bound_file_path = "C:\Users\svanderhoeven\Documents\BGT Inlooptool 2024\gemeentegrens\naam_Delft.gpkg"
         # Get the polygon layer
@@ -91,17 +125,22 @@ class LayerManager():
     def filter_layers(self, string):
         # remove selection if one row is selected
         self.dlg.mapListView.selectRow(0)
-        self.layerProxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        self.layerProxyModel.setFilterCaseSensitivity(
+            Qt.CaseSensitivity.CaseInsensitive
+        )
         strlist = string.strip().split(" ")
         string = ""
         for s in strlist:
             string += f"{s}.*"
         # print(f"string: {string}")
         # self.log(f"List string {string}")
-        regexp = QRegularExpression(string, QRegularExpression.PatternOption.CaseInsensitiveOption | QRegularExpression.PatternOption.InvertedGreedinessOption)
+        regexp = QRegularExpression(
+            string,
+            QRegularExpression.PatternOption.CaseInsensitiveOption
+            | QRegularExpression.PatternOption.InvertedGreedinessOption,
+        )
         self.layerProxyModel.setFilterRegularExpression(regexp)
         self.layerProxyModel.insertRow
-
 
     ############################# Active layer list #############################
 
@@ -139,7 +178,9 @@ class LayerManager():
                 # layer is the same value as QgsVectorLayer(uri, title, "wfs"), e.g. <QgsVectorLayer: 'Riolering WFS: Leiding' (WFS)>
                 # self.log(f"Layer {layer} has name: {layer.name()} of type {layer.type()} with source {layer.source()}", 3)
                 # https://gis.stackexchange.com/questions/383425/whats-a-provider-in-pyqgis-and-how-many-types-of-providers-exist
-                layer_tree_layer = root.findLayer(layer) # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
+                layer_tree_layer = root.findLayer(
+                    layer
+                )  # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
                 provider_type = layer.providerType()
 
                 itemLayername = QStandardItem(str(layer.name()))
@@ -157,9 +198,13 @@ class LayerManager():
                 itemSource = QStandardItem(str(layer.source()))
                 itemSource.setToolTip(str(layer.source()))
                 itemOrder = QStandardItem(str(i))
-                
-                itemLayername.setData(layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[0].data(Qt.ItemDataRole.UserRole)
-                itemType.setData(layer_tree_layer, Qt.ItemDataRole.UserRole) # get data: self.dlg.activeMapListView.selectedIndexes()[1].data(Qt.ItemDataRole.UserRole)
+
+                itemLayername.setData(
+                    layer, Qt.ItemDataRole.UserRole
+                )  # get data: self.dlg.activeMapListView.selectedIndexes()[0].data(Qt.ItemDataRole.UserRole)
+                itemType.setData(
+                    layer_tree_layer, Qt.ItemDataRole.UserRole
+                )  # get data: self.dlg.activeMapListView.selectedIndexes()[1].data(Qt.ItemDataRole.UserRole)
 
                 self.mapsModel.appendRow(
                     [itemLayername, itemType, itemStyle, itemSource, itemOrder]
@@ -170,14 +215,24 @@ class LayerManager():
         self.mapsModel.setHeaderData(2, Qt.Orientation.Horizontal, "Opmaak")
         self.mapsModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.mapsModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.mapsModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.mapsModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.mapsModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.mapsModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.mapsModel.horizontalHeaderItem(4).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.mapsModel.horizontalHeaderItem(3).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.mapsModel.horizontalHeaderItem(2).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.mapsModel.horizontalHeaderItem(1).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.mapsModel.horizontalHeaderItem(0).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
         self.dlg.activeMapListView.hideColumn(4)
-        
+
         self.dlg.activeMapListView.setColumnWidth(
             0, 200
         )  # set name to 300px (there are some huge layernames)
@@ -187,15 +242,64 @@ class LayerManager():
     ############################# All web layer list #############################
 
     def load_layer_list(self):
+        # wms = WebMapService('https://service.pdok.nl/brt/topraster/wms/v1_0?', version='1.3.0')
+        # wms_list = list(wms.contents)
+        # self.log(wms_list)
+        #
+        # wfs = WebFeatureService(url='https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0', version='3.0')
+        # self.log(f"wfs is {wfs}")
+        # wfs_title = list(wfs.contents)
+        # self.log(f"title is {wfs_title}")
+
+        # url = 'https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0?request=GetCapabilities&service=WFS'
+        # # file = urllib.request.urlopen(url)
+        # file = requests.get(url)
+        # # data = file.read()
+        # tree = ET.parse(file.content)
+        # root = tree.getroot()
+        # lst = root.iter("FeatureType")
+        # for child in lst:
+        #     self.log(child.find("Name"))
+        # Name = child.find('FeatureType').text
+        # Title = child.get('Title')
+        # self.log(f"{Name}: {Title}")
+
+        # tree = ET.parse(data)
+        # root2 = ET.fromstring(str(data))
+        # self.log(root2[0].tag)
+
+        # string = '<FeatureType><Name>(.+?)</Name><Title>'
+        # for word in data.split():
+        #     if re.search(string, str(word)):
+        #         self.log(f"first line: {word}")
+
+        #     layer = re.search(string, word)
+        #     name = layer.group(1)
+        #     self.log(f"name is {name}")
+        # if layer is not None:
+        #     uri = "https://geo.barentswatch.no/geoserver/bw/ows?srsname=EPSG:4326&typename={name}&version=1.0.0&request=vlayer=QgsVectorLayer".format(name = layer.group(1))
+        #     vlayer = QgsVectorLayer(uri, layer.group(1), "WFS")
+        #     QgsMapLayerRegistry.instance().addMapLayer(vlayer)
+
         self.layers_nad = []
-        layer_path = os.path.join(self.plugin_dir, "resources", "layers-nad.json")
-        with open(layer_path, "r", encoding="utf-8") as f:
-            self.layers_nad.extend(json.load(f))
+        # add a new json file with layer description to the resources/layers folder
+        self.layer_files = [
+            "layers-nad.json",  # eigen kaartlagen
+            "layers-gwsw.json",  # gwsw
+            "layers-pzh.json",  # provincie zuid-holland
+            "layers-klimaatatlas.json",  # klimaatatlas
+            "layers-pdok.json",  # pdok
+        ]
+
+        for file in self.layer_files:
+            layer_path = os.path.join(self.plugin_dir, "resources/layers", file)
+            with open(layer_path, "r", encoding="utf-8") as f:
+                self.layers_nad.extend(json.load(f))
 
         for layer in self.layers_nad:
             if isinstance(layer["name"], str):
                 self.add_source_row(layer)
-        
+
         self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
         self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
         # hide itemFilter column:
@@ -209,9 +313,15 @@ class LayerManager():
         self.layerModel.setHeaderData(2, Qt.Orientation.Horizontal, "Service")
         self.layerModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.layerModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.layerModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.layerModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.layerModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.layerModel.horizontalHeaderItem(2).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.layerModel.horizontalHeaderItem(1).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.layerModel.horizontalHeaderItem(0).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
 
     def add_source_row(self, serviceLayer):
         # you can attache different "data's" to to an QStandarditem
@@ -242,7 +352,7 @@ class LayerManager():
         itemLayername.setToolTip(tooltip)
         # itemFilter is the item used to search filter in. That is why layername is a combi of layername + filter here
         itemFilter = QStandardItem(
-            f'{serviceLayer["service_type"]} {layername} {serviceLayer["service_title"]} {serviceLayer["service_abstract"]} {styles_string}'
+            f"{serviceLayer['service_type']} {layername} {serviceLayer['service_title']} {serviceLayer['service_abstract']} {styles_string}"
         )
         itemServicetitle = QStandardItem(str(serviceLayer["service_title"]))
         itemServicetitle.setToolTip(tooltip)
@@ -260,19 +370,19 @@ class LayerManager():
         servicetype = self.current_layer["service_type"]
         if tree_location is None:
             tree_location = self.default_tree_locations[servicetype]
-        
+
         new_layer = self.create_new_layer()
         if new_layer is None:
             return
-        
+
         if tree_location not in ["default", "top", "bottom"]:
             # TODO: proper error handling
             return
-        
+
         if tree_location == "default":
             QgsProject.instance().addMapLayer(new_layer, True)
             return
-        
+
         QgsProject.instance().addMapLayer(new_layer, False)
         new_layer_tree_layer = QgsLayerTreeLayer(new_layer)
         layer_tree = self.iface.layerTreeCanvasBridge().rootGroup()
@@ -311,12 +421,12 @@ class LayerManager():
             return
 
     def create_wfs_layer(self, layername, title, url):
-        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
+        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{self.maxnumfeatures}'"
         # uri = f" pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
 
         # pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Maassluis' version='auto'
         return QgsVectorLayer(uri, title, "wfs")
-        
+
     def create_wms_layer(self, layername, title, url):
         imgformat = self.current_layer["imgformats"].split(",")[0]
         crs = "EPSG:28992"
@@ -341,7 +451,7 @@ class LayerManager():
         return QgsRasterLayer(uri, title, "wcs")
 
     def create_oaf_layer(self, layername, title, url):
-        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"
+        uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{self.maxnumfeatures + 1}'"
         return QgsVectorLayer(uri, title, "OAPIF")
 
     def build_tileset_url(self, url, tileset_id, for_request):
@@ -378,7 +488,7 @@ class LayerManager():
         #     title += f" [{selected_style['name']}]"
 
         url_template = self.build_tileset_url(url, used_tileset["tileset_id"], True)
-        
+
         maxz_coord = used_tileset["tileset_max_zoomlevel"]
 
         # Although the vector tiles are only rendered for a specific zoom-level @PDOK (see maxz_coord),

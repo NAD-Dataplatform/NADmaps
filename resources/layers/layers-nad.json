@@ -1,0 +1,80 @@
+[
+    {
+        "name": "pastel",
+        "title": "Achtergrondkaart",
+        "abstract": "pastel",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+        "service_title": "BRT Achtergrondkaart WMTS",
+        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_orthoHR",
+        "title": "Luchtfoto Actueel Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "osm",
+        "title": "OpenBasisKaart - OSM - EPSG:28992",
+        "abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "styles": [ { "title": "", "name": "default" } ],
+        "tilematrixsets": "rd",
+        "imgformats": "image/png",
+        "service_url": "https://www.openbasiskaart.nl/mapcache/wmts/?SERVICE=WMTS&REQUEST=GETCAPABILITIES",
+        "service_title": "OpenBasisKaart.nl",
+        "service_abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "DUOPP",
+        "title": "Den Haag: Hoofdriool",
+        "abstract": "Hoofdriool van de gemeente Den Haag",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://mapserver.viewer-duopp.nl/?map=/etc/mapserver/denhaag_type.map",
+        "service_title": "Hoofdriool",
+        "service_abstract": "info",
+        "service_type": "wms"
+    },
+    {
+        "name": "DUOPP",
+        "title": "Den Haag: Aansluitleidingen",
+        "abstract": "Aansluitleidingen van de gemeente Den Haag",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
+        "service_url": "https://mapserver.viewer-duopp.nl/?map=/etc/mapserver/denhaag_aansluitingen.map",
+        "service_title": "Aansluitleidingen",
+        "service_abstract": "info",
+        "service_type": "wms"
+    }
+]
