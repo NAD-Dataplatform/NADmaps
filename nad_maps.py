@@ -380,10 +380,6 @@ class NADMaps:
             lambda: self.set_maxnumfeatures()
         )
 
-        # Canvas interactions
-        self.iface.mapCanvas().rotationChanged.connect(self.on_canvas_rotation_changed)
-        self.iface.mapCanvas().scaleChanged.connect(self.on_canvas_scale_changed)
-
         # Export_tab interactions
         self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
         self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(
@@ -395,8 +391,6 @@ class NADMaps:
         self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(
             self.on_print_quality_changed
         )
-        self.dlg.doubleSpinBox_Rotatie.valueChanged.connect(self.on_rotation_changed)
-        self.dlg.doubleSpinBox_Schaal.valueChanged.connect(self.on_scale_changed)
         self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
         self.dlg.checkBox_Schaalbalk.stateChanged.connect(
@@ -661,12 +655,6 @@ class NADMaps:
             "NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText()
         )
         QSettings().setValue(
-            "NADmaps/export/rotation", str(self.dlg.doubleSpinBox_Rotatie.value())
-        )
-        QSettings().setValue(
-            "NADmaps/export/scale", str(self.dlg.doubleSpinBox_Schaal.value())
-        )
-        QSettings().setValue(
             "NADmaps/export/include_north",
             "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false",
         )
@@ -737,13 +725,6 @@ class NADMaps:
                 f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}"
             )
 
-        self.dlg.doubleSpinBox_Rotatie.setValue(
-            float(QSettings().value("NADmaps/export/rotation", 0))
-        )
-        self.dlg.doubleSpinBox_Schaal.setValue(
-            float(QSettings().value("NADmaps/export/scale", 10000))
-        )
-
         self.dlg.checkBox_Noordpijl.setChecked(
             QSettings().value("NADmaps/export/include_north", "false") == "true"
         )
@@ -772,46 +753,6 @@ class NADMaps:
         self.save_export_settings()
 
     def on_print_quality_changed(self):
-        self.save_export_settings()
-
-    def on_rotation_changed(self):
-        value = self.dlg.doubleSpinBox_Rotatie.value()
-        canvas = self.iface.mapCanvas()
-        if canvas.rotation() != value:
-            canvas.setRotation(value)
-            QTimer.singleShot(200, canvas.refresh)
-
-        self.save_export_settings()
-
-    def on_canvas_rotation_changed(self):
-        canvas = self.iface.mapCanvas()
-        current_rotation = canvas.rotation()
-
-        if self.dlg.doubleSpinBox_Rotatie.value() != current_rotation:
-            self.dlg.doubleSpinBox_Rotatie.blockSignals(True)
-            self.dlg.doubleSpinBox_Rotatie.setValue(current_rotation)
-            self.dlg.doubleSpinBox_Rotatie.blockSignals(False)
-
-        self.save_export_settings()
-
-    def on_scale_changed(self):
-        value = self.dlg.doubleSpinBox_Schaal.value()
-        canvas = self.iface.mapCanvas()
-        if canvas.scale() != value:
-            canvas.zoomScale(value)
-            QTimer.singleShot(200, canvas.refresh)
-
-        self.save_export_settings()
-
-    def on_canvas_scale_changed(self):
-        canvas = self.iface.mapCanvas()
-        current_scale = canvas.scale()
-
-        if self.dlg.doubleSpinBox_Schaal.value() != current_scale:
-            self.dlg.doubleSpinBox_Schaal.blockSignals(True)
-            self.dlg.doubleSpinBox_Schaal.setValue(current_scale)
-            self.dlg.doubleSpinBox_Schaal.blockSignals(False)
-
         self.save_export_settings()
 
     def on_north_checkbox_changed(self):

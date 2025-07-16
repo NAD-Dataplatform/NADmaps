@@ -22,5 +22,4 @@ PRINT_QUALITY_OPTIONS = {
     "Normale kwaliteit (150 DPI)": 150,
     "Hoge kwaliteit (300 DPI)": 300,
     "Zeer hoge kwaliteit (600 DPI)": 600,
-    "Maximale kwaliteit (1200 DPI)": 1200
 }
