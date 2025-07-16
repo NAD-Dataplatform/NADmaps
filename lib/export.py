@@ -67,7 +67,7 @@ class ExportManager:
 
         layout.addLayoutItem(map_item)
 
-        #TODO get size (widht and height can be different)
+        #TODO get size (width and height can be different)
         #Size
         north_item_width = round(map_item_width * 0.1) #round(paper_size.height() * 0.03)
 
