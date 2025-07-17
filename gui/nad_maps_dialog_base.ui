@@ -93,7 +93,7 @@
       <enum>Qt::TabFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="active_tab">
       <attribute name="title">
@@ -716,7 +716,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBox_TitelFontSize"/>
+             <widget class="QSpinBox" name="spinBox_TitelFontSize">
+              <property name="value">
+               <number>20</number>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

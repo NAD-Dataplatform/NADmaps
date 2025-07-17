@@ -209,7 +209,7 @@ class NADMaps:
             self.log(f"Autostart failed: {e}")
 
     def show_dialog(self):
-        self.log("Showing NADMaps dialog after short delay.")
+        self.log("Showing NADMaps dialog after short delay.", 0)
         self.dlg.show()
         area = self.iface.mainWindow().dockWidgetArea(self.dlg)
         if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
@@ -857,14 +857,14 @@ class NADMaps:
 
         success = export_manager.export(layout, file_path)
         if success:
-            self.log(f"Kaart succesvol geëxporteerd naar {file_path}")
+            self.log(f"Kaart succesvol geëxporteerd naar {file_path}",3)
             QMessageBox.information(
                 self.dlg,
                 "Export succesvol",
                 f"De kaart is succesvol geëxporteerd naar {file_path}.",
             )
         else:
-            self.log(f"Fout bij het exporteren van de kaart naar {file_path}", 1)
+            self.log(f"Fout bij het exporteren van de kaart naar {file_path}", 2)
             QMessageBox.critical(
                 self.dlg,
                 "Export mislukt",
