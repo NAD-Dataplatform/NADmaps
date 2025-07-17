@@ -228,9 +228,15 @@ class ExportManager:
         legend = QgsLayoutItemLegend(layout)
         legend.setLinkedMap(map_item)
         legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
-        legend.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters)) 
+        legend.ReferencePoint(8)
+        # legend.LowerRight()
+        legend.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters), True)
         legend.setTitle("Legenda")
         legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
+        self.log(f"Upper left: {legend.UpperLeft}")
+        self.log(f"Upper right: {legend.UpperRight}")
+        self.log(f"Lower left: {legend.LowerLeft}")
+        self.log(f"Lower right: {legend.LowerRight}")
         layout.addLayoutItem(legend)
 
     def _add_scale_bar(self, layout, x_offset, x_margin, y_offset,map_item_width, map_item_height, map_item):
