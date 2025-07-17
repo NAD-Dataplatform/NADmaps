@@ -37,9 +37,9 @@ class ExportManager:
         # Calculate the map item size
         map_item_width = round(paper_size.width() * 0.9)
         map_item_height = round(paper_size.height() * 0.9)
-        self.log("# Calculate the map item size")
-        self.log(f"map_item_width: {map_item_width}")
-        self.log(f"map_item_height: {map_item_height}")
+        # self.log("# Calculate the map item size")
+        # self.log(f"map_item_width: {map_item_width}")
+        # self.log(f"map_item_height: {map_item_height}")
 
         # Create map item based on current canvas
         map_item = QgsLayoutItemMap(layout)
@@ -69,15 +69,17 @@ class ExportManager:
 
         #TODO get size (width and height can be different)
         #Size
-        north_item_width = round(map_item_width * 0.1) #round(paper_size.height() * 0.03)
-
+        north_item_width = round(map_item_width * 0.1)
         location = self.dlg.comboBox_NoordpijlPlacement.currentText()
-        self.log(f"location: {location}")
-        self.log(f"Len location {len(location)}")
 
-        # Get position
-        x_north, y_north = self._get_position_based_on_location(
-            location=location,
+        north_placement = self.dlg.comboBox_NoordpijlPlacement.currentText()
+        legend_placement = self.dlg.comboBox_LegendaPlacement.currentText()
+        scale_bar_placement = self.dlg.comboBox_SchaalbalkPlacement.currentText()
+                
+
+        # Get north position
+        x_north, y_north = self._get_position_based_on_placement(
+            placement=north_placement,
             x_offset=x_offset,
             y_offset=y_offset,
             map_item_width=map_item_width,
@@ -85,6 +87,18 @@ class ExportManager:
             item_width=north_item_width*0.6,
             item_height=north_item_width,
             margin=10
+        )
+
+        # Get legend position
+        x_legend, y_legend = self._get_position_based_on_placement(
+            placement=legend_placement,
+            x_offset=x_offset,
+            y_offset=y_offset,
+            map_item_width=map_item_width,
+            map_item_height=map_item_height,
+            item_width=north_item_width*0.6,
+            item_height=north_item_width,
+            margin=0
         )
 
         self.log(f"x north {x_north}")
@@ -104,7 +118,7 @@ class ExportManager:
 
         # Add legend if needed
         if settings.get("include_legend"):
-            self._add_legend(layout, x_offset=x_offset, y_offset=y_offset, map_item=map_item)
+            self._add_legend(layout, x=x_legend, y=y_legend, map_item=map_item)
 
         # Add scalebar if needed
         scale_bar_margin = 0 # TODO
@@ -113,23 +127,23 @@ class ExportManager:
 
         return layout
     
-    def _get_position_based_on_location(self, location, x_offset, y_offset, map_item_width, map_item_height, item_width, item_height, margin=0):
-        if location not in PLACEMENT_OPTIONS:
+    def _get_position_based_on_placement(self, placement, x_offset, y_offset, map_item_width, map_item_height, item_width, item_height, margin=0):
+        if placement not in PLACEMENT_OPTIONS:
             raise ValueError(f"location not in PLACEMENT_OPTIONS: {PLACEMENT_OPTIONS}")
         
-        if location == "Linksonder":
+        if placement == "Linksonder":
             x = x_offset + margin
             y = y_offset + map_item_height - margin - item_height
 
-        if location == "Linksboven":
+        if placement == "Linksboven":
             x = x_offset + margin
             y = y_offset + margin
             
-        if location == "Rechtsonder":
+        if placement == "Rechtsonder":
             x = x_offset + map_item_width - margin - item_width
             y = y_offset + map_item_height - margin - item_height
 
-        if location == "Rechtsboven":
+        if placement == "Rechtsboven":
             x = x_offset + map_item_width - margin - item_width
             y = y_offset + margin
 
@@ -188,7 +202,7 @@ class ExportManager:
         # Add to layout
         layout.addLayoutItem(north_arrow)
 
-    def _add_legend(self, layout, x_offset, y_offset, map_item):
+    def _add_legend(self, layout, x, y, map_item):
 
         # TODO loop over all layers, wrap name  
         layers = self.project.mapLayers()
@@ -214,14 +228,10 @@ class ExportManager:
         legend = QgsLayoutItemLegend(layout)
         legend.setLinkedMap(map_item)
         legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
-        legend.attemptMove(QgsLayoutPoint(x_offset, y_offset, QgsUnitTypes.LayoutMillimeters)) 
+        legend.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters)) 
         legend.setTitle("Legenda")
         legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
         layout.addLayoutItem(legend)
-
-    def _wrap_text(text, max_length):
-        return '\n'.join(text[i:i+max_length] for i in range(0, len(text), max_length))
-
 
     def _add_scale_bar(self, layout, x_offset, x_margin, y_offset,map_item_width, map_item_height, map_item):
         self.log(f"_add_scale_bar x_margin: {x_margin}")
@@ -268,7 +278,9 @@ class ExportManager:
         else:
             raise ValueError("Unsupported file type")
         
-        self._set_layer_names_to_original()
+        # self._set_layer_names_to_original()
+        if self.dlg.checkBox_Legenda.isChecked():
+            self._set_layer_names_to_original()
 
         return result == QgsLayoutExporter.Success
     

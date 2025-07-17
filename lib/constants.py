@@ -18,7 +18,6 @@ PLACEMENT_OPTIONS = [
     "Rechtsonder"
 ]
 PRINT_QUALITY_OPTIONS = {
-    "Lage kwaliteit (72 DPI)": 72,
     "Normale kwaliteit (150 DPI)": 150,
     "Hoge kwaliteit (300 DPI)": 300,
     "Zeer hoge kwaliteit (600 DPI)": 600,
