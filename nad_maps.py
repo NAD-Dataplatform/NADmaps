@@ -93,6 +93,9 @@ class NADMaps:
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
 
+        self.log_manager = LoggingManager(dlg=self.dlg)
+        self.log = self.log_manager.log
+
         # initialize the working directory from settings
         self.working_dir = QSettings().value("NADmaps/working_dir")
         if self.working_dir in ["", None]:
