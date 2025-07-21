@@ -593,43 +593,6 @@
            </layout>
           </item>
           <item>
-           <widget class="QLabel" name="label_Schaal">
-            <property name="text">
-             <string>Schaal:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Schaal">
-            <property name="minimum">
-             <double>1.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>10000000.000000000000000</double>
-            </property>
-            <property name="singleStep">
-             <double>10000.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_Rotatie">
-            <property name="text">
-             <string>Rotatie:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_Rotatie">
-            <property name="minimum">
-             <double>-360.000000000000000</double>
-            </property>
-            <property name="maximum">
-             <double>360.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QLabel" name="label_AddToLayout">
             <property name="text">
              <string>Voeg toe aan mijn layout:</string>
@@ -753,7 +716,11 @@
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spinBox_TitelFontSize"/>
+             <widget class="QSpinBox" name="spinBox_TitelFontSize">
+              <property name="value">
+               <number>20</number>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -813,6 +780,32 @@
           </size>
          </property>
         </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="log_tab">
+      <attribute name="title">
+       <string>Logberichten</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabLog">
+       <item row="0" column="0">
+        <widget class="QTableView" name="logView"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="testWidget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -930,22 +923,31 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBoxGetLayers">
+        <widget class="QGroupBox" name="groupBoxmaxNumFeatures">
          <property name="title">
-          <string>Lagen verversen</string>
+          <string>Lagen inladen</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QLabel" name="labelGetLayers">
+           <widget class="QLabel" name="label_MaxNumFeatures">
             <property name="text">
-             <string>Haal opnieuw de kaartlagen uit PDOK en andere servers op</string>
+             <string>Maximum aantal te laden objecten (in stappen van 100):</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonGetLayers">
-            <property name="text">
-             <string>Opnieuw ophalen</string>
+           <widget class="QSpinBox" name="spinBox_MaxNumFeatures">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>1000000</number>
+            </property>
+            <property name="singleStep">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>5000</number>
             </property>
            </widget>
           </item>
@@ -964,32 +966,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="log_tab">
-      <attribute name="title">
-       <string>Logberichten</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayoutTabLog">
-       <item row="0" column="0">
-        <widget class="QTableView" name="logView"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QWidget" name="testWidget" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>50</height>
-          </size>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
