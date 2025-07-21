@@ -955,6 +955,29 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBoxGetLayers">
+         <property name="title">
+          <string>Lagen verversen</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="labelGetLayers">
+            <property name="text">
+             <string>Haal opnieuw de kaartlagen uit PDOK en andere servers op</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonGetLayers">
+            <property name="text">
+             <string>Opnieuw ophalen</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
