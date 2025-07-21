@@ -816,32 +816,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="log_tab">
-      <attribute name="title">
-       <string>Logberichten</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayoutTabLog">
-       <item row="0" column="0">
-        <widget class="QTableView" name="logView"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QWidget" name="testWidget" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>50</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="file_tab">
       <attribute name="title">
        <string>Instellingen</string>
@@ -956,6 +930,29 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBoxGetLayers">
+         <property name="title">
+          <string>Lagen verversen</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="labelGetLayers">
+            <property name="text">
+             <string>Haal opnieuw de kaartlagen uit PDOK en andere servers op</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonGetLayers">
+            <property name="text">
+             <string>Opnieuw ophalen</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -967,6 +964,32 @@
           </size>
          </property>
         </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="log_tab">
+      <attribute name="title">
+       <string>Logberichten</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabLog">
+       <item row="0" column="0">
+        <widget class="QTableView" name="logView"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QWidget" name="testWidget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

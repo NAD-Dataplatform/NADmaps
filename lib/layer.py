@@ -12,6 +12,7 @@ import requests
 import xml.etree.ElementTree as ET
 from .constants import PLUGIN_NAME
 
+from qgis.PyQt.QtXml import QDomDocument, QDomElement
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 from qgis.PyQt.QtCore import Qt, QRegularExpression, QSortFilterProxyModel, QItemSelectionModel
 from qgis.PyQt.QtWidgets import QAbstractItemView
@@ -21,19 +22,17 @@ from qgis.core import (Qgis, QgsProject, QgsLayerTreeLayer, QgsRasterLayer,
 
 
 class LayerManager():
-    def __init__(self, dlg, iface, plugin_dir, tr, style_manager, log):
+    def __init__(self, dlg, iface, plugin_dir, style_manager, log):
 
         assert dlg is not None, "LayerManager: dlg is None"
         assert iface is not None, "LayerManager: iface is None"
         assert plugin_dir is not None, "LayerManager: plugin_dir is None"
-        assert tr is not None, "LayerManager: tr is None"
         assert style_manager is not None, "LayerManager: style_manager is None"
         assert log is not None, "LayerManager: log is None"
 
         self.dlg = dlg
         self.iface = iface
         self.plugin_dir = plugin_dir
-        self.tr = tr
         self.style_manager = style_manager
         self.log = log
         
@@ -192,48 +191,8 @@ class LayerManager():
 
     ############################# All web layer list #############################
 
+
     def load_layer_list(self):
-
-        # wms = WebMapService('https://service.pdok.nl/brt/topraster/wms/v1_0?', version='1.3.0')
-        # wms_list = list(wms.contents)
-        # self.log(wms_list)
-        # 
-        # wfs = WebFeatureService(url='https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0', version='3.0')
-        # self.log(f"wfs is {wfs}")
-        # wfs_title = list(wfs.contents)
-        # self.log(f"title is {wfs_title}")
-
-        # url = 'https://service.pdok.nl/cbs/gebiedsindelingen/2015/wfs/v1_0?request=GetCapabilities&service=WFS'
-        # # file = urllib.request.urlopen(url)
-        # file = requests.get(url)
-        # # data = file.read()
-        # tree = ET.parse(file.content)
-        # root = tree.getroot()
-        # lst = root.iter("FeatureType")
-        # for child in lst:
-        #     self.log(child.find("Name"))
-        #     Name = child.find('FeatureType').text
-        #     Title = child.get('Title')
-        #     self.log(f"{Name}: {Title}")
-
-        # tree = ET.parse(data)
-        # root2 = ET.fromstring(str(data))
-        # self.log(root2[0].tag)
-
-        # string = '<FeatureType><Name>(.+?)</Name><Title>'
-        # for word in data.split():
-        #     if re.search(string, str(word)):
-        #         self.log(f"first line: {word}")
-
-        #     layer = re.search(string, word)
-        #     name = layer.group(1)
-        #     self.log(f"name is {name}")
-            # if layer is not None:
-            #     uri = "https://geo.barentswatch.no/geoserver/bw/ows?srsname=EPSG:4326&typename={name}&version=1.0.0&request=vlayer=QgsVectorLayer".format(name = layer.group(1))
-            #     vlayer = QgsVectorLayer(uri, layer.group(1), "WFS")
-            #     QgsMapLayerRegistry.instance().addMapLayer(vlayer)
-
-
         self.layers_nad = []
         # add a new json file with layer description to the resources/layers folder
         self.layer_files = [
@@ -285,7 +244,7 @@ class LayerManager():
         # https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
         # tooltip = "Dubbelklik om een kaartlaag in te laden"
         tooltip = serviceLayer["service_abstract"]
-        itemType.setToolTip(self.tr(tooltip))
+        itemType.setToolTip(tooltip)
         # only wms services have styles (sometimes)
         layername = serviceLayer["title"]
         styles_string = ""

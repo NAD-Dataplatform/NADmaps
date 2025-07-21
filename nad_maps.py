@@ -25,7 +25,6 @@
 # General packages
 import getpass
 import os.path
-import time
 
 from qgis.core import (
     QgsCoordinateReferenceSystem,
@@ -52,7 +51,6 @@ from .lib.constants import (
     PRINT_QUALITY_OPTIONS,
 )
 
-from .gui.nad_maps_dialog import NADMapsDialog
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
 
 # from .lib.load_layers import LoadLayers ### LayerManager
@@ -62,6 +60,7 @@ from .lib.style import StyleManager
 from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
+from .lib.ingest import IngestLayersManager
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -89,6 +88,7 @@ class NADMaps:
             self.creator = "Plugin"
         else:
             self.creator = getpass.getuser()
+            self.dlg.groupBoxGetLayers.setVisible(False)
 
         # initialize the working directory from settings
         self.working_dir = QSettings().value("NADmaps/working_dir")
@@ -104,7 +104,7 @@ class NADMaps:
 
         os.makedirs(self.working_dir, exist_ok=True)
         os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-        os.makedirs(os.path.join(self.working_dir, "styling\\qml_files"), exist_ok=True)
+        os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
 
         # save the working directory to the settings, such that it is available next time the plugin is started
         QSettings().setValue("NADmaps/working_dir", self.working_dir)
@@ -140,7 +140,6 @@ class NADMaps:
             dlg=self.dlg,
             iface=self.iface,
             plugin_dir=self.plugin_dir,
-            tr=self.tr,
             style_manager=self.style_manager,
             log=self.log,
         )
@@ -149,6 +148,12 @@ class NADMaps:
             plugin_dir=self.plugin_dir,
             working_dir=self.working_dir,
             creator=self.creator,
+            log=self.log,
+        )
+        self.ingest_manager = IngestLayersManager(
+            dlg=self.dlg,
+            iface=self.iface,
+            plugin_dir=self.plugin_dir,
             log=self.log,
         )
 
@@ -401,8 +406,11 @@ class NADMaps:
             self.get_selected_active_layers
         )
 
-        self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
-        self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
+        # Activate to log performance by tracking load times of the canvas
+        # self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
+        # self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
+        self.dlg.pushButtonGetLayers.clicked.connect(self.ingest_manager.get_layer_list)
+
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 
     #########################################################################################

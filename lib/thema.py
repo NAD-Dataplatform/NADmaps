@@ -308,7 +308,7 @@ class ThemaManager:
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
         self.dlg.themaView.hideColumn(3)
         self.dlg.themaView.setColumnWidth(
-            0, 300
+            0, 200
         )  # set name to 300px (there are some huge layernames)
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
         self.dlg.themaView.sortByColumn(0, Qt.AscendingOrder)

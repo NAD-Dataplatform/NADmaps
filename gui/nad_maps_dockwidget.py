@@ -30,7 +30,7 @@ from qgis.PyQt.QtCore import Qt
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'nad_maps_dialog_base.ui'))
+    os.path.dirname(__file__), 'nad_maps_dockwidget.ui'))
 
 
 class NADMapsDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
