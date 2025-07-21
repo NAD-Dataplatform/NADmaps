@@ -1,0 +1,10 @@
+[
+	{
+		"title": "Basisregistratie Adressen en Gebouwen",
+		"description": "De gegevens bestaan uit BAG-panden inclusief panden met de status 'gesloopt' en een deelselectie van BAG-gegevens van deze panden en de zich daarin bevindende verblijfsobjecten. Ook de ligplaatsen en standplaatsen zijn hierin opgenomen met een deelselectie van BAG-gegevens. Lees meer over de BAG en bekijk de BAG vector tiles in de Vectortile Viewer."
+	},
+	{
+		"title": "Basisregistratie Grootschalige Topografie",
+		"description": "De Basisregistratie Grootschalige Topografie (BGT) is de gedetailleerde grootschalige basiskaart (digitaal) van Nederland, waarin de ligging van alle fysieke objecten zoals gebouwen, wegen, water, spoorlijnen en (landbouw)terreinen is geregistreerd. Lees meer over de BGT en bekijk de BGT vector tiles in de Vectortile Viewer."
+	}
+]
