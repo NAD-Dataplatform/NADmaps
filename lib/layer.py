@@ -54,9 +54,8 @@ from qgis.core import (
 )
 
 
-class LayerManager():
+class LayerManager:
     def __init__(self, dlg, iface, plugin_dir, style_manager, log):
-
         assert dlg is not None, "LayerManager: dlg is None"
         assert iface is not None, "LayerManager: iface is None"
         assert plugin_dir is not None, "LayerManager: plugin_dir is None"
@@ -156,7 +155,6 @@ class LayerManager():
             "api features": "top",
             "api tiles": "bottom",
         }
-
 
         # bounding polygon
         # self.bound_file_path = "C:\Users\svanderhoeven\Documents\BGT Inlooptool 2024\gemeentegrens\naam_Delft.gpkg"
@@ -309,7 +307,6 @@ class LayerManager():
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
         self.dlg.activeMapListView.hideColumn(4)
 
-
         self.dlg.activeMapListView.setColumnWidth(
             0, 200
         )  # set name to 300px (there are some huge layernames)
@@ -317,7 +314,6 @@ class LayerManager():
         self.dlg.activeMapListView.sortByColumn(4, Qt.AscendingOrder)
 
     ############################# All web layer list #############################
-
 
     def load_layer_list(self):
         self.layers_nad = []
@@ -335,7 +331,6 @@ class LayerManager():
             "layers-pdok.json",  # pdok
         ]
 
-
         for file in self.layer_files:
             layer_path = os.path.join(self.plugin_dir, "resources/layers", file)
             with open(layer_path, "r", encoding="utf-8") as f:
@@ -344,7 +339,6 @@ class LayerManager():
         for layer in self.layers_nad:
             if isinstance(layer["name"], str):
                 self.add_source_row(layer)
-
 
         self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
         self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
@@ -427,21 +421,17 @@ class LayerManager():
         if tree_location is None:
             tree_location = self.default_tree_locations[servicetype]
 
-
         new_layer = self.create_new_layer()
         if new_layer is None:
             return
-
 
         if tree_location not in ["default", "top", "bottom"]:
             # TODO: proper error handling
             return
 
-
         if tree_location == "default":
             QgsProject.instance().addMapLayer(new_layer, True)
             return
-
 
         QgsProject.instance().addMapLayer(new_layer, False)
         new_layer_tree_layer = QgsLayerTreeLayer(new_layer)
@@ -487,7 +477,6 @@ class LayerManager():
 
         # pagingEnabled='true' preferCoordinatesForWfsT11='false' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Maassluis' version='auto'
         return QgsVectorLayer(uri, title, "wfs")
-
 
     def create_wms_layer(self, layername, title, url):
         imgformat = self.current_layer["imgformats"].split(",")[0]
@@ -551,7 +540,6 @@ class LayerManager():
         #     title += f" [{selected_style['name']}]"
 
         url_template = self.build_tileset_url(url, used_tileset["tileset_id"], True)
-
 
         maxz_coord = used_tileset["tileset_max_zoomlevel"]
 
