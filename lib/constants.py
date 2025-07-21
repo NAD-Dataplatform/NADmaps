@@ -7,7 +7,9 @@ SERVICE_ENDPOINT = "https://api.pdok.nl/bzk/locatieserver/search/v3_1"
 PAPER_OPTIONS = [
     "A4 staand",
     "A4 liggend",
-    "A0 staand", 
+    "A3 staand",
+    "A3 liggend",
+    "A0 staand",
     "A0 liggend"
 ]
 FORMAT_OPTIONS = ["PNG", "PDF"]
@@ -15,12 +17,10 @@ PLACEMENT_OPTIONS = [
     "Linksboven",
     "Rechtsboven",
     "Linksonder",
-    "Rechtonder"
+    "Rechtsonder"
 ]
 PRINT_QUALITY_OPTIONS = {
-    "Lage kwaliteit": 72,
-    "Normale kwaliteit": 150,
-    "Hoge kwaliteit": 300,
-    "Zeer hoge kwaliteit": 600,
-    "Maximale kwaliteit": 1200
+    "Standaard (150 DPI)": 150,
+    "Hoog (300 DPI)": 300,
+    "Zeer hoog (600 DPI)": 600,
 }

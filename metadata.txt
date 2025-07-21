@@ -12,8 +12,8 @@ email=dataplatform@waterketendelfland.nl
 
 about=Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/Siebrand-HHD/NADmaps/issues
+repository=https://github.com/Siebrand-HHD/NADmaps
 # End of mandatory metadata
 
 # Recommended items:
@@ -25,7 +25,7 @@ hasProcessingProvider=no
 # Tags are comma separated with spaces allowed
 tags=python, wfs
 
-homepage=http://homepage
+homepage=https://github.com/Siebrand-HHD/NADmaps
 category=Plugins
 icon=nad.png
 # experimental flag
