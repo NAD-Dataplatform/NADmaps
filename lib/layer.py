@@ -116,12 +116,6 @@ class LayerManager():
         self.dlg.mapListView.doubleClicked.connect(
             lambda: self.load_layer(None)
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
-        self.dlg.mapListView.selectionModel().selectionChanged.connect(
-            self.get_current_layer
-        )
-        self.dlg.mapListView.doubleClicked.connect(
-            lambda: self.load_layer(None)
-        )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
         self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
 
