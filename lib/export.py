@@ -223,6 +223,8 @@ class ExportManager:
         # Create legend
         legend = QgsLayoutItemLegend(layout)
         legend.setLinkedMap(map_item)
+        legend.setLegendFilterByMapEnabled(True)
+        legend.setAutoUpdateModel(True)
         legend.attemptResize(QgsLayoutSize(50, 50, QgsUnitTypes.LayoutMillimeters))
         legend.setReferencePoint(reference_point)
         legend.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters), True)
