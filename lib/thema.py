@@ -1,6 +1,7 @@
 #########################################################################################
 ##############  Manage thema sets (a list of one or more map layers) ####################
 #########################################################################################
+import urllib
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 import os
 import json
@@ -10,23 +11,77 @@ from qgis.PyQt.QtCore import (
     QSortFilterProxyModel,
     QItemSelectionModel,
 )
-from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer
+from qgis.core import (
+    QgsProject,
+    QgsRasterLayer,
+    QgsVectorLayer,
+    QgsVectorTileLayer,
+    QgsCoordinateReferenceSystem,
+    QgsRasterLayer,
+    Qgis,
+)
 from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 
-# from .load_layers import load_thema_layer
 from .style import StyleManager
+from .layer import LayerManager
 
-from urllib.parse import urlparse, urlunparse
+import re
+
+from .layer import (
+    create_wms_layer,
+    create_wmts_layer,
+    create_wfs_layer,
+    create_wcs_layer,
+    create_oaf_layer,
+    create_oat_layer,
+)
 
 
 def extract_base_url(uri):
-    """Extract scheme://netloc/path without query and fragments"""
-    parsed = urlparse(uri)
-    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, "", "", ""))
+    """
+    Extract the base URL from a QGIS layer URI string.
+
+    Example:
+        uri = "pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+        uri = "pagingEnabled=true restrictToRequestBBOX=1 srsname=EPSG:28992 typename=beheerstedelijkwater:BeheerLeiding url=https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+    The function looks for url='...', url="...", or url=... in the string and returns the value with single quotes.
+    """
+    match = re.search(r"url=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        url = match.group(1) or match.group(2) or match.group(3)
+        return f"'{url}'"
+    else:
+        raise ValueError(
+            "No valid URL found in the provided URI string. Ensure it contains 'url=' followed by a valid URL."
+        )
 
 
-def build_uri_from_url(url, provider_type, layer_name, maxnumfeatures):
-    pass
+def build_uri_from_url(layer, url, maxnumfeatures=500):
+    service_type = layer["provider_type"]
+    layername = layer["name"]
+
+    if service_type == "wms":
+        return create_wms_layer(layer, layername, url)
+    elif service_type == "wmts":
+        return create_wmts_layer(layer, layername, url)
+    elif service_type == "wfs":
+        return create_wfs_layer(layername, url, maxnumfeatures=maxnumfeatures)
+    elif service_type == "wcs":
+        return create_wcs_layer(layername, url)
+    elif service_type == "api features":
+        return create_oaf_layer(layername, url, maxnumfeatures=maxnumfeatures)
+    elif service_type == "api tiles":
+        return create_oat_layer(layer, url)
+    else:
+        raise ValueError(
+            f"Unsupported service type: {service_type}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
+        )
 
 
 class ThemaManager:
@@ -34,11 +89,12 @@ class ThemaManager:
     Class to manage the thema sets (a list of one or more map layers)
     """
 
-    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
+    def __init__(self, dlg, plugin_dir, working_dir, creator, layer_manager, log):
         assert dlg is not None, "ThemaManager: dlg is None"
         assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
         assert working_dir is not None, "ThemaManager: working_dir is None"
         assert creator is not None, "ThemaManager: creator is None"
+        assert layer_manager is not None, "ThemaManager: layer_manager is None"
         assert log is not None, "ThemaManager: log is None"
 
         self.plugin_thema_path = os.path.join(
@@ -66,7 +122,7 @@ class ThemaManager:
             creator=creator,
             log=self.log,
         )
-
+        self.layer_manager = layer_manager
         self.current_thema = None
         self.current_layer = None
         self.themaModel = QStandardItemModel()
@@ -239,11 +295,16 @@ class ThemaManager:
             selected_layers = root.layerOrder()
 
         for i, layer in enumerate(selected_layers):
-            uri = layer.source()  # source is the uri of the layer
+            if not hasattr(layer, "source") and not hasattr(layer, "url"):
+                self.log(
+                    f"Layer {layer.name()} does not have a source or url attribute. Skipping this layer."
+                )
 
-            if not hasattr(layer, "source"):
-                url = layer["url"]  # backwards compatibility with old thema files
-            else:
+            if hasattr(layer, "url"):
+                url = layer.url()  # url is the uri of the layer
+
+            if hasattr(layer, "source"):  # backwards compatibility with old thema files
+                uri = layer.source()  # source is the uri of the layer
                 url = extract_base_url(uri)
 
             layer_type = self.layer_type_mapping[layer.type()]
@@ -256,9 +317,9 @@ class ThemaManager:
             )
             string = f'{string}"layer_type": "{layer_type}"'  # service_type
             if i == len(selected_layers) - 1:
-                string = string + "}]"
+                string = string + "}]"  # close the layers array
             else:
-                string = string + "}, {"
+                string = string + "}, {"  # separate layers with a comma
         string = string + "}"
 
         data = json.loads(string)
@@ -405,40 +466,98 @@ class ThemaManager:
         self.current_thema = self.dlg.themaView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
+
         if not self.current_thema == None:
-            self.thema_layers = self.current_thema["layers"]
+            thema_layers = self.current_thema["layers"]
+
+            # in here I want to build the logic of getting the layers from the layerModel in my LayerManager class in layers.py
+            self.thema_layers = []
+            for layer in thema_layers:
+                self.log(layer)
+                self.log(
+                    f"Checking thema layer: name={layer.get('name')}, provider_type={layer.get('provider_type')}, url={layer.get('url')}, source={layer.get('source')}"
+                )
+
+                found = False
+                for row in range(self.layer_manager.layerModel.rowCount()):
+                    layer_item = self.layer_manager.layerModel.index(row, 0)
+                    layer_data = layer_item.data(Qt.ItemDataRole.UserRole)
+                    self.log(
+                        f"  LayerModel row {row}: name={layer_data.get('name')}, provider_type={layer_data.get('provider_type')}, url={layer_data.get('url')}, source={layer_data.get('source')}"
+                    )
+
+                    # Try to match layers more robustly, e.g. by comparing name or url/source
+                    # Compare only the part after the last ':' in the layer name, if present
+                    def get_name_suffix(name):
+                        return name.split(":")[-1] if name else ""
+
+                    name_match = get_name_suffix(
+                        layer_data.get("name")
+                    ) == get_name_suffix(layer.get("name"))
+                    url_match = (
+                        "url" in layer_data
+                        and "url" in layer
+                        and layer_data["url"] == layer["url"]
+                    )
+                    source_match = (
+                        "source" in layer_data
+                        and "source" in layer
+                        and layer_data["source"] == layer["source"]
+                    )
+
+                    self.log(
+                        f"    name_match={name_match}, url_match={url_match}, source_match={source_match}"
+                    )
+
+                    if name_match or url_match or source_match:
+                        self.log(f"  Found matching layer: {layer_data}")
+                        self.thema_layers.append(layer_data)
+                        found = True
+                        break
+
+                if not found:
+                    self.log(
+                        f"  No match found in LayerManager for thema layer: {layer.get('name')}"
+                    )
+
+            self.log(f"Total matched layers: {len(self.thema_layers)}")
+            for layer in self.thema_layers:
+                self.log(f"Matched layer: {layer}")
+
             self.update_thema_layers()
 
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
-        thema_layers = self.thema_layers
+
         # create a group to load into to
         root = QgsProject.instance().layerTreeRoot()
         group_name = self.current_thema["thema_name"]
         group = root.insertGroup(0, group_name)
         # https://gis.stackexchange.com/questions/397789/sorting-layers-by-name-in-one-specific-group-of-qgis-layer-tree
-        for layer in thema_layers:
-            if not hasattr(layer, "source") and not hasattr(layer, "url"):
+        for layer in self.thema_layers:
+            if "source" not in layer and "url" not in layer:
                 self.log(
                     f"Layer {layer['name']} does not have a source or url attribute. Skipping this layer."
                 )
-                continue
 
             name = layer["name"]
             layer_type = layer["layer_type"]
             provider_type = layer["provider_type"]
             style = layer["styling"]
 
-            if not hasattr(layer, "url"):
-                uri = layer.source()  # backwards compatibility with old thema files
-            else:
-                url = layer["url"]
+            if "url" in layer:
                 uri = build_uri_from_url(
-                    layer_name=name,
-                    url=url,
-                    provider_type=provider_type,
+                    layer=layer,
+                    url=layer["url"],
                     maxnumfeatures=1000,
                 )  # TODO Stijn, maxnumfeatures is hardcoded, but should be set
+
+            if "source" in layer:  # backwards compatibility with old thema files
+                uri = layer["source"]
+
+            self.log(
+                f"Loading layer {name} with uri {uri} of type {layer_type} and provider {provider_type}"
+            )
 
             self.current_layer = layer
             result = self.load_thema_layer(name, uri, layer_type, provider_type)
@@ -487,17 +606,15 @@ class ThemaManager:
 
     def update_thema_layers(self):
         """Update the list of layers contained with this thema"""
-        thema_layers = self.thema_layers
-
         self.themaMapModel.clear()
 
-        if len(thema_layers) < 1:
+        if len(self.thema_layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemProvider = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
             self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
         else:
-            for layer in thema_layers:
+            for layer in self.thema_layers:
                 itemLayername = QStandardItem(str(layer["name"]))
                 stype = (
                     self.service_type_mapping[layer["provider_type"]]
@@ -507,7 +624,9 @@ class ThemaManager:
                 itemProvider = QStandardItem(str(stype))
                 itemStyle = QStandardItem(str(layer["styling"]))
                 # itemStyle = QStandardItem(str("styling"))
-                itemSource = QStandardItem(str(layer["source"]))
+                itemSource = QStandardItem(
+                    str(layer["source"] if "source" in layer else layer["url"])
+                )
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]
                 )
