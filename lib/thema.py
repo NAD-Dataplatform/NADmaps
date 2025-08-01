@@ -576,16 +576,12 @@ class ThemaManager:
 
         if len(self.thema_layers) < 1:
             itemLayername = QStandardItem(str(""))
-            itemTypeName = QStandardItem(str(""))
             itemProvider = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
-            self.themaMapModel.appendRow(
-                [itemLayername, itemTypeName, itemProvider, itemSource]
-            )
+            self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
         else:
             for layer in self.thema_layers:
                 itemLayername = QStandardItem(str(layer["name"]))
-                itemTypeName = QStandardItem(str(layer.get("typename", "")))
                 stype = (
                     self.service_type_mapping[layer["provider_type"]]
                     if layer["provider_type"] in self.service_type_mapping
@@ -598,7 +594,7 @@ class ThemaManager:
                     str(layer["source"] if "source" in layer else layer["url"])
                 )
                 self.themaMapModel.appendRow(
-                    [itemLayername, itemTypeName, itemProvider, itemStyle, itemSource]
+                    [itemLayername, itemProvider, itemStyle, itemSource]
                 )
 
         self.themaMapModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
