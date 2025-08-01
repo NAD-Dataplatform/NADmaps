@@ -10,7 +10,10 @@ from ..nad_maps import NADMaps
 
 @pytest.fixture()
 def selected_active_layers():
-    return [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
+    return [
+        QgsRasterLayer("url=source_1", "name_1"),
+        QgsVectorLayer("url=source_2", "name_2"),
+    ]
 
 
 @pytest.fixture()
@@ -50,11 +53,11 @@ def test_save_thema(thema_manager_mock, selected_active_layers):
         assert json_data[0]["creator"] == "Gebruiker"
         assert len(json_data[0]["layers"]) == 2
         assert json_data[0]["layers"][0]["name"] == "name_1"
-        assert json_data[0]["layers"][0]["source"] == "source_1"
+        assert json_data[0]["layers"][0]["url"] == "source_1"
         assert json_data[0]["layers"][0]["provider_type"] == "gdal"
         assert json_data[0]["layers"][0]["layer_type"] == "Raster"
         assert json_data[0]["layers"][1]["name"] == "name_2"
-        assert json_data[0]["layers"][1]["source"] == "source_2"
+        assert json_data[0]["layers"][1]["url"] == "source_2"
         assert json_data[0]["layers"][1]["provider_type"] == "ogr"
         assert json_data[0]["layers"][1]["layer_type"] == "Vector"
 
