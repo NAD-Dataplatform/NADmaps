@@ -1,7 +1,6 @@
 #########################################################################################
 ##############  Manage thema sets (a list of one or more map layers) ####################
 #########################################################################################
-import urllib
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 import os
 import json
@@ -15,15 +14,11 @@ from qgis.core import (
     QgsProject,
     QgsRasterLayer,
     QgsVectorLayer,
-    QgsVectorTileLayer,
-    QgsCoordinateReferenceSystem,
-    QgsRasterLayer,
-    Qgis,
+    QgsSettings,
 )
 from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 
 from .style import StyleManager
-from .layer import LayerManager
 
 import re
 
@@ -46,9 +41,7 @@ def extract_typename(uri):
         typename = match.group(1) or match.group(2) or match.group(3)
         return typename
     else:
-        raise ValueError(
-            "No valid typename found in the provided URI string. Ensure it contains 'typename=' followed by a valid typename."
-        )
+        return None
 
 
 def extract_base_url(uri):
@@ -71,9 +64,7 @@ def extract_base_url(uri):
         url = match.group(1) or match.group(2) or match.group(3)
         return url
     else:
-        raise ValueError(
-            "No valid URL found in the provided URI string. Ensure it contains 'url=' followed by a valid URL."
-        )
+        return None
 
 
 def build_uri_from_url(layer, maxnumfeatures=500):
@@ -104,12 +95,11 @@ class ThemaManager:
     Class to manage the thema sets (a list of one or more map layers)
     """
 
-    def __init__(self, dlg, plugin_dir, working_dir, creator, layer_manager, log):
+    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
         assert dlg is not None, "ThemaManager: dlg is None"
         assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
         assert working_dir is not None, "ThemaManager: working_dir is None"
         assert creator is not None, "ThemaManager: creator is None"
-        assert layer_manager is not None, "ThemaManager: layer_manager is None"
         assert log is not None, "ThemaManager: log is None"
 
         self.plugin_thema_path = os.path.join(
@@ -137,7 +127,9 @@ class ThemaManager:
             creator=creator,
             log=self.log,
         )
-        self.layer_manager = layer_manager
+        self.maxnumfeatures = QgsSettings().value(
+            "nadmaps/wfs_maxnumfeatures", 5000, type=int
+        )
         self.current_thema = None
         self.current_layer = None
         self.themaModel = QStandardItemModel()
@@ -517,8 +509,8 @@ class ThemaManager:
             if "url" in layer:
                 uri = build_uri_from_url(
                     layer=layer,
-                    maxnumfeatures=1000,
-                )  # TODO Stijn, maxnumfeatures is hardcoded, but should be set
+                    maxnumfeatures=self.maxnumfeatures,
+                )
 
             if "source" in layer:  # backwards compatibility with old thema files
                 uri = layer["source"]

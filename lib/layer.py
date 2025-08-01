@@ -172,10 +172,6 @@ class LayerManager:
             "nadmaps/wfs_maxnumfeatures", 5000, type=int
         )
 
-        self.maxnumfeatures = QgsSettings().value(
-            "nadmaps/wfs_maxnumfeatures", 5000, type=int
-        )
-
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
 

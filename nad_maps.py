@@ -153,7 +153,6 @@ class NADMaps:
             plugin_dir=self.plugin_dir,
             working_dir=self.working_dir,
             creator=self.creator,
-            layer_manager=self.layer_manager,
             log=self.log,
         )
         self.ingest_manager = IngestLayersManager(
@@ -828,6 +827,7 @@ class NADMaps:
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
         QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
         self.layer_manager.maxnumfeatures = maxnumfeatures
+        self.thema_manager.maxnumfeatures = maxnumfeatures
 
     def export_map_button_pressed(self):
         file_path = self.generate_export_path()

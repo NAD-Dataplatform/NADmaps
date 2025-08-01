@@ -10,10 +10,7 @@ from ..nad_maps import NADMaps
 
 @pytest.fixture()
 def selected_active_layers():
-    return [
-        QgsRasterLayer("url='source_1_url' typename='source_1_typename'", "name_1"),
-        QgsVectorLayer("url='source_2_url' typename='source_2_typename'", "name_2"),
-    ]
+    return [QgsRasterLayer("source_1", "name_1"), QgsVectorLayer("source_2", "name_2")]
 
 
 @pytest.fixture()
