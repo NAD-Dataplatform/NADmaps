@@ -301,7 +301,6 @@ class LayerManager:
 
         self.dlg.mapListView.scrollTo(self.dlg.mapListView.selectedIndexes()[0])
         # itemType holds the data (== column 1) hence self.dlg.mapListView.selectedIndexes()[1], see itemType.setData(serviceLayer, Qt.ItemDataRole.UserRole)
-        # To keep it consistent with other parts of your code, set self.current_layer to the actual QgsMapLayer object
         self.current_layer = self.dlg.mapListView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
@@ -548,7 +547,6 @@ class LayerManager:
         title = self.current_layer["title"]
         layername = self.current_layer["name"]
         url = self.current_layer["service_url"]
-        imgformats = self.current_layer.get("imgformats", "")
 
         if servicetype == "wms":
             return create_wms_layer(
