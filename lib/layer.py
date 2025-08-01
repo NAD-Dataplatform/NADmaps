@@ -549,7 +549,6 @@ class LayerManager:
         layername = self.current_layer["name"]
         url = self.current_layer["service_url"]
         imgformats = self.current_layer.get("imgformats", "")
-        self.log(f"imgformats: {imgformats}")
 
         if servicetype == "wms":
             return create_wms_layer(

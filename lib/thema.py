@@ -37,6 +37,20 @@ from .layer import (
 )
 
 
+def extract_typename(uri):
+    """
+    Extract the typename from a QGIS layer URI string.
+    """
+    match = re.search(r"typename=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        typename = match.group(1) or match.group(2) or match.group(3)
+        return typename
+    else:
+        raise ValueError(
+            "No valid typename found in the provided URI string. Ensure it contains 'typename=' followed by a valid typename."
+        )
+
+
 def extract_base_url(uri):
     """
     Extract the base URL from a QGIS layer URI string.
@@ -55,27 +69,28 @@ def extract_base_url(uri):
     match = re.search(r"url=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
     if match:
         url = match.group(1) or match.group(2) or match.group(3)
-        return f"'{url}'"
+        return url
     else:
         raise ValueError(
             "No valid URL found in the provided URI string. Ensure it contains 'url=' followed by a valid URL."
         )
 
 
-def build_uri_from_url(layer, url, maxnumfeatures=500):
+def build_uri_from_url(layer, maxnumfeatures=500):
     service_type = layer["provider_type"]
-    layername = layer["name"]
+    url = layer["url"]
+    typename = layer["typename"]
 
     if service_type == "wms":
-        return create_wms_layer(layer, layername, url)
+        return create_wms_layer(layer, typename, url)
     elif service_type == "wmts":
-        return create_wmts_layer(layer, layername, url)
+        return create_wmts_layer(layer, typename, url)
     elif service_type == "wfs":
-        return create_wfs_layer(layername, url, maxnumfeatures=maxnumfeatures)
+        return create_wfs_layer(typename, url, maxnumfeatures=maxnumfeatures)
     elif service_type == "wcs":
-        return create_wcs_layer(layername, url)
+        return create_wcs_layer(typename, url)
     elif service_type == "api features":
-        return create_oaf_layer(layername, url, maxnumfeatures=maxnumfeatures)
+        return create_oaf_layer(typename, url, maxnumfeatures=maxnumfeatures)
     elif service_type == "api tiles":
         return create_oat_layer(layer, url)
     else:
@@ -242,7 +257,7 @@ class ThemaManager:
         """
         Save a collection of layers in order to later quickly load them
         """
-        if all == False and len(selected_active_layers) < 1:
+        if not all and len(selected_active_layers) < 1:
             return
 
         if self.creator == "Plugin":
@@ -254,7 +269,7 @@ class ThemaManager:
         try:
             with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
-        except:
+        except Exception:
             feeds = []
 
         # get thema name
@@ -268,7 +283,7 @@ class ThemaManager:
             if feed["thema_name"] == thema_name:
                 check_overwrite = True
 
-        if check_overwrite == True:
+        if check_overwrite:
             overwrite = QMessageBox.question(
                 self.dlg,
                 "Bestand bestaat al",
@@ -288,41 +303,49 @@ class ThemaManager:
         string = f'{string}"creator": "{self.creator}",'  # creator
         string = string + '"layers": [{'
 
-        if all == False:
+        if not all:
             selected_layers = selected_active_layers
         else:
             root = QgsProject.instance().layerTreeRoot()
             selected_layers = root.layerOrder()
 
-        for i, layer in enumerate(selected_layers):
+        layers_list = []
+        for layer in selected_layers:
             if not hasattr(layer, "source") and not hasattr(layer, "url"):
                 self.log(
                     f"Layer {layer.name()} does not have a source or url attribute. Skipping this layer."
                 )
+                continue
 
             if hasattr(layer, "url"):
                 url = layer.url()  # url is the uri of the layer
+                typename = layer.typename()  # typename is the name of the layer
+            else:
+                url = None
+                typename = None
 
             if hasattr(layer, "source"):  # backwards compatibility with old thema files
                 uri = layer.source()  # source is the uri of the layer
                 url = extract_base_url(uri)
+                typename = extract_typename(uri)
 
             layer_type = self.layer_type_mapping[layer.type()]
             styling = layer.customProperty("layerStyle", "")
-            string = f'{string}"name": "{layer.name()}",'  # layer name
-            string = f'{string}"url": "{url}",'  # source
-            string = f'{string}"styling": "{styling}",'  # styling
-            string = (
-                f'{string}"provider_type": "{layer.providerType()}",'  # provider_type
-            )
-            string = f'{string}"layer_type": "{layer_type}"'  # service_type
-            if i == len(selected_layers) - 1:
-                string = string + "}]"  # close the layers array
-            else:
-                string = string + "}, {"  # separate layers with a comma
-        string = string + "}"
+            layer_dict = {
+                "name": layer.name(),
+                "url": url,
+                "styling": styling,
+                "provider_type": layer.providerType(),
+                "layer_type": layer_type,
+                "typename": typename,
+            }
+            layers_list.append(layer_dict)
 
-        data = json.loads(string)
+        data = {
+            "thema_name": thema_name,
+            "creator": self.creator,
+            "layers": layers_list,
+        }
 
         with open(json_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
@@ -467,63 +490,8 @@ class ThemaManager:
             Qt.ItemDataRole.UserRole
         )
 
-        if not self.current_thema == None:
-            thema_layers = self.current_thema["layers"]
-
-            # in here I want to build the logic of getting the layers from the layerModel in my LayerManager class in layers.py
-            self.thema_layers = []
-            for layer in thema_layers:
-                self.log(layer)
-                self.log(
-                    f"Checking thema layer: name={layer.get('name')}, provider_type={layer.get('provider_type')}, url={layer.get('url')}, source={layer.get('source')}"
-                )
-
-                found = False
-                for row in range(self.layer_manager.layerModel.rowCount()):
-                    layer_item = self.layer_manager.layerModel.index(row, 0)
-                    layer_data = layer_item.data(Qt.ItemDataRole.UserRole)
-                    self.log(
-                        f"  LayerModel row {row}: name={layer_data.get('name')}, provider_type={layer_data.get('provider_type')}, url={layer_data.get('url')}, source={layer_data.get('source')}"
-                    )
-
-                    # Try to match layers more robustly, e.g. by comparing name or url/source
-                    # Compare only the part after the last ':' in the layer name, if present
-                    def get_name_suffix(name):
-                        return name.split(":")[-1] if name else ""
-
-                    name_match = get_name_suffix(
-                        layer_data.get("name")
-                    ) == get_name_suffix(layer.get("name"))
-                    url_match = (
-                        "url" in layer_data
-                        and "url" in layer
-                        and layer_data["url"] == layer["url"]
-                    )
-                    source_match = (
-                        "source" in layer_data
-                        and "source" in layer
-                        and layer_data["source"] == layer["source"]
-                    )
-
-                    self.log(
-                        f"    name_match={name_match}, url_match={url_match}, source_match={source_match}"
-                    )
-
-                    if name_match or url_match or source_match:
-                        self.log(f"  Found matching layer: {layer_data}")
-                        self.thema_layers.append(layer_data)
-                        found = True
-                        break
-
-                if not found:
-                    self.log(
-                        f"  No match found in LayerManager for thema layer: {layer.get('name')}"
-                    )
-
-            self.log(f"Total matched layers: {len(self.thema_layers)}")
-            for layer in self.thema_layers:
-                self.log(f"Matched layer: {layer}")
-
+        if self.current_thema is not None:
+            self.thema_layers = self.current_thema["layers"]
             self.update_thema_layers()
 
     def load_thema_layers(self):
@@ -544,20 +512,18 @@ class ThemaManager:
             layer_type = layer["layer_type"]
             provider_type = layer["provider_type"]
             style = layer["styling"]
+            typename = layer.get("typename", "")
 
             if "url" in layer:
                 uri = build_uri_from_url(
                     layer=layer,
-                    url=layer["url"],
                     maxnumfeatures=1000,
                 )  # TODO Stijn, maxnumfeatures is hardcoded, but should be set
 
             if "source" in layer:  # backwards compatibility with old thema files
                 uri = layer["source"]
-
-            self.log(
-                f"Loading layer {name} with uri {uri} of type {layer_type} and provider {provider_type}"
-            )
+                if not typename:
+                    typename = extract_typename(uri)
 
             self.current_layer = layer
             result = self.load_thema_layer(name, uri, layer_type, provider_type)
@@ -610,12 +576,16 @@ class ThemaManager:
 
         if len(self.thema_layers) < 1:
             itemLayername = QStandardItem(str(""))
+            itemTypeName = QStandardItem(str(""))
             itemProvider = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
-            self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
+            self.themaMapModel.appendRow(
+                [itemLayername, itemTypeName, itemProvider, itemSource]
+            )
         else:
             for layer in self.thema_layers:
                 itemLayername = QStandardItem(str(layer["name"]))
+                itemTypeName = QStandardItem(str(layer.get("typename", "")))
                 stype = (
                     self.service_type_mapping[layer["provider_type"]]
                     if layer["provider_type"] in self.service_type_mapping
@@ -628,7 +598,7 @@ class ThemaManager:
                     str(layer["source"] if "source" in layer else layer["url"])
                 )
                 self.themaMapModel.appendRow(
-                    [itemLayername, itemProvider, itemStyle, itemSource]
+                    [itemLayername, itemTypeName, itemProvider, itemStyle, itemSource]
                 )
 
         self.themaMapModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
