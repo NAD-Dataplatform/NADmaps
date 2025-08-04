@@ -110,7 +110,9 @@ class NADMaps:
 
         os.makedirs(self.working_dir, exist_ok=True)
         os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-        os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
+        os.makedirs(
+            os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True
+        )
 
         # save the working directory to the settings, such that it is available next time the plugin is started
         QSettings().setValue("NADmaps/working_dir", self.working_dir)
@@ -727,9 +729,9 @@ class NADMaps:
             for i in range(self.dlg.comboBox_PrintQuality.count())
         ]
         if saved_quality in quality_items:
-            #TODO
-            #self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
-            self.dlg.comboBox_PrintQuality.setCurrentText('Iets geks')
+            # TODO
+            # self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
+            self.dlg.comboBox_PrintQuality.setCurrentText("Iets geks")
         else:
             # self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
             self.dlg.comboBox_PrintQuality.setCurrentText(
@@ -816,7 +818,7 @@ class NADMaps:
         else:
             self.dlg.lineEdit_Titel.setVisible(False)
             self.dlg.spinBox_TitelFontSize.setVisible(False)
-    
+
     def check_map_name(self):
         map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
@@ -825,6 +827,7 @@ class NADMaps:
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
         QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
         self.layer_manager.maxnumfeatures = maxnumfeatures
+        self.thema_manager.maxnumfeatures = maxnumfeatures
 
     def export_map_button_pressed(self):
         file_path = self.generate_export_path()
@@ -852,7 +855,7 @@ class NADMaps:
         settings_dict = {
             "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
             "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
-            "dpi" : dpi,
+            "dpi": dpi,
             "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
             "north_placement": self.dlg.comboBox_NoordpijlPlacement.currentText(),
             "include_legend": self.dlg.checkBox_Legenda.isChecked(),
@@ -868,7 +871,7 @@ class NADMaps:
 
         success = export_manager.export(layout, file_path)
         if success:
-            self.log(f"Kaart succesvol geëxporteerd naar {file_path}",3)
+            self.log(f"Kaart succesvol geëxporteerd naar {file_path}", 3)
             QMessageBox.information(
                 self.dlg,
                 "Export succesvol",

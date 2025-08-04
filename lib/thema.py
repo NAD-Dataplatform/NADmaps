@@ -4,37 +4,132 @@
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 import os
 import json
-from qgis.PyQt.QtCore import Qt, QRegularExpression, QSortFilterProxyModel, QItemSelectionModel
-from qgis.core import QgsProject, QgsRasterLayer, QgsVectorLayer
+from qgis.PyQt.QtCore import (
+    Qt,
+    QRegularExpression,
+    QSortFilterProxyModel,
+    QItemSelectionModel,
+)
+from qgis.core import (
+    QgsProject,
+    QgsRasterLayer,
+    QgsVectorLayer,
+    QgsSettings,
+)
 from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
-# from .load_layers import load_thema_layer
+
 from .style import StyleManager
+
+import re
+
+from .layer import (
+    create_wms_layer,
+    create_wmts_layer,
+    create_wfs_layer,
+    create_wcs_layer,
+    create_oaf_layer,
+    create_oat_layer,
+)
+
+
+def extract_typename(uri):
+    """
+    Extract the typename from a QGIS layer URI string.
+    """
+    match = re.search(r"typename=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        typename = match.group(1) or match.group(2) or match.group(3)
+        return typename
+    else:
+        return None
+
+
+def extract_base_url(uri):
+    """
+    Extract the base URL from a QGIS layer URI string.
+
+    Example:
+        uri = "pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+        uri = "pagingEnabled=true restrictToRequestBBOX=1 srsname=EPSG:28992 typename=beheerstedelijkwater:BeheerLeiding url=https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+    The function looks for url='...', url="...", or url=... in the string and returns the value with single quotes.
+    """
+    match = re.search(r"url=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        url = match.group(1) or match.group(2) or match.group(3)
+        return url
+    else:
+        return None
+
+
+def build_uri_from_url(layer, maxnumfeatures=500):
+    service_type = layer["provider_type"]
+    url = layer["url"]
+    typename = layer["typename"]
+
+    if service_type == "wms":
+        return create_wms_layer(layer, typename, url)
+    elif service_type == "wmts":
+        return create_wmts_layer(layer, typename, url)
+    elif service_type == "wfs":
+        return create_wfs_layer(typename, url, maxnumfeatures=maxnumfeatures)
+    elif service_type == "wcs":
+        return create_wcs_layer(typename, url)
+    elif service_type == "api features":
+        return create_oaf_layer(typename, url, maxnumfeatures=maxnumfeatures)
+    elif service_type == "api tiles":
+        return create_oat_layer(layer, url)
+    else:
+        raise ValueError(
+            f"Unsupported service type: {service_type}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
+        )
 
 
 class ThemaManager:
     """
     Class to manage the thema sets (a list of one or more map layers)
     """
-    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
 
+    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
         assert dlg is not None, "ThemaManager: dlg is None"
         assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
         assert working_dir is not None, "ThemaManager: working_dir is None"
         assert creator is not None, "ThemaManager: creator is None"
         assert log is not None, "ThemaManager: log is None"
 
-        self.plugin_thema_path = os.path.join(plugin_dir, "resources", "themas", "thema.json")
-        self.plugin_styling_path = os.path.join(plugin_dir, "resources", "styling", "styling.json")
-        self.plugin_styling_files_path = os.path.join( plugin_dir, "resources", "styling", "qml_files")
-        assert os.path.exists(self.plugin_thema_path), f"ThemaManager: plugin_thema_path does not exist: {self.plugin_thema_path}"
+        self.plugin_thema_path = os.path.join(
+            plugin_dir, "resources", "themas", "thema.json"
+        )
+        self.plugin_styling_path = os.path.join(
+            plugin_dir, "resources", "styling", "styling.json"
+        )
+        self.plugin_styling_files_path = os.path.join(
+            plugin_dir, "resources", "styling", "qml_files"
+        )
+        assert os.path.exists(self.plugin_thema_path), (
+            f"ThemaManager: plugin_thema_path does not exist: {self.plugin_thema_path}"
+        )
 
         self.set_working_directory(working_dir)
-        
+
         self.dlg = dlg
         self.creator = creator
         self.log = log
-        self.style_manager = StyleManager(dlg=self.dlg, plugin_dir=plugin_dir, working_dir=working_dir, creator=creator, log=self.log)
-
+        self.style_manager = StyleManager(
+            dlg=self.dlg,
+            plugin_dir=plugin_dir,
+            working_dir=working_dir,
+            creator=creator,
+            log=self.log,
+        )
+        self.maxnumfeatures = QgsSettings().value(
+            "nadmaps/wfs_maxnumfeatures", 5000, type=int
+        )
         self.current_thema = None
         self.current_layer = None
         self.themaModel = QStandardItemModel()
@@ -44,37 +139,41 @@ class ThemaManager:
         self.favoriteFilterThema = QSortFilterProxyModel()
         self.favoriteFilterThema.setSourceModel(self.themaModel)
         self.favoriteFilterThema.setFilterKeyColumn(1)
-        self.favoriteFilterThema.setFilterRole(Qt.CheckStateRole) # https://doc.qt.io/qtforpython-6/PySide6/QtCore/QSortFilterProxyModel.html#PySide6.QtCore.QSortFilterProxyModel.setFilterRole
+        self.favoriteFilterThema.setFilterRole(
+            Qt.CheckStateRole
+        )  # https://doc.qt.io/qtforpython-6/PySide6/QtCore/QSortFilterProxyModel.html#PySide6.QtCore.QSortFilterProxyModel.setFilterRole
 
         self.userFilterThema = QSortFilterProxyModel()
         self.userFilterThema.setSourceModel(self.favoriteFilterThema)
-        self.userFilterThema.setFilterKeyColumn(2) # change this when you want to order by something else (like order in layer panel)
+        self.userFilterThema.setFilterKeyColumn(
+            2
+        )  # change this when you want to order by something else (like order in layer panel)
 
         self.dlg.themaView.setModel(self.userFilterThema)
         self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.themaViewSelectionModel = QItemSelectionModel(self.dlg.themaView.model())
-        
+
         self.themaMapModel = QStandardItemModel()
-        
+
         self.proxyModelThemaMaps = QSortFilterProxyModel()
         self.proxyModelThemaMaps.setSourceModel(self.themaMapModel)
 
         self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
-        self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-
-
-        self.dlg.themaView.clicked.connect(
-            lambda cell: self.update_favorites(cell)
+        self.dlg.themaMapListView.setEditTriggers(
+            QAbstractItemView.EditTrigger.NoEditTriggers
         )
+
+        self.dlg.themaView.clicked.connect(lambda cell: self.update_favorites(cell))
         # Update the display with a list of map layers within the selected thema
         self.dlg.themaView.selectionModel().selectionChanged.connect(
             self.show_thema_layers
         )
         # TODO: what does this do?
         self.dlg.themaView.selectionModel().select(
-            self.themaModel.index(0,0), QItemSelectionModel.Select | QItemSelectionModel.Rows
+            self.themaModel.index(0, 0),
+            QItemSelectionModel.Select | QItemSelectionModel.Rows,
         )
-        
+
         self.dlg.themaView.doubleClicked.connect(
             lambda: self.load_thema_layers()
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
@@ -99,7 +198,7 @@ class ThemaManager:
             7: "XYZ",
             8: "WFS",
             9: "PostGIS",
-            10: "Database"
+            10: "Database",
         }
         # self.log("Finished init ThemaManager")
 
@@ -110,12 +209,12 @@ class ThemaManager:
             return
         if not os.path.isdir(path):
             return
-        
+
         os.makedirs(path, exist_ok=True)
         os.makedirs(os.path.join(path, "themas"), exist_ok=True)
 
-        self.user_thema_path = os.path.join( path, "themas", "user_themas.json")
-        self.user_thema_favorite_path = os.path.join( path, "themas", "favorites.json")
+        self.user_thema_path = os.path.join(path, "themas", "user_themas.json")
+        self.user_thema_favorite_path = os.path.join(path, "themas", "favorites.json")
         self.user_styling_path = os.path.join(path, "styling", "styling.json")
         self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
 
@@ -129,20 +228,20 @@ class ThemaManager:
         if self.current_thema["creator"] == "Plugin" and self.creator != "Plugin":
             self.log("Plugin thema's cannot be deleted")
             return
-        
+
         if self.current_thema["creator"] == "Plugin":
             json_path = self.plugin_thema_path
         else:
             json_path = self.user_thema_path
-            
+
         with open(json_path, "r", encoding="utf-8") as f:
             jsondata = json.load(f)
 
         # Iterate through the json list and remove the object with the selected name
         jsondata = [obj for obj in jsondata if obj["thema_name"] != thema_name]
-        
+
         with open(json_path, "w", encoding="utf-8") as feedsjson:
-            json.dump(jsondata, feedsjson, indent='\t')
+            json.dump(jsondata, feedsjson, indent="\t")
 
         self.update_thema_list()
 
@@ -150,19 +249,19 @@ class ThemaManager:
         """
         Save a collection of layers in order to later quickly load them
         """
-        if all == False and len(selected_active_layers) < 1:
+        if not all and len(selected_active_layers) < 1:
             return
-        
+
         if self.creator == "Plugin":
             json_path = self.plugin_thema_path
         else:
             json_path = self.user_thema_path
-        
+
         # load the layers
         try:
             with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
-        except:
+        except Exception:
             feeds = []
 
         # get thema name
@@ -170,14 +269,13 @@ class ThemaManager:
         if thema_name == "":
             return
 
-
         # Check if a style with the same name exists
         check_overwrite = False
         for feed in feeds:
             if feed["thema_name"] == thema_name:
                 check_overwrite = True
-        
-        if check_overwrite == True:
+
+        if check_overwrite:
             overwrite = QMessageBox.question(
                 self.dlg,
                 "Bestand bestaat al",
@@ -193,36 +291,58 @@ class ThemaManager:
                     feeds.pop(i)
 
         # Collect a json string with a thema_name and a list of layer names
-        string = "{\"thema_name\": \"" + thema_name + "\", "
-        string = f"{string}\"creator\": \"{self.creator}\"," # creator
-        string = string + "\"layers\": [{"
+        string = '{"thema_name": "' + thema_name + '", '
+        string = f'{string}"creator": "{self.creator}",'  # creator
+        string = string + '"layers": [{'
 
-        if all == False:
+        if not all:
             selected_layers = selected_active_layers
         else:
             root = QgsProject.instance().layerTreeRoot()
             selected_layers = root.layerOrder()
 
-        for i, layer in enumerate(selected_layers):
-            layer_type = self.layer_type_mapping[layer.type()]
-            styling = layer.customProperty( 'layerStyle', '' )
-            string = f"{string}\"name\": \"{layer.name()}\"," # layer name
-            string = f"{string}\"source\": \"{layer.source()}\"," # source
-            string = f"{string}\"styling\": \"{styling}\"," # styling
-            string = f"{string}\"provider_type\": \"{layer.providerType()}\"," # provider_type
-            string = f"{string}\"layer_type\": \"{layer_type}\"" # service_type
-            if i == len(selected_layers) - 1:
-                string = string + "}]"
-            else:
-                string = string + "}, {"
-        string = string + "}"
+        layers_list = []
+        for layer in selected_layers:
+            if not hasattr(layer, "source") and not hasattr(layer, "url"):
+                self.log(
+                    f"Layer {layer.name()} does not have a source or url attribute. Skipping this layer."
+                )
+                continue
 
-        data = json.loads(string)
+            if hasattr(layer, "url"):
+                url = layer.url()  # url is the uri of the layer
+                typename = layer.typename()  # typename is the name of the layer
+            else:
+                url = None
+                typename = None
+
+            if hasattr(layer, "source"):  # backwards compatibility with old thema files
+                uri = layer.source()  # source is the uri of the layer
+                url = extract_base_url(uri)
+                typename = extract_typename(uri)
+
+            layer_type = self.layer_type_mapping[layer.type()]
+            styling = layer.customProperty("layerStyle", "")
+            layer_dict = {
+                "name": layer.name(),
+                "url": url,
+                "styling": styling,
+                "provider_type": layer.providerType(),
+                "layer_type": layer_type,
+                "typename": typename,
+            }
+            layers_list.append(layer_dict)
+
+        data = {
+            "thema_name": thema_name,
+            "creator": self.creator,
+            "layers": layers_list,
+        }
 
         with open(json_path, "w", encoding="utf-8") as feedsjson:
             feeds.append(data)
-            json.dump(feeds, feedsjson, indent='\t')
-        
+            json.dump(feeds, feedsjson, indent="\t")
+
         self.update_thema_list()
         self.dlg.saveThemaLineEdit.clear()
 
@@ -238,7 +358,7 @@ class ThemaManager:
         elif user_thema_check:
             string = self.creator
         else:
-            string = "leeg" # exact string is unimportant, any other string will empty the list
+            string = "leeg"  # exact string is unimportant, any other string will empty the list
 
         regexp = QRegularExpression(string)
         self.userFilterThema.setFilterRegularExpression(regexp)
@@ -254,7 +374,7 @@ class ThemaManager:
     def update_thema_list(self):
         """Add a thema to the thema model"""
         self.themaModel.clear()
-        
+
         themas = []
         with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
             themas.extend(json.load(f))
@@ -268,7 +388,7 @@ class ThemaManager:
                 favorites = json.load(f)
         except:
             favorites = None
-    
+
         themas_exist = False
         for thema in themas:
             itemThema = QStandardItem(str(thema["thema_name"]))
@@ -280,14 +400,12 @@ class ThemaManager:
             except:
                 itemFavorite.setCheckState(0)
             itemSource = QStandardItem(str(thema["creator"]))
-            itemFilter = QStandardItem(f'{thema["thema_name"]} {thema["layers"]}')
+            itemFilter = QStandardItem(f"{thema['thema_name']} {thema['layers']}")
             # https://doc.qt.io/qt-6/qstandarditem.html#setData
             itemThema.setData(thema, Qt.ItemDataRole.UserRole)
-            self.themaModel.appendRow(
-                [itemThema, itemFavorite, itemSource, itemFilter]
-            )
+            self.themaModel.appendRow([itemThema, itemFavorite, itemSource, itemFilter])
             themas_exist = True
-        
+
         # if no thema is leftover after selection, then present an empty row
         if not themas_exist:
             itemThema = QStandardItem(str(""))
@@ -295,16 +413,20 @@ class ThemaManager:
             itemFavorite.setCheckable(True)
             itemSource = QStandardItem(str(""))
             itemFilter = QStandardItem(str(""))
-            self.themaModel.appendRow(
-                [itemThema, itemFavorite, itemSource, itemFilter]
-            )
+            self.themaModel.appendRow([itemThema, itemFavorite, itemSource, itemFilter])
 
         self.themaModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
         self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Favoriet")
         self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema")
-        self.themaModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.themaModel.horizontalHeaderItem(2).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.themaModel.horizontalHeaderItem(1).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.themaModel.horizontalHeaderItem(0).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
         self.dlg.themaView.hideColumn(3)
         self.dlg.themaView.setColumnWidth(
@@ -322,14 +444,16 @@ class ThemaManager:
                 thema = model.index(r, 0)
                 thema_name = thema.data()
                 favorite = model.index(r, 1)
-                value = favorite.data(Qt.ItemDataRole.CheckStateRole) # https://doc.qt.io/qt-6/qt.html#CheckState-enum
+                value = favorite.data(
+                    Qt.ItemDataRole.CheckStateRole
+                )  # https://doc.qt.io/qt-6/qt.html#CheckState-enum
                 # self.log(f"Update favorites: CheckStateRole is {value} and DisplayRole is {thema.data(Qt.ItemDataRole.DisplayRole)}")
                 if value == 2:
                     checkstate = "favorite"
                 else:
                     checkstate = "regular"
 
-                string = string + "\"" + thema_name + "\": \"" + checkstate + "\""
+                string = string + '"' + thema_name + '": "' + checkstate + '"'
                 if r == model.rowCount() - 1:
                     string = string + "}"
                 else:
@@ -338,52 +462,71 @@ class ThemaManager:
             data = json.loads(string)
             try:
                 with open(self.user_thema_favorite_path, "w", encoding="utf-8") as file:
-                    json.dump(data, file, indent='\t')
+                    json.dump(data, file, indent="\t")
             except Exception as e:
-                self.log(f"Tried to write favorite themas to json file, but received this error: {e}")
+                self.log(
+                    f"Tried to write favorite themas to json file, but received this error: {e}"
+                )
 
-
-#########################################################################################
-############  Update and load list of layers that are part of a thema set ###############
-#########################################################################################
+    #########################################################################################
+    ############  Update and load list of layers that are part of a thema set ###############
+    #########################################################################################
 
     def show_thema_layers(self, selectedIndexes):
         """Show the layers that are part of a thema"""
         if len(selectedIndexes) == 0:
             self.current_layer = None
             return
-        
+
         self.current_thema = self.dlg.themaView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
-        if not self.current_thema == None:
+
+        if self.current_thema is not None:
             self.thema_layers = self.current_thema["layers"]
             self.update_thema_layers()
 
     def load_thema_layers(self):
         """Load the layers of this thema to the canvas"""
-        thema_layers = self.thema_layers
+
         # create a group to load into to
         root = QgsProject.instance().layerTreeRoot()
         group_name = self.current_thema["thema_name"]
         group = root.insertGroup(0, group_name)
         # https://gis.stackexchange.com/questions/397789/sorting-layers-by-name-in-one-specific-group-of-qgis-layer-tree
-        for layer in thema_layers:
+        for layer in self.thema_layers:
+            if "source" not in layer and "url" not in layer:
+                self.log(
+                    f"Layer {layer['name']} does not have a source or url attribute. Skipping this layer."
+                )
+
             name = layer["name"]
             layer_type = layer["layer_type"]
-            uri = layer["source"]
             provider_type = layer["provider_type"]
             style = layer["styling"]
-            # title, layer_type, provider_type, uri
+            typename = layer.get("typename", "")
+
+            if "url" in layer:
+                uri = build_uri_from_url(
+                    layer=layer,
+                    maxnumfeatures=self.maxnumfeatures,
+                )
+
+            if "source" in layer:  # backwards compatibility with old thema files
+                uri = layer["source"]
+                if not typename:
+                    typename = extract_typename(uri)
+
             self.current_layer = layer
             result = self.load_thema_layer(name, uri, layer_type, provider_type)
-            QgsProject.instance().addMapLayer(result, False) # If True (by default), the layer will be added to the legend and to the main canvas
-            group.addLayer(result) # Add the layer to the group
+            QgsProject.instance().addMapLayer(
+                result, False
+            )  # If True (by default), the layer will be added to the legend and to the main canvas
+            group.addLayer(result)  # Add the layer to the group
             # check if styling is saved in .resources.styling styling.json
             # if so, then apply that style, else apply no style
 
             if not style == "":
-
                 layer_style_list = []
                 # Load plugin styles
                 try:
@@ -404,7 +547,7 @@ class ThemaManager:
                 path = f"{self.plugin_styling_files_path}/{style_code}.qml"
                 result.loadNamedStyle(path)
                 result.triggerRepaint()
-                result.setCustomProperty( "layerStyle", style )
+                result.setCustomProperty("layerStyle", style)
 
         # self.iface.layerTreeView().collapseAllNodes()
         # self.update_active_layers_list()
@@ -421,19 +564,15 @@ class ThemaManager:
 
     def update_thema_layers(self):
         """Update the list of layers contained with this thema"""
-        thema_layers = self.thema_layers
-        
         self.themaMapModel.clear()
 
-        if len(thema_layers) < 1:
+        if len(self.thema_layers) < 1:
             itemLayername = QStandardItem(str(""))
             itemProvider = QStandardItem(str(""))
             itemSource = QStandardItem(str(""))
-            self.themaMapModel.appendRow(
-                [itemLayername, itemProvider, itemSource]
-            )
+            self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
         else:
-            for layer in thema_layers:
+            for layer in self.thema_layers:
                 itemLayername = QStandardItem(str(layer["name"]))
                 stype = (
                     self.service_type_mapping[layer["provider_type"]]
@@ -443,22 +582,32 @@ class ThemaManager:
                 itemProvider = QStandardItem(str(stype))
                 itemStyle = QStandardItem(str(layer["styling"]))
                 # itemStyle = QStandardItem(str("styling"))
-                itemSource = QStandardItem(str(layer["source"]))
+                itemSource = QStandardItem(
+                    str(layer["source"] if "source" in layer else layer["url"])
+                )
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]
                 )
-        
+
         self.themaMapModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
         self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Opmaak")
         self.themaMapModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
         self.themaMapModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.themaMapModel.horizontalHeaderItem(3).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
-        self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.themaMapModel.horizontalHeaderItem(3).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
+        self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(
+            Qt.AlignmentFlag.AlignLeft
+        )
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
         # self.dlg.themaMapListView.hideColumn(3)
-        
+
         self.dlg.themaMapListView.setColumnWidth(
             0, 200
         )  # set name to 300px (there are some huge layernames)
