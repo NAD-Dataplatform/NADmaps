@@ -209,7 +209,9 @@ class StyleManager:
         source = layer.source()
         layer_name = layer.name()
         style_code = self.style_code(style_name, source)
-        qml_path = f"{qml_folder}\\{style_code}.qml"
+        qml_file = f"{style_code}.qml"
+        qml_path = os.path.join(qml_folder, qml_file)
+        self.log(f"Saving style to path: {qml_path}")
 
         if layer.type() == QgsMapLayer.VectorLayer:
             layer.saveNamedStyle(qml_path)

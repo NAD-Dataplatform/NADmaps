@@ -1,21 +1,31 @@
 [
 	{
-		"thema_name": "Riolering WFS",
+		"thema_name": "Gemalen",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW plus",
+				"name": "Waterschap: Rioolput",
+				"url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+				"styling": "Gemalen",
 				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"layer_type": "Vector",
+				"typename": "gwsw:Default_Punt"
+			},
+			{
+				"name": "Gemeente: Rioolput",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"styling": "Gemalen",
+				"provider_type": "wfs",
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerPut"
 			},
 			{
 				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW plus",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"styling": "Persleidingen",
 				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerLeiding"
 			}
 		]
 	},
@@ -25,58 +35,35 @@
 		"layers": [
 			{
 				"name": "Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
 				"styling": "GWSW zonder label",
 				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerPut"
+			},
+			{
+				"name": "Rioolleiding",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"styling": "GWSW",
+				"provider_type": "wfs",
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerLeiding"
 			},
 			{
 				"name": "Leiding check: onlogische waarde",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
 				"styling": "Check onlogische waarde",
 				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerLeiding"
 			},
 			{
 				"name": "Leiding check: ontbrekende waarde",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
 				"styling": "Check ontbrekende waarde",
 				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			}
-		]
-	},
-	{
-		"thema_name": "Gemalen",
-		"creator": "Plugin",
-		"layers": [
-			{
-				"name": "Waterschap: Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Gemeente: Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Persleidingen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"layer_type": "Vector",
+				"typename": "beheerstedelijkwater:BeheerLeiding"
 			}
 		]
 	}

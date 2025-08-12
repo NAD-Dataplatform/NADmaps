@@ -438,12 +438,12 @@ class NADMaps:
         # plugin path & user path
         os.makedirs(path, exist_ok=True)
         os.makedirs(os.path.join(path, "styling"), exist_ok=True)
-        os.makedirs(os.path.join(path, "styling\\qml_files"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling", "qml_files"), exist_ok=True)
 
         self.thema_manager.set_working_directory(path)
 
-        self.user_styling_path = os.path.join(path, "styling\\styling.json")
-        self.user_styling_files_path = os.path.join(path, "styling\\qml_files")
+        self.user_styling_path = os.path.join(path, "styling", "styling.json")
+        self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
 
         # save the working directory to the settings, such that it is available next time the plugin is started
         QSettings().setValue("NADmaps/working_dir", path)
