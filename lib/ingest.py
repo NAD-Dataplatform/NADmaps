@@ -2,7 +2,6 @@
 ######################################  Show and load layers ############################
 #########################################################################################
 
-
 from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl
 import urllib.request, urllib.parse, urllib.error
 import json

@@ -4,92 +4,62 @@
 import urllib.request, urllib.parse, urllib.error
 import json
 import os.path
-from owslib.wms import WebMapService
-from owslib.wfs import WebFeatureService
 
-# import urllib2,
-
-# import urllib2,
-import re
-import requests
-import xml.etree.ElementTree as ET
-from .constants import PLUGIN_NAME
-
-from qgis.PyQt.QtXml import QDomDocument, QDomElement
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
-from qgis.PyQt.QtCore import (
-    Qt,
-    QRegularExpression,
-    QSortFilterProxyModel,
-    QItemSelectionModel,
-)
-from qgis.PyQt.QtCore import (
-    Qt,
-    QRegularExpression,
-    QSortFilterProxyModel,
-    QItemSelectionModel,
-)
 from qgis.PyQt.QtWidgets import QAbstractItemView
-from qgis.core import QgsSettings
+from qgis.PyQt.QtCore import (
+    Qt,
+    QRegularExpression,
+    QSortFilterProxyModel,
+)
 from qgis.core import (
     Qgis,
+    QgsSettings,
     QgsProject,
     QgsLayerTreeLayer,
     QgsRasterLayer,
     QgsVectorLayer,
     QgsVectorTileLayer,
     QgsCoordinateReferenceSystem,
-    QgsFeatureRequest,
+    QgsDataSourceUri,
 )
-from qgis.core import QgsSettings
-from qgis.core import (
-    Qgis,
-    QgsProject,
-    QgsLayerTreeLayer,
-    QgsRasterLayer,
-    QgsVectorLayer,
-    QgsVectorTileLayer,
-    QgsCoordinateReferenceSystem,
-    QgsFeatureRequest,
+from .utility import (
+    extract_spatialiate_db,
+    extract_spatialiate_table,
+    extract_spatialiate_geom_column
 )
 
-
-def create_wfs_layer(layername, url, maxnumfeatures, return_layer=False, title=None):
+def create_wfs_layer(layername, url, maxnumfeatures, title=None):
     uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
-    if return_layer:
-        return QgsVectorLayer(uri, title, "wfs")
-    return uri
+    return QgsVectorLayer(uri, title, "wfs")
 
 
-def create_wms_layer(layer, layername, url, return_layer=False, title=None):
-    imgformat = layer["imgformats"].split(",")[0]
-    crs = "EPSG:28992"
+def create_wms_layer(layer, layername, url, title=None):
+    if hasattr(layer, "imgformats"):
+        imgformat = layer["imgformats"].split(",")[0]
+    else:
+        imgformat = "image/jpeg"
+    # crs = "EPSG:28992"
+    crs = layer["crs"].split(",")[0]
 
-    style = layer["styles"]
-    if style is not None:
-        selected_style_name = style[0]["name"]
+    if hasattr(layer, "styles"):
+        selected_style_name = layer["styles"][0]["name"]
     else:
         selected_style_name = "default"
 
     uri = f"crs={crs}&layers={layername}&styles={selected_style_name}&format={imgformat}&url={url}"
-    if return_layer:
-        return QgsRasterLayer(uri, title, "wms")
-    return uri
+    return QgsRasterLayer(uri, title, "wms")
 
 
-def create_wcs_layer(layername, url, return_layer=False, title=None):
+def create_wcs_layer(layername, url, title=None):
     format = "GEOTIFF"
     uri = f"cache=AlwaysNetwork&crs=EPSG:28992&format={format}&identifier={layername}&url={url.split('?')[0]}"
-    if return_layer:
-        return QgsRasterLayer(uri, title, "wcs")
-    return uri
+    return QgsRasterLayer(uri, title, "wcs")
 
 
-def create_oaf_layer(layername, url, maxnumfeatures, return_layer=False, title=None):
+def create_oaf_layer(layername, url, maxnumfeatures, title=None):
     uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
-    if return_layer:
-        return QgsVectorLayer(uri, title, "OAPIF")
-    return uri
+    return QgsVectorLayer(uri, title, "OAPIF")
 
 
 def build_tileset_url(url, tileset_id, for_request):
@@ -99,46 +69,52 @@ def build_tileset_url(url, tileset_id, for_request):
     return url_template + "/{z}/{y}/{x}?f=mvt"
 
 
-def create_oat_layer(layer, url, return_layer=False, title=None):
+def create_oat_layer(layer, url, title=None):
     crs = "EPSG:3857"
-    used_tileset = [
-        tileset
-        for tileset in layer["tiles"][0]["tilesets"]
-        if tileset["tileset_crs"].endswith(crs.split(":")[1])
-    ][0]
+    # used_tileset = [
+    #     tileset
+    #     for tileset in layer["tiles"][0]["tilesets"]
+    #     if tileset["tileset_crs"].endswith(crs.split(":")[1])
+    # ][0]
 
     style = 0
     name = layer["styles"][style]["name"]
     title += f" [{name}]"
     selected_style_url = layer["styles"][style]["url"]
 
-    url_template = build_tileset_url(url, used_tileset["tileset_id"], True)
-    maxz_coord = used_tileset["tileset_max_zoomlevel"]
+    # tileset_id = used_tileset["tileset_id"]
+    tileset_id = "WebMercatorQuad"
+    url_template = build_tileset_url(url, tileset_id, True)
 
+    # maxz_coord = used_tileset["tileset_max_zoomlevel"]
+    maxz_coord = 11
     minz_coord = 0
 
     type = "xyz"
     uri = f"styleUrl={selected_style_url}&url={url_template}&type={type}&zmax={maxz_coord}&zmin={minz_coord}&http-header:referer="
-    if return_layer:
-        tile_layer = QgsVectorTileLayer(uri, title)
-        tile_layer.setCrs(srs=QgsCoordinateReferenceSystem(crs))
-        tile_layer.loadDefaultStyle()
-        return tile_layer
-    return uri
+
+    tile_layer = QgsVectorTileLayer(uri, title)
+    tile_layer.setCrs(srs=QgsCoordinateReferenceSystem(crs))
+    tile_layer.loadDefaultStyle()
+    return tile_layer
 
 
-def create_wmts_layer(layer, layername, url, return_layer=False, title=None):
+def create_wmts_layer(layer, layername, url, title=None):
     if Qgis.QGIS_VERSION_INT < 10900:
         return None
     url = quote_wmts_url(url)
     imgformat = layer["imgformats"].split(",")[0]
-    tilematrixset = layer["tilematrixsets"]
-    crs = "EPSG:28992"
+
+    tilematrixsets = layer["tilematrixsets"]
+    if tilematrixsets.startswith("EPSG:"):
+        tilematrixset = "EPSG:28992"
+        crs = "EPSG:28992"
+    elif tilematrixsets.startswith("OGC:1.0"):
+        tilematrixset = "OGC:1.0:GoogleMapsCompatible"
+        crs = "EPSG:3857"
 
     uri = f"crs={crs}&tileMatrixSet={tilematrixset}&layers={layername}&styles=default&format={imgformat}&url={url}"
-    if return_layer:
-        return QgsRasterLayer(uri, title, "wms")
-    return uri
+    return QgsRasterLayer(uri, title, "wms")
 
 
 def quote_wmts_url(url):
@@ -148,11 +124,61 @@ def quote_wmts_url(url):
     Wat op basis van de documentatie wel de manier is om een wmts laag toe te voegen.
     """
     parse_result = urllib.parse.urlparse(url)
-    location = f"{parse_result.scheme}://{parse_result.netloc}/{parse_result.path}"
+    location = f"{parse_result.scheme}://{parse_result.netloc}{parse_result.path}"
     query = parse_result.query
     query_escaped_quoted = urllib.parse.quote_plus(query)
     url = f"{location}?{query_escaped_quoted}"
     return url
+
+
+def create_spatialite_layer(layer, title=None):
+    # https://docs.qgis.org/3.40/en/docs/pyqgis_developer_cookbook/loadlayer.html
+    source = layer["source"]
+    
+    db = extract_spatialiate_db(source)
+    schema = ''
+    table = extract_spatialiate_table(source)
+    geom_column = extract_spatialiate_geom_column(source)
+    
+    uri = QgsDataSourceUri()
+    uri.setDatabase(db)
+    uri.setDataSource(schema, table, geom_column)
+    return QgsVectorLayer(uri.uri(), title, 'spatialite')
+
+
+def create_new_layer(layer, maxnumfeatures=6000):
+    servicetype = layer["service_type"]
+    title = layer["title"]
+    layername = layer["name"]
+    url = layer["service_url"]
+
+    if servicetype == "wms":
+        return create_wms_layer(layer, layername, url, title)
+    elif servicetype == "wmts":
+        return create_wmts_layer(layer, layername, url, title)
+    elif servicetype == "wfs":
+        return create_wfs_layer(layername, url, maxnumfeatures, title)
+    elif servicetype == "wcs":
+        return create_wcs_layer(layername, url, title)
+    elif servicetype == "api features":
+        return create_oaf_layer(layername, url, maxnumfeatures, title)
+    elif servicetype == "api tiles":
+        return create_oat_layer(layer, url, title)
+    elif servicetype == "spatialite":
+        return create_spatialite_layer(layer, title)
+    else:
+        try:
+            providertype = layer["provider_type"]
+            if providertype == "Vector":
+                uri = layer["source"]
+                return QgsVectorLayer(uri, title, servicetype)
+            elif providertype == "Raster":
+                uri = layer["source"]
+                return QgsRasterLayer(uri, title, servicetype)
+        except:
+            raise ValueError(
+                f"Unsupported service type: {servicetype}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
+            )
 
 
 class LayerManager:
@@ -321,10 +347,11 @@ class LayerManager:
                 layer_tree_layer = root.findLayer(
                     layer
                 )  # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
-                layer_tree_layer = root.findLayer(
-                    layer
-                )  # QgsLayerTreeLayer: subclass of https://qgis.org/pyqgis/3.40/core/QgsLayerTreeNode.html
+
                 provider_type = layer.providerType()
+                # self.log(f"provider type: {provider_type}")
+                if "WMTS" in layer.source():
+                    provider_type = "wmts"
 
                 itemLayername = QStandardItem(str(layer.name()))
                 stype = (
@@ -332,6 +359,7 @@ class LayerManager:
                     if provider_type in self.service_type_mapping
                     else provider_type.upper()
                 )
+
                 itemType = QStandardItem(str(stype))
                 style_name = layer.customProperty("layerStyle", "")
                 if "|" in style_name:
@@ -411,11 +439,7 @@ class LayerManager:
         # add a new json file with layer description to the resources/layers folder
         self.layer_files = [
             "layers-nad.json",  # eigen kaartlagen
-            "layers-gwsw.json",  # gwsw
-            "layers-pzh.json",  # provincie zuid-holland
-            "layers-klimaatatlas.json",  # klimaatatlas
-            "layers-pdok.json",  # pdok
-            "layers-nad.json",  # eigen kaartlagen
+            "layers-delfland.json",  # eigen kaartlagen, https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities
             "layers-gwsw.json",  # gwsw
             "layers-pzh.json",  # provincie zuid-holland
             "layers-klimaatatlas.json",  # klimaatatlas
@@ -476,9 +500,6 @@ class LayerManager:
         # only attach the data to the first item
         # service layer = a dict/object with all props of the layer
         # https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
-        # tooltip = "Dubbelklik om een kaartlaag in te laden"
-        tooltip = serviceLayer["service_abstract"]
-        itemType.setToolTip(tooltip)
         # only wms services have styles (sometimes)
         layername = serviceLayer["title"]
         styles_string = ""
@@ -489,14 +510,19 @@ class LayerManager:
 
         itemLayername = QStandardItem(str(serviceLayer["title"]))
         itemLayername.setData(serviceLayer, Qt.ItemDataRole.UserRole)
-        itemLayername.setToolTip(tooltip)
         # itemFilter is the item used to search filter in. That is why layername is a combi of layername + filter here
         itemFilter = QStandardItem(
             f"{serviceLayer['service_type']} {layername} {serviceLayer['service_title']} {serviceLayer['service_abstract']} {styles_string}"
             f"{serviceLayer['service_type']} {layername} {serviceLayer['service_title']} {serviceLayer['service_abstract']} {styles_string}"
         )
         itemServicetitle = QStandardItem(str(serviceLayer["service_title"]))
+
+        # tooltip = "Dubbelklik om een kaartlaag in te laden"
+        tooltip = serviceLayer["service_abstract"]
+        itemType.setToolTip(tooltip)
+        itemLayername.setToolTip(tooltip)
         itemServicetitle.setToolTip(tooltip)
+
         self.layerModel.appendRow(
             [itemLayername, itemType, itemServicetitle, itemFilter]
         )
@@ -512,7 +538,7 @@ class LayerManager:
         if tree_location is None:
             tree_location = self.default_tree_locations[servicetype]
 
-        new_layer = self.create_new_layer()
+        new_layer = create_new_layer(layer = self.current_layer, maxnumfeatures = self.maxnumfeatures)
         if new_layer is None:
             return
 
@@ -532,47 +558,3 @@ class LayerManager:
         if tree_location == "bottom":
             layer_tree.insertChildNode(-1, new_layer_tree_layer)
 
-    def create_new_layer(self):
-        servicetype = self.current_layer["service_type"]
-        title = self.current_layer["title"]
-        layername = self.current_layer["name"]
-        url = self.current_layer["service_url"]
-
-        if servicetype == "wms":
-            return create_wms_layer(
-                self.current_layer, layername, url, return_layer=True, title=title
-            )
-        elif servicetype == "wmts":
-            return create_wmts_layer(
-                self.current_layer, layername, url, return_layer=True, title=title
-            )
-        elif servicetype == "wfs":
-            return create_wfs_layer(
-                layername,
-                url,
-                maxnumfeatures=self.maxnumfeatures,
-                return_layer=True,
-                title=title,
-            )
-        elif servicetype == "wcs":
-            return create_wcs_layer(layername, url, return_layer=True, title=title)
-        elif servicetype == "api features":
-            return create_oaf_layer(
-                layername,
-                url,
-                maxnumfeatures=self.maxnumfeatures,
-                return_layer=True,
-                title=title,
-            )
-        elif servicetype == "api tiles":
-            return create_oat_layer(
-                self.current_layer, url, return_layer=True, title=title
-            )
-        else:
-            self.show_warning(
-                f"""Sorry, dit type laag: '{servicetype.upper()}'
-                kan niet worden geladen door de plugin of door QGIS.
-                Is het niet beschikbaar als wms, wmts, wfs, api features of api tiles (vectortile)?
-                """
-            )
-            return

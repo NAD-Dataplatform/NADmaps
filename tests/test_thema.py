@@ -11,8 +11,8 @@ from ..nad_maps import NADMaps
 @pytest.fixture()
 def selected_active_layers():
     return [
-        QgsRasterLayer("url=source_1", "name_1"),
-        QgsVectorLayer("url=source_2", "name_2"),
+        QgsRasterLayer("source_1", "name_1"),
+        QgsVectorLayer("source_2", "name_2"),
     ]
 
 
@@ -52,14 +52,14 @@ def test_save_thema(thema_manager_mock, selected_active_layers):
         assert json_data[0]["thema_name"] == "test theme name"
         assert json_data[0]["creator"] == "Gebruiker"
         assert len(json_data[0]["layers"]) == 2
-        assert json_data[0]["layers"][0]["name"] == "name_1"
-        assert json_data[0]["layers"][0]["url"] == "source_1"
-        assert json_data[0]["layers"][0]["provider_type"] == "gdal"
-        assert json_data[0]["layers"][0]["layer_type"] == "Raster"
-        assert json_data[0]["layers"][1]["name"] == "name_2"
-        assert json_data[0]["layers"][1]["url"] == "source_2"
-        assert json_data[0]["layers"][1]["provider_type"] == "ogr"
-        assert json_data[0]["layers"][1]["layer_type"] == "Vector"
+        assert json_data[0]["layers"][0]["title"] == "name_1"
+        assert json_data[0]["layers"][0]["source"] == "source_1"
+        assert json_data[0]["layers"][0]["service_type"] == "gdal"
+        assert json_data[0]["layers"][0]["provider_type"] == "Raster"
+        assert json_data[0]["layers"][1]["title"] == "name_2"
+        assert json_data[0]["layers"][1]["source"] == "source_2"
+        assert json_data[0]["layers"][1]["service_type"] == "ogr"
+        assert json_data[0]["layers"][1]["provider_type"] == "Vector"
 
 
 def test_delete_thema(nadmap_mock, thema_manager_mock, selected_active_layers):

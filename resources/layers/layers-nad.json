@@ -76,5 +76,22 @@
         "service_title": "Aansluitleidingen",
         "service_abstract": "info",
         "service_type": "wms"
+    },
+    {
+        "name": "Actueel_ortho25IR",
+        "title": "Luchtfoto Actueel Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset in 25cm resolutie infrarood luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland met een resolutie van 25cm.",
+        "service_type": "wmts"
     }
 ]

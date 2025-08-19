@@ -1,82 +1,33 @@
 [
 	{
-		"thema_name": "Riolering WFS",
+		"thema_name": "test",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW plus",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"name": "",
+				"title": "layer",
+				"service_url": "",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"provider_type": "Vector",
+				"service_type": "spatialite",
+				"style": "test",
+				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
 			},
 			{
-				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW plus",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			}
-		]
-	},
-	{
-		"thema_name": "Datacheck leidingen",
-		"creator": "Plugin",
-		"layers": [
-			{
-				"name": "Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW zonder label",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Leiding check: onlogische waarde",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Check onlogische waarde",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Leiding check: ontbrekende waarde",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Check ontbrekende waarde",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "GWSW",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			}
-		]
-	},
-	{
-		"thema_name": "Gemalen",
-		"creator": "Plugin",
-		"layers": [
-			{
-				"name": "Waterschap: Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Gemeente: Rioolput",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
-			},
-			{
-				"name": "Rioolleiding",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
-				"styling": "Persleidingen",
-				"provider_type": "wfs",
-				"layer_type": "Vector"
+				"name": "",
+				"title": "layer",
+				"service_url": "",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"provider_type": "Vector",
+				"service_type": "spatialite",
+				"style": "",
+				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
 			}
 		]
 	}

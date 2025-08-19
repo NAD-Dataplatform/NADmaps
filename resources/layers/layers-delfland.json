@@ -1,0 +1,299 @@
+[
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__afsluitmiddel",
+        "title": "Waterkerend_kunstwerk__afsluitmiddel",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__wandconstructie",
+        "title": "Waterkerend_kunstwerk__wandconstructie",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__wandconstructie_vlak",
+        "title": "Waterkerend_kunstwerk__wandconstructie_vlak",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__sluis",
+        "title": "Waterkerend_kunstwerk__sluis",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__kistdam",
+        "title": "Waterkerend_kunstwerk__kistdam",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__gemaal",
+        "title": "Waterkerend_kunstwerk__gemaal",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__aquaduct",
+        "title": "Waterkerend_kunstwerk__aquaduct",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Waterkerend_kunstwerk__tunnel",
+        "title": "Waterkerend_kunstwerk__tunnel",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__gemaal",
+        "title": "Ondersteunend_kunstwerk__gemaal",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__persleiding_van_gemaal",
+        "title": "Ondersteunend_kunstwerk__persleiding_van_gemaal",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__stuw",
+        "title": "Ondersteunend_kunstwerk__stuw",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__keerschot",
+        "title": "Ondersteunend_kunstwerk__keerschot",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__baggerschot",
+        "title": "Ondersteunend_kunstwerk__baggerschot",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__afsluitmiddel",
+        "title": "Ondersteunend_kunstwerk__afsluitmiddel",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__open_duiker",
+        "title": "Ondersteunend_kunstwerk__open_duiker",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__stuwende_duiker",
+        "title": "Ondersteunend_kunstwerk__stuwende_duiker",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__afsluitbare_duiker",
+        "title": "Ondersteunend_kunstwerk__afsluitbare_duiker",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__sifon",
+        "title": "Ondersteunend_kunstwerk__sifon",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__afsluitbare_sifon",
+        "title": "Ondersteunend_kunstwerk__afsluitbare_sifon",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__inlaatleiding",
+        "title": "Ondersteunend_kunstwerk__inlaatleiding",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__vispassage",
+        "title": "Ondersteunend_kunstwerk__vispassage",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__visliftleiding",
+        "title": "Ondersteunend_kunstwerk__visliftleiding",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__compartimenteringswerk",
+        "title": "Ondersteunend_kunstwerk__compartimenteringswerk",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Ondersteunend_kunstwerk__waterbergingsconstructie",
+        "title": "Ondersteunend_kunstwerk__waterbergingsconstructie",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Rijksstrandpaal",
+        "title": "Rijksstrandpaal",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Rijksstrandpalenlijn",
+        "title": "Rijksstrandpalenlijn",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Zeewering__raai_met_afmeting",
+        "title": "Primaire_waterkering_Zeewering__raai_met_afmeting",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+        "title": "Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Zeewering__duinvoet",
+        "title": "Primaire_waterkering_Zeewering__duinvoet",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Zeewering__dijk_in_boulevard_profiel",
+        "title": "Primaire_waterkering_Zeewering__dijk_in_boulevard_profiel",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Oppervlaktewaterlichaam__natte_ecologische_zone",
+        "title": "Oppervlaktewaterlichaam__natte_ecologische_zone",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "De natte ecologische zone is een deel van het oppervlaktewaterlichaam dat speciaal is ingericht ter verbetering van de ecologie en waterkwaliteit.",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Oppervlaktewaterlichaam__watervoerend_deel",
+        "title": "Oppervlaktewaterlichaam__watervoerend_deel",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "LeggerDelfland:Oppervlaktewaterlichaam__begrenzing_bovenwatertalud",
+        "title": "Oppervlaktewaterlichaam__begrenzing_bovenwatertalud",
+        "abstract": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_title": "Legger Delfland",
+        "service_abstract": "Legger Delfland",
+        "service_type": "wfs"
+    }
+]

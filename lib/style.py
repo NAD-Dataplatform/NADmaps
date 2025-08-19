@@ -2,11 +2,49 @@
 #########################  Show and load styling for layers #############################
 #########################################################################################
 import os
+import re
 import json
 import hashlib
 from qgis.core import QgsMapLayer
 from qgis.PyQt.QtCore import Qt
 from qgis.PyQt.QtWidgets import QMessageBox
+
+
+
+def extract_typename(uri):
+    """
+    Extract the typename from a QGIS layer URI string.
+    """
+    match = re.search(r"typename=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        typename = match.group(1) or match.group(2) or match.group(3)
+        return typename
+    else:
+        return None
+
+
+def extract_base_url(uri):
+    """
+    Extract the base URL from a QGIS layer URI string.
+
+    Example:
+        uri = "pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+        uri = "pagingEnabled=true restrictToRequestBBOX=1 srsname=EPSG:28992 typename=beheerstedelijkwater:BeheerLeiding url=https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
+        extract_base_url(uri)
+        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
+
+    The function looks for url='...', url="...", or url=... in the string and returns the value with single quotes.
+    """
+    match = re.search(r"url=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        url = match.group(1) or match.group(2) or match.group(3)
+        return url
+    else:
+        return None
+
 
 class StyleManager:
     """
@@ -32,7 +70,6 @@ class StyleManager:
         self.set_working_directory(working_dir)
         
         self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
-
 
 
     def set_working_directory(self, path):
@@ -158,8 +195,25 @@ class StyleManager:
         # enable or disable the styling-functions
         if len(selected_layers) != 1:
             return
-        else:
-            layer = selected_layers[0]
+
+        # collect parameters
+        style_name = self.dlg.saveStylingLineEdit.text()
+        if style_name == "":
+            return
+        
+        layer = selected_layers[0]
+        layer_name = layer.name()
+        source = layer.source()
+        self.log(f"source: {source}")
+        url = extract_base_url(source)
+        self.log(f"url: {url}")
+        typename = extract_typename(source)
+        self.log(f"typename: {typename}")
+        # url = layer.url()  # url is the uri of the layer
+        # typename = layer.typename()  # typename is the name of the layer
+        
+        style_code = self.style_code(style_name, source)
+        qml_file = f"{style_code}.qml"
         
         if self.creator == "Plugin":
             json_path = self.plugin_styling_path
@@ -168,95 +222,106 @@ class StyleManager:
             json_path = self.user_styling_path
             qml_folder = self.user_styling_files_path
 
-        style_name = self.dlg.saveStylingLineEdit.text()
-        if style_name == "":
-            return
-        
-        source = layer.source()
-        style_code = self.style_code(style_name, source)
+        qml_path = os.path.join(qml_folder, qml_file)
+        self.log(f"Saving style to path: {qml_path}")
 
+        
         try:
             with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
-        except:
-            return
+        except Exception as e:
+            feeds = []
 
-        existing_styles = []
+        style_code = self.style_code(style_name, source)
+        existing_layer = None
         for feed in feeds:
-            if feed["source"] == source:
-                existing_styles = feed["styles"]
+            self.log(feed)
+            if hasattr(feed, "source"):
+                if feed["source"] == source:
+                    self.log("here1")
+                    existing_layer = feed
+                    existing_styles = existing_layer["styles"]
 
-        # Check if a style with the same name exists
-        check_overwrite = False
-        for i, style in enumerate(existing_styles):
-            if style["file"] == style_code:
-                check_overwrite = True
-        
-        if check_overwrite == True:
-            overwrite = QMessageBox.question(
-                self.dlg,
-                "Bestand bestaat al",
-                f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            )
-            if overwrite == QMessageBox.StandardButton.No:
-                return
+                    # Check if a style with the same name exists
+                    for style in existing_styles:
+                        if style["file"] == style_code:
+                            overwrite = QMessageBox.question(
+                                self.dlg,
+                                "Bestand bestaat al",
+                                f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
+                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                            )
+                            if overwrite == QMessageBox.StandardButton.No:
+                                return
+                    
+                    # Remove the old style information
+                    for i, layer in enumerate(feeds):
+                        if layer["source"] == source:
+                            feeds.pop(i)
+
+            elif hasattr(feed, "url"):
+                if feed["url"] == url:
+                    self.log("here2")
+                    existing_layer = feed
+                    existing_styles = existing_layer["styles"]
+
+                    # Check if a style with the same name exists
+                    for style in existing_styles:
+                        if style["file"] == style_code:
+                            overwrite = QMessageBox.question(
+                                self.dlg,
+                                "Bestand bestaat al",
+                                f"De opmaak {style_name} bestaat al. Wilt u het overschrijven?",
+                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                            )
+                            if overwrite == QMessageBox.StandardButton.No:
+                                return
+                            
+                        # Remove the old style information
+                        for i, layer in enumerate(feeds):
+                            if layer["url"] == url:
+                                feeds.pop(i)
+
 
 
         # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
         # TODO: what about services where you define the styling when you send the request? remove and reload?
-        self.dlg.saveStylingLineEdit.clear()
-        source = layer.source()
-        layer_name = layer.name()
-        style_code = self.style_code(style_name, source)
-        qml_path = f"{qml_folder}\\{style_code}.qml"
-
         if layer.type() == QgsMapLayer.VectorLayer:
-            layer.saveNamedStyle(qml_path)
+            layer.saveNamedStyle(qml_path) # does this overwrite automatically?
         else:
             return
-        # layer is the data in the layer
-  
-        try:
-            with open(json_path, "r", encoding="utf-8") as feedsjson:
-                feeds = json.load(feedsjson)
-        except:
-            feeds = []
 
-        existing_data = []
-        existing_styles = []
-        for feed in feeds:
-            if feed["source"] == source:
-                existing_styles = feed["styles"]
-            else:
-                existing_data.append(feed)
-
-        # Remove the old style information
-        for i, style in enumerate(existing_styles):
-            if style["file"] == style_code:
-                existing_styles.pop(i)
-
-        # add the new style to the list of styles
-        style_string = "{" + f"\"name\": \"{style_name}\"," # style name
-        style_string = f"{style_string}\"file\": \"{style_code}\"," # source
-        style_string = f"{style_string}\"creator\": \"{self.creator}\"" + "}" # creator (base plugin style or user defined)
-        new_style = json.loads(style_string)
-        existing_styles.append(new_style)
-        existing_styles = str(existing_styles).replace('\'', '\"')
-
-        # create the layer info and add the list of styles
-        string = "{\"layer_name\": \"" + layer_name + "\", "
-        string = string + "\"source\": \"" + source + "\", "
-        string = string + "\"styles\": "
-        string = string + str(existing_styles)
-        string = string + "}"
-
-        new_data = json.loads(string)
-        existing_data.append(new_data)
-            
+        style_dict = {
+            "name": style_name,
+            "file": style_code,
+            "creator": self.creator
+        }
+        
+        if existing_layer:
+            existing_styles.append(style_dict)
+            data = {
+                "layer_name": layer_name,
+                "creator": self.creator,
+                "typename": typename,
+                "url": url,
+                "styles": existing_styles,
+            }
+        else:
+            data = {
+                "layer_name": layer_name,
+                "creator": self.creator,
+                "typename": typename,
+                "url": url,
+                "styles": style_dict,
+            }
+        # layers_list.append(layer_dict)
+        
         with open(json_path, "w", encoding="utf-8") as feedsjson:
-            json.dump(existing_data, feedsjson, indent='\t')
+            feeds.append(data)
+            json.dump(feeds, feedsjson, indent="\t")
+
         layer.setCustomProperty( "layerStyle", style_name )
+        self.dlg.saveStylingLineEdit.clear()
 
         # self.update_active_layers_list()
         self.update_styling_list()
@@ -291,13 +356,28 @@ class StyleManager:
                     pass
 
             for layer in layer_style_list:
-                if data.source() == layer["source"]:
-                    styles = layer["styles"]
-                    for style in styles:
-                        if style["creator"].lower() != "plugin":
-                            display_name = f'{style["name"]} | toegevoegd door: {style["creator"]}'
-                        else:
-                            display_name = style["name"]
+                    
+                # url = layer.url()  # url is the uri of the layer
+                # typename = layer.typename()  # typename is the name of the layer
+                    
+                if hasattr(layer, "url"):
+                    if data.url() == layer["url"] and data.typename() == layer["typename"]:
+                        styles = layer["styles"]
+                        for style in styles:
+                            if style["creator"].lower() != "plugin":
+                                display_name = f'{style["name"]} | toegevoegd door: {style["creator"]}'
+                            else:
+                                display_name = style["name"]
 
-                        self.dlg.stylingComboBox.addItem(display_name, data)
+                            self.dlg.stylingComboBox.addItem(display_name, data)
+                elif hasattr(layer, "source"):
+                    if data.source() == layer["source"]:
+                        styles = layer["styles"]
+                        for style in styles:
+                            if style["creator"].lower() != "plugin":
+                                display_name = f'{style["name"]} | toegevoegd door: {style["creator"]}'
+                            else:
+                                display_name = style["name"]
+
+                            self.dlg.stylingComboBox.addItem(display_name, data)
 
