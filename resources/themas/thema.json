@@ -1,69 +1,20 @@
 [
 	{
-		"thema_name": "Gemalen",
+		"thema_name": "test",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "Waterschap: Rioolput",
-				"url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "gwsw:Default_Punt"
-			},
-			{
-				"name": "Gemeente: Rioolput",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "Gemalen",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerPut"
-			},
-			{
-				"name": "Rioolleiding",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "Persleidingen",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerLeiding"
-			}
-		]
-	},
-	{
-		"thema_name": "Datacheck leidingen",
-		"creator": "Plugin",
-		"layers": [
-			{
-				"name": "Rioolput",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "GWSW zonder label",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerPut"
-			},
-			{
-				"name": "Rioolleiding",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "GWSW",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerLeiding"
-			},
-			{
-				"name": "Leiding check: onlogische waarde",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "Check onlogische waarde",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerLeiding"
-			},
-			{
-				"name": "Leiding check: ontbrekende waarde",
-				"url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"styling": "Check ontbrekende waarde",
-				"provider_type": "wfs",
-				"layer_type": "Vector",
-				"typename": "beheerstedelijkwater:BeheerLeiding"
+				"name": "",
+				"title": "layer",
+				"service_url": "",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"provider_type": "Vector",
+				"service_type": "spatialite",
+				"style": "",
+				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
 			}
 		]
 	}

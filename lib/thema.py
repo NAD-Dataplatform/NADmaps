@@ -19,75 +19,22 @@ from qgis.core import (
 from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 
 from .style import StyleManager
-
-import re
-
-from .layer import (
-    create_wms_layer,
-    create_wmts_layer,
-    create_wfs_layer,
-    create_wcs_layer,
-    create_oaf_layer,
-    create_oat_layer,
+from .layer import create_new_layer
+from .utility import (
+    extract_base_url,
+    extract_typename,
+    extract_layer_type,
+    extract_crs,
+    extract_format,
+    extract_layers,
+    extract_tilematrixset,
+    extract_oat_url,
+    extract_oat_title,
+    extract_oat_style_url,
+    extract_identifier,
+    extract_wcs_url
 )
 
-
-def extract_typename(uri):
-    """
-    Extract the typename from a QGIS layer URI string.
-    """
-    match = re.search(r"typename=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
-    if match:
-        typename = match.group(1) or match.group(2) or match.group(3)
-        return typename
-    else:
-        return None
-
-
-def extract_base_url(uri):
-    """
-    Extract the base URL from a QGIS layer URI string.
-
-    Example:
-        uri = "pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
-        extract_base_url(uri)
-        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
-
-        uri = "pagingEnabled=true restrictToRequestBBOX=1 srsname=EPSG:28992 typename=beheerstedelijkwater:BeheerLeiding url=https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0"
-        extract_base_url(uri)
-        # returns: "'https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0'"
-
-    The function looks for url='...', url="...", or url=... in the string and returns the value with single quotes.
-    """
-    match = re.search(r"url=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
-    if match:
-        url = match.group(1) or match.group(2) or match.group(3)
-        return url
-    else:
-        return None
-
-
-def build_uri_from_url(layer, maxnumfeatures=500):
-    service_type = layer["provider_type"]
-    url = layer["url"]
-    typename = layer["typename"]
-
-    if service_type == "wms":
-        return create_wms_layer(layer, typename, url)
-    elif service_type == "wmts":
-        return create_wmts_layer(layer, typename, url)
-    elif service_type == "wfs":
-        return create_wfs_layer(typename, url, maxnumfeatures=maxnumfeatures)
-    elif service_type == "wcs":
-        return create_wcs_layer(typename, url)
-    elif service_type == "api features":
-        return create_oaf_layer(typename, url, maxnumfeatures=maxnumfeatures)
-    elif service_type == "api tiles":
-        return create_oat_layer(layer, url)
-    else:
-        raise ValueError(
-            f"Unsupported service type: {service_type}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
-        )
 
 
 class ThemaManager:
@@ -113,6 +60,12 @@ class ThemaManager:
         )
         assert os.path.exists(self.plugin_thema_path), (
             f"ThemaManager: plugin_thema_path does not exist: {self.plugin_thema_path}"
+        )
+        assert os.path.exists(self.plugin_styling_path), (
+            f"ThemaManager: plugin_styling_path does not exist: {self.plugin_styling_path}"
+        )
+        assert os.path.exists(self.plugin_styling_files_path), (
+            f"ThemaManager: plugin_styling_files_path does not exist: {self.plugin_styling_files_path}"
         )
 
         self.set_working_directory(working_dir)
@@ -200,6 +153,7 @@ class ThemaManager:
             9: "PostGIS",
             10: "Database",
         }
+        # https://plugins.qgis.org/plugins/connector/
         # self.log("Finished init ThemaManager")
 
     def set_working_directory(self, path):
@@ -267,69 +221,103 @@ class ThemaManager:
         # get thema name
         thema_name = self.dlg.saveThemaLineEdit.text()
         if thema_name == "":
+            # TODO: if we want to show this message we have to pass iface to this class
+            # self.iface.messageBar().pushMessage("Geen thema-naam gespecificeerd.", level=Qgis.Critical) 
             return
 
         # Check if a style with the same name exists
-        check_overwrite = False
         for feed in feeds:
             if feed["thema_name"] == thema_name:
-                check_overwrite = True
+                overwrite = QMessageBox.question(
+                    self.dlg,
+                    "Bestand bestaat al",
+                    f"Het thema {thema_name} bestaat al. Wilt u het overschrijven?",
+                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                )
+                if overwrite == QMessageBox.StandardButton.No:
+                    return
 
-        if check_overwrite:
-            overwrite = QMessageBox.question(
-                self.dlg,
-                "Bestand bestaat al",
-                f"Het thema {thema_name} bestaat al. Wilt u het overschrijven?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            )
-            if overwrite == QMessageBox.StandardButton.No:
-                return
+                # Remove the old thema information
+                for i, thema in enumerate(feeds):
+                    if thema["thema_name"] == thema_name:
+                        feeds.pop(i)
 
-            # Remove the old thema information
-            for i, thema in enumerate(feeds):
-                if thema["thema_name"] == thema_name:
-                    feeds.pop(i)
-
-        # Collect a json string with a thema_name and a list of layer names
-        string = '{"thema_name": "' + thema_name + '", '
-        string = f'{string}"creator": "{self.creator}",'  # creator
-        string = string + '"layers": [{'
-
+        # add all layers or just the selected layers to this thema
         if not all:
             selected_layers = selected_active_layers
         else:
             root = QgsProject.instance().layerTreeRoot()
             selected_layers = root.layerOrder()
 
+        # collect the list of layers to save to json file
         layers_list = []
         for layer in selected_layers:
-            if not hasattr(layer, "source") and not hasattr(layer, "url"):
-                self.log(
-                    f"Layer {layer.name()} does not have a source or url attribute. Skipping this layer."
-                )
-                continue
+            # base data
+            uri = layer.source()  # source is the uri of the layer
+            if "\"" in uri:
+                uri = uri.replace('"', '\'') # For solving situations like this: Oracle source is "DB"."LAYER" 
+            name = ""
+            title = layer.name()
+            url = ""
+            tilematrixset = ""
+            crs = ""
+            imgformats = ""
+            styles = []
 
-            if hasattr(layer, "url"):
-                url = layer.url()  # url is the uri of the layer
-                typename = layer.typename()  # typename is the name of the layer
-            else:
-                url = None
-                typename = None
+            # extra data
+            provider_type = self.layer_type_mapping[layer.type()]
+            service_type = extract_layer_type(layer.source(), layer.providerType())
+            style = layer.customProperty("layerStyle", "")
 
-            if hasattr(layer, "source"):  # backwards compatibility with old thema files
-                uri = layer.source()  # source is the uri of the layer
+
+            if service_type == "wfs" or service_type == "api features":
+                name = extract_typename(uri)
                 url = extract_base_url(uri)
-                typename = extract_typename(uri)
 
-            layer_type = self.layer_type_mapping[layer.type()]
-            styling = layer.customProperty("layerStyle", "")
+            if service_type == "wms":
+                name = extract_layers(uri)
+                crs = extract_crs(uri)
+                imgformats = extract_format(uri)
+                url = extract_base_url(uri)
+
+                # styles = ...
+                tilematrixset = crs
+
+            if service_type == "wmts":
+                name = extract_layers(uri)
+                crs = extract_crs(uri)
+                tilematrixset = extract_tilematrixset(uri)
+                imgformats = extract_format(uri)
+                url = extract_base_url(uri)
+
+            if service_type == "api tiles":
+                title, style_name = extract_oat_title(layer.name())
+                url = extract_oat_url(uri)
+                style_url = extract_oat_style_url(uri)
+
+                name = title
+                style_dict = {
+                    "name": style_name,
+                    "url": style_url
+                }
+                styles.append(style_dict)
+
+            if service_type == "wcs":
+                name = extract_identifier(uri)
+                url = extract_wcs_url(uri)
+
             layer_dict = {
-                "name": layer.name(),
-                "url": url,
-                "styling": styling,
-                "provider_type": layer.providerType(),
-                "layer_type": layer_type,
-                "typename": typename,
+                "name": name, # uri requirement
+                "title": title, # readable
+                "service_url": url,
+                "tilematrixsets": tilematrixset,
+                "crs": crs,
+                "imgformats": imgformats,
+                "styles": styles,
+                "provider_type": provider_type,
+                "service_type": service_type,
+                "style": style,
+                "source": uri
             }
             layers_list.append(layer_dict)
 
@@ -399,7 +387,7 @@ class ThemaManager:
                     itemFavorite.setCheckState(2)
             except:
                 itemFavorite.setCheckState(0)
-            itemSource = QStandardItem(str(thema["creator"]))
+            itemSource = QStandardItem(str(thema["creator"])) # TODO: dit werkt op dit moment niet voor de nieuwe opslagwijze
             itemFilter = QStandardItem(f"{thema['thema_name']} {thema['layers']}")
             # https://doc.qt.io/qt-6/qstandarditem.html#setData
             itemThema.setData(thema, Qt.ItemDataRole.UserRole)
@@ -436,6 +424,7 @@ class ThemaManager:
         self.dlg.themaView.sortByColumn(0, Qt.AscendingOrder)
 
     def update_favorites(self, cell):
+        # TODO: dit bestand wordt nu niet aangemaakt
         if cell.column() == 1:
             model = self.dlg.themaView.model()
             # self.log(f"cell is {cell} (row: {cell.row()}, col: {cell.column()}) and model row count: {model.rowCount()}")
@@ -500,25 +489,25 @@ class ThemaManager:
                     f"Layer {layer['name']} does not have a source or url attribute. Skipping this layer."
                 )
 
-            name = layer["name"]
-            layer_type = layer["layer_type"]
-            provider_type = layer["provider_type"]
-            style = layer["styling"]
-            typename = layer.get("typename", "")
+            # name = layer["name"]
+            # layer_type = layer["layer_type"]
+            # provider_type = layer["provider_type"]
+            # typename = layer.get("typename", "")
 
-            if "url" in layer:
-                uri = build_uri_from_url(
-                    layer=layer,
-                    maxnumfeatures=self.maxnumfeatures,
-                )
+            # if "url" in layer:
+            #     uri = build_uri_from_url(
+            #         layer=layer,
+            #         maxnumfeatures=self.maxnumfeatures,
+            #     )
 
-            if "source" in layer:  # backwards compatibility with old thema files
-                uri = layer["source"]
-                if not typename:
-                    typename = extract_typename(uri)
+            # if "source" in layer:  # backwards compatibility with old thema files
+            #     uri = layer["source"]
+            #     if not typename:
+            #         typename = extract_typename(uri)
 
-            self.current_layer = layer
-            result = self.load_thema_layer(name, uri, layer_type, provider_type)
+            # self.current_layer = layer
+            # result = self.load_thema_layer(name, uri, layer_type, provider_type)
+            result = create_new_layer(layer, self.maxnumfeatures)
             QgsProject.instance().addMapLayer(
                 result, False
             )  # If True (by default), the layer will be added to the legend and to the main canvas
@@ -526,6 +515,8 @@ class ThemaManager:
             # check if styling is saved in .resources.styling styling.json
             # if so, then apply that style, else apply no style
 
+            style = layer["style"]
+            uri = layer["source"]
             if not style == "":
                 layer_style_list = []
                 # Load plugin styles
@@ -573,17 +564,17 @@ class ThemaManager:
             self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
         else:
             for layer in self.thema_layers:
-                itemLayername = QStandardItem(str(layer["name"]))
+                itemLayername = QStandardItem(str(layer["title"]))
                 stype = (
                     self.service_type_mapping[layer["provider_type"]]
                     if layer["provider_type"] in self.service_type_mapping
                     else layer["provider_type"].upper()
                 )
                 itemProvider = QStandardItem(str(stype))
-                itemStyle = QStandardItem(str(layer["styling"]))
+                itemStyle = QStandardItem(str(layer["style"]))
                 # itemStyle = QStandardItem(str("styling"))
                 itemSource = QStandardItem(
-                    str(layer["source"] if "source" in layer else layer["url"])
+                    str(layer["source"] if "source" in layer else layer["service_url"])
                 )
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]

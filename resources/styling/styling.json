@@ -433,5 +433,27 @@
 				"creator": "Plugin"
 			}
 		]
+	},
+	{
+		"layer_name": "Maassluis: Rioolput",
+		"creator": "Plugin",
+		"typename": "gwsw:Default_Punt",
+		"url": "https://geodata.gwsw.nl/Maassluis",
+		"styles": {
+			"name": "test4",
+			"file": "test4_6e7d40e1ab19e635c65a7d072b493d66",
+			"creator": "Plugin"
+		}
+	},
+	{
+		"layer_name": "Oppervlaktewaterlichaam__natte_ecologische_zone",
+		"creator": "Plugin",
+		"typename": "LeggerDelfland:Oppervlaktewaterlichaam__natte_ecologische_zone",
+		"url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+		"styles": {
+			"name": "Onderhoudsplichtige",
+			"file": "onderhoudsplichtige_dc39b1d80edb1f0093cc2fb8805e38d7",
+			"creator": "Plugin"
+		}
 	}
 ]
