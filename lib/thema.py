@@ -366,10 +366,13 @@ class ThemaManager:
         themas = []
         with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
             themas.extend(json.load(f))
+            self.log(len(themas))
         if self.creator != "Plugin":
             if os.path.exists(self.user_thema_path):
                 with open(self.user_thema_path, "r", encoding="utf-8") as f:
                     themas.extend(json.load(f))
+                    self.log(len(themas))
+        self.log(len(themas))
 
         try:
             with open(self.user_thema_favorite_path, "r", encoding="utf-8") as f:

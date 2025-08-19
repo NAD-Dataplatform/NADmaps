@@ -148,7 +148,6 @@ def create_spatialite_layer(layer, title=None):
 
 def create_new_layer(layer, maxnumfeatures=6000):
     servicetype = layer["service_type"]
-    providertype = layer["provider_type"]
     title = layer["title"]
     layername = layer["name"]
     url = layer["service_url"]
@@ -167,16 +166,19 @@ def create_new_layer(layer, maxnumfeatures=6000):
         return create_oat_layer(layer, url, title)
     elif servicetype == "spatialite":
         return create_spatialite_layer(layer, title)
-    elif providertype == "Vector":
-        uri = layer["source"]
-        return QgsVectorLayer(uri, title, servicetype)
-    elif providertype == "Raster":
-        uri = layer["source"]
-        return QgsRasterLayer(uri, title, servicetype)
     else:
-        raise ValueError(
-            f"Unsupported service type: {servicetype}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
-        )
+        try:
+            providertype = layer["provider_type"]
+            if providertype == "Vector":
+                uri = layer["source"]
+                return QgsVectorLayer(uri, title, servicetype)
+            elif providertype == "Raster":
+                uri = layer["source"]
+                return QgsRasterLayer(uri, title, servicetype)
+        except:
+            raise ValueError(
+                f"Unsupported service type: {servicetype}. Supported types are: wms, wmts, wfs, wcs, api features, api tiles."
+            )
 
 
 class LayerManager:
