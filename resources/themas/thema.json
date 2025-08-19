@@ -13,6 +13,19 @@
 				"styles": [],
 				"provider_type": "Vector",
 				"service_type": "spatialite",
+				"style": "test",
+				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
+			},
+			{
+				"name": "",
+				"title": "layer",
+				"service_url": "",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"provider_type": "Vector",
+				"service_type": "spatialite",
 				"style": "",
 				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
 			}

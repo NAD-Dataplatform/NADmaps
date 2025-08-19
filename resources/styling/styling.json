@@ -455,5 +455,16 @@
 			"file": "onderhoudsplichtige_dc39b1d80edb1f0093cc2fb8805e38d7",
 			"creator": "Plugin"
 		}
+	},
+	{
+		"layer_name": "layer",
+		"creator": "Plugin",
+		"typename": null,
+		"url": null,
+		"styles": {
+			"name": "test",
+			"file": "test_640fdfac313948ec4deab704be04e04b",
+			"creator": "Plugin"
+		}
 	}
 ]
