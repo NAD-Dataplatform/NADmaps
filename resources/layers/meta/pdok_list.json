@@ -1,1 +1,1552 @@
-null
+{
+  "3FC77408-3A25-40CE-B562-B93AC34E1235": {
+    "title": "Natuurbeheerplan 2013 - Landschaps Zoekgebied",
+    "abstract": "Begrensde zoekgebieden waarbinnen subsidie voor beheer van landschaps elementen kan worden aangevraagd",
+    "identifier": "3FC77408-3A25-40CE-B562-B93AC34E1235",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2013_LANDSCHAPSZOEKGEBIED",
+        "description": "Natuurbeheerplan 2013 - Landschaps Zoekgebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2013_LANDSCHAPSZOEKGEBIED",
+        "description": "Natuurbeheerplan 2013 - Landschaps Zoekgebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: LandschapsZoekgebied - kaart 4",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2013/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2013_LANDSCHAPSZOEKGEBIED&bbox=49694.0075000003%2C408088.625500001%2C138625.15949999914%2C481464.8924999982&width=768&height=633&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "CBE0AE2B-99BE-4D4D-8D7D-2F05C568769F": {
+    "title": "Potentieel hoge temperatuuropslag formatie van Maassluis contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de formatie van Maassluis weergegeven. De formatie bevindt zich op een diepte van circa 50 tot 200 m-NAP. De potentie voor hoge temperatuuropslag (HTO) wordt gedefinieerd als de hoeveelheid grondwater die op een locatie uit de ondergrond onttrokken kan worden voor het leveren van warmte (debiet in m\u00b3/h). Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "CBE0AE2B-99BE-4D4D-8D7D-2F05C568769F",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_HTO_MAASSLUIS_CONTOUR",
+        "description": "Potentieel hoge temperatuuropslag formatie van Maassluis contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_HTO_MAASSLUIS_CONTOUR",
+        "description": "Potentieel hoge temperatuuropslag formatie van Maassluis contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel hogetemperatuuropslag Maassluis Formatie",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_HTO_MAASSLUIS_CONTOUR&bbox=49788.928737748414%2C409020.0096812546%2C134858.1021691449%2C476955.9612956308&width=768&height=613&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "7C0CA3BA-3CD8-4D5D-8BC7-BD2BA4194275": {
+    "title": "Fysisch-geografische Regio-indeling",
+    "abstract": "De fysisch-geografische regio's in Zuid-Holland en omgeving. De fysisch-geografische regio-indeling (onder andere laagveen, zeeklei, rivieren, duinen, afgesloten zeearmen, getijdengebied, Noordzee) wordt onder andere in het natuurbeleid gebruikt en is gebaseerd op de bodemkaart.",
+    "identifier": "7C0CA3BA-3CD8-4D5D-8BC7-BD2BA4194275",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBIED_FYSISCH_GEOGRAFISCH_REGIO",
+        "description": "Fysisch-geografische Regio-indeling",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBIED_FYSISCH_GEOGRAFISCH_REGIO",
+        "description": "Fysisch-geografische Regio-indeling",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Fysisch-geografische regio-indeling",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3AGEBIED_FYSISCH_GEOGRAFISCH_REGIO&bbox=38143.0540000014%2C405727.50400000066%2C142693.61100000143%2C485025.0799999982&width=768&height=582&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "168246F0-71A2-440E-99F8-7DD8C455F68F": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Duin- en Bollenstreek - punten",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "168246F0-71A2-440E-99F8-7DD8C455F68F",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_DB_PUNT",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Duin- en Bollenstreek - punten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_DB_PUNT",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Duin- en Bollenstreek - punten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Themakaart 14 - Werkgebieden met karakter - punten, Themakaart 15 - Gevarieerd en verbindend vrijetijdslandschap - punten, Themakaart 16 - Identiteitsdragers van Zuid-Holland - punten, Themakaart 8 - Weg door stand en land - punten, Themakaart 9 - Doorsnijdend spoor - punten",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Duin_en_Bollenstreek/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_DB_PUNT&bbox=88862.14402275528%2C468184.3456363134%2C100677.10921354259%2C481396.8822279378&width=686&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "1AAAF3EB-572F-414C-A1F7-2EFE58B99302": {
+    "title": "Natuurbeheerplan 2015 - Projecten kaart nieuwe natuur",
+    "abstract": "Begrensde nieuwe natuur gebieden door de provincie aangegeven. Dit bestand behoort bij het door GS op 9 september 2014 definitief vastgestelde natuurbeheerplan.",
+    "identifier": "1AAAF3EB-572F-414C-A1F7-2EFE58B99302",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2015_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2015 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2015_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2015 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 2 Kaart Nieuwe natuur",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2015/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2015_ZH_PROJECTENKAART_NGN&bbox=49849.45699999854%2C410778.8440000005%2C138573.40199999884%2C478442.3125&width=768&height=585&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "ABFAB4F8-A269-4BD5-8FA0-C1F468940730": {
+    "title": "Potentieel ondiepe geothermie Rijnland Groep contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de Rijnland Groepweergegeven. De diepte van deze formatie neemt toe in zuidwestelijke richting van 500 m in het noordoosten tot circa 2.000 m in het zuidwesten. De potentie voor ondiepe geothermie (OGT) wordt gedefinieerd als de hoeveelheid grondwater die op een locatie uit de ondergrond onttrokken kan worden voor het leveren van warmte (debiet in m\u00b3/h). Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "ABFAB4F8-A269-4BD5-8FA0-C1F468940730",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_OGT_RIJNLAND_CONTOUR",
+        "description": "Potentieel ondiepe geothermie Rijnland Groep contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_OGT_RIJNLAND_CONTOUR",
+        "description": "Potentieel ondiepe geothermie Rijnland Groep contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel ondiepe geothermie Rijnland Groep",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_OGT_RIJNLAND_CONTOUR&bbox=68745.99473213404%2C429653.64213720337%2C109257.61430000514%2C474564.0301300697&width=692&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "6F88B0E3-29A5-4AE7-9DB6-5C99B4D5C999": {
+    "title": "Nationale Landschappen in Zuid-Holland",
+    "abstract": "Nationale landschappen zijn gebieden met internationaal of nationaal zeldzame of unieke kenmerkende landschapskwaliteiten, en in samenhang daarmee bijzondere natuurlijke en recreatieve kwaliteiten. Voor nationale landschappen (twintig in totaal) geldt het uitgangspunt 'behoud door ontwikkeling': mits de kernkwaliteiten worden behouden of versterkt ('ja, mits'-principe), zijn ruimtelijke ontwikkelingen binnen die landschappen mogelijk. Grootschalige ontwikkelingen zijn niet toegestaan, tenzij het nationaal belang betreft en er compenserende maatregelen worden getroffen. Provincies zijn verantwoordelijk voor de uitwerking van het beleid voor nationale landschappen. Het Ministerie van Infrastructuur en Milieu stelde het landelijk bestand van de nationale landschappen samen en is de beheerder van het bestand. De verantwoordelijkheid voor de grenzen ligt bij de betreffende provincies.",
+    "identifier": "6F88B0E3-29A5-4AE7-9DB6-5C99B4D5C999",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "REGIO_NATIONALE_LANDSCHAPPEN_ZH",
+        "description": "Nationale Landschappen in Zuid-Holland",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "REGIO_NATIONALE_LANDSCHAPPEN_ZH",
+        "description": "Nationale Landschappen in Zuid-Holland",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Nationale Landschappen ZH",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Grenzen/Grenzen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetMap&layers=grenzen%3AREGIO_NATIONALE_LANDSCHAPPEN_ZH&bbox=74000.27650000155%2C411883.0009999983%2C130476.65610000119%2C471966.125&width=721&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "1514E320-9E9F-4B99-9086-DD404B075085": {
+    "title": "Potentieel geothermie Germaanse Trias Groep (COP 10, Tretour 25) contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de Germaanse Trias Groep weergegeven. De diepte van deze formatie varieert tussen de 2.000 en 4.000 meter onder maaiveld. De potentie voor geothermie (GT) is weergegeven in het vermogen (MWt) en de energiehoeveelheid (PJ) die op een locatie geproduceerd kan worden met een enkel conventioneel doublet bij een coefficient of performance (COP) van 10 en een retourtemperatuur van 25\u00b0C. Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "1514E320-9E9F-4B99-9086-DD404B075085",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_TRIAS_COP10_TRET25_CONTOUR",
+        "description": "Potentieel geothermie Germaanse Trias Groep (COP 10, Tretour 25) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_TRIAS_COP10_TRET25_CONTOUR",
+        "description": "Potentieel geothermie Germaanse Trias Groep (COP 10, Tretour 25) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel diepe geothermie Trias COP10 Tret25",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_GT_TRIAS_COP10_TRET25_CONTOUR&bbox=59551.0%2C413932.2791999988%2C136951.0%2C455664.53322831914&width=768&height=414&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "AE78A87C-F1BE-46B7-9042-41217E297DC4": {
+    "title": "Natuurbeheerplan 2018 - Bijzonder Gebied",
+    "abstract": "Begrensde gebieden waarvoor een afwijkende subsidie geldt, afhankelijk van het type beleid. Dit bestand behoort bij het besluit van gedeputeerde staten van 29 augustus 2017, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2018.",
+    "identifier": "AE78A87C-F1BE-46B7-9042-41217E297DC4",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2018_BIJZONDERGEBIED",
+        "description": "Natuurbeheerplan 2018 - Bijzonder Gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2018_BIJZONDERGEBIED",
+        "description": "Natuurbeheerplan 2018 - Bijzonder Gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 3 Toeslagen vaarland",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2018/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2018_BIJZONDERGEBIED&bbox=53220.39400000125%2C415766.0%2C138597.0159999989%2C479254.1559999995&width=768&height=571&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "62953E87-A2E7-4CF5-8E72-61505E38F977": {
+    "title": "Natuurbeheerplan 2015 - Bijzonder Gebied",
+    "abstract": "Begrensde gebieden waarvoor een afwijkende subsidie geldt, afhankelijk van het type beleid. Dit bestand behoort bij het door GS op 9 september 2014 definitief vastgestelde natuurbeheerplan.",
+    "identifier": "62953E87-A2E7-4CF5-8E72-61505E38F977",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2015_BIJZONDERGEBIED",
+        "description": "Natuurbeheerplan 2015 - Bijzonder Gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2015_BIJZONDERGEBIED",
+        "description": "Natuurbeheerplan 2015 - Bijzonder Gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 5 Toeslagen vaarland",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2015/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2015_BIJZONDERGEBIED&bbox=53220.39400000125%2C415766.0%2C138597.0159999989%2C479254.1559999995&width=768&height=571&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "10A62A92-4F2D-430E-B608-26E4E73845F1": {
+    "title": "Natuurbeheerplan 2017 - Open Akkerland",
+    "abstract": "Begrensde zoekgebieden waarbinnen subsidie in het kader van agrarisch natuurbeheer voor beheermaatregelen in het leefgebied Open Akkerland kan worden aangevraagd. Dit bestand behoort bij het besluit van gedeputeerde staten van 24 mei 2016, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2017.",
+    "identifier": "10A62A92-4F2D-430E-B608-26E4E73845F1",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2017_AGRARISCH_OPEN_AKKERLAND",
+        "description": "Natuurbeheerplan 2017 - Open Akkerland",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2017_AGRARISCH_OPEN_AKKERLAND",
+        "description": "Natuurbeheerplan 2017 - Open Akkerland",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 5 Leefgebied Open Akkerland",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2017/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2017_AGRARISCH_OPEN_AKKERLAND&bbox=49416.92700000107%2C408082.0%2C120404.6400000006%2C481394.71499999985&width=743&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "9F88C22B-9857-4176-8A7B-C564531750F5": {
+    "title": "Natuurbeheerplan 2019 - Landschaps Zoekgebied",
+    "abstract": "Begrensde zoekgebieden waarbinnen subsidie voor beheer van landschaps elementen kan worden aangevraagd. Dit bestand behoort bij het besluit van gedeputeerde staten van 10 juli 2018, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2019.",
+    "identifier": "9F88C22B-9857-4176-8A7B-C564531750F5",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2019_LANDSCHAPSZOEKGEBIED",
+        "description": "Natuurbeheerplan 2019 - Landschaps Zoekgebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2019_LANDSCHAPSZOEKGEBIED",
+        "description": "Natuurbeheerplan 2019 - Landschaps Zoekgebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 7 Leefgebied Droge Dooradering",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2019/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2019_LANDSCHAPSZOEKGEBIED&bbox=49694.0075000003%2C408088.625500001%2C138625.15949999914%2C481464.250500001&width=768&height=633&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "EC394C0E-AE18-4FA5-84DE-A604E8EF6C89": {
+    "title": "Oppervlaktewater - hoofdinlaatpunten",
+    "abstract": "Op deze punten kunnen de waterschappen zoet water in het regionale oppervlaktewatersysteem (ow) inlaten.",
+    "identifier": "EC394C0E-AE18-4FA5-84DE-A604E8EF6C89",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "OW_HOOFDINLAATPUNTEN",
+        "description": "Oppervlaktewater - hoofdinlaatpunten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/water/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "OW_HOOFDINLAATPUNTEN",
+        "description": "Oppervlaktewater - hoofdinlaatpunten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Type hoofdinlaatpunten - oppervlaktewater",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Water/Water_zoetwatervoorziening/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/water/wms?service=WMS&version=1.3.0&request=GetMap&layers=water%3AOW_HOOFDINLAATPUNTEN&bbox=65741.31168517475%2C410484.2107903161%2C136149.19022298374%2C454744.91539489897&width=768&height=482&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "010F327F-A580-4805-8A58-78A5B952292A": {
+    "title": "Route Stad-Land",
+    "abstract": "Stad-Land verbindingen zijn recreactieve routes die de stad met het buitengebied verbinden",
+    "identifier": "010F327F-A580-4805-8A58-78A5B952292A",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "STAD_LAND_ROUTE",
+        "description": "Route Stad-Land",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "STAD_LAND_ROUTE",
+        "description": "Route Stad-Land",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Route Stad-Land",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ASTAD_LAND_ROUTE&bbox=75540.89200000092%2C418730.561999999%2C136183.73099999875%2C466722.8125&width=768&height=607&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "8FE95E74-A3C9-4416-BF63-5951B6916AB2": {
+    "title": "Landschapselementen monitoringsvlakken",
+    "abstract": "De Provincie Zuid-Holland heeft door Landschapsbeheer Zuid-Holland (LBZH) een Monitor Landschapselementen in het cultuurlandschap (MLC) van Zuid-Holland laten ontwikkelen. De zuid-hollandse monitor is gebaseerd op de Monitor Agrarisch Cultuurlandschap (MAC) van Landschapsbeheer Nederland. De monitoring gaat uit van het in het veld inventariseren van landschapselementen in representatieve proefvlakken. De monitor is in februari 2012 opgeleverd. De meetrondes zijn deels in 2012, deels in 2013 uitgevoerd.",
+    "identifier": "8FE95E74-A3C9-4416-BF63-5951B6916AB2",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "LANDSCHAPSELEMENTEN_MONITORINGSGEBIEDEN",
+        "description": "Landschapselementen monitoringsvlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "LANDSCHAPSELEMENTEN_MONITORINGSGEBIEDEN",
+        "description": "Landschapselementen monitoringsvlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Landschapselementen monitoringsgebieden",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_landschapselementen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ALANDSCHAPSELEMENTEN_MONITORINGSGEBIEDEN&bbox=55126.55209999904%2C409770.4701000005%2C128999.73710000142%2C474745.29349999875&width=768&height=675&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "6AEA8A91-C217-4137-8BF2-FADA4A349D65": {
+    "title": "Cultuurhistorische Hoofdstructuur: Archeologie, kenmerken en waarde lijnen (o.a.Limeszones, Kanaal van Corbulo)",
+    "abstract": "In de Romeinse tijd (2000 tot 1500 jaar geleden) vormde de Oude Rijn de grens (Limes) van het Romeinse rijk. Op de zuidoever van de Oude Rijn legden de Romeinen een weg aan met forten. Archeologen noemen deze grens de 'Limeszone'. Op veel plaatsen zijn bij opgravingen resten hiervan aangetroffen. Een ander belangrijk lineair object is het Kanaal van Corbulo, een door de Romeinen gegraven waterweg die de Oude Rijn met het Helinium, de monding van de Maas, verbond.\nDe belangrijkste kenmerken: Oostgrens verbreiding oude duin- en strandzanden in de ondergrond; Limeszone; Noordelijke verbreidingslijn Hellevoeterzand; Kanaal van Corbulo;",
+    "identifier": "6AEA8A91-C217-4137-8BF2-FADA4A349D65",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "CHS_ARCHEOLOGIE_LIJNEN",
+        "description": "Cultuurhistorische Hoofdstructuur: Archeologie, kenmerken en waarde lijnen (o.a.Limeszones, Kanaal van Corbulo)",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "CHS_ARCHEOLOGIE_LIJNEN",
+        "description": "Cultuurhistorische Hoofdstructuur: Archeologie, kenmerken en waarde lijnen (o.a.Limeszones, Kanaal van Corbulo)",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Archeologische lijnen, Kanaal van Corbulo - kenmerken, Limesweg",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Cultuur/Cultuurhistorie_Archeologie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetMap&layers=cultuur%3ACHS_ARCHEOLOGIE_LIJNEN&bbox=63140.197000000626%2C424687.73999999836%2C141298.12999999896%2C471468.125&width=768&height=459&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "8351154F-0454-4E69-8EB9-985CDBFEF1B3": {
+    "title": "Potentieel geothermie Trias Groep (COP 15, Tretour 35) contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de Germaanse Trias Groep weergegeven. De diepte van deze formatie varieert tussen de 2.000 en 4.000 meter onder maaiveld. De potentie voor geothermie (GT) is weergegeven in het vermogen (MWt) en de energiehoeveelheid (PJ) die op een locatie geproduceerd kan worden met een enkel conventioneel doublet bij een Coefficient of Performance (COP) van 15 en een retourtemperatuur van 35\u00b0C. Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "8351154F-0454-4E69-8EB9-985CDBFEF1B3",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_TRIAS_COP15_TRET35_CONTOUR",
+        "description": "Potentieel geothermie Trias Groep (COP 15, Tretour 35) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_TRIAS_COP15_TRET35_CONTOUR",
+        "description": "Potentieel geothermie Trias Groep (COP 15, Tretour 35) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel diepe geothermie Trias COP15 Tret35",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_GT_TRIAS_COP15_TRET35_CONTOUR&bbox=59551.0%2C413932.2791999988%2C136663.89062500373%2C453613.85878985&width=768&height=395&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "979FB04F-B53B-42EE-B0D1-188ABE7BB476": {
+    "title": "Bodemsanering Spoedlocaties",
+    "abstract": "Spoedlocaties voor bodemsanering.\n\nNotitie vooraf: Deze kaartlaag betreft de voortgang van het project spoedlocaties. Voor omgevingsanalyses raden wij echter aan om de bodemdata van de omgevingsdiensten aan te houden. Dit is completer en actueler.\n\nDeze kaartlaag betreft een overzicht van de ernstige bodemverontreinigingen waarbij onaanvaardbare risico\u2019s zijn aangetoond. Deze locaties worden met voorrang (spoed) gesaneerd.  \nDe \u201caanpak van spoedlocaties\u201d is een project dat onder regie van de Provincie wordt uitgevoerd. Deze kaartlaag geeft de spoedlocaties weer waarvoor de provincie bevoegd gezag is in het kader van de Wet bodembescherming (vanaf 1-1-2024 valt dit onder het overgangsrecht Omgevingswet); \nHet bevoegd gezagsgebied betreft de provincie ZH met uitzondering van de Gemeenten Rotterdam, Leiden, Schiedam, Dordrecht en Den Haag; Deze gemeenten zijn zelf bevoegd gezag. \n\nDe beslissing om een verontreinigde bodem met voorrang (spoed) te saneren wordt genomen op basis van een risicobeoordeling en de huidige functie en het gebruik van de locatie.   \nDaarbij zijn drie typen risico\u2019s bepalend, risico\u2019s voor: \n\u2022\tde mens (humane risico\u2019s)\n\u2022\tde dieren en planten (ecologische risico\u2019s)\n\u2022\tde snelheid van verspreiding van de verontreiniging met het grondwater (verspreidingsrisico).\nIs sprake van een locatie met onaanvaardbare risico\u2019s dan wordt deze in het bodemsaneringsbeleid gedefinieerd als een spoedlocatie. Voor de meeste locaties staan derden aan de lat voor de aanpak. \n\nVoor meer informatie over de voortgang van het project wordt verwezen naar: \nhttps://staatvan.zuid-holland.nl/portfolio_page/spoedlocaties-bodemsanering/\n\nDe kaartlaag wordt eens per jaar ge-update. Voor specifieke informatie over een locatie wordt verwezen naar de betreffende omgevingsdienst.",
+    "identifier": "979FB04F-B53B-42EE-B0D1-188ABE7BB476",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BS_SPOEDLOCATIES",
+        "description": "Bodemsanering Spoedlocaties",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BS_SPOEDLOCATIES",
+        "description": "Bodemsanering Spoedlocaties",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Spoedlocaties",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_schone_bodem/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABS_SPOEDLOCATIES&bbox=468994.64042010583%2C6743652.583926947%2C553691.306573825%2C6842190.070343798&width=660&height=768&srs=EPSG%3A3857&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "85202680-07A9-4F0C-9A31-9CF2B1F408B4": {
+    "title": "Begrenzing Delta",
+    "abstract": "Begrenzing van gemeenten die samen de regio \"Delta\" vormen.",
+    "identifier": "85202680-07A9-4F0C-9A31-9CF2B1F408B4",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "REGIO_DELTA",
+        "description": "Begrenzing Delta",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "REGIO_DELTA",
+        "description": "Begrenzing Delta",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Regio Delta",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Grenzen/Grenzen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetMap&layers=grenzen%3AREGIO_DELTA&bbox=43662.620999999344%2C406692.0%2C102821.27299999818%2C430869.5940000005&width=768&height=313&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "C0CDEDF1-F62C-4F3B-BE50-BEBB792929C0": {
+    "title": "Gebiedsindeling vegetatiemeetnet",
+    "abstract": "Gebiedsindeling zoals gebruikt in de Atlas signaleringskaarten, aangepast aan situatie 2002.",
+    "identifier": "C0CDEDF1-F62C-4F3B-BE50-BEBB792929C0",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "MEET_VEGETATIE_GEBIEDEN",
+        "description": "Gebiedsindeling vegetatiemeetnet",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "MEET_VEGETATIE_GEBIEDEN",
+        "description": "Gebiedsindeling vegetatiemeetnet",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Gebiedsindeling signaleringskaart",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3AMEET_VEGETATIE_GEBIEDEN&bbox=47280.88599999994%2C406691.5%2C138649.62900000066%2C482656.0940000005&width=768&height=638&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "C1726117-A172-420C-A7AE-FE20B5354AF2": {
+    "title": "Landschapselementen Loo Plan (lijnen)",
+    "abstract": "De Provincie Zuid-Holland heeft door Landschapsbeheer Zuid-Holland (LBZH) een Monitor Landschapselementen in het cultuurlandschap (MLC) van Zuid-Holland laten ontwikkelen. De zuid-hollandse monitor is gebaseerd op de Monitor Agrarisch Cultuurlandschap (MAC) van Landschapsbeheer Nederland. De monitoring gaat uit van het in het veld inventariseren van landschapselementen in representatieve proefvlakken. De monitor is in februari 2012 opgeleverd. De meetrondes zijn deels in 2012, deels in 2013 uitgevoerd.",
+    "identifier": "C1726117-A172-420C-A7AE-FE20B5354AF2",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "LANDSCHAPSELEMENTEN_LOO_PLAN_LIJN",
+        "description": "Landschapselementen Loo Plan (lijnen)",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "LANDSCHAPSELEMENTEN_LOO_PLAN_LIJN",
+        "description": "Landschapselementen Loo Plan (lijnen)",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Landschapselementen Loo plan - lijn",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_landschapselementen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ALANDSCHAPSELEMENTEN_LOO_PLAN_LIJN&bbox=55157.175200000405%2C417066.24969999865%2C120452.79569999874%2C474378.1116999984&width=768&height=674&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "A6D22E93-E7FB-4926-97DC-06C8E7DEBD8E": {
+    "title": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2012",
+    "abstract": "Geluidcontour Lnight gekarteerde wegdelen i.h.k.v. Eu-richtlijn omgevingslawaai. De gegevens voor de berekening van geluidcontouren t.g.v. wegverkeer zijn gebaseerd op de gegevens zoals aangeleverd door de provincie Zuid-Holland. Alle akoestische rekenmodellen zijn conform Besluit geluidhinder 2006 opgesteld. Voor het doorrekenen van de modellen is de rekensoftware van de DGMR Geomilieu versie 1.91 gebruikt. Bij de geluidcontouren t.g.v. het wegverkeer is de aftrek volgens artikel 110g Wet geluidhinder is niet van toepassing.",
+    "identifier": "A6D22E93-E7FB-4926-97DC-06C8E7DEBD8E",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GELUID_2012_CONTOUREN_NACHT",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2012",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GELUID_2012_CONTOUREN_NACHT",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2012",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Geluidscontouren per nacht 2012",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Milieu/Milieu_geluid/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetMap&layers=milieu%3AGELUID_2012_CONTOUREN_NACHT&bbox=59751.69571049805%2C411417.00016572146%2C138272.83068847656%2C481367.13333793945&width=768&height=684&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "E965F92E-0009-46DF-AE1A-AA968B60D68C": {
+    "title": "Cultuurhistorische Hoofdstructuur: Landschapszones",
+    "abstract": "De waardevolle historisch-landschappelijke vlakken betreffen delen van gekarteerde kenmerken (zie kaart 2.a Landschap, kenmerken). Afhankelijk van de score op de waardering is er een waarde toegekend, te weten: zeer hoge waarde (rood); hoge waarde (oranje); redelijk hoge waarde (geel). De meeste landschapstypen in Zuid-Holland (bv. veenontginning, droogmakijerij, zeekleipolder) zijn - op provinciaal niveau - niet bijzonder zeldzaam. Ze scoren daardoor, bij voldoende gaafheid en samenhang, doorgaans niet hoger dan 'hoge waarde'. Onderdelen van landschappen kunnen - in gave staat - wel hoger scoren.",
+    "identifier": "E965F92E-0009-46DF-AE1A-AA968B60D68C",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "CHS_2015_LANDSCHAP_ZONES",
+        "description": "Cultuurhistorische Hoofdstructuur: Landschapszones",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "CHS_2015_LANDSCHAP_ZONES",
+        "description": "Cultuurhistorische Hoofdstructuur: Landschapszones",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Atlantikwall - kenmerken, Contrastzone - kenmerken, Contrastzone - waarden, Eeuwkant - kenmerken, Inundatie - kenmerken, Kazematten - kenmerken, Landschapszones, Stiltezone - waarden",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Cultuur/Cultuurhistorie_Landschap/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetMap&layers=cultuur%3ACHS_2015_LANDSCHAP_ZONES&bbox=49017.767999999225%2C409949.3669999987%2C140007.33100000024%2C483249.0139000006&width=768&height=618&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "3D38D312-EC06-4AFC-ACDC-F898D5F5900C": {
+    "title": "Natuurbeheerplan 2013 - Projecten kaart nieuwe natuur",
+    "abstract": "Begrensde nieuwe natuur gebieden door de provincie aangegeven",
+    "identifier": "3D38D312-EC06-4AFC-ACDC-F898D5F5900C",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2013_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2013 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2013_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2013 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Projecten - kaart 2",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2013/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2013_ZH_PROJECTENKAART_NGN&bbox=49849.45699999854%2C410778.8440000005%2C138583.4690000005%2C479254.1559999995&width=768&height=592&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "BADC2E8C-FBDC-46A7-A5D5-66F72086DCC9": {
+    "title": "Grondwateronttrekkingen groter dan 12.000 m3 in 2015",
+    "abstract": "De kaart toont de locaties van permanente grondwateronttrekkingsinstallaties waarop in 2015 meer dan 12.000 m3 grondwater is onttrokken. Onttrekkingen ten behoeve van grondwatersanering en bouwputbemalingen zijn niet op kaart aangegeven, evenmin als locaties grondwateronttrekking voor open bodemenergie (WKO). De onttrekking en infiltratie van water gebeurt meestal in het eerste watervoerende pakket, soms in dieper gelegen watervoerende pakketten; de lozing van brijn in het tweede watervoerende pakket. De drinkwaterwinning bevindt zich binnen de grenzen van het waterwingebied (onderdeel milieubeschermingsgebieden voor grondwater).",
+    "identifier": "BADC2E8C-FBDC-46A7-A5D5-66F72086DCC9",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BB_GRONDWATERONTTREKKING",
+        "description": "Grondwateronttrekkingen groter dan 12.000 m3 in 2015",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BB_GRONDWATERONTTREKKING",
+        "description": "Grondwateronttrekkingen groter dan 12.000 m3 in 2015",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Grondwateronttrekking meer dan 12.000 m3 in 2015",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_water/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABB_GRONDWATERONTTREKKING&bbox=56499.99887%2C377443.99245112%2C183311.00366622%2C481036.00962072&width=768&height=627&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "1370458C-C6CC-46AC-9831-C1389C04CA99": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Delflandse Kust - lijnen",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "1370458C-C6CC-46AC-9831-C1389C04CA99",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_DK_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Delflandse Kust - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_DK_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Delflandse Kust - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Themakaart 1 - Natuurlijke duinen - lijnen, Themakaart 12 - Kwaliteit van stads- en dorpsrand - lijnen, Themakaart 15 - Gevarieerd en verbindend vrijetijdslandschap - lijnen, Themakaart 16 - Identiteitsdragers van Zuid-Holland - lijnen, Themakaart 8 - Weg door stad en land - lijnen, Themakaart 9 - Doorsnijdend spoor en verdichte stationsomgeving - lijnen",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Delflandse_Kust/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_DK_LIJN&bbox=66446.0%2C435104.73900000006%2C87194.61560000107%2C459432.2740000002&width=655&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "1443595D-480D-4118-8ED4-086A119655B0": {
+    "title": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per etmaal 2006",
+    "abstract": "Geluidcontouren Lden van  55, 60, 65, 70, 75 dB van de i.h.k.v. de EU-richtlijn omgevingslawaai gekarteerde provinciale wegen.\nDeze kaart toont de geluidsituatie gemeten in 2006 langs de provinciale wegen waar 6 miljoen motorvoertuigen of meer per jaar overheen rijden.",
+    "identifier": "1443595D-480D-4118-8ED4-086A119655B0",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GELUID_2006_CONTOUREN_ETMAAL",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per etmaal 2006",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GELUID_2006_CONTOUREN_ETMAAL",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per etmaal 2006",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Geluidscontouren per etmaal 2006",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Milieu/Milieu_geluid/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetMap&layers=milieu%3AGELUID_2006_CONTOUREN_ETMAAL&bbox=59889.78130000085%2C411612.40630000085%2C138167.28130000085%2C481180.90630000085&width=768&height=682&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "5CFE6A96-E784-42ED-9115-E3E72515318D": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - vlakken",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "5CFE6A96-E784-42ED-9115-E3E72515318D",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HW_VLAK",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - vlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HW_VLAK",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - vlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Hoeksche Waard praktijkvoorbeelden, Themakaart 10 - Water als structuurdrager - vlakken, Themakaart 11 - Kwaliteit in dorpsgebied - vlakken, Themakaart 12 - Kwaliteit van de dorpsrand - vlakken, Themakaart 13 - Linten blijven linten - vlakken, Themakaart 14 - Werkgebieden met karakter - vlakken, Themakaart 15 - Vrijetijdslandschap - vlakken, Themakaart 16 - Identiteitdragers - vlakken, Themakaart 17 - Rust en stilte - vlakken, Themakaart 6 - Herkenbaar open zeekleipolderlandschap - vlakken, Themakaart 7 - Onderscheidend rivierengebied - vlakken, Themakaart 8 - Weg door stad en land - vlakken, Themakaart 9 - Doorsnijdend spoor - vlakken",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Hoeksche_Waard/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_HW_VLAK&bbox=70836.76999999955%2C411883.0%2C103952.02320000157%2C428395.1552999988&width=768&height=382&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "02602E16-D9AA-4FCB-A0B2-D27EA4421411": {
+    "title": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2013",
+    "abstract": "Geluidcontouren Lnight gekarteerde wegdelen i.h.k.v. Eu-richtlijn omgevingslawaai. De gegevens voor de berekening van geluidcontouren t.g.v. wegverkeer zijn gebaseerd op de gegevens zoals aangeleverd door de provincie Zuid-Holland. Alle akoestische rekenmodellen zijn conform Besluit geluidhinder 2006 opgesteld. Voor het doorrekenen van de modellen is de rekensoftware van de DGMR Geomilieu versie 1.91 gebruikt. Bij de geluidcontouren t.g.v. het wegverkeer is de aftrek volgens artikel 110g Wet geluidhinder is niet van toepassing.",
+    "identifier": "02602E16-D9AA-4FCB-A0B2-D27EA4421411",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GELUID_2013_CONTOUREN_NACHT",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2013",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GELUID_2013_CONTOUREN_NACHT",
+        "description": "Geluidscontouren - Geluidsbelasting langs provinciale wegen per nacht 2013",
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Geluidscontouren per nacht 2013",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Milieu/Milieu_geluid/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/milieu/wms?service=WMS&version=1.3.0&request=GetMap&layers=milieu%3AGELUID_2013_CONTOUREN_NACHT&bbox=59769.1678000018%2C411420.0780999996%2C138235.3044999987%2C481096.4288999997&width=768&height=681&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "3D9642FF-3C8A-4F90-BC64-B8A652EC78E3": {
+    "title": "Natuurbeheerplan 2019 - Natte Dooradering",
+    "abstract": "Begrensde zoekgebieden waarbinnen subsidie voor beheer van landschaps elementen kan worden aangevraagd. Dit bestand behoort bij het besluit van gedeputeerde staten van 10 juli 2018, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2019.",
+    "identifier": "3D9642FF-3C8A-4F90-BC64-B8A652EC78E3",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2019_AGRARISCH_NATTE_DOORADERING",
+        "description": "Natuurbeheerplan 2019 - Natte Dooradering",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2019_AGRARISCH_NATTE_DOORADERING",
+        "description": "Natuurbeheerplan 2019 - Natte Dooradering",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 6 Leefgebied Natte Dooradering",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2019/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2019_AGRARISCH_NATTE_DOORADERING&bbox=74369.46499999985%2C425790.5155000016%2C138649.2969999984%2C482631.0089999996&width=768&height=679&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "06CB8EAE-AEA1-4A8D-8A0F-BA3233C8F5D7": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Hollandse Biesbosch - lijnen",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "06CB8EAE-AEA1-4A8D-8A0F-BA3233C8F5D7",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HB_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hollandse Biesbosch - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HB_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hollandse Biesbosch - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Themakaart 10 - Water als structuurdrager - lijnen, Themakaart 12 - Kwaliteit van stads- en dorpsrand - lijnen, Themakaart 15 - Gevarieerd en verbindend vrijetijdslandschap - lijnen, Themakaart 16 - Identiteitsdragers van Zuid-Holland - lijnen, Themakaart 6 - Herkenbare open zeekleipolder - lijnen, Themakaart 7 - Onderscheidend rivierengebied - lijnen, Themakaart 8 - Weg door stad en land - lijnen, Themakaart 9 - Doorsnijdend spoor - lijnen",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Hollandse_Biesbosch/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_HB_LIJN&bbox=97707.34650000185%2C413608.6691999994%2C125718.97060000151%2C429594.2853000015&width=768&height=438&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "85D7886B-9895-4BF1-848E-F5798B0F9820": {
+    "title": "Weidevogel zichtpunten",
+    "abstract": "Zichtpunten in telgebieden van het weidevogelmeetnet Zuid-Holland.",
+    "identifier": "85D7886B-9895-4BF1-848E-F5798B0F9820",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "MEET_WEIDEVOGEL_ZICHTPUNTEN",
+        "description": "Weidevogel zichtpunten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "MEET_WEIDEVOGEL_ZICHTPUNTEN",
+        "description": "Weidevogel zichtpunten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Telgebieden weidevogels Zichtpunten 2001",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3AMEET_WEIDEVOGEL_ZICHTPUNTEN&bbox=78129.73600000143%2C429583.33999999985%2C134589.8759999983%2C466561.37999999896&width=768&height=502&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "76941FD1-B2CC-4096-872B-AC69818942A8": {
+    "title": "Fysiek Glas glastuinbouw 1997",
+    "abstract": "Op basis van de vectortopografie 1:10.000 en de luchtfoto's 1997 is de glastuinbouw gevectoriseerd.",
+    "identifier": "76941FD1-B2CC-4096-872B-AC69818942A8",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "FYSIEK_GLAS_1997",
+        "description": "Fysiek Glas glastuinbouw 1997",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "FYSIEK_GLAS_1997",
+        "description": "Fysiek Glas glastuinbouw 1997",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Fysiek glas 1997",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Economie/Economie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetMap&layers=economie%3AFYSIEK_GLAS_1997&bbox=53520.754000000656%2C410677.061999999%2C139521.7659999989%2C481300.9690000005&width=768&height=630&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "E2061305-C68C-4D3C-A538-27036E0EE6A0": {
+    "title": "Potentieel geothermie Rijnland Groep (COP 15, Tretour 35) contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de Rijnland Groep weergegeven. De diepte van deze formatie neemt toe in zuidwestelijke richting van 500 m in het noordoosten tot circa 2.000 m in het zuidwesten. De potentie voor geothermie (GT) is weergegeven in het vermogen (MWt) en de energiehoeveelheid (PJ) die op een locatie geproduceerd kan worden met een enkel conventioneel doublet bij een Coefficient of Performance (COP) van 15 en een retourtemperatuur van 35\u00b0C. Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "E2061305-C68C-4D3C-A538-27036E0EE6A0",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_RIJNLAND_COP15_TRET35_CONTOUR",
+        "description": "Potentieel geothermie Rijnland Groep (COP 15, Tretour 35) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_RIJNLAND_COP15_TRET35_CONTOUR",
+        "description": "Potentieel geothermie Rijnland Groep (COP 15, Tretour 35) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel diepe geothermie Rijnland COP15 Tret35",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_GT_RIJNLAND_COP15_TRET35_CONTOUR&bbox=63301.0%2C429439.6818237379%2C102826.81405639648%2C474411.8092613295&width=674&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "B0171523-FDDC-45CE-B590-2E024C10B9A6": {
+    "title": "Natuurbeheerplan 2014 - Projecten kaart nieuwe natuur",
+    "abstract": "Begrensde nieuwe natuur gebieden door de provincie aangegeven",
+    "identifier": "B0171523-FDDC-45CE-B590-2E024C10B9A6",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2014_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2014 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2014_ZH_PROJECTENKAART_NGN",
+        "description": "Natuurbeheerplan 2014 - Projecten kaart nieuwe natuur",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Natuurprojecten, Nieuwe natuur - kaart 2",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2014/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2014_ZH_PROJECTENKAART_NGN&bbox=49849.45699999854%2C410778.8440000005%2C138583.4690000005%2C479254.1559999995&width=768&height=592&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "78121036-2ECF-4CFB-A8BB-D99789135003": {
+    "title": "Kantoren Planmonitor 2014",
+    "abstract": "De op de provinciale kaartlaag opgenomen kantorenlocaties betreffen mogelijk nog te bouwen m2 bvo tot 2030, in diverse stadia van planhardheid. Informatie is oorsponkelijk op postcode 6 niveau, dit is gekoppeld aan de postcode puntenkaart.\nVoor zover het gaat om zachte locaties, welke niet passen in het huidige kantorenlocatiebeleid van de provincie in de PSV 2012 resp. ontwerp-VRM, zijn deze niet opgenomen. \u201d",
+    "identifier": "78121036-2ECF-4CFB-A8BB-D99789135003",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "KANTOREN_PLANMONITOR_2014",
+        "description": "Kantoren Planmonitor 2014",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "KANTOREN_PLANMONITOR_2014",
+        "description": "Kantoren Planmonitor 2014",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Plancapaciteit planmonitor 2014",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Economie/Economie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetMap&layers=economie%3AKANTOREN_PLANMONITOR_2014&bbox=62291.99875416%2C420891.99158216%2C115939.00231878%2C470190.0094038&width=768&height=705&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "B606B91C-9665-4E90-B047-B72920D970DD": {
+    "title": "Historisch Bodem Bestand",
+    "abstract": "Het Historisch Bodem Bestand (HBB) is  een overzicht van locaties waar mogelijk bodemverontreiniging aanwezig is.\nHet Historisch Bodem Bestand (HBB) is een samenvoeging van het Bio-s bestand (slootdempingen), het Bio-b bestand (bedrijfsterreinen) en het BSB bestand (bodemsanering in gebruikzijnde bedrijfsterreinen) en is een overzicht van locaties waar mogelijk bodemverontreiniging aanwezig is.\n\nAan HBB-punten in het werkgebied van Provincie Zuid-Holland als bevoegd gezag Wbb (zie ook de kaartlaag Bevoegde Gezagen Wbb) zijn Globis gegevens gekoppeld indien een HBB-punt niet gekoppeld is aan een Wbb/SEB-locatie.\n\nAan de punten die in het werkgebied van de DCMR of andere bevoegde gezagen Wbb vallen is geen extra informatie gekoppeld. Rotterdam en Den Haag waren ten tijde van het maken van het HBB al bevoegd gezag Wbb. Van deze gemeenten zijn daarom \u00fcberhaupt geen HBB-punten opgenomen.",
+    "identifier": "B606B91C-9665-4E90-B047-B72920D970DD",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BS_HBB_PUNTEN_PZH",
+        "description": "accessPoint",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BS_HBB_PUNTEN_PZH",
+        "description": "accessPoint",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Historisch bodembestand - PZH",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_schone_bodem/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABS_HBB_PUNTEN_PZH&bbox=49905.99900188%2C408373.99183252%2C138598.00277196%2C481377.00962754&width=768&height=632&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "AB61786C-2F20-466C-8DFB-7D8BDD6829AB": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Bentwoud, Rottemeren en Zuidplas - punten",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "AB61786C-2F20-466C-8DFB-7D8BDD6829AB",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_BRZ_PUNT",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Bentwoud, Rottemeren en Zuidplas - punten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_BRZ_PUNT",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Bentwoud, Rottemeren en Zuidplas - punten",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Themakaart 11 - Kwaliteit in dorpsgebied - punten, Themakaart 15 - Vrijetijdslandschap - punten, Themakaart 16 - Identiteitsdragers - punten, Themakaart 8 - Weg door stad en land - punten, Themakaart 9 - Doorsnijdend spoor - punten, Themakaart_7_Voormalige_steenbakkerij",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Bentwoud_Rottemeren_Zuidplas/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_BRZ_PUNT&bbox=89898.5841020295%2C438640.3662271925%2C107318.7365463751%2C454816.8788963388&width=768&height=713&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "3949EF91-A1A0-4A28-BFF9-F1230504C3D6": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "3949EF91-A1A0-4A28-BFF9-F1230504C3D6",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_GRENZEN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_GRENZEN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen, Grenzen gebiedsprofielen",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Alblasserwaard_Vijfheerenlanden/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_GRENZEN&bbox=48105.50120000169%2C407880.99650000036%2C138649.2969999984%2C482630.21869999915&width=768&height=634&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "E85E26E8-9113-42AD-A15E-0C7B21B14509": {
+    "title": "Fysiek Glas glastuinbouw 2009",
+    "abstract": "Op basis van de vectortopografie 1:10.000, de versie van 2006 en de luchtfoto's gevlogen 2009 is de glastuinbouw gevectoriseerd.",
+    "identifier": "E85E26E8-9113-42AD-A15E-0C7B21B14509",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "FYSIEK_GLAS_2009",
+        "description": "Fysiek Glas glastuinbouw 2009",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "FYSIEK_GLAS_2009",
+        "description": "Fysiek Glas glastuinbouw 2009",
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Fysiek glas 2009",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Economie/Economie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/economie/wms?service=WMS&version=1.3.0&request=GetMap&layers=economie%3AFYSIEK_GLAS_2009&bbox=51419.63190000132%2C410659.188000001%2C138465.2100000009%2C481294.8973999992&width=768&height=623&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "4D81A076-5174-46B3-8332-C07C8E8AF9C5": {
+    "title": "Signaleringskaart Draagkracht",
+    "abstract": "De draagkrachtkaart signaleert gebieden die voor Zuid-Hollandse begrippen sterk zettingsgevoelig en extreem zettingsgevoelig zijn. Draagkracht duidt op de mate waarin de ondergrond gevoelig is voor zetting, ofwel: het zakken van het maaiveld. De bodemsamenstelling en het ruimtegebruik is hiervoor bepalend; het gewicht van bouwwerken en de onttrekking van grondwater vergroot de kans op zetting. De draagkracht van zand staat bekend als stevig, van klei als gevoelig en van veen als zwak. Gezien Zuid-Holland voor ruim driekwart uit slappe gronden bestaat is de provincie grotendeels bovengemiddeld zettingsgevoelig in vergelijking tot andere provincies.",
+    "identifier": "4D81A076-5174-46B3-8332-C07C8E8AF9C5",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "SK_BODEMDALING_DRAAGKRACHT",
+        "description": "Signaleringskaart Draagkracht",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "SK_BODEMDALING_DRAAGKRACHT",
+        "description": "Signaleringskaart Draagkracht",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Draagkracht",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_signaleringskaarten/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ASK_BODEMDALING_DRAAGKRACHT&bbox=61052.458099998534%2C410846.20010000095%2C138850.40689999983%2C481596.20010000095&width=768&height=698&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "1CF1D384-D1AA-49A4-8768-150FD08970A8": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Midden-Delfland - vlakken",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "1CF1D384-D1AA-49A4-8768-150FD08970A8",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_MD_VLAK",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Midden-Delfland - vlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_MD_VLAK",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Midden-Delfland - vlakken",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Bebouwing, Bedrijven in ontwikkeling, Belangrijk weidevogelgebied, Boezemlint, Boezempanorama water, Buitendijksgebied, Dorp, Dorp bestaand, Dorp tk15, Droogmakerij veen, Historisch centrum, Hoofdweg panorama, HOV-gebied, Identiteitsdragers, Kreekrug, Kreekrug tk13, Landgoederen, Landschappen, Loofbos, Midden-Delfland casussen vlak, Molenbiotopen, Natuurgebied, OV-panoramas, Stad en dorp, Stadsranden, Stedelijk groen, Stiltegebied, Veen - sterk bodemdalinggevoelig, Vrijetijdslandschappen, Water groot, Water groot tk16, Water ondergrond, Water ondergrond tk11, Water vlakken klein, Werkgebieden",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Midden_Delfland/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_MD_VLAK&bbox=71439.68409999833%2C434715.78620000184%2C95817.97529999912%2C458882.06269999966&width=768&height=761&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "CAD7E254-3BA3-47D6-82F7-C2D4976A99B9": {
+    "title": "Cultuurhistorische Hoofdstructuur: Landgoedbiotoop zichtlijnen",
+    "abstract": "Waardevolle elementen zoals: zichtlijnen, panorama's, weg of waterloop waaraan het landgoed ligt. Vastgesteld door PS als onderdeel van de Visie op Zuid-Holland - Verordening Ruimte",
+    "identifier": "CAD7E254-3BA3-47D6-82F7-C2D4976A99B9",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "CHS_2015_BELEID_LANDGOEDBIOTOOP_LIJN",
+        "description": "Cultuurhistorische Hoofdstructuur: Landgoedbiotoop zichtlijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "CHS_2015_BELEID_LANDGOEDBIOTOOP_LIJN",
+        "description": "Cultuurhistorische Hoofdstructuur: Landgoedbiotoop zichtlijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Landgoedbiotopen - basisstructuur",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Cultuur/Cultuurhistorie_Nederzettingen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/cultuur/wms?service=WMS&version=1.3.0&request=GetMap&layers=cultuur%3ACHS_2015_BELEID_LANDGOEDBIOTOOP_LIJN&bbox=65854.58799999952%2C422987.11300000176%2C123320.73319999874%2C476822.0111999996&width=768&height=719&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "7C2CEDE2-B562-4CB3-9740-D21348139E6B": {
+    "title": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - lijnen",
+    "abstract": "Het gebiedsprofiel beschrijft de kwaliteiten en ambities voor een specifiek gebied. De uitwerking gebeurt op de van toepassing zijnde themakaarten voor dat gebied. Het gebiedsprofiel is een handreiking om ontwikkelingen mogelijk te maken met ruimtelijke kwaliteit.",
+    "identifier": "7C2CEDE2-B562-4CB3-9740-D21348139E6B",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HW_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GEBPROFIEL_HW_LIJN",
+        "description": "Gebiedsprofielen Ruimtelijke kwaliteit Hoeksche Waard - lijnen",
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Themakaart 10 - Water als structuurdrager - lijnen, Themakaart 11 - Kwaliteit in dorpsgebied - lijnen, Themakaart 12 - Kwaliteit van de dorpsrand - lijnen, Themakaart 13 - Linten blijven linten - lijnen, Themakaart 15 - Vrijetijdslandschap - lijnen, Themakaart 16 - Identiteitdragers - lijnen, Themakaart 6 - Herkenbaar open zeekleipolderlandschap - lijnen, Themakaart 7 - Onderscheidend rivierengebied - lijnen, Themakaart 8 - Weg door stad en land - lijnen, Themakaart 9 - Doorsnijdend spoor - lijnen",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Gebiedsprofielen/Gebiedsprofiel_Hoeksche_Waard/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/ruimte/wms?service=WMS&version=1.3.0&request=GetMap&layers=ruimte%3AGEBPROFIEL_HW_LIJN&bbox=73137.03940000013%2C411887.45490000024%2C103062.62049999833%2C428690.53979999945&width=768&height=431&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "4090EC4E-8EF5-4CFA-9884-40839569414C": {
+    "title": "Stortplaatsen Wet milieubeheer",
+    "abstract": "De kaart geeft informatie over de status van de 11 Wm-stortplaatsen in Zuid-Holland (op 16 juli 2018). Een aantal Wm-locaties is gesloten, daar is de verantwoordelijkheid voor de nazorg overgedragen aan de provincie. Het gaat daarbij om afvalstortplaatsen en baggerspeciedepots.",
+    "identifier": "4090EC4E-8EF5-4CFA-9884-40839569414C",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "WM_STORTLOCATIES",
+        "description": "Stortplaatsen Wet milieubeheer",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "WM_STORTLOCATIES",
+        "description": "Stortplaatsen Wet milieubeheer",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Locaties stortplaatsen",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_schone_bodem/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3AWM_STORTLOCATIES&bbox=58866.72980000079%2C412410.28620000184%2C112150.79699999839%2C468673.91589999944&width=727&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "D8AE6DD0-2A3D-437C-9884-92E8D6C0B4CF": {
+    "title": "Begrenzing van Het Buijtenland van Rhoon",
+    "abstract": "Begrenzing Het Buijtenland van Rhoon. Hoort bij de Uitwerkingsovereenkomst750ha (UWO) van de Planologische Kernbeslissing (PKB) behorend bij het project Mainport Rotterdam (PMR) uit 2000.\nBegrenzing is verankerd in het Bestemmingsplan Buytenland van Rhoon (26 april 2010) en het Uitwerkingsplan Buytenland van Rhoon (28 juni 2011). Beide plannen zijn inmiddels onherroepelijk, bestemmingsplan sinds 27 juni 2012 en uitwerkingsplan sinds 18 juli 2012.",
+    "identifier": "D8AE6DD0-2A3D-437C-9884-92E8D6C0B4CF",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "REGIO_PARK_BUIJTENLAND",
+        "description": "Begrenzing van Het Buijtenland van Rhoon",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "REGIO_PARK_BUIJTENLAND",
+        "description": "Begrenzing van Het Buijtenland van Rhoon",
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Park Buijtenland",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Grenzen/Grenzen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/grenzen/wms?service=WMS&version=1.3.0&request=GetMap&layers=grenzen%3AREGIO_PARK_BUIJTENLAND&bbox=88470.89950000122%2C427759.93670000136%2C93317.12379999831%2C430716.59870000184&width=768&height=468&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "16F9ACC4-0B52-41D5-A031-5285DA56DF56": {
+    "title": "Potentieel geothermie Rijnland Groep (COP 10, Tretour 25) contour",
+    "abstract": "In opdracht van de provincie Zuid-Holland is door IF-Technology de studie \"Potentieel geothermie in Zuid-Holland\" uitgevoerd, 2 december 2016. Op deze kaart is de potentie van de Rijnland Groep weergegeven. De diepte van deze formatie neemt toe in zuidwestelijke richting van 500 m in het noordoosten tot circa 2.000 m in het zuidwesten. De potentie voor geothermie (GT) is weergegeven in het vermogen (MWt) en de energiehoeveelheid (PJ) die op een locatie geproduceerd kan worden met een enkel conventioneel doublet bij een Coefficient of Performance (COP) van 10 en een retourtemperatuur van 25\u00b0C. Geothermie staat ook bekend als aardwarmte.",
+    "identifier": "16F9ACC4-0B52-41D5-A031-5285DA56DF56",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_RIJNLAND_COP10_TRET25_CONTOUR",
+        "description": "Potentieel geothermie Rijnland Groep (COP 10, Tretour 25) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "BE_GT_POT_GT_RIJNLAND_COP10_TRET25_CONTOUR",
+        "description": "Potentieel geothermie Rijnland Groep (COP 10, Tretour 25) contour",
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Contour potentieel diepe geothermie Rijnland COP10 Tret25",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Bodem/Bodem_energie/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/bodem/wms?service=WMS&version=1.3.0&request=GetMap&layers=bodem%3ABE_GT_POT_GT_RIJNLAND_COP10_TRET25_CONTOUR&bbox=62344.739318847656%2C422766.87222289667%2C105218.99926757812%2C475134.8088340759&width=628&height=768&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "180F95D2-BEB5-40DF-9BD2-995392E653C6": {
+    "title": "Natuurbeheerplan 2016 - Open Grasland",
+    "abstract": "Begrensde zoekgebieden waarbinnen subsidie voor beheer van landschaps elementen kan worden aangevraagd. Dit bestand behoort bij het besluit van gedeputeerde staten van 14 april 2015, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2016",
+    "identifier": "180F95D2-BEB5-40DF-9BD2-995392E653C6",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2016_AGRARISCH_OPEN_GRASLAND",
+        "description": "accessPoint",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2016_AGRARISCH_OPEN_GRASLAND",
+        "description": "accessPoint",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "leeg",
+        "description": "accessPoint",
+        "url": "leeg"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2016_AGRARISCH_OPEN_GRASLAND&bbox=57428.95949999988%2C416312.45050000027%2C136333.86950000003%2C477494.81700000167&width=768&height=595&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "3A5C191E-2284-4E13-90B9-AD06E5171176": {
+    "title": "Natuurbeheerplan 2017 - Beheergebied Ambitie",
+    "abstract": "Natuur beheertypen die het toekomstig ambitie in het gebied weergeven. Kopie van BeheerGebiedAmbitie_SpatialJoin. BeheergebiedAmbitie met enkele toegevoegd administratieve velden (Mutatie, van, naar, gewijzigd). Dit bestand behoort bij het besluit van gedeputeerde staten van 24 mei 2016, houdende regels over Subsidieregeling Natuur- en Landschapsbeheer Zuid-Holland 2017.",
+    "identifier": "3A5C191E-2284-4E13-90B9-AD06E5171176",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "NBP_2017_BEHEERGEBIEDAMBITIE",
+        "description": "Natuurbeheerplan 2017 - Beheergebied Ambitie",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "NBP_2017_BEHEERGEBIEDAMBITIE",
+        "description": "Natuurbeheerplan 2017 - Beheergebied Ambitie",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Kaart 2 Ambitiekaart",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_NBP_2017/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3ANBP_2017_BEHEERGEBIEDAMBITIE&bbox=43668.37750000134%2C406692.0%2C138550.6719999984%2C482614.3359999992&width=768&height=614&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  },
+  "ED3CEF91-03CE-421E-8C4C-B83157A1CAA8": {
+    "title": "Groenblauwe ruimte landelijk gebied",
+    "abstract": "Het bestand toont de groene en blauwe ruimte in het landelijk gebied (= buiten de bebouwde gebieden) van Zuid-Holland. Hiermee wordt de 'landelijke' groenbeleving gekwantificeerd.",
+    "identifier": "ED3CEF91-03CE-421E-8C4C-B83157A1CAA8",
+    "uris": [
+      {
+        "protocol": "",
+        "name": "GROENBLAUWE_RUIMTE",
+        "description": "Groenblauwe ruimte landelijk gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "",
+        "name": "GROENBLAUWE_RUIMTE",
+        "description": "Groenblauwe ruimte landelijk gebied",
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities"
+      },
+      {
+        "protocol": "landingpage",
+        "name": "ArcGIS Server Map service layers: Groenblauwe ruimte",
+        "description": "accessPoint",
+        "url": "https://geoservices.zuid-holland.nl/arcgis/rest/services/Landelijk_gebied/Landelijk_gebied_algemeen/MapServer"
+      },
+      {
+        "protocol": null,
+        "name": null,
+        "description": null,
+        "url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wms?service=WMS&version=1.3.0&request=GetMap&layers=landelijk_gebied%3AGROENBLAUWE_RUIMTE&bbox=48213.66059999913%2C406692.11560000107%2C138590.4582999982%2C482627.20800000057&width=768&height=645&srs=EPSG%3A28992&maxFeatures=40000&format=image%2Fpng"
+      }
+    ]
+  }
+}
