@@ -1,33 +1,130 @@
 [
 	{
+		"thema_name": "Riolering",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "beheerstedelijkwater:BeheerPut",
+				"title": "Rioolput",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "GWSW met labels",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0' maxNumFeatures='50000'"
+			},
+			{
+				"name": "beheerstedelijkwater:BeheerLeiding",
+				"title": "Rioolleiding",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "GWSW met labels",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0' maxNumFeatures='50000'"
+			}
+		]
+	},
+	{
 		"thema_name": "test",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "",
-				"title": "layer",
-				"service_url": "",
-				"tilematrixsets": "",
-				"crs": "",
-				"imgformats": "",
-				"styles": [],
-				"provider_type": "Vector",
-				"service_type": "spatialite",
-				"style": "test",
-				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
+				"name": "cbsbevolkingskernen2011",
+				"title": "CBS Bevolkingskernen 2011",
+				"service_url": "https://service.pdok.nl/cbs/bevolkingskernen/2011/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Aantal vrouwen",
+						"name": "bevolkingskern_aantal_vrouwen"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "bevolkingskern_aantal_vrouwen",
+				"source": "crs=EPSG:28992&layers=cbsbevolkingskernen2011&styles=bevolkingskern_aantal_vrouwen&format=image/png&url=https://service.pdok.nl/cbs/bevolkingskernen/2011/wms/v1_0?request=GetCapabilities&service=WMS"
 			},
 			{
-				"name": "",
-				"title": "layer",
-				"service_url": "",
+				"name": "pastel",
+				"title": "Achtergrondkaart",
+				"service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "",
+						"name": "default"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wmts",
+				"style": "default",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
+			}
+		]
+	},
+	{
+		"thema_name": "Stresstestkaart",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "beheerstedelijkwater:BeheerLeiding",
+				"title": "Rioolleiding",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
 				"tilematrixsets": "",
 				"crs": "",
 				"imgformats": "",
 				"styles": [],
-				"provider_type": "Vector",
-				"service_type": "spatialite",
-				"style": "",
-				"source": "dbname='C:/Users/svanderhoeven/Documents/Overige/test.sqlite' table='layer' (geometry)"
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "GWSW met labels",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0' maxNumFeatures='50000'"
+			},
+			{
+				"name": "pastel",
+				"title": "Achtergrondkaart",
+				"service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "",
+						"name": "default"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wmts",
+				"style": "default",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
+			},
+			{
+				"name": "waterdiepte_neerslag_140mm_2uur",
+				"title": "Waterdiepte: 140mm in 2 uur",
+				"service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "waterdiepte_neerslag_1-1000_r_wateroverlast",
+						"name": "waterdiepte_neerslag_1-1000_r_wateroverlast"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "waterdiepte_neerslag_1-1000_r_wateroverlast",
+				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_140mm_2uur&styles=waterdiepte_neerslag_1-1000_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities"
 			}
 		]
 	}
