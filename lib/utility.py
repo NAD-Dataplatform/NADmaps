@@ -1,23 +1,8 @@
 import re
 import urllib.parse
 
-def extract_layer_type(source, provider_type):
-    """
-    Extract the layer type from a QGIS layer source string and layer providerType.
-    """
-    service_type = provider_type
-    if "wmts" in source.lower():
-        # https://docs.qgis.org/3.40/en/docs/server_manual/services/wmts.html
-        service_type = "wmts"
-    if provider_type == "OAPIF":
-        # https://docs.qgis.org/3.40/en/docs/server_manual/services/ogcapif.html
-        service_type = "api features"
-    if provider_type == "xyzvectortiles" and "http" in source.lower():
-        # local vector tiles are also a possibility:
-        # https://docs.qgis.org/3.40/en/docs/user_manual/working_with_vector_tiles/vector_tiles.html#supported-formats
-        service_type = "api tiles"
-    return service_type
 
+# wfs and ogc api features
 
 def extract_typename(uri):
     """
@@ -30,29 +15,8 @@ def extract_typename(uri):
     else:
         return None
 
-def extract_crs(uri):
-    """
-    Extract the crs from a QGIS layer URI string.
-    """
-    match = re.search(r"crs=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
-    if match:
-        crs = match.group(1) or match.group(2) or match.group(3)
-        crs = crs.split("&", 1)[0]
-        return crs
-    else:
-        return None
 
-def extract_format(uri):
-    """
-    Extract the format (WMS or WMTS) from a QGIS layer URI string.
-    """
-    match = re.search(r"format=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
-    if match:
-        format = match.group(1) or match.group(2) or match.group(3)
-        format = format.split("&", 1)[0]
-        return format
-    else:
-        return None
+# wms and wmts
 
 def extract_layers(uri):
     """
@@ -78,7 +42,41 @@ def extract_tilematrixset(uri):
     else:
         return None
 
-def extract_wms_styles(uri):
+def extract_format(uri):
+    """
+    Extract the format (WMS or WMTS) from a QGIS layer URI string.
+    """
+    match = re.search(r"format=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        format = match.group(1) or match.group(2) or match.group(3)
+        format = format.split("&", 1)[0]
+        return format
+    else:
+        return None
+
+def extract_crs(uri):
+    """
+    Extract the crs from a QGIS layer URI string.
+    """
+    match = re.search(r"crs=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
+    if match:
+        crs = match.group(1) or match.group(2) or match.group(3)
+        crs = crs.split("&", 1)[0]
+        return crs
+    else:
+        return None
+
+def extract_wms_title(title):
+    """
+    Extract the layers (WMS or WMTS layername) from a QGIS layer URI string.
+    """
+    title = title.split(" [", 1)[0]
+    if title:
+        return title
+    else:
+        return ""
+
+def extract_wms_style_name(uri):
     """
     Extract the styles (WMS or WMTS) from a QGIS layer URI string.
     """
@@ -89,6 +87,21 @@ def extract_wms_styles(uri):
         return styles
     else:
         return "default"
+
+def extract_wms_style_title(title):
+    """
+    Extract the layers (WMS or WMTS layername) from a QGIS layer URI string.
+    """
+    match = re.search(r"\[([^]]+)\]", title)
+    # dbname = re.search(r"(?:([^\s]+))", match)
+    if match:
+        style_title = match.group(1)
+        return style_title
+    else:
+        return ""
+
+
+# ogc api tiles
 
 def extract_oat_url(uri):
     """
@@ -137,12 +150,26 @@ def extract_oat_title(layer_name):
     Example:
         layer_name = "BRT TOP10NL - Tiles [BRT TOP10NL Standaardvisualisatie (NetherlandsRDNewQuad)]"
         extract_oat_url(layer_name)
-        # returns: "'BRT TOP10NL - Tiles'", "'BRT TOP10NL Standaardvisualisatie (NetherlandsRDNewQuad)'"
+        # returns: "'BRT TOP10NL - Tiles'"
     """
-    title, style_name = layer_name.split(" [", 1)
-    style_name = style_name[:-1]
-    return title, style_name
+    title = layer_name.split(" [", 1)[0]
+    return title
 
+def extract_oat_style(layer_name):
+    """
+    Extract the title from a QGIS OGC API Tiles layer URI string.
+
+    Example:
+        layer_name = "BRT TOP10NL - Tiles [BRT TOP10NL Standaardvisualisatie (NetherlandsRDNewQuad)]"
+        extract_oat_url(layer_name)
+        # returns: "'BRT TOP10NL Standaardvisualisatie (NetherlandsRDNewQuad)'"
+    """
+    style_name = layer_name.split(" [", 1)[1]
+    style_name = style_name[:-1]
+    return style_name
+
+
+# wcs
 
 def extract_identifier(uri):
     """
@@ -160,7 +187,6 @@ def extract_identifier(uri):
         return identifier
     else:
         return None
-
 
 def extract_wcs_url(uri):
     """
@@ -180,6 +206,8 @@ def extract_wcs_url(uri):
     else:
         return None
 
+
+# url for wfs, api features, wms or wmts
 
 def extract_base_url(uri):
     """
@@ -205,6 +233,8 @@ def extract_base_url(uri):
         uri = urllib.parse.unquote(uri)
         return uri
 
+
+# Spatialite functions
 
 def extract_spatialiate_db(uri):
     match = re.search(r"dbname=(?:'([^']*)\"?|\"([^\"]*)\"?|([^\s]+))", uri)
@@ -241,4 +271,47 @@ def extract_spatialiate_geom_column(uri):
     else:
         return None
     
-    
+
+#########################################################################################
+# Base and composite functions
+
+def extract_service_type(uri, provider_type):
+    """
+    Extract the layer type from a QGIS layer source string and layer providerType.
+    """
+    service_type = provider_type
+    if "wmts" in uri.lower():
+        # https://docs.qgis.org/3.40/en/docs/server_manual/services/wmts.html
+        service_type = "wmts"
+    if provider_type == "OAPIF":
+        # https://docs.qgis.org/3.40/en/docs/server_manual/services/ogcapif.html
+        service_type = "api features"
+    if provider_type == "xyzvectortiles" and "http" in uri.lower():
+        # local vector tiles are also a possibility:
+        # https://docs.qgis.org/3.40/en/docs/user_manual/working_with_vector_tiles/vector_tiles.html#supported-formats
+        service_type = "api tiles"
+    return service_type
+
+def extract_name(uri, service_type, title=""):
+    if service_type == "wfs" or service_type == "api features":
+        name = extract_typename(uri)
+    elif service_type == "wms" or service_type == "wmts":
+        name = extract_layers(uri)
+    elif service_type == "api tiles":
+        name = extract_oat_title(title)
+    elif service_type == "wcs":
+        name = extract_identifier(uri)
+    else:
+        name = title
+    return name
+
+def extract_url(uri, service_type):
+    if service_type == "wfs" or service_type == "api features" or service_type == "wms" or service_type == "wmts":
+        url = extract_base_url(uri)
+    elif service_type == "api tiles":
+        url = extract_oat_url(uri)
+    elif service_type == "wcs":
+        url = extract_wcs_url(uri)
+    else:
+        url = uri
+    return url

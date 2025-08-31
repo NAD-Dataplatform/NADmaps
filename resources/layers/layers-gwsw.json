@@ -243,6 +243,7 @@
                 "name": "GWSW_Leiding"
             }
         ],
+        "crs": "EPSG:28992",
         "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
         "service_title": "Stedelijk Water (ook Riolering) WMS",
@@ -259,6 +260,7 @@
                 "name": "GWSW_Put"
             }
         ],
+        "crs": "EPSG:28992",
         "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8",
         "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
         "service_title": "Stedelijk Water (ook Riolering) WMS",

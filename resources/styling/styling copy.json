@@ -1,0 +1,459 @@
+[
+	{
+		"layer_name": "Pand (PND)",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='pand' url='https://api.pdok.nl/lv/bgt/ogc/v1'",
+		"styles": [
+			{
+				"name": "BGT",
+				"file": "bgt_6cc777e04232926ad85f818f21c79df4",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Begroeid terreindeel (BTD)",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='begroeidterreindeel' url='https://api.pdok.nl/lv/bgt/ogc/v1'",
+		"styles": [
+			{
+				"name": "BGT",
+				"file": "bgt_4887fe31c424cb8dce2c07a79732a9de",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Gebouwinstallatie (GBI)",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='gebouwinstallatie' url='https://api.pdok.nl/lv/bgt/ogc/v1'",
+		"styles": [
+			{
+				"name": "BGT",
+				"file": "bgt_62b16e22024e80553d0cd3ffc517ef08",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Onbegroeid terreindeel (OTD)",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='onbegroeidterreindeel' url='https://api.pdok.nl/lv/bgt/ogc/v1'",
+		"styles": [
+			{
+				"name": "BGT",
+				"file": "bgt_f58ef68237a1ac4b1494dfcd4b25f4ad",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "overstorten",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/13. GIS bestanden/01. Algemeen/overstorten/20241017/overstorten.gpkg|layername=overstorten",
+		"styles": [
+			{
+				"name": "NoLabel",
+				"file": "nolabel_4f3f1339d34617af9f295e42e9ea69ba",
+				"creator": "plugin"
+			},
+			{
+				"name": "Label",
+				"file": "label_4f3f1339d34617af9f295e42e9ea69ba",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "BGT Inlooptabel",
+		"source": "C:/Users/svanderhoeven/OneDrive - Hoogheemraadschap van Delfland/NAD dataplatform/08. Ondersteuning/Delfland/Vraag Paul (Kwintsheul)/BGT Inlooptabel.gpkg|layername=westland_clip",
+		"styles": [
+			{
+				"name": "BGT inloop",
+				"file": "bgt inloop_de26296959b02ed4264ff7f6c10b29da",
+				"creator": "plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Den Haag: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/DenHaag' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_97ee28bf21558c4813fa4b8ea3a7691f",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Lansingerland: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Lansingerland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_2c58a90362c435c4e926edf2255af51a",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Leidschendam-Voorburg: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Leidschendam' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_8f3079cece2eda9fc433701ab08e6692",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Delft: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Delft' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_b6fc7e5ac2cee3ee87805f1615354607",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Maassluis: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Maassluis' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_85bb3bf90817d89eeb0f25202cc1c05d",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Midden-Delfland: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Middendelfland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_47c6f8b87c5b827777762f53ca058582",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Pijnacker-Nootdorp: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Pijnacker' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_e92658eb3c7a76d50d00d3be3ba50fe5",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rijswijk: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Rijswijk' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_67e784f77a788c4060c1078fa36bfe03",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Schiedam: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Schiedam' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_32eabd7f2be3674dd0e49a9e3062514e",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Vlaardingen: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Vlaardingen' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_8585df47c2d81c20503c72906fa2ddc8",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Westland: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Westland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_08c7a776e949d564c8b7d6716a39b2e6",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Zoetermeer: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/Zoetermeer' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_c7cb3b2d869f9f9252e3a7adc73b69df",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Delft: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Delft' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_8a0be4330b9672e6671afe72ba9010aa",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Den Haag: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/DenHaag' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_cf45435443b32296865933f7e4ae4fa7",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Lansingerland: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Lansingerland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_e352431bb6535b580564baa9b6daaf43",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Leidschendam-Voorburg: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Leidschendam' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_691d6775fee9440ce299c2a663770d76",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Maassluis: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Maassluis' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_2d553e91657fcc10519c58cb5778f6ca",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Midden-Delfland: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Middendelfland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_903ed2439a71135d621875830c705f31",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Pijnacker-Nootdorp: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Pijnacker' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_d8c669f6f7ab8353156147dc643abe12",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rijswijk: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Rijswijk' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_d21bc8e6be8ff02769f484b5360126c1",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Schiedam: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Schiedam' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_d81ae9e9b5a231749f74602cc483f6b0",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Vlaardingen: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Vlaardingen' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_ebf0b60689da1358a44882f7a6940cbf",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Westland: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Westland' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_4382bad7035f7390c3a6c38bff9980d0",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Zoetermeer: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/Zoetermeer' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_aa86d4d19b99c6a44ebba9a9738027ca",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Waterschap: Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Lijn' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_f062d6e94ef2f7c758d57b68aefd4c54",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rioolleiding",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW plus",
+				"file": "gwsw plus_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW",
+				"file": "gwsw_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Check ontbrekende waarde",
+				"file": "check ontbrekende waarde_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Check onlogische waarde",
+				"file": "check onlogische waarde_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Persleidingen",
+				"file": "persleidingen_a5f908d6628bfc552663688d11fec4bd",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW plus",
+				"file": "gwsw plus_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			},
+			{
+				"name": "GWSW zonder label",
+				"file": "gwsw zonder label_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "plugin"
+			},
+			{
+				"name": "Check onlogische waarde",
+				"file": "check onlogische waarde_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Gemalen",
+				"file": "gemalen_931b1db636231ff5fa3f89c046f036d4",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Waterschap: Rioolput",
+		"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'",
+		"styles": [
+			{
+				"name": "GWSW",
+				"file": "gwsw_68a4e146a89f45416d49a3213a0157b5",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Gemalen",
+				"file": "gemalen_68a4e146a89f45416d49a3213a0157b5",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Wegdeel (WGD)",
+		"source": " pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='wegdeel' url='https://api.pdok.nl/lv/bgt/ogc/v1' maxNumFeatures='6001'",
+		"styles": [
+			{
+				"name": "Functie wegdeel",
+				"file": "functie wegdeel_bdb9c1e9d1800a65be2755df5c4bd1fa",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"layer_name": "Maassluis: Rioolput",
+		"creator": "Plugin",
+		"typename": "gwsw:Default_Punt",
+		"url": "https://geodata.gwsw.nl/Maassluis",
+		"styles": {
+			"name": "test4",
+			"file": "test4_6e7d40e1ab19e635c65a7d072b493d66",
+			"creator": "Plugin"
+		}
+	},
+	{
+		"layer_name": "Oppervlaktewaterlichaam__natte_ecologische_zone",
+		"creator": "Plugin",
+		"typename": "LeggerDelfland:Oppervlaktewaterlichaam__natte_ecologische_zone",
+		"url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+		"styles": {
+			"name": "Onderhoudsplichtige",
+			"file": "onderhoudsplichtige_dc39b1d80edb1f0093cc2fb8805e38d7",
+			"creator": "Plugin"
+		}
+	}
+]

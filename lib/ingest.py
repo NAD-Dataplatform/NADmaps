@@ -74,8 +74,7 @@ class IngestLayersManager():
                 decoded_body = body.decode(character_set)
                 return json.loads(decoded_body)
             except Exception as e:
-                self.log(f"fail at url: {url}")
-                self.log(f"error message: {e}")
+                self.log(f"Failed to extract url: {url}. Error message: {e}")
                 return None
             
     def extract_csw(self, url):

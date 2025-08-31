@@ -20,19 +20,19 @@ from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 
 from .style import StyleManager
 from .layer import create_new_layer
+from .style import get_style_code
 from .utility import (
-    extract_base_url,
-    extract_typename,
-    extract_layer_type,
+    extract_name,
+    extract_url,
+    extract_service_type,
     extract_crs,
+    extract_wms_title,
+    extract_wms_style_name,
+    extract_wms_style_title,
     extract_format,
-    extract_layers,
     extract_tilematrixset,
-    extract_oat_url,
-    extract_oat_title,
+    extract_oat_style,
     extract_oat_style_url,
-    extract_identifier,
-    extract_wcs_url
 )
 
 
@@ -73,13 +73,7 @@ class ThemaManager:
         self.dlg = dlg
         self.creator = creator
         self.log = log
-        self.style_manager = StyleManager(
-            dlg=self.dlg,
-            plugin_dir=plugin_dir,
-            working_dir=working_dir,
-            creator=creator,
-            log=self.log,
-        )
+
         self.maxnumfeatures = QgsSettings().value(
             "nadmaps/wfs_maxnumfeatures", 5000, type=int
         )
@@ -173,7 +167,7 @@ class ThemaManager:
         self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
 
     def delete_thema(self):
-        """Delete an existing thema (only user defined themas should be deleted)"""
+        """Delete an existing thema (only user defined themas can be deleted)"""
 
         # Find the thema name to be deleted
         thema_name = self.current_thema["thema_name"]
@@ -255,57 +249,53 @@ class ThemaManager:
             # base data
             uri = layer.source()  # source is the uri of the layer
             if "\"" in uri:
-                uri = uri.replace('"', '\'') # For solving situations like this: Oracle source is "DB"."LAYER" 
-            name = ""
+                uri = uri.replace('"', '\'') # For solving situations like this: Oracle source is "DB"."LAYER"
+
+            provider_type = layer.providerType()
+            layer_type = self.layer_type_mapping[layer.type()]
+            service_type = extract_service_type(uri, provider_type)
+
             title = layer.name()
-            url = ""
+            name = extract_name(uri, service_type, title)
+            url = extract_url(uri, service_type)
             tilematrixset = ""
             crs = ""
             imgformats = ""
             styles = []
+            # style_name = layer.style
+            style_name = layer.customProperty("layerStyle", "")
+            # style_code = layer.style
 
             # extra data
-            provider_type = self.layer_type_mapping[layer.type()]
-            service_type = extract_layer_type(layer.source(), layer.providerType())
-            style = layer.customProperty("layerStyle", "")
+            # style = layer.customProperty("layerStyle", "")
 
-
-            if service_type == "wfs" or service_type == "api features":
-                name = extract_typename(uri)
-                url = extract_base_url(uri)
-
-            if service_type == "wms":
-                name = extract_layers(uri)
+            if service_type == "wms" or service_type == "wmts":
+                style_title = extract_wms_style_title(title)
+                title = extract_wms_title(title)
                 crs = extract_crs(uri)
-                imgformats = extract_format(uri)
-                url = extract_base_url(uri)
-
-                # styles = ...
+                style_name = extract_wms_style_name(uri)
                 tilematrixset = crs
-
-            if service_type == "wmts":
-                name = extract_layers(uri)
-                crs = extract_crs(uri)
-                tilematrixset = extract_tilematrixset(uri)
                 imgformats = extract_format(uri)
-                url = extract_base_url(uri)
-
-            if service_type == "api tiles":
-                title, style_name = extract_oat_title(layer.name())
-                url = extract_oat_url(uri)
-                style_url = extract_oat_style_url(uri)
-
-                name = title
                 style_dict = {
+                    "title": style_title,
                     "name": style_name,
+                }
+                styles.append(style_dict)
+                self.log(f"old wms title: {title}")
+                self.log(f"new wms title: {title}")
+                self.log(f"style_name: {style_name}")
+                self.log(f"style_title: {style_title}")
+            elif service_type == "api tiles":
+                oat_style = extract_oat_style(title)
+                style_url = extract_oat_style_url(uri)
+                title = name
+                style_dict = {
+                    "name": oat_style,
                     "url": style_url
                 }
                 styles.append(style_dict)
 
-            if service_type == "wcs":
-                name = extract_identifier(uri)
-                url = extract_wcs_url(uri)
-
+            # collect the results 
             layer_dict = {
                 "name": name, # uri requirement
                 "title": title, # readable
@@ -314,9 +304,9 @@ class ThemaManager:
                 "crs": crs,
                 "imgformats": imgformats,
                 "styles": styles,
-                "provider_type": provider_type,
+                "layer_type": layer_type,
                 "service_type": service_type,
-                "style": style,
+                "style": style_name,
                 "source": uri
             }
             layers_list.append(layer_dict)
@@ -366,13 +356,9 @@ class ThemaManager:
         themas = []
         with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
             themas.extend(json.load(f))
-            self.log(len(themas))
-        if self.creator != "Plugin":
-            if os.path.exists(self.user_thema_path):
-                with open(self.user_thema_path, "r", encoding="utf-8") as f:
-                    themas.extend(json.load(f))
-                    self.log(len(themas))
-        self.log(len(themas))
+        if os.path.exists(self.user_thema_path):
+            with open(self.user_thema_path, "r", encoding="utf-8") as f:
+                themas.extend(json.load(f))
 
         try:
             with open(self.user_thema_favorite_path, "r", encoding="utf-8") as f:
@@ -492,24 +478,6 @@ class ThemaManager:
                     f"Layer {layer['name']} does not have a source or url attribute. Skipping this layer."
                 )
 
-            # name = layer["name"]
-            # layer_type = layer["layer_type"]
-            # provider_type = layer["provider_type"]
-            # typename = layer.get("typename", "")
-
-            # if "url" in layer:
-            #     uri = build_uri_from_url(
-            #         layer=layer,
-            #         maxnumfeatures=self.maxnumfeatures,
-            #     )
-
-            # if "source" in layer:  # backwards compatibility with old thema files
-            #     uri = layer["source"]
-            #     if not typename:
-            #         typename = extract_typename(uri)
-
-            # self.current_layer = layer
-            # result = self.load_thema_layer(name, uri, layer_type, provider_type)
             result = create_new_layer(layer, self.maxnumfeatures)
             QgsProject.instance().addMapLayer(
                 result, False
@@ -519,8 +487,12 @@ class ThemaManager:
             # if so, then apply that style, else apply no style
 
             style = layer["style"]
-            uri = layer["source"]
+            name = layer["name"]
+            url = layer["service_url"]
+            creator = None
+            self.log(f"Loading layer {name} from themaset {group_name} with style {style}")
             if not style == "":
+                self.log("Style is available")
                 layer_style_list = []
                 # Load plugin styles
                 try:
@@ -537,24 +509,32 @@ class ThemaManager:
                     except:
                         pass
 
-                style_code = self.style_manager.style_code(style, uri)
-                path = f"{self.plugin_styling_files_path}/{style_code}.qml"
-                result.loadNamedStyle(path)
-                result.triggerRepaint()
-                result.setCustomProperty("layerStyle", style)
+                for layer_style in layer_style_list:
+                    if layer_style["name"] == name and layer_style["service_url"] == url:
+                        styles = layer_style["styles"]
+                        for style_option in styles:
+                            if style_option["name"] == style:
+                                creator = style_option["creator"]
+                                file_name = style_option["file"] + ".qml"
+                                break
+
+
+                # style_code = get_style_code(style, url, name)
+                if creator == None:
+                    pass
+                else:
+                    if creator == "Plugin":
+                        path = os.path.join(self.plugin_styling_files_path, file_name)
+                    else:
+                        path = os.path.join(self.user_styling_files_path, file_name)
+
+                    self.log(f"Applying styling {style} to thema layer {name} from path: {path}")
+                    result.loadNamedStyle(path)
+                    result.triggerRepaint()
+                    result.setCustomProperty("layerStyle", style)
 
         # self.iface.layerTreeView().collapseAllNodes()
         # self.update_active_layers_list()
-
-    # This functions loads a layer where the uri is already known and saved to a thema
-    def load_thema_layer(self, title, uri, layer_type, provider_type):
-        "Create and load a layer from the thema layer-list"
-        if layer_type == "Vector":
-            result = QgsVectorLayer(uri, title, provider_type)
-        elif layer_type == "Raster":
-            result = QgsRasterLayer(uri, title, provider_type)
-        # return QgsProject.instance().addMapLayer(result, True)
-        return result
 
     def update_thema_layers(self):
         """Update the list of layers contained with this thema"""
@@ -567,18 +547,21 @@ class ThemaManager:
             self.themaMapModel.appendRow([itemLayername, itemProvider, itemSource])
         else:
             for layer in self.thema_layers:
-                itemLayername = QStandardItem(str(layer["title"]))
                 stype = (
-                    self.service_type_mapping[layer["provider_type"]]
-                    if layer["provider_type"] in self.service_type_mapping
-                    else layer["provider_type"].upper()
+                    self.service_type_mapping[layer["layer_type"]]
+                    if layer["layer_type"] in self.service_type_mapping
+                    else layer["layer_type"].upper()
                 )
+                # add values to row
+                itemLayername = QStandardItem(str(layer["title"]))
                 itemProvider = QStandardItem(str(stype))
                 itemStyle = QStandardItem(str(layer["style"]))
-                # itemStyle = QStandardItem(str("styling"))
-                itemSource = QStandardItem(
-                    str(layer["source"] if "source" in layer else layer["service_url"])
-                )
+                itemSource = QStandardItem(str(layer["service_url"]))
+
+                # add tooltips to rows with potentially long values
+                itemLayername.setToolTip(str(layer["title"]))
+                itemSource.setToolTip(str(layer["service_url"]))
+
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]
                 )

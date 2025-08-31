@@ -23,6 +23,11 @@ from qgis.core import (
     QgsCoordinateReferenceSystem,
     QgsDataSourceUri,
 )
+
+from qgis.core import QgsMessageLog
+from .constants import PLUGIN_NAME
+# QgsMessageLog.logMessage(str(layer), PLUGIN_NAME, 2)
+
 from .utility import (
     extract_spatialiate_db,
     extract_spatialiate_table,
@@ -33,41 +38,41 @@ def create_wfs_layer(layername, url, maxnumfeatures, title=None):
     uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
     return QgsVectorLayer(uri, title, "wfs")
 
-
 def create_wms_layer(layer, layername, url, title=None):
-    if hasattr(layer, "imgformats"):
+    if "imgformats" in layer:
         imgformat = layer["imgformats"].split(",")[0]
     else:
-        imgformat = "image/jpeg"
+        imgformat = "image/png"
     # crs = "EPSG:28992"
     crs = layer["crs"].split(",")[0]
 
-    if hasattr(layer, "styles"):
+    if "styles" in layer:
         selected_style_name = layer["styles"][0]["name"]
+        selected_style_title = layer["styles"][0]["title"]
+        if selected_style_title != "":
+            title += f" [{selected_style_title}]"
+        else:
+            title += f" [{selected_style_name}]"
     else:
         selected_style_name = "default"
 
     uri = f"crs={crs}&layers={layername}&styles={selected_style_name}&format={imgformat}&url={url}"
-    return QgsRasterLayer(uri, title, "wms")
-
+    return QgsRasterLayer(uri, title, "wms") # TODO: add style to title
 
 def create_wcs_layer(layername, url, title=None):
     format = "GEOTIFF"
     uri = f"cache=AlwaysNetwork&crs=EPSG:28992&format={format}&identifier={layername}&url={url.split('?')[0]}"
     return QgsRasterLayer(uri, title, "wcs")
 
-
 def create_oaf_layer(layername, url, maxnumfeatures, title=None):
     uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
     return QgsVectorLayer(uri, title, "OAPIF")
-
 
 def build_tileset_url(url, tileset_id, for_request):
     url_template = url + "/tiles/" + tileset_id
     if for_request:
         return url_template + "/%7Bz%7D/%7By%7D/%7Bx%7D?f%3Dmvt"
     return url_template + "/{z}/{y}/{x}?f=mvt"
-
 
 def create_oat_layer(layer, url, title=None):
     crs = "EPSG:3857"
@@ -98,7 +103,6 @@ def create_oat_layer(layer, url, title=None):
     tile_layer.loadDefaultStyle()
     return tile_layer
 
-
 def create_wmts_layer(layer, layername, url, title=None):
     if Qgis.QGIS_VERSION_INT < 10900:
         return None
@@ -116,7 +120,6 @@ def create_wmts_layer(layer, layername, url, title=None):
     uri = f"crs={crs}&tileMatrixSet={tilematrixset}&layers={layername}&styles=default&format={imgformat}&url={url}"
     return QgsRasterLayer(uri, title, "wms")
 
-
 def quote_wmts_url(url):
     """
     Quoten wmts url is nodig omdat qgis de query param `SERVICE=WMS` erachter plakt als je de wmts url niet quote.
@@ -129,7 +132,6 @@ def quote_wmts_url(url):
     query_escaped_quoted = urllib.parse.quote_plus(query)
     url = f"{location}?{query_escaped_quoted}"
     return url
-
 
 def create_spatialite_layer(layer, title=None):
     # https://docs.qgis.org/3.40/en/docs/pyqgis_developer_cookbook/loadlayer.html
@@ -144,7 +146,6 @@ def create_spatialite_layer(layer, title=None):
     uri.setDatabase(db)
     uri.setDataSource(schema, table, geom_column)
     return QgsVectorLayer(uri.uri(), title, 'spatialite')
-
 
 def create_new_layer(layer, maxnumfeatures=6000):
     servicetype = layer["service_type"]
@@ -168,11 +169,11 @@ def create_new_layer(layer, maxnumfeatures=6000):
         return create_spatialite_layer(layer, title)
     else:
         try:
-            providertype = layer["provider_type"]
-            if providertype == "Vector":
+            layer_type = layer["layer_type"]
+            if layer_type == "Vector":
                 uri = layer["source"]
                 return QgsVectorLayer(uri, title, servicetype)
-            elif providertype == "Raster":
+            elif layer_type == "Raster":
                 uri = layer["source"]
                 return QgsRasterLayer(uri, title, servicetype)
         except:
@@ -435,7 +436,7 @@ class LayerManager:
     ############################# All web layer list #############################
 
     def load_layer_list(self):
-        self.layers_nad = []
+        layer_list = []
         # add a new json file with layer description to the resources/layers folder
         self.layer_files = [
             "layers-nad.json",  # eigen kaartlagen
@@ -447,11 +448,11 @@ class LayerManager:
         ]
 
         for file in self.layer_files:
-            layer_path = os.path.join(self.plugin_dir, "resources/layers", file)
+            layer_path = os.path.join(self.plugin_dir, "resources", "layers", file)
             with open(layer_path, "r", encoding="utf-8") as f:
-                self.layers_nad.extend(json.load(f))
+                layer_list.extend(json.load(f))
 
-        for layer in self.layers_nad:
+        for layer in layer_list:
             if isinstance(layer["name"], str):
                 self.add_source_row(layer)
 
@@ -486,6 +487,7 @@ class LayerManager:
         self.layerModel.horizontalHeaderItem(0).setTextAlignment(
             Qt.AlignmentFlag.AlignLeft
         )
+        return layer_list
 
     def add_source_row(self, serviceLayer):
         # you can attache different "data's" to to an QStandarditem
@@ -539,6 +541,7 @@ class LayerManager:
             tree_location = self.default_tree_locations[servicetype]
 
         new_layer = create_new_layer(layer = self.current_layer, maxnumfeatures = self.maxnumfeatures)
+        self.log(f"load layer: {new_layer}")
         if new_layer is None:
             return
 

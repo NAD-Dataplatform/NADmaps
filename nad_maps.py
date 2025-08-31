@@ -22,6 +22,7 @@
  ***************************************************************************/
 """
 
+# https://hinot.alwaysdata.net/astuces/84-pyqgis?showall=1
 # General packages
 import getpass
 import os.path
@@ -133,6 +134,7 @@ class NADMaps:
 
         self.style_manager = StyleManager(
             dlg=self.dlg,
+            iface=self.iface,
             plugin_dir=self.plugin_dir,
             working_dir=self.working_dir,
             creator=self.creator,
@@ -172,6 +174,7 @@ class NADMaps:
         self.setup_completed = False
         self.current_layer = None
         self.selected_active_layers = None
+        self.selected_layer = None
         self.zoom_completed = False
 
         # Check if the autostart option is set to true in the settings
@@ -216,7 +219,7 @@ class NADMaps:
             self.autostart_triggered = True
             self.log("Autostart completed successfully.")
         except Exception as e:
-            self.log(f"Autostart failed: {e}")
+            self.log(f"Autostart failed. Error message: {e}")
 
     def show_dialog(self):
         self.log("Showing NADMaps dialog after short delay.", 0)
@@ -244,14 +247,20 @@ class NADMaps:
             self.thema_manager.update_thema_list()
 
             # Create a list of all layers available via the plugin
-            self.layer_manager.load_layer_list()
+            self.layer_list = self.layer_manager.load_layer_list()
+            self.style_manager.set_layer_list(self.layer_list)
 
-            # TODO: set projection to ESPG:28992
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            # QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
+            QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
             self.setup_completed = True
+
+        # deactivate the styling box until a layer is selected 
+        self.dlg.stylingGroupBox.setEnabled(False)
+        self.dlg.stylingGroupBox.setToolTip(
+            "Selecteer één laag om de styling aan te passen"
+        )
 
         # init the values for the export settings
         self.init_export_comboboxes()
@@ -332,7 +341,7 @@ class NADMaps:
             lambda: self.layer_manager.update_active_layers_list()
         )
         self.dlg.saveStyleButton.clicked.connect(
-            lambda: self.style_manager.save_styling(self.selected_active_layers)
+            lambda: self.style_manager.save_styling(self.selected_layer)
         )
         self.dlg.saveStyleButton.clicked.connect(
             lambda: self.layer_manager.update_active_layers_list()
@@ -484,14 +493,14 @@ class NADMaps:
         elif nr_of_selected_rows > 1:
             self.dlg.stylingGroupBox.setEnabled(False)
             self.dlg.stylingGroupBox.setToolTip(
-                "Selecteer maar één laag om de styling aan te passen"
+                "Selecteer één laag om de styling aan te passen"
             )
             self.dlg.saveThemaButton.setEnabled(True)
             self.dlg.saveThemaButton.setToolTip("")
         elif nr_of_selected_rows == 0:
             self.dlg.stylingGroupBox.setEnabled(False)
             self.dlg.stylingGroupBox.setToolTip(
-                "Selecteer maar één laag om de styling aan te passen"
+                "Selecteer één laag om de styling aan te passen"
             )
             self.dlg.saveThemaButton.setEnabled(False)
             self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
@@ -503,6 +512,8 @@ class NADMaps:
         for index in first_index_list:
             active_layer = index.data(Qt.ItemDataRole.UserRole)
             self.selected_active_layers.append(active_layer)
+            if nr_of_selected_rows == 1:
+                self.selected_layer = active_layer
             # self.log(f"selected active layers = {self.selected_active_layers}")
 
     def unload(self):
