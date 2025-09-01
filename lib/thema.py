@@ -329,14 +329,13 @@ class ThemaManager:
         user_thema_check = self.dlg.userThemaCheckBox.isChecked()
         fav_thema_check = self.dlg.favoriteThemaCheckBox.isChecked()
 
+        string = "leeg"  # exact string is unimportant, any other string will empty the list
         if plugin_thema_check and user_thema_check:
-            string = f"Plugin|{self.creator}"
+            string = ""
         elif plugin_thema_check:
             string = "Plugin"
         elif user_thema_check:
             string = self.creator
-        else:
-            string = "leeg"  # exact string is unimportant, any other string will empty the list
 
         regexp = QRegularExpression(string)
         self.userFilterThema.setFilterRegularExpression(regexp)
@@ -376,7 +375,7 @@ class ThemaManager:
                     itemFavorite.setCheckState(2)
             except:
                 itemFavorite.setCheckState(0)
-            itemSource = QStandardItem(str(thema["creator"])) # TODO: dit werkt op dit moment niet voor de nieuwe opslagwijze
+            itemSource = QStandardItem(str(thema["creator"]))
             itemFilter = QStandardItem(f"{thema['thema_name']} {thema['layers']}")
             # https://doc.qt.io/qt-6/qstandarditem.html#setData
             itemThema.setData(thema, Qt.ItemDataRole.UserRole)
@@ -413,7 +412,6 @@ class ThemaManager:
         self.dlg.themaView.sortByColumn(0, Qt.AscendingOrder)
 
     def update_favorites(self, cell):
-        # TODO: dit bestand wordt nu niet aangemaakt
         if cell.column() == 1:
             model = self.dlg.themaView.model()
             # self.log(f"cell is {cell} (row: {cell.row()}, col: {cell.column()}) and model row count: {model.rowCount()}")

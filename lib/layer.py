@@ -57,7 +57,7 @@ def create_wms_layer(layer, layername, url, title=None):
         selected_style_name = "default"
 
     uri = f"crs={crs}&layers={layername}&styles={selected_style_name}&format={imgformat}&url={url}"
-    return QgsRasterLayer(uri, title, "wms") # TODO: add style to title
+    return QgsRasterLayer(uri, title, "wms")
 
 def create_wcs_layer(layername, url, title=None):
     format = "GEOTIFF"
