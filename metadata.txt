@@ -5,6 +5,8 @@
 [general]
 name=NAD Waterketen Kaarten
 qgisMinimumVersion=3.0
+#qgisMaximumVersion=3.99
+#supportsQt6=yes
 description=Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
 version=0.1
 author=Netwerk Waterketen Delfland
@@ -12,8 +14,8 @@ email=dataplatform@waterketendelfland.nl
 
 about=Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
 
-tracker=https://github.com/Siebrand-HHD/NADmaps/issues
-repository=https://github.com/Siebrand-HHD/NADmaps
+tracker=https://github.com/NAD-Dataplatform/NADmaps/issues
+repository=https://github.com/NAD-Dataplatform/NADmaps
 # End of mandatory metadata
 
 # Recommended items:
@@ -23,9 +25,9 @@ hasProcessingProvider=no
 # changelog=
 
 # Tags are comma separated with spaces allowed
-tags=python, wfs
+tags=Nederland, PDOK, python, wfs
 
-homepage=https://github.com/Siebrand-HHD/NADmaps
+homepage=https://github.com/NAD-Dataplatform/NADmaps
 category=Plugins
 icon=nad.png
 # experimental flag
