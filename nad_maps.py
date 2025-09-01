@@ -33,8 +33,8 @@ from qgis.core import (
     QgsProcessingFeedback,
     QgsApplication,
 )
-from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread
-from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread, QUrl
+from qgis.PyQt.QtGui import QIcon, QDesktopServices
 from qgis.PyQt.QtWidgets import (
     QAction,
     QFileDialog,
@@ -50,6 +50,7 @@ from .lib.constants import (
     FORMAT_OPTIONS,
     PLACEMENT_OPTIONS,
     PRINT_QUALITY_OPTIONS,
+    WIKI_URL,
 )
 
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
@@ -323,11 +324,18 @@ class NADMaps:
             self.search_manager.get_lookup_id_and_zoom(standard_area)
             self.zoom_completed = True
 
+    def open_wiki(self):
+        url = QUrl(WIKI_URL)
+        QDesktopServices.openUrl(url)
+
     def setup_interactions(self):
         """
         This does a setup of all the button interactions.
         """
         # Click functions
+        self.dlg.helpButton.clicked.connect(
+            lambda: self.open_wiki()
+        )
         self.dlg.loadStyleButton.clicked.connect(
             lambda: self.style_manager.load_styling()
         )

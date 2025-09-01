@@ -24,3 +24,4 @@ PRINT_QUALITY_OPTIONS = {
     "Hoog (300 DPI)": 300,
     "Zeer hoog (600 DPI)": 600,
 }
+WIKI_URL = "https://github.com/NAD-Dataplatform/NADmaps/wiki"
