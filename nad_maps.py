@@ -251,7 +251,7 @@ class NADMaps:
             self.style_manager.set_layer_list(self.layer_list)
 
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            QgsProject.instance().setCrs(projectCrs) #TODO: move to layer_manager (omgang met layers)
+            QgsProject.instance().setCrs(projectCrs)
             self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
             self.setup_completed = True
@@ -740,7 +740,6 @@ class NADMaps:
             for i in range(self.dlg.comboBox_PrintQuality.count())
         ]
         if saved_quality in quality_items:
-            # TODO
             # self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
             self.dlg.comboBox_PrintQuality.setCurrentText("Iets geks")
         else:

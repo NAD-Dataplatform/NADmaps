@@ -193,7 +193,6 @@ class StyleManager:
                 new_tree_node.setItemVisibilityChecked(visible)
 
                 # new_layer.loadDefaultStyle()
-                # TODO: legend disappears in layer panel
                 new_layer.setCustomProperty( "layerStyle", style_title )
             else:
                 layer_style_list = self.get_layer_style_list()
@@ -286,8 +285,6 @@ class StyleManager:
                         existing_styles.pop(j)
                 feeds.pop(i)
 
-        # use the layer["source"] (uri) as the id to match styling options (the rest can be changed easily).
-        # TODO: what about services where you define the styling when you send the request? remove and reload?
         if layer_type == "Vector":
             self.log(type(layer))
             layer.saveNamedStyle(qml_path) # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
@@ -467,5 +464,3 @@ class StyleManager:
         if style_name == current_style:
             data.setCustomProperty( "layerStyle", "" )
         # self.update_active_layers_list()
-
-        # TODO naam blijft staan in de lijst van de lagen

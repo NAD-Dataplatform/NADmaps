@@ -32,48 +32,6 @@
 		]
 	},
 	{
-		"thema_name": "test",
-		"creator": "Plugin",
-		"layers": [
-			{
-				"name": "cbsbevolkingskernen2011",
-				"title": "CBS Bevolkingskernen 2011",
-				"service_url": "https://service.pdok.nl/cbs/bevolkingskernen/2011/wms/v1_0?request=GetCapabilities&service=WMS",
-				"tilematrixsets": "EPSG:28992",
-				"crs": "EPSG:28992",
-				"imgformats": "image/png",
-				"styles": [
-					{
-						"title": "Aantal vrouwen",
-						"name": "bevolkingskern_aantal_vrouwen"
-					}
-				],
-				"layer_type": "Raster",
-				"service_type": "wms",
-				"style": "bevolkingskern_aantal_vrouwen",
-				"source": "crs=EPSG:28992&layers=cbsbevolkingskernen2011&styles=bevolkingskern_aantal_vrouwen&format=image/png&url=https://service.pdok.nl/cbs/bevolkingskernen/2011/wms/v1_0?request=GetCapabilities&service=WMS"
-			},
-			{
-				"name": "pastel",
-				"title": "Achtergrondkaart",
-				"service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
-				"tilematrixsets": "EPSG:28992",
-				"crs": "EPSG:28992",
-				"imgformats": "image/png",
-				"styles": [
-					{
-						"title": "",
-						"name": "default"
-					}
-				],
-				"layer_type": "Raster",
-				"service_type": "wmts",
-				"style": "default",
-				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
-			}
-		]
-	},
-	{
 		"thema_name": "Stresstestkaart",
 		"creator": "Plugin",
 		"layers": [
