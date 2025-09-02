@@ -403,6 +403,9 @@ class NADMaps:
             lambda: self.set_autoload_checkbox()
         )
         # maxNumFeatures spinbox
+        self.dlg.checkBox_MaxNumFeatures.clicked.connect(
+            lambda: self.set_maxnumfeatures_checkbox()
+        )
         self.dlg.spinBox_MaxNumFeatures.valueChanged.connect(
             lambda: self.set_maxnumfeatures()
         )
@@ -844,6 +847,24 @@ class NADMaps:
     def set_maxnumfeatures(self):
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
         QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
+        self.layer_manager.maxnumfeatures = maxnumfeatures
+        self.thema_manager.maxnumfeatures = maxnumfeatures
+
+    def set_maxnumfeatures_checkbox(self):
+        use_maxnumfeatures = self.dlg.checkBox_MaxNumFeatures.isChecked()
+        maxnumfeatures = 0
+
+        if use_maxnumfeatures:
+            maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
+            QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
+            self.dlg.label_MaxNumFeatures.setEnabled(True)
+            self.dlg.spinBox_MaxNumFeatures.setEnabled(True)
+        else:
+            QSettings().setValue("NADmaps/maxNumFeatures", 0)
+            self.dlg.label_MaxNumFeatures.setEnabled(False)
+            self.dlg.spinBox_MaxNumFeatures.setEnabled(False)
+
+        # update values in the layer and thema manager
         self.layer_manager.maxnumfeatures = maxnumfeatures
         self.thema_manager.maxnumfeatures = maxnumfeatures
 
