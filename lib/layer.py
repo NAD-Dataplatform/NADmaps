@@ -35,7 +35,10 @@ from .utility import (
 )
 
 def create_wfs_layer(layername, url, maxnumfeatures, title=None):
-    uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
+    if maxnumfeatures > 0:
+        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
+    else:
+        uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
     return QgsVectorLayer(uri, title, "wfs")
 
 def create_wms_layer(layer, layername, url, title=None):
@@ -65,7 +68,10 @@ def create_wcs_layer(layername, url, title=None):
     return QgsRasterLayer(uri, title, "wcs")
 
 def create_oaf_layer(layername, url, maxnumfeatures, title=None):
-    uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
+    if maxnumfeatures > 0:
+        uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
+    else:
+        uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"
     return QgsVectorLayer(uri, title, "OAPIF")
 
 def build_tileset_url(url, tileset_id, for_request):
@@ -147,7 +153,7 @@ def create_spatialite_layer(layer, title=None):
     uri.setDataSource(schema, table, geom_column)
     return QgsVectorLayer(uri.uri(), title, 'spatialite')
 
-def create_new_layer(layer, maxnumfeatures=6000):
+def create_new_layer(layer, maxnumfeatures=5000):
     servicetype = layer["service_type"]
     title = layer["title"]
     layername = layer["name"]
@@ -195,10 +201,10 @@ class LayerManager:
         self.plugin_dir = plugin_dir
         self.style_manager = style_manager
         self.log = log
-        self.maxnumfeatures = QgsSettings().value(
-            "nadmaps/wfs_maxnumfeatures", 5000, type=int
-        )
 
+        self.maxnumfeatures = QgsSettings().value(
+            "NADmaps/maxNumFeatures", 5000, type=int
+        )
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
 
@@ -540,7 +546,7 @@ class LayerManager:
         if tree_location is None:
             tree_location = self.default_tree_locations[servicetype]
 
-        new_layer = create_new_layer(layer = self.current_layer, maxnumfeatures = self.maxnumfeatures)
+        new_layer = create_new_layer(self.current_layer, self.maxnumfeatures)
         self.log(f"load layer: {new_layer}")
         if new_layer is None:
             return

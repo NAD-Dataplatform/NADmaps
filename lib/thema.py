@@ -75,7 +75,7 @@ class ThemaManager:
         self.log = log
 
         self.maxnumfeatures = QgsSettings().value(
-            "nadmaps/wfs_maxnumfeatures", 5000, type=int
+            "NADmaps/maxNumFeatures", 5000, type=int
         )
         self.current_thema = None
         self.current_layer = None
