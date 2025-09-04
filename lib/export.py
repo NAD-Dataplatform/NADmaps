@@ -229,7 +229,7 @@ class ExportManager:
         legend.setReferencePoint(reference_point)
         legend.attemptMove(QgsLayoutPoint(x, y, QgsUnitTypes.LayoutMillimeters), True)
         legend.setTitle("Legenda")
-        legend.setBackgroundColor(QColor(255, 255, 255, 150))  # White with 60% transparency
+        legend.setBackgroundColor(QColor(255, 255, 255, 230))  # White with 10% transparency
         layout.addLayoutItem(legend)
 
     def _add_scale_bar(self, layout, x, y, reference_point, map_item):
