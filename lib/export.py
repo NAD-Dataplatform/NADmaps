@@ -92,7 +92,7 @@ class ExportManager:
             title = settings.get("title", "")
             if title:
                 font_size = settings.get("title_font_size", 20)
-                self._add_title(layout, title, font_size)
+                self._add_title(layout, title, y_offset, font_size)
 
         # Add legend if needed
         if settings.get("include_legend"):
@@ -161,18 +161,29 @@ class ExportManager:
             reference_point = 8
 
         return x, y, reference_point
-
-    def _add_title(self, layout, title_text, font_size=20):
+   
+    def _add_title(self, layout, title_text, y_offset, font_size=20):
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
-        title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning
+        title.setFont(QFont("Arial", font_size))
+        title.adjustSizeToText()  # To set reference point correctly
+
+        title_width = title.sizeWithUnits().width()
+        title_height = title.sizeWithUnits().height()
+        title.setFixedSize(QgsLayoutSize(title_width+1, title_height, QgsUnitTypes.LayoutMillimeters))
+
+        title.setBackgroundEnabled(True)
+        title.setBackgroundColor(QColor(255, 255, 255, 230)) # White with 10% transparency
 
         # Center at top of page
         page = layout.pageCollection().pages()[0]
         x_center = page.pageSize().width() / 2
-        title.attemptMove(QgsLayoutPoint(x_center, 10, QgsUnitTypes.LayoutMillimeters))
+        
+        title.setReferencePoint(1) # Top middle
+        title.attemptMove(QgsLayoutPoint(x_center, y_offset, QgsUnitTypes.LayoutMillimeters), True)
 
         layout.addLayoutItem(title)
+
 
     def _add_north_arrow(self, layout, x, y, reference_point, size_mm):       
         # Path to SVG file relative to lib folder
