@@ -32,22 +32,279 @@
 		]
 	},
 	{
-		"thema_name": "Stresstestkaart",
+		"thema_name": "Oppervlaktewater",
 		"creator": "Plugin",
 		"layers": [
 			{
-				"name": "beheerstedelijkwater:BeheerLeiding",
-				"title": "Rioolleiding",
-				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-				"tilematrixsets": "",
-				"crs": "",
-				"imgformats": "",
-				"styles": [],
-				"layer_type": "Vector",
-				"service_type": "wfs",
-				"style": "GWSW met labels",
-				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0' maxNumFeatures='50000'"
+				"name": "sluis",
+				"title": "Sluis",
+				"service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Sluis",
+						"name": "sluis"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "sluis",
+				"source": "crs=EPSG:28992&layers=sluis&styles=sluis&format=image/png&url=https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
 			},
+			{
+				"name": "waterdeel",
+				"title": "Waterdeel",
+				"service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "waterdeel",
+						"name": "waterdeel"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "waterdeel",
+				"source": "crs=EPSG:28992&layers=waterdeel&styles=waterdeel&format=image/png&url=https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "brug",
+				"title": "Brug",
+				"service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Brug",
+						"name": "brug"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "brug",
+				"source": "crs=EPSG:28992&layers=brug&styles=brug&format=image/png&url=https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "waterkering",
+				"title": "Waterkering",
+				"service_url": "https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Waterkering",
+						"name": "waterkering"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "waterkering",
+				"source": "crs=EPSG:28992&layers=waterkering&styles=waterkering&format=image/png&url=https://service.pdok.nl/hwh/keringenimwa/wms/v2_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "gemaal",
+				"title": "Gemaal",
+				"service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Gemaal",
+						"name": "gemaal"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "gemaal",
+				"source": "crs=EPSG:28992&layers=gemaal&styles=gemaal&format=image/png&url=https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "peilgebied",
+				"title": "Peilgebied",
+				"service_url": "https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "peilgebied",
+						"name": "peilgebied"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "peilgebied",
+				"source": "crs=EPSG:28992&layers=peilgebied&styles=peilgebied&format=image/png&url=https://service.pdok.nl/hwh/waterbeheergebiedenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
+			}
+		]
+	},
+	{
+		"thema_name": "Riolering WMS",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "BeheerLeiding",
+				"title": "Rioolleiding",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "GWSW Beheerleiding",
+						"name": "GWSW_Leiding"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "GWSW_Leiding",
+				"source": "crs=EPSG:28992&layers=BeheerLeiding&styles=GWSW_Leiding&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "BeheerPut",
+				"title": "Rioolput",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "GWSW Beheerput",
+						"name": "GWSW_Put"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "GWSW_Put",
+				"source": "crs=EPSG:28992&layers=BeheerPut&styles=GWSW_Put&format=image/png&url=https://service.pdok.nl/rioned/beheerstedelijkwater/wms/v1_0?request=GetCapabilities&service=WMS"
+			}
+		]
+	},
+	{
+		"thema_name": "BRT achtergrondkaart",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "inrichtingselement",
+				"title": "Inrichtingselement",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Inrichtingselement",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=inrichtingselement&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "wegdeel",
+				"title": "Wegdeel",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Wegdeel",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=wegdeel&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "terrein",
+				"title": "Terrein",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Terrein",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=terrein&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "gebouw",
+				"title": "Gebouw",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Gebouw",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=gebouw&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "spoorbaandeel",
+				"title": "Spoorbaandeel",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Spoorbaandeel",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=spoorbaandeel&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "waterdeel",
+				"title": "Waterdeel",
+				"service_url": "https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Waterdeel",
+						"name": "top10nl"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "top10nl",
+				"source": "crs=EPSG:28992&layers=waterdeel&styles=top10nl&format=image/png&url=https://service.pdok.nl/brt/top10nl/wms/v1_0?request=GetCapabilities&service=WMS"
+			}
+		]
+	},
+	{
+		"thema_name": "Standaard achtergrondkaart",
+		"creator": "Plugin",
+		"layers": [
 			{
 				"name": "pastel",
 				"title": "Achtergrondkaart",
@@ -65,7 +322,13 @@
 				"service_type": "wmts",
 				"style": "default",
 				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
-			},
+			}
+		]
+	},
+	{
+		"thema_name": "Stresstest wateroverlast",
+		"creator": "Plugin",
+		"layers": [
 			{
 				"name": "waterdiepte_neerslag_140mm_2uur",
 				"title": "Waterdiepte: 140mm in 2 uur",
@@ -83,6 +346,24 @@
 				"service_type": "wms",
 				"style": "waterdiepte_neerslag_1-1000_r_wateroverlast",
 				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_140mm_2uur&styles=waterdiepte_neerslag_1-1000_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities"
+			},
+			{
+				"name": "waterdiepte_neerslag_70mm_2uur",
+				"title": "Waterdiepte: 70mm in 2 uur",
+				"service_url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "waterdiepte_neerslag_1-100_r_wateroverlast",
+						"name": "waterdiepte_neerslag_1-100_r_wateroverlast"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "waterdiepte_neerslag_1-100_r_wateroverlast",
+				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_70mm_2uur&styles=waterdiepte_neerslag_1-100_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities"
 			}
 		]
 	}
