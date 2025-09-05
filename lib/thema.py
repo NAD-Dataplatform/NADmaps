@@ -30,7 +30,6 @@ from .utility import (
     extract_wms_style_name,
     extract_wms_style_title,
     extract_format,
-    extract_tilematrixset,
     extract_oat_style,
     extract_oat_style_url,
 )
@@ -74,9 +73,6 @@ class ThemaManager:
         self.creator = creator
         self.log = log
 
-        self.maxnumfeatures = QgsSettings().value(
-            "NADmaps/maxNumFeatures", 5000, type=int
-        )
         self.current_thema = None
         self.current_layer = None
         self.themaModel = QStandardItemModel()
@@ -153,18 +149,20 @@ class ThemaManager:
     def set_working_directory(self, path):
         """Set the working directory for the plugin"""
         # some checks if the path is not empty or a directory
-        if not path:
-            return
-        if not os.path.isdir(path):
-            return
 
-        os.makedirs(path, exist_ok=True)
-        os.makedirs(os.path.join(path, "themas"), exist_ok=True)
+        if path and os.path.isdir(path) and path not in ["", None]:
+            os.makedirs(path, exist_ok=True)
+            os.makedirs(os.path.join(path, "themas"), exist_ok=True)
 
-        self.user_thema_path = os.path.join(path, "themas", "user_themas.json")
-        self.user_thema_favorite_path = os.path.join(path, "themas", "favorites.json")
-        self.user_styling_path = os.path.join(path, "styling", "styling.json")
-        self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
+            self.user_thema_path = os.path.join(path, "themas", "user_themas.json")
+            self.user_thema_favorite_path = os.path.join(path, "themas", "favorites.json")
+            self.user_styling_path = os.path.join(path, "styling", "styling.json")
+            self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
+        else:
+            self.user_thema_path = ""
+            self.user_thema_favorite_path = ""
+            self.user_styling_path = ""
+            self.user_styling_files_path = ""
 
     def delete_thema(self):
         """Delete an existing thema (only user defined themas can be deleted)"""
@@ -179,8 +177,11 @@ class ThemaManager:
 
         if self.current_thema["creator"] == "Plugin":
             json_path = self.plugin_thema_path
-        else:
+        elif os.path.exists(self.user_thema_path):
             json_path = self.user_thema_path
+        else:
+            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+            return
 
         with open(json_path, "r", encoding="utf-8") as f:
             jsondata = json.load(f)
@@ -202,8 +203,11 @@ class ThemaManager:
 
         if self.creator == "Plugin":
             json_path = self.plugin_thema_path
-        else:
+        elif os.path.exists(self.user_thema_path):
             json_path = self.user_thema_path
+        else:
+            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+            return
 
         # load the layers
         try:
@@ -371,8 +375,11 @@ class ThemaManager:
             itemFavorite = QStandardItem()
             itemFavorite.setCheckable(True)
             try:
-                if favorites and favorites[thema["thema_name"]] == "favorite":
-                    itemFavorite.setCheckState(2)
+                # if favorites and favorites[thema["thema_name"]] == "favorite":
+                if favorites:
+                    for fav in favorites:
+                        if fav["thema_name"] == thema["thema_name"] and fav["check_state"]:
+                            itemFavorite.setCheckState(2)
             except:
                 itemFavorite.setCheckState(0)
             itemSource = QStandardItem(str(thema["creator"]))
@@ -415,7 +422,7 @@ class ThemaManager:
         if cell.column() == 1:
             model = self.dlg.themaView.model()
             # self.log(f"cell is {cell} (row: {cell.row()}, col: {cell.column()}) and model row count: {model.rowCount()}")
-            string = "{"
+            favorites = []
             for r in range(model.rowCount()):
                 thema = model.index(r, 0)
                 thema_name = thema.data()
@@ -425,20 +432,19 @@ class ThemaManager:
                 )  # https://doc.qt.io/qt-6/qt.html#CheckState-enum
                 # self.log(f"Update favorites: CheckStateRole is {value} and DisplayRole is {thema.data(Qt.ItemDataRole.DisplayRole)}")
                 if value == 2:
-                    checkstate = "favorite"
+                    checkstate = True
                 else:
-                    checkstate = "regular"
+                    checkstate = False
 
-                string = string + '"' + thema_name + '": "' + checkstate + '"'
-                if r == model.rowCount() - 1:
-                    string = string + "}"
-                else:
-                    string = string + ","
+                data = {
+                    "thema_name": thema_name,
+                    "check_state": checkstate
+                }
+                favorites.append(data)
 
-            data = json.loads(string)
             try:
                 with open(self.user_thema_favorite_path, "w", encoding="utf-8") as file:
-                    json.dump(data, file, indent="\t")
+                    json.dump(favorites, file, indent="\t")
             except Exception as e:
                 self.log(
                     f"Tried to write favorite themas to json file, but received this error: {e}"
@@ -476,7 +482,7 @@ class ThemaManager:
                     f"Layer {layer['name']} does not have a source or url attribute. Skipping this layer."
                 )
 
-            result = create_new_layer(layer, self.maxnumfeatures)
+            result = create_new_layer(layer)
             QgsProject.instance().addMapLayer(
                 result, False
             )  # If True (by default), the layer will be added to the legend and to the main canvas
@@ -516,15 +522,16 @@ class ThemaManager:
                                 file_name = style_option["file"] + ".qml"
                                 break
 
-
-                # style_code = get_style_code(style, url, name)
                 if creator == None:
                     pass
                 else:
                     if creator == "Plugin":
                         path = os.path.join(self.plugin_styling_files_path, file_name)
-                    else:
+                    elif os.path.exists(self.user_styling_files_path):
                         path = os.path.join(self.user_styling_files_path, file_name)
+                    else:
+                        self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+                        pass
 
                     self.log(f"Applying styling {style} to thema layer {name} from path: {path}")
                     result.loadNamedStyle(path)
