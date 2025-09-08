@@ -23,6 +23,7 @@ repository=https://github.com/NAD-Dataplatform/NADmaps
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
 # changelog=
+    0.2     (09-2025) Add common themes, add option to turn off maxnum features, add link to wiki, improve export function, small bug fixes
 
 # Tags are comma separated with spaces allowed
 tags=Nederland, PDOK, python, wfs

@@ -499,7 +499,6 @@ class ThemaManager:
             creator = None
             self.log(f"Loading layer {name} from themaset {group_name} with style {style}")
             if not style == "":
-                self.log("Style is available")
                 layer_style_list = []
                 # Load plugin styles
                 try:
