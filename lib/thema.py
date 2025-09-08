@@ -203,8 +203,10 @@ class ThemaManager:
 
         if self.creator == "Plugin":
             json_path = self.plugin_thema_path
-        elif os.path.exists(self.user_thema_path):
+        elif self.user_thema_path != "":
             json_path = self.user_thema_path
+        # elif os.path.exists(self.user_thema_path):
+        #     json_path = self.user_thema_path
         else:
             self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
             print("save thema: Geen opslaglocatie gevonden. Return")
