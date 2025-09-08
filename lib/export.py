@@ -76,7 +76,7 @@ class ExportManager:
                 y_offset=y_offset,
                 map_item_width=map_item_width,
                 map_item_height=map_item_height,
-                margin=10
+                margin=5
             )
             # Create north
             self._add_north_arrow(
@@ -123,7 +123,7 @@ class ExportManager:
                 y_offset=y_offset,
                 map_item_width=map_item_width,
                 map_item_height=map_item_height,
-                margin=10
+                margin=5
             )
             # Create scale bar
             self._add_scale_bar(
@@ -165,7 +165,7 @@ class ExportManager:
     def _add_title(self, layout, title_text, y_offset, font_size=20):
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
-        title.setFont(QFont("Arial", font_size))
+        title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning
         title.adjustSizeToText()  # To set reference point correctly
 
         title_width = title.sizeWithUnits().width()
