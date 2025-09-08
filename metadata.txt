@@ -8,7 +8,7 @@ qgisMinimumVersion=3.0
 #qgisMaximumVersion=3.99
 #supportsQt6=yes
 description=Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
-version=0.1
+version=0.2
 author=Netwerk Waterketen Delfland
 email=dataplatform@waterketendelfland.nl
 
