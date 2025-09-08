@@ -207,6 +207,7 @@ class ThemaManager:
             json_path = self.user_thema_path
         else:
             self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+            raise("Geen opslaglocatie gevonden")
             return
 
         # load the layers
@@ -221,6 +222,7 @@ class ThemaManager:
         if thema_name == "":
             # TODO: if we want to show this message we have to pass iface to this class
             # self.iface.messageBar().pushMessage("Geen thema-naam gespecificeerd.", level=Qgis.Critical) 
+            raise("Geen naam ingevuld")
             return
 
         # Check if a style with the same name exists
