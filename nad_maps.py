@@ -99,33 +99,45 @@ class NADMaps:
         self.log = self.log_manager.log
 
         # initialize the working directory from settings
+        # QSettings().setValue("NADmaps/working_dir", "") # for testing purposes, always re-comment after usage!
         self.working_dir = QSettings().value("NADmaps/working_dir")
         if self.working_dir in ["", None]:
-            self.working_dir = QFileDialog.getExistingDirectory(
-                self.dlg, "Selecteer een werkmap", ""
+            set_directory = QMessageBox.question(
+                self.dlg,
+                "Werkmap selecteren",
+                "Deze plug-in gebruikt een lokale werkmap om goed te functioneren. Wilt u de werkmap nu selecteren? Anders kunt u later nog de werkmap veranderen of instellen in het tabblad 'Instellingen'",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
             )
-            if self.working_dir in ["", None]:  # check if still empty
-                self.log(
-                    "Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.",
-                    1,
-                )  # set warning message
+            if set_directory == QMessageBox.StandardButton.Yes:
+                self.working_dir = QFileDialog.getExistingDirectory(
+                    self.dlg, "Selecteer een werkmap", ""
+                )
 
-        os.makedirs(self.working_dir, exist_ok=True)
-        os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-        os.makedirs(
-            os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True
-        )
+        # if user did not select a working directory, then skip the creation of folder and path creation
+        if self.working_dir in ["", None]:  
+            self.log(
+                "Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.",
+                1,
+            )  # set warning message
+        else:
+            os.makedirs(self.working_dir, exist_ok=True)
+            os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
+            os.makedirs(
+                os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True
+            )
 
-        # save the working directory to the settings, such that it is available next time the plugin is started
-        QSettings().setValue("NADmaps/working_dir", self.working_dir)
-        self.dlg.lineEditFilePath.setText(self.working_dir)
+            # save the working directory to the settings, such that it is available next time the plugin is started
+            QSettings().setValue("NADmaps/working_dir", self.working_dir)
+            self.dlg.lineEditFilePath.setText(self.working_dir)
 
-        self.user_styling_path = os.path.join(
-            self.working_dir, "styling", "styling.json"
-        )
-        self.user_styling_files_path = os.path.join(
-            self.working_dir, "styling", "qml_files"
-        )
+            self.user_styling_path = os.path.join(
+                self.working_dir, "styling", "styling.json"
+            )
+            self.user_styling_files_path = os.path.join(
+                self.working_dir, "styling", "qml_files"
+            )
+
+        # define plugin paths
         self.plugin_styling_path = os.path.join(
             self.plugin_dir, "resources", "styling", "styling.json"
         )
@@ -190,6 +202,11 @@ class NADMaps:
             if not self.autostart_triggered:
                 # Fallback timer in case no tasks are running
                 QTimer.singleShot(1500, self.safe_autostart)
+
+        if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
+            self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
+        else:
+            self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(0))
 
         # parallel rendering
         QSettings().setValue("/qgis/parallel_rendering", True)
@@ -285,10 +302,16 @@ class NADMaps:
             self.log("zoom_completed is set to True", 0)
             self.zoom_completed = True
 
-        # init maxNumFeatures spinbox
+        # init max number of features value en checkbox
         self.dlg.spinBox_MaxNumFeatures.setValue(
             int(QSettings().value("NADmaps/maxNumFeatures", 5000))
         )
+
+        self.dlg.checkBox_MaxNumFeatures.setCheckState(
+            bool(QSettings().value("NADmaps/maxNumFeaturesCheck", False))
+        )
+        self.dlg.checkBox_MaxNumFeatures.setTristate(False)
+        self.set_maxnumfeatures_checkbox()
 
         # show the dialog
         if not hiddenDialog:
@@ -847,28 +870,23 @@ class NADMaps:
     def set_maxnumfeatures(self):
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
         QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
-        self.layer_manager.maxnumfeatures = maxnumfeatures
-        self.thema_manager.maxnumfeatures = maxnumfeatures
 
     def set_maxnumfeatures_checkbox(self):
         use_maxnumfeatures = self.dlg.checkBox_MaxNumFeatures.isChecked()
-        maxnumfeatures = 0
+        QSettings().setValue("NADmaps/maxNumFeaturesCheck", use_maxnumfeatures)
 
         if use_maxnumfeatures:
-            maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
-            QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
             self.dlg.label_MaxNumFeatures.setEnabled(True)
             self.dlg.spinBox_MaxNumFeatures.setEnabled(True)
         else:
-            QSettings().setValue("NADmaps/maxNumFeatures", 0)
             self.dlg.label_MaxNumFeatures.setEnabled(False)
             self.dlg.spinBox_MaxNumFeatures.setEnabled(False)
 
-        # update values in the layer and thema manager
-        self.layer_manager.maxnumfeatures = maxnumfeatures
-        self.thema_manager.maxnumfeatures = maxnumfeatures
-
     def export_map_button_pressed(self):
+        if not os.path.exists(self.working_dir):
+            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+            return
+
         file_path = self.generate_export_path()
         if not file_path:
             self.log("Geen bestandsnaam opgegeven", 1)

@@ -9,6 +9,7 @@ from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
 from qgis.PyQt.QtWidgets import QAbstractItemView
 from qgis.PyQt.QtCore import (
     Qt,
+    QSettings,
     QRegularExpression,
     QSortFilterProxyModel,
 )
@@ -34,8 +35,11 @@ from .utility import (
     extract_spatialiate_geom_column
 )
 
-def create_wfs_layer(layername, url, maxnumfeatures, title=None):
-    if maxnumfeatures > 0:
+def create_wfs_layer(layername, url, title=None):
+    maxnumfeatures = QgsSettings().value(
+            "NADmaps/maxNumFeatures", 5000, type=int
+        )
+    if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
         uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
     else:
         uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
@@ -46,8 +50,11 @@ def create_wms_layer(layer, layername, url, title=None):
         imgformat = layer["imgformats"].split(",")[0]
     else:
         imgformat = "image/png"
-    # crs = "EPSG:28992"
-    crs = layer["crs"].split(",")[0]
+
+    try:
+        crs = layer["crs"].split(",")[0]
+    except:
+        crs = "EPSG:28992"
 
     if "styles" in layer:
         selected_style_name = layer["styles"][0]["name"]
@@ -67,8 +74,11 @@ def create_wcs_layer(layername, url, title=None):
     uri = f"cache=AlwaysNetwork&crs=EPSG:28992&format={format}&identifier={layername}&url={url.split('?')[0]}"
     return QgsRasterLayer(uri, title, "wcs")
 
-def create_oaf_layer(layername, url, maxnumfeatures, title=None):
-    if maxnumfeatures > 0:
+def create_oaf_layer(layername, url, title=None):
+    maxnumfeatures = QgsSettings().value(
+            "NADmaps/maxNumFeatures", 5000, type=int
+        )
+    if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
         uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
     else:
         uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"
@@ -122,6 +132,9 @@ def create_wmts_layer(layer, layername, url, title=None):
     elif tilematrixsets.startswith("OGC:1.0"):
         tilematrixset = "OGC:1.0:GoogleMapsCompatible"
         crs = "EPSG:3857"
+    else:
+        tilematrixset = tilematrixsets
+        crs = "EPSG:28992"
 
     uri = f"crs={crs}&tileMatrixSet={tilematrixset}&layers={layername}&styles=default&format={imgformat}&url={url}"
     return QgsRasterLayer(uri, title, "wms")
@@ -153,7 +166,7 @@ def create_spatialite_layer(layer, title=None):
     uri.setDataSource(schema, table, geom_column)
     return QgsVectorLayer(uri.uri(), title, 'spatialite')
 
-def create_new_layer(layer, maxnumfeatures=5000):
+def create_new_layer(layer):
     servicetype = layer["service_type"]
     title = layer["title"]
     layername = layer["name"]
@@ -164,11 +177,11 @@ def create_new_layer(layer, maxnumfeatures=5000):
     elif servicetype == "wmts":
         return create_wmts_layer(layer, layername, url, title)
     elif servicetype == "wfs":
-        return create_wfs_layer(layername, url, maxnumfeatures, title)
+        return create_wfs_layer(layername, url, title)
     elif servicetype == "wcs":
         return create_wcs_layer(layername, url, title)
     elif servicetype == "api features":
-        return create_oaf_layer(layername, url, maxnumfeatures, title)
+        return create_oaf_layer(layername, url, title)
     elif servicetype == "api tiles":
         return create_oat_layer(layer, url, title)
     elif servicetype == "spatialite":
@@ -202,9 +215,6 @@ class LayerManager:
         self.style_manager = style_manager
         self.log = log
 
-        self.maxnumfeatures = QgsSettings().value(
-            "NADmaps/maxNumFeatures", 5000, type=int
-        )
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
 
@@ -546,8 +556,7 @@ class LayerManager:
         if tree_location is None:
             tree_location = self.default_tree_locations[servicetype]
 
-        new_layer = create_new_layer(self.current_layer, self.maxnumfeatures)
-        self.log(f"load layer: {new_layer}")
+        new_layer = create_new_layer(self.current_layer)
         if new_layer is None:
             return
 
