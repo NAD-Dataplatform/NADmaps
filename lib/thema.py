@@ -207,6 +207,7 @@ class ThemaManager:
             json_path = self.user_thema_path
         else:
             self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+            print("save thema: Geen opslaglocatie gevonden. Return")
             return
 
         # load the layers
