@@ -163,6 +163,7 @@ class ThemaManager:
             self.user_thema_favorite_path = ""
             self.user_styling_path = ""
             self.user_styling_files_path = ""
+            raise("set working dir else")
 
     def delete_thema(self):
         """Delete an existing thema (only user defined themas can be deleted)"""
