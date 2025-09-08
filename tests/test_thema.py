@@ -25,10 +25,15 @@ def nadmap_mock(iface_mock, selected_active_layers):
     nadmap.creator = "Gebruiker"
     nadmap.thema_manager.creator = "Gebruiker"
     nadmap.working_dir = QSettings().value("NADmaps/working_dir")
-    nadmap.thema_manager.set_working_directory(nadmap.working_dir)
-    # nadmap.thema_manager.user_thema_path = os.path.join(
-    #     nadmap.working_dir, "themas", "user_themas.json"
-    # )
+    nadmap.thema_manager.user_thema_path = os.path.join(
+        nadmap.working_dir, "themas", "user_themas.json"
+    )
+    print(nadmap.thema_manager.user_thema_path)
+    if nadmap.thema_manager.user_thema_path is None:
+        raise("user thema path is none")
+    if nadmap.thema_manager.user_thema_path == "":
+        raise("user thema path is empty")
+
     nadmap.selected_active_layers = selected_active_layers
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
