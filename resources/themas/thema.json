@@ -54,24 +54,6 @@
 				"source": "crs=EPSG:28992&layers=sluis&styles=sluis&format=image/png&url=https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
 			},
 			{
-				"name": "waterdeel",
-				"title": "Waterdeel",
-				"service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
-				"tilematrixsets": "EPSG:28992",
-				"crs": "EPSG:28992",
-				"imgformats": "image/png",
-				"styles": [
-					{
-						"title": "waterdeel",
-						"name": "waterdeel"
-					}
-				],
-				"layer_type": "Raster",
-				"service_type": "wms",
-				"style": "waterdeel",
-				"source": "crs=EPSG:28992&layers=waterdeel&styles=waterdeel&format=image/png&url=https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
-			},
-			{
 				"name": "brug",
 				"title": "Brug",
 				"service_url": "https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
@@ -124,6 +106,24 @@
 				"service_type": "wms",
 				"style": "gemaal",
 				"source": "crs=EPSG:28992&layers=gemaal&styles=gemaal&format=image/png&url=https://service.pdok.nl/hwh/kunstwerkenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "waterdeel",
+				"title": "Waterdeel",
+				"service_url": "https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "waterdeel",
+						"name": "waterdeel"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "waterdeel",
+				"source": "crs=EPSG:28992&layers=waterdeel&styles=waterdeel&format=image/png&url=https://service.pdok.nl/hwh/oppervlaktewaterenimwa/wms/v1_0?request=GetCapabilities&service=WMS"
 			},
 			{
 				"name": "peilgebied",
@@ -326,7 +326,7 @@
 		]
 	},
 	{
-		"thema_name": "Stresstest wateroverlast",
+		"thema_name": "Landelijke stresstest 2018: wateroverlast",
 		"creator": "Plugin",
 		"layers": [
 			{
@@ -364,6 +364,51 @@
 				"service_type": "wms",
 				"style": "waterdiepte_neerslag_1-100_r_wateroverlast",
 				"source": "crs=EPSG:28992&layers=waterdiepte_neerslag_70mm_2uur&styles=waterdiepte_neerslag_1-100_r_wateroverlast&format=image/png&url=https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities"
+			}
+		]
+	},
+	{
+		"thema_name": "Gemalen",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "gwsw:Default_Punt",
+				"title": "Waterschap: Rioolput",
+				"service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gemalen",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='gwsw:Default_Punt' url='https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten' version='2.0.0'"
+			},
+			{
+				"name": "beheerstedelijkwater:BeheerPut",
+				"title": "Rioolput",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gemalen",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerPut' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'"
+			},
+			{
+				"name": "beheerstedelijkwater:BeheerLeiding",
+				"title": "Rioolleiding",
+				"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Persleidingen",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'"
 			}
 		]
 	}

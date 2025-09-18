@@ -238,8 +238,10 @@ class StyleManager:
         name = extract_name(uri, service_type, title)
         url = extract_url(uri, service_type)
 
-        if service_type == "wms" or service_type == "wmts" or service_type == "api tiles":
-            return
+        # if service_type == "wms" or service_type == "wmts" or service_type == "api tiles":
+        #     return
+
+
         # # get extra data
         # if service_type == "wms" or service_type == "wmts":
         #     style = extract_wms_styles(uri)
@@ -262,7 +264,7 @@ class StyleManager:
         try:
             with open(json_path, "r", encoding="utf-8") as feedsjson:
                 feeds = json.load(feedsjson)
-        except Exception as e:
+        except:
             feeds = []
 
         # collect existing data
@@ -285,11 +287,12 @@ class StyleManager:
                         existing_styles.pop(j)
                 feeds.pop(i)
 
-        if layer_type == "Vector":
-            self.log(type(layer))
-            layer.saveNamedStyle(qml_path) # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
-        else:
-            return
+        layer.saveNamedStyle(qml_path) # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
+        # if layer_type == "Vector":
+        #     self.log(type(layer))
+        #     layer.saveNamedStyle(qml_path) # https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.saveNamedStyle
+        # else:
+        #     return
 
         style_dict = {
             "name": style_name,

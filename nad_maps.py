@@ -193,15 +193,17 @@ class NADMaps:
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
 
-        if QSettings().value("NADmaps/autostart", "false") == "true":
-            self.log("Autostart is enabled...")
-            task_mgr = QgsApplication.taskManager()
-            task_mgr.allTasksFinished.connect(self.safe_autostart)
-            # ^ In case a task is already running, this will trigger the autostart
+        iface.initializationCompleted.connect(self.safe_autostart)
+        # if QSettings().value("NADmaps/autostart", "false") == "true":
+        #     self.log("Autostart is enabled...")
+        #     task_mgr = QgsApplication.taskManager()
+        #     # iface.initializationCompleted.connect(self.safe_autostart)
+        #     task_mgr.allTasksFinished.connect(self.safe_autostart)
+        #     # ^ In case a task is already running, this will trigger the autostart
 
-            if not self.autostart_triggered:
-                # Fallback timer in case no tasks are running
-                QTimer.singleShot(1500, self.safe_autostart)
+        #     if not self.autostart_triggered:
+        #         # Fallback timer in case no tasks are running
+        #         QTimer.singleShot(1500, self.safe_autostart)
 
         if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
@@ -225,6 +227,8 @@ class NADMaps:
             parent=self.iface.mainWindow(),
         )
 
+    def ini_completed(self):
+        self.log("ini completed")
     #########################################################################################
     ####################  Run main script to initiate when NAD button is pressed ############
     #########################################################################################

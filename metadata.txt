@@ -8,7 +8,7 @@ qgisMinimumVersion=3.0
 #qgisMaximumVersion=3.99
 #supportsQt6=yes
 description=Centrale plek om handige kaarten voor waterketen en rioolbeheer te vinden en snel in te laden.
-version=0.2
+version=0.3
 author=Netwerk Waterketen Delfland
 email=dataplatform@waterketendelfland.nl
 
@@ -23,6 +23,7 @@ repository=https://github.com/NAD-Dataplatform/NADmaps
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
 # changelog=
+    0.3     (xx-xxxx) Fix stuff
     0.2     (09-2025) Add common themes, add option to turn off maxnum features, add link to wiki, improve export function, small bug fixes
 
 # Tags are comma separated with spaces allowed
@@ -31,8 +32,7 @@ tags=Nederland, PDOK, python, wfs
 homepage=https://github.com/NAD-Dataplatform/NADmaps
 category=Plugins
 icon=nad.png
-# experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
