@@ -1,13 +1,52 @@
 [
 	{
-		"name": "beheerstedelijkwater:BeheerLeiding",
-		"title": "Rioolleiding",
-		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+		"name": "gwsw:Default_Punt",
+		"title": "Maassluis: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Maassluis",
 		"creator": "Plugin",
 		"styles": [
 			{
 				"name": "GWSW met labels",
-				"file": "gwsw met labels_007dfe4d6d2b89d6590e0e5bb36c9a7f",
+				"file": "gwsw met labels_ebea16f545d5e6fb8a2ebf4e1748783c",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Lijn",
+		"title": "Den Haag: Rioolleiding",
+		"service_url": "https://geodata.gwsw.nl/DenHaag",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Leeftijd",
+				"file": "leeftijd_0d1af4a43019fa8dd03959069748296c",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Waterschap: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Gemalen",
+				"file": "gemalen_8590d3f2c9c54494e9ee6aae9a77cb41",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Lijn",
+		"title": "Waterschap: Rioolleiding",
+		"service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Persleidingen",
+				"file": "persleidingen_8b2b303ff8ff97bf30b7343a6327ead9",
 				"creator": "Plugin"
 			}
 		]
@@ -22,18 +61,28 @@
 				"name": "GWSW met labels",
 				"file": "gwsw met labels_b7fcb248acd76a5f377d350cfefd0d45",
 				"creator": "Plugin"
+			},
+			{
+				"name": "Gemalen",
+				"file": "gemalen_47e878e81bd115825fbecca546513bd2",
+				"creator": "Plugin"
 			}
 		]
 	},
 	{
-		"name": "gwsw:Default_Punt",
-		"title": "Maassluis: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Maassluis",
+		"name": "beheerstedelijkwater:BeheerLeiding",
+		"title": "Rioolleiding",
+		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
 		"creator": "Plugin",
 		"styles": [
 			{
 				"name": "GWSW met labels",
-				"file": "gwsw met labels_ebea16f545d5e6fb8a2ebf4e1748783c",
+				"file": "gwsw met labels_007dfe4d6d2b89d6590e0e5bb36c9a7f",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Persleidingen",
+				"file": "persleidingen_ce9827e653d7fa8613e16625276bb249",
 				"creator": "Plugin"
 			}
 		]
