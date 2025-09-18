@@ -193,7 +193,7 @@ class NADMaps:
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
 
-        iface.initializationCompleted.connect(self.safe_autostart)
+        self.iface.initializationCompleted.connect(self.safe_autostart)
         # if QSettings().value("NADmaps/autostart", "false") == "true":
         #     self.log("Autostart is enabled...")
         #     task_mgr = QgsApplication.taskManager()
