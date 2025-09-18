@@ -204,11 +204,10 @@ class NADMaps:
         #     if not self.autostart_triggered:
         #         # Fallback timer in case no tasks are running
         #         QTimer.singleShot(1500, self.safe_autostart)
-
-        if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
-            self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
-        else:
+        if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == False:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(0))
+        else:
+            self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
 
         # parallel rendering
         QSettings().setValue("/qgis/parallel_rendering", True)
@@ -311,9 +310,9 @@ class NADMaps:
             int(QSettings().value("NADmaps/maxNumFeatures", 5000))
         )
 
-        self.dlg.checkBox_MaxNumFeatures.setCheckState(
-            bool(QSettings().value("NADmaps/maxNumFeaturesCheck", False))
-        )
+        # self.dlg.checkBox_MaxNumFeatures.setCheckState(
+        #     bool(QSettings().value("NADmaps/maxNumFeaturesCheck", False))
+        # )
         self.dlg.checkBox_MaxNumFeatures.setTristate(False)
         self.set_maxnumfeatures_checkbox()
 
