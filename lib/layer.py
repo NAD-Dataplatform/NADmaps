@@ -220,7 +220,7 @@ class LayerManager:
 
         self.proxyModelMaps = QSortFilterProxyModel()
         self.proxyModelMaps.setSourceModel(self.mapsModel)
-        # self.proxyModelMaps.setFilterKeyColumn(1)
+        # self.proxyModelMaps.setFilterKeyColumn(0)
 
         self.dlg.activeMapListView.setModel(self.proxyModelMaps)
         self.dlg.activeMapListView.setEditTriggers(
@@ -447,7 +447,7 @@ class LayerManager:
             0, 200
         )  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
-        self.dlg.activeMapListView.sortByColumn(4, Qt.AscendingOrder)
+
 
     ############################# All web layer list #############################
 
