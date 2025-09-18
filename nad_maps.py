@@ -193,7 +193,9 @@ class NADMaps:
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
 
-        self.iface.initializationCompleted.connect(self.safe_autostart)
+        self.iface.initializationCompleted.connect(
+            lambda: self.run(hiddenDialog=True)
+        )
         # if QSettings().value("NADmaps/autostart", "false") == "true":
         #     self.log("Autostart is enabled...")
         #     task_mgr = QgsApplication.taskManager()
@@ -226,8 +228,6 @@ class NADMaps:
             parent=self.iface.mainWindow(),
         )
 
-    def ini_completed(self):
-        self.log("ini completed")
     #########################################################################################
     ####################  Run main script to initiate when NAD button is pressed ############
     #########################################################################################
