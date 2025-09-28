@@ -411,5 +411,65 @@
 				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='beheerstedelijkwater:BeheerLeiding' url='https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS' version='2.0.0'"
 			}
 		]
+	},
+	{
+		"thema_name": "CBS inwonerstatistieken",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "buurten",
+				"title": "Buurten",
+				"service_url": "https://service.pdok.nl/cbs/wijkenbuurten/2024/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Buurt aantal inwoners",
+						"name": "wijkenbuurten_thema_buurten_buurt_aantal_inwoners"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "wijkenbuurten_thema_buurten_buurt_aantal_inwoners",
+				"source": "crs=EPSG:28992&layers=buurten&styles=wijkenbuurten_thema_buurten_buurt_aantal_inwoners&format=image/png&url=https://service.pdok.nl/cbs/wijkenbuurten/2024/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "buurten",
+				"title": "Buurten",
+				"service_url": "https://service.pdok.nl/cbs/wijkenbuurten/2024/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Gemeentewijkbuurt bevolkingsdichtheid inwoners per km2",
+						"name": "wijkenbuurten_thema_buurten_gemeentewijkbuurt_bevolkingsdichtheid_inwoners_per_km2"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "wijkenbuurten_thema_buurten_gemeentewijkbuurt_bevolkingsdichtheid_inwoners_per_km2",
+				"source": "crs=EPSG:28992&layers=buurten&styles=wijkenbuurten_thema_buurten_gemeentewijkbuurt_bevolkingsdichtheid_inwoners_per_km2&format=image/png&url=https://service.pdok.nl/cbs/wijkenbuurten/2024/wms/v1_0?request=GetCapabilities&service=WMS"
+			},
+			{
+				"name": "vierkant_100m",
+				"title": "CBS Vierkantstatistieken 100m WMS",
+				"service_url": "https://service.pdok.nl/cbs/vierkantstatistieken100m/2023/wms/v1_0?request=GetCapabilities&service=WMS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "Aantal woningen",
+						"name": "cbsvierkant100m_aantal_woningen"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wms",
+				"style": "cbsvierkant100m_aantal_woningen",
+				"source": "crs=EPSG:28992&layers=vierkant_100m&styles=cbsvierkant100m_aantal_woningen&format=image/png&url=https://service.pdok.nl/cbs/vierkantstatistieken100m/2023/wms/v1_0?request=GetCapabilities&service=WMS"
+			}
+		]
 	}
 ]

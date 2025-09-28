@@ -238,17 +238,6 @@ class StyleManager:
         name = extract_name(uri, service_type, title)
         url = extract_url(uri, service_type)
 
-        # if service_type == "wms" or service_type == "wmts" or service_type == "api tiles":
-        #     return
-
-
-        # # get extra data
-        # if service_type == "wms" or service_type == "wmts":
-        #     style = extract_wms_styles(uri)
-        # elif service_type == "api tiles":
-        #     oat_style = extract_oat_style(title)
-        #     style_url = extract_oat_style_url(uri)
-
         # get the storage path
         if self.creator == "Plugin":
             json_path = self.plugin_styling_path

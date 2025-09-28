@@ -36,10 +36,9 @@ from .utility import (
 )
 
 def create_wfs_layer(layername, url, title=None):
-    maxnumfeatures = QgsSettings().value(
-            "NADmaps/maxNumFeatures", 5000, type=int
-        )
-    if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
+    maxnumfeatures = QgsSettings().value( "NADmaps/maxNumFeatures", 5000, type=int )
+
+    if QSettings().value("NADmaps/maxNumFeaturesCheck", False, type=bool) == True:
         uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0' maxNumFeatures='{maxnumfeatures}'"
     else:
         uri = f" pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='{layername}' url='{url}' version='2.0.0'"
@@ -75,10 +74,9 @@ def create_wcs_layer(layername, url, title=None):
     return QgsRasterLayer(uri, title, "wcs")
 
 def create_oaf_layer(layername, url, title=None):
-    maxnumfeatures = QgsSettings().value(
-            "NADmaps/maxNumFeatures", 5000, type=int
-        )
-    if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == True:
+    maxnumfeatures = QgsSettings().value( "NADmaps/maxNumFeatures", 5000, type=int )
+    
+    if QSettings().value("NADmaps/maxNumFeaturesCheck", False, type=bool) == True:
         uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}' maxNumFeatures='{maxnumfeatures + 1}'"
     else:
         uri = f" pagingEnabled='true' pageSize='100' restrictToRequestBBOX='1' preferCoordinatesForWfsT11='false' typename='{layername}' url='{url}'"

@@ -1,11 +1,14 @@
 import os
 from .constants import PLACEMENT_OPTIONS
 
+
+from qgis.core import QgsTextFormat
 from qgis.core import (
     QgsProject, QgsLayout, QgsLayoutExporter, QgsLayoutItemMap,
     QgsLayoutItemLegend, QgsLayoutItemScaleBar, QgsLayoutItemPicture,
     QgsLayoutSize, QgsLayoutPoint, QgsUnitTypes, QgsLayoutItemLabel, QgsLegendSettings
 )
+from qgis.PyQt.QtCore import Qt
 from PyQt5.QtCore import QSizeF
 from PyQt5.QtGui import QColor, QFont
 
@@ -165,12 +168,17 @@ class ExportManager:
     def _add_title(self, layout, title_text, y_offset, font_size=20):
         title = QgsLayoutItemLabel(layout)
         title.setText(title_text)
-        title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning
+        # title.setFont(QFont("Arial", font_size)) #TODO: Python deprecation warning -> setTextFormat since 3.24
+        format = QgsTextFormat()
+        format.setFont(QFont("Arial"))
+        format.setSize(font_size)
+        title.setTextFormat(format)
+        title.setHAlign(Qt.AlignmentFlag.AlignHCenter)
         title.adjustSizeToText()  # To set reference point correctly
 
         title_width = title.sizeWithUnits().width()
         title_height = title.sizeWithUnits().height()
-        title.setFixedSize(QgsLayoutSize(title_width+1, title_height, QgsUnitTypes.LayoutMillimeters))
+        title.setFixedSize(QgsLayoutSize(title_width+10, title_height, QgsUnitTypes.LayoutMillimeters))
 
         title.setBackgroundEnabled(True)
         title.setBackgroundColor(QColor(255, 255, 255, 230)) # White with 10% transparency
@@ -183,7 +191,6 @@ class ExportManager:
         title.attemptMove(QgsLayoutPoint(x_center, y_offset, QgsUnitTypes.LayoutMillimeters), True)
 
         layout.addLayoutItem(title)
-
 
     def _add_north_arrow(self, layout, x, y, reference_point, size_mm):       
         # Path to SVG file relative to lib folder
@@ -288,7 +295,6 @@ class ExportManager:
             self._set_layer_names_to_original()
 
         return result == QgsLayoutExporter.Success
-    
 
     def _set_layer_names_to_original(self):
         layers = self.project.mapLayers()
