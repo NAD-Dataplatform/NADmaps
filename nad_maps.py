@@ -192,21 +192,25 @@ class NADMaps:
 
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
+        self.autostart = QSettings().value("NADmaps/autostart", False, type=bool)
+        self.log(f"Autostart value is {self.autostart} type is {type(self.autostart)}")
 
-        self.iface.initializationCompleted.connect(
-            lambda: self.run(hiddenDialog=True)
-        )
+        if self.autostart == True:
+            self.log("self.autostart == True")
+            self.iface.initializationCompleted.connect(
+                lambda: self.run(hiddenDialog=True)
+            )
+
         # if QSettings().value("NADmaps/autostart", "false") == "true":
         #     self.log("Autostart is enabled...")
         #     task_mgr = QgsApplication.taskManager()
-        #     # iface.initializationCompleted.connect(self.safe_autostart)
         #     task_mgr.allTasksFinished.connect(self.safe_autostart)
         #     # ^ In case a task is already running, this will trigger the autostart
 
         #     if not self.autostart_triggered:
         #         # Fallback timer in case no tasks are running
         #         QTimer.singleShot(1500, self.safe_autostart)
-        if QSettings().value("NADmaps/maxNumFeaturesCheck", False) == False:
+        if QSettings().value("NADmaps/maxNumFeaturesCheck", False, type=bool) == False:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(0))
         else:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
@@ -290,8 +294,9 @@ class NADMaps:
 
         # init autostart checkbox
         self.dlg.checkBox_AutoStart.setChecked(
-            QSettings().value("NADmaps/autostart", "false") == "true"
+            QSettings().value("NADmaps/autostart", False, type=bool) == True
         )
+            # QSettings().value("NADmaps/autostart", "false") == "true"
 
         # init standard area
         self.dlg.lineEdit_StandardArea.setText(
@@ -300,6 +305,7 @@ class NADMaps:
 
         # init autoload standard area checkbox
         checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
+        self.log(f"auto zoom to standard area is checked: {checked} of type: {type(checked)}")
         self.dlg.checkBox_StandardArea.setChecked(checked)
         if not checked:  # if unchecked, zoom is not required during this session
             self.log("zoom_completed is set to True", 0)
@@ -310,9 +316,7 @@ class NADMaps:
             int(QSettings().value("NADmaps/maxNumFeatures", 5000))
         )
 
-        # self.dlg.checkBox_MaxNumFeatures.setCheckState(
-        #     bool(QSettings().value("NADmaps/maxNumFeaturesCheck", False))
-        # )
+        # This property holds whether the checkbox is a tri-state checkbox. False means the checkbox has only two states
         self.dlg.checkBox_MaxNumFeatures.setTristate(False)
         self.set_maxnumfeatures_checkbox()
 
@@ -330,7 +334,7 @@ class NADMaps:
     # Check if zoom should be executed
     def check_zoom_required(self):
         # Load settingsinfo
-        zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False)
+        zoom_checkbox = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
         standard_area = QSettings().value("NADmaps/standard_area", "")
         # Load layer info
         # TODO: variabele 'active_layers' opnemen in __init__ en updaten na layer change/ render complete
@@ -359,50 +363,27 @@ class NADMaps:
         This does a setup of all the button interactions.
         """
         # Click functions
-        self.dlg.helpButton.clicked.connect(
-            lambda: self.open_wiki()
-        )
-        self.dlg.loadStyleButton.clicked.connect(
-            lambda: self.style_manager.load_styling()
-        )
-        self.dlg.loadStyleButton.clicked.connect(
-            lambda: self.layer_manager.update_active_layers_list()
-        )
-        self.dlg.removeStyleButton.clicked.connect(
-            lambda: self.style_manager.delete_styling()
-        )
-        self.dlg.removeStyleButton.clicked.connect(
-            lambda: self.layer_manager.update_active_layers_list()
-        )
-        self.dlg.saveStyleButton.clicked.connect(
-            lambda: self.style_manager.save_styling(self.selected_layer)
-        )
-        self.dlg.saveStyleButton.clicked.connect(
-            lambda: self.layer_manager.update_active_layers_list()
-        )
+        self.dlg.helpButton.clicked.connect(            lambda: self.open_wiki() )
+
+        # Active layer tab
+        self.dlg.loadStyleButton.clicked.connect(       lambda: self.style_manager.load_styling() )
+        self.dlg.loadStyleButton.clicked.connect(       lambda: self.layer_manager.update_active_layers_list() )
+        self.dlg.removeStyleButton.clicked.connect(     lambda: self.style_manager.delete_styling() )
+        self.dlg.removeStyleButton.clicked.connect(     lambda: self.layer_manager.update_active_layers_list() )
+        self.dlg.saveStyleButton.clicked.connect(       lambda: self.style_manager.save_styling(self.selected_layer) )
+        self.dlg.saveStyleButton.clicked.connect(       lambda: self.layer_manager.update_active_layers_list() )
 
         self.dlg.saveThemaButton.setEnabled(False)
         self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
-        self.dlg.saveThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(False, self.selected_active_layers)
-        )
-        self.dlg.saveAllThemaButton.clicked.connect(
-            lambda: self.thema_manager.save_thema(True, self.selected_active_layers)
-        )
+        self.dlg.saveThemaButton.clicked.connect(       lambda: self.thema_manager.save_thema(False, self.selected_active_layers) )
+        self.dlg.saveAllThemaButton.clicked.connect(    lambda: self.thema_manager.save_thema(True, self.selected_active_layers) )
 
-        self.dlg.pluginThemaCheckBox.clicked.connect(
-            lambda: self.thema_manager.filter_thema_list()
-        )
-        self.dlg.userThemaCheckBox.clicked.connect(
-            lambda: self.thema_manager.filter_thema_list()
-        )
-        self.dlg.favoriteThemaCheckBox.clicked.connect(
-            lambda: self.thema_manager.filter_thema_list()
-        )
+        # Themaset tab
+        self.dlg.pluginThemaCheckBox.clicked.connect(   lambda: self.thema_manager.filter_thema_list() )
+        self.dlg.userThemaCheckBox.clicked.connect(     lambda: self.thema_manager.filter_thema_list() )
+        self.dlg.favoriteThemaCheckBox.clicked.connect( lambda: self.thema_manager.filter_thema_list() )
 
-        self.dlg.deleteThemaButton.clicked.connect(
-            lambda: self.thema_manager.delete_thema()
-        )
+        self.dlg.deleteThemaButton.clicked.connect(     lambda: self.thema_manager.delete_thema() )
 
         # Setting interactions
         self.dlg.set_working_dir.clicked.connect(
@@ -415,44 +396,25 @@ class NADMaps:
         self.dlg.checkBox_AutoStart.stateChanged.connect(
             lambda: QSettings().setValue(
                 "NADmaps/autostart",
-                "true" if self.dlg.checkBox_AutoStart.isChecked() else "false",
+                True if self.dlg.checkBox_AutoStart.isChecked() else False,
             )
         )
-
-        # Save button for standard work area
-        self.dlg.pushButton_SaveStandardArea.clicked.connect(
-            lambda: self.set_standard_area()
-        )
-
-        # Save checkbox for autoload standard work area
-        self.dlg.checkBox_StandardArea.stateChanged.connect(
-            lambda: self.set_autoload_checkbox()
-        )
-        # maxNumFeatures spinbox
-        self.dlg.checkBox_MaxNumFeatures.clicked.connect(
-            lambda: self.set_maxnumfeatures_checkbox()
-        )
-        self.dlg.spinBox_MaxNumFeatures.valueChanged.connect(
-            lambda: self.set_maxnumfeatures()
-        )
+        self.dlg.pushButton_SaveStandardArea.clicked.connect( lambda: self.set_standard_area() ) # Save button for standard work area
+        self.dlg.checkBox_StandardArea.stateChanged.connect(  lambda: self.set_autoload_checkbox() ) # Save checkbox for autoload standard work area
+        self.dlg.checkBox_MaxNumFeatures.clicked.connect(     lambda: self.set_maxnumfeatures_checkbox() ) # maxNumFeatures spinbox
+        self.dlg.spinBox_MaxNumFeatures.valueChanged.connect( lambda: self.set_maxnumfeatures() )
 
         # Export_tab interactions
         self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
-        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect(
-            self.on_paper_format_changed
-        )
-        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect(
-            self.on_file_format_changed
-        )
-        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect(
-            self.on_print_quality_changed
-        )
-        self.dlg.checkBox_Noordpijl.stateChanged.connect(self.on_north_checkbox_changed)
+        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect( self.on_paper_format_changed )
+        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect( self.on_file_format_changed )
+        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect( self.on_print_quality_changed )
+
+        self.dlg.checkBox_Noordpijl.stateChanged.connect(  lambda: self.on_north_checkbox_changed() )
         self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
-        self.dlg.checkBox_Schaalbalk.stateChanged.connect(
-            self.on_scale_checkbox_changed
-        )
+        self.dlg.checkBox_Schaalbalk.stateChanged.connect( self.on_scale_checkbox_changed )
         self.dlg.checkBox_Titel.stateChanged.connect(self.on_titel_checkbox_changed)
+
         self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
 
         self.dlg.stylingGroupBox.setEnabled(False)
@@ -558,6 +520,21 @@ class NADMaps:
         for action in self.actions:
             self.iface.removePluginMenu(self.tr("&NAD Waterketen Kaarten"), action)
             self.iface.removeToolBarIcon(action)
+
+    def set_maxnumfeatures(self):
+        maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
+        QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
+
+    def set_maxnumfeatures_checkbox(self):
+        use_maxnumfeatures = self.dlg.checkBox_MaxNumFeatures.isChecked()
+        QSettings().setValue("NADmaps/maxNumFeaturesCheck", use_maxnumfeatures)
+
+        if use_maxnumfeatures:
+            self.dlg.label_MaxNumFeatures.setEnabled(True)
+            self.dlg.spinBox_MaxNumFeatures.setEnabled(True)
+        else:
+            self.dlg.label_MaxNumFeatures.setEnabled(False)
+            self.dlg.spinBox_MaxNumFeatures.setEnabled(False)
 
     # General add_action function to add action-buttons to the QGIS toolbar
     def add_action(
@@ -869,21 +846,6 @@ class NADMaps:
     def check_map_name(self):
         map_name = self.dlg.lineEdit_FileName.text()
         self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
-
-    def set_maxnumfeatures(self):
-        maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()
-        QSettings().setValue("NADmaps/maxNumFeatures", maxnumfeatures)
-
-    def set_maxnumfeatures_checkbox(self):
-        use_maxnumfeatures = self.dlg.checkBox_MaxNumFeatures.isChecked()
-        QSettings().setValue("NADmaps/maxNumFeaturesCheck", use_maxnumfeatures)
-
-        if use_maxnumfeatures:
-            self.dlg.label_MaxNumFeatures.setEnabled(True)
-            self.dlg.spinBox_MaxNumFeatures.setEnabled(True)
-        else:
-            self.dlg.label_MaxNumFeatures.setEnabled(False)
-            self.dlg.spinBox_MaxNumFeatures.setEnabled(False)
 
     def export_map_button_pressed(self):
         if not os.path.exists(self.working_dir):
