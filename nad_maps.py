@@ -813,7 +813,7 @@ class NADMaps:
             self.dlg.comboBox_NoordpijlPlacement.setVisible(True)
             self.dlg.comboBox_NoordpijlPlacement.setEnabled(True)
             self.dlg.comboBox_NoordpijlPlacement.setFocus()
-            self.dlg.comboBox_NoordpijlPlacement.setCurrentText("Rechtsboven")
+            self.dlg.comboBox_NoordpijlPlacement.setCurrentText("Linksboven")
         else:
             self.dlg.comboBox_NoordpijlPlacement.setVisible(False)
 
@@ -822,7 +822,7 @@ class NADMaps:
             self.dlg.comboBox_LegendaPlacement.setVisible(True)
             self.dlg.comboBox_LegendaPlacement.setEnabled(True)
             self.dlg.comboBox_LegendaPlacement.setFocus()
-            self.dlg.comboBox_LegendaPlacement.setCurrentText("Linksboven")
+            self.dlg.comboBox_LegendaPlacement.setCurrentText("Rechtsonder")
         else:
             self.dlg.comboBox_LegendaPlacement.setVisible(False)
 
@@ -831,7 +831,7 @@ class NADMaps:
             self.dlg.comboBox_SchaalbalkPlacement.setVisible(True)
             self.dlg.comboBox_SchaalbalkPlacement.setEnabled(True)
             self.dlg.comboBox_SchaalbalkPlacement.setFocus()
-            self.dlg.comboBox_SchaalbalkPlacement.setCurrentText("Rechtsonder")
+            self.dlg.comboBox_SchaalbalkPlacement.setCurrentText("Linksonder")
         else:
             self.dlg.comboBox_SchaalbalkPlacement.setVisible(False)
 
