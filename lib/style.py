@@ -308,6 +308,84 @@ class StyleManager:
         # self.update_active_layers_list()
         self.update_styling_list()
 
+    def delete_styling(self):
+        """Delete an existing style (only user-defined styles should be deleted)."""
+        if self.creator == "Plugin":
+            json_path = self.plugin_styling_path
+            qml_folder = self.plugin_styling_files_path
+        else:
+            json_path = self.user_styling_path
+            qml_folder = self.user_styling_files_path
+
+        # Find the style name to be deleted
+        style_name = self.dlg.stylingComboBox.currentText()
+        if "|" in style_name:
+            style_name = style_name.split("|")[0].strip()
+        data = self.dlg.stylingComboBox.currentData()
+        current_style = data.customProperty("layerStyle", "")
+
+        if data is None:
+            self.log("No layer selected for deleting the style.")
+            return
+
+        uri = data.source()
+        title = data.name()
+        style_code = get_style_code(style_name, uri, title)
+
+        service_type = extract_service_type(uri, data.providerType())
+        url = extract_url(uri, service_type)
+
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                jsondata = json.load(f)
+        except Exception as e:
+            self.log(f"Failed to read JSON file: {e}")
+            return
+
+        new_jsondata = []
+        current_layer = None
+
+        for layer in jsondata:
+            if layer["service_url"] == url:
+                current_layer = layer
+            else:
+                new_jsondata.append(layer)
+
+        if current_layer is None or "styles" not in current_layer:
+            self.log("No matching layer or styles found in the JSON file.")
+            return
+
+        existing_styles = current_layer["styles"]
+        # Preserve other style options if they exist
+        styles = [obj for obj in existing_styles if obj["file"] != style_code]
+
+        if styles:
+            current_layer["styles"] = styles
+            new_jsondata.append(current_layer)
+
+        try:
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(new_jsondata, f, indent=4)
+        except Exception as e:
+            self.log(f"Failed to write to JSON file: {e}")
+            return
+
+        # Delete the QML file
+        file_path = os.path.join(qml_folder, f"{style_code}.qml")
+        if os.path.exists(file_path):
+            try:
+                os.remove(file_path)
+                self.log(f"Deleted QML file: {file_path}")
+            except Exception as e:
+                self.log(f"Failed to delete QML file: {e}")
+        else:
+            self.log(f"QML file not found: {file_path}")
+
+        self.update_styling_list()
+        if style_name == current_style:
+            data.setCustomProperty( "layerStyle", "" )
+        # self.update_active_layers_list()
+
     def update_styling_list(self):
         """Update the dropdown menu with saved styling options"""
         self.dlg.stylingComboBox.clear()
@@ -371,6 +449,7 @@ class StyleManager:
                 layer_style_list = self.get_layer_style_list()
                 for layer in layer_style_list:
                     if url == layer["service_url"] and name == layer["name"]:
+                        # self.log(f"Update style list, layer is {layer["name"]} and url is {layer["service_url"]}")
                         styles = layer["styles"]
                         for style in styles:
                             if style["creator"].lower() != "plugin":
@@ -382,77 +461,3 @@ class StyleManager:
 
             # in all cases add the style name to the layer properties
             data.setCustomProperty( "layerStyle", display_name )
-
-    def delete_styling(self):
-        """Delete an existing style (only user-defined styles should be deleted)."""
-        if self.creator == "Plugin":
-            json_path = self.plugin_styling_path
-            qml_folder = self.plugin_styling_files_path
-        else:
-            json_path = self.user_styling_path
-            qml_folder = self.user_styling_files_path
-
-        # Find the style name to be deleted
-        style_name = self.dlg.stylingComboBox.currentText()
-        if "|" in style_name:
-            style_name = style_name.split("|")[0].strip()
-        data = self.dlg.stylingComboBox.currentData()
-        current_style = data.customProperty("layerStyle", "")
-
-        if data is None:
-            self.log("No layer selected for deleting the style.")
-            return
-
-        source = data.source()
-        style_code = get_style_code(style_name, source)
-
-        try:
-            with open(json_path, "r", encoding="utf-8") as f:
-                jsondata = json.load(f)
-        except Exception as e:
-            self.log(f"Failed to read JSON file: {e}")
-            return
-
-        new_jsondata = []
-        current_layer = None
-
-        for layer in jsondata:
-            if layer["source"] == source:
-                current_layer = layer
-            else:
-                new_jsondata.append(layer)
-
-        if current_layer is None or "styles" not in current_layer:
-            self.log("No matching layer or styles found in the JSON file.")
-            return
-
-        existing_styles = current_layer["styles"]
-        # Preserve other style options if they exist
-        styles = [obj for obj in existing_styles if obj["file"] != style_code]
-
-        if styles:
-            current_layer["styles"] = styles
-            new_jsondata.append(current_layer)
-
-        try:
-            with open(json_path, "w", encoding="utf-8") as f:
-                json.dump(new_jsondata, f, indent=4)
-        except Exception as e:
-            self.log(f"Failed to write to JSON file: {e}")
-            return
-
-        # Delete the QML file
-        file_path = os.path.join(qml_folder, f"{style_code}.qml")
-        if os.path.exists(file_path):
-            try:
-                os.remove(file_path)
-                self.log(f"Deleted QML file: {file_path}")
-            except Exception as e:
-                self.log(f"Failed to delete QML file: {e}")
-        else:
-            self.log(f"QML file not found: {file_path}")
-
-        self.update_styling_list()
-        if style_name == current_style:
-            data.setCustomProperty( "layerStyle", "" )
-        # self.update_active_layers_list()

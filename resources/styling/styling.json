@@ -1,18 +1,5 @@
 [
 	{
-		"name": "gwsw:Default_Punt",
-		"title": "Maassluis: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Maassluis",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_ebea16f545d5e6fb8a2ebf4e1748783c",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
 		"name": "gwsw:Default_Lijn",
 		"title": "Den Haag: Rioolleiding",
 		"service_url": "https://geodata.gwsw.nl/DenHaag",
@@ -52,19 +39,170 @@
 		]
 	},
 	{
-		"name": "beheerstedelijkwater:BeheerPut",
-		"title": "Rioolput",
-		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+		"name": "gwsw:Default_Punt",
+		"title": "Maassluis: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Maassluis",
 		"creator": "Plugin",
 		"styles": [
 			{
 				"name": "GWSW met labels",
-				"file": "gwsw met labels_b7fcb248acd76a5f377d350cfefd0d45",
+				"file": "gwsw met labels_6e22db3c65e4976f37d61d42067e5023",
 				"creator": "Plugin"
-			},
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Delft: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Delft",
+		"creator": "Plugin",
+		"styles": [
 			{
-				"name": "Gemalen",
-				"file": "gemalen_47e878e81bd115825fbecca546513bd2",
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_52d41e6b0fb4401099d20c3eaa651e9a",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Den Haag: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/DenHaag",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_6de0753285f3ff533722178d9505708c",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Lansingerland: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Lansingerland",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_c8145c86a0389ce781f2373747167c40",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Leidschendam-Voorburg: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Leidschendam",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_3ef788c91ee40a535efab49a61d38635",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Pijnacker-Nootdorp: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Pijnacker",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_145a9c19595b70d88503fccf1f8a875f",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Rijswijk: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Rijswijk",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_16d0f1bd29c175448e0ec4495ac62674",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Schiedam: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Schiedam",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_282ff9053591f70f109fde17bb626cdf",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Vlaardingen: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Vlaardingen",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_d1586a3b728cf7d3b71ea52b9f96e0d7",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Westland: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Westland",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_f2347d475c1e319ac5422174babbe4e6",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Zoetermeer: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Zoetermeer",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_93b56f54aa2f78a8a717304d2ee19a61",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Lijn",
+		"title": "Midden-Delfland: Rioolleiding",
+		"service_url": "https://geodata.gwsw.nl/Middendelfland",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_22d8a3a0f7bb040945b1fa4d5b3fe317",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "gwsw:Default_Punt",
+		"title": "Midden-Delfland: Rioolput",
+		"service_url": "https://geodata.gwsw.nl/Middendelfland",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_3d2d13b913e1317f980ed2a9ef012573",
 				"creator": "Plugin"
 			}
 		]
@@ -76,13 +214,26 @@
 		"creator": "Plugin",
 		"styles": [
 			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_007dfe4d6d2b89d6590e0e5bb36c9a7f",
+				"name": "Persleidingen",
+				"file": "persleidingen_ce9827e653d7fa8613e16625276bb249",
 				"creator": "Plugin"
 			},
 			{
-				"name": "Persleidingen",
-				"file": "persleidingen_ce9827e653d7fa8613e16625276bb249",
+				"name": "GWSW met labels",
+				"file": "gwsw met labels_ce9827e653d7fa8613e16625276bb249",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "beheerstedelijkwater:BeheerPut",
+		"title": "Rioolput",
+		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Gemalen",
+				"file": "gemalen_47e878e81bd115825fbecca546513bd2",
 				"creator": "Plugin"
 			}
 		]
