@@ -449,7 +449,7 @@ class StyleManager:
                 layer_style_list = self.get_layer_style_list()
                 for layer in layer_style_list:
                     if url == layer["service_url"] and name == layer["name"]:
-                        self.log(f"Update style list, layer is {layer["name"]} and url is {layer["service_url"]}")
+                        # self.log(f"Update style list, layer is {layer["name"]} and url is {layer["service_url"]}")
                         styles = layer["styles"]
                         for style in styles:
                             if style["creator"].lower() != "plugin":
