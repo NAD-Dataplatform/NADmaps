@@ -237,5 +237,67 @@
 				"creator": "Plugin"
 			}
 		]
+	},
+	{
+		"name": "restwarmte:liggingindustrieco2",
+		"title": "Ligging industrie en CO2",
+		"service_url": "https://service.pdok.nl/rvo/restwarmte/wfs/v1_0?request=GetCapabilities&service=WFS",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Doelgroep",
+				"file": "doelgroep_381aadb81af758186f7660cedd18a720",
+				"creator": "Plugin"
+			},
+			{
+				"name": "Bedrijfsnaam",
+				"file": "bedrijfsnaam_381aadb81af758186f7660cedd18a720",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "landelijk_gebied:STIKSTOF_EMISSIES",
+		"title": "Stikstof emissies 2022",
+		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "NOx totaal emissie kg j km2",
+				"file": "nox totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
+				"creator": "Plugin"
+			},
+			{
+				"name": "NH3 totaal emissie kg j km2",
+				"file": "nh3 totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "landelijk_gebied:GROENBLAUWE_DOORADERING_VLAK",
+		"title": "Groen Blauwe Dooradering (GBDA) - vlak",
+		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Categorie Provincie",
+				"file": "categorie provincie_a11ab1445fcbd183f68af6581163575d",
+				"creator": "Plugin"
+			}
+		]
+	},
+	{
+		"name": "landelijk_gebied:GROENBLAUWE_RUIMTE",
+		"title": "Groenblauwe ruimte landelijk gebied",
+		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+		"creator": "Plugin",
+		"styles": [
+			{
+				"name": "Hoofdgroep",
+				"file": "hoofdgroep_63a914685382ffaa1080d063f2862927",
+				"creator": "Plugin"
+			}
+		]
 	}
 ]

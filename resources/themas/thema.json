@@ -560,5 +560,163 @@
 				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
 			}
 		]
+	},
+	{
+		"thema_name": "Rioolstelsel Maasluis",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "Geo_Maassluis_default \u2014 default_punt_deel",
+				"title": "Geo_Maassluis_default \u2014 default_punt_deel",
+				"service_url": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_punt_deel",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "ogr",
+				"style": "",
+				"source": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_punt_deel"
+			},
+			{
+				"name": "Geo_Maassluis_default \u2014 default_punt",
+				"title": "Geo_Maassluis_default \u2014 default_punt",
+				"service_url": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_punt",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "ogr",
+				"style": "",
+				"source": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_punt"
+			},
+			{
+				"name": "Geo_Maassluis_default \u2014 default_lijn_deel",
+				"title": "Geo_Maassluis_default \u2014 default_lijn_deel",
+				"service_url": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_lijn_deel",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "ogr",
+				"style": "",
+				"source": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_lijn_deel"
+			},
+			{
+				"name": "Geo_Maassluis_default \u2014 default_lijn",
+				"title": "Geo_Maassluis_default \u2014 default_lijn",
+				"service_url": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_lijn",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "ogr",
+				"style": "",
+				"source": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_lijn"
+			},
+			{
+				"name": "Geo_Maassluis_default \u2014 default_buitengrens",
+				"title": "Geo_Maassluis_default \u2014 default_buitengrens",
+				"service_url": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_buitengrens",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "ogr",
+				"style": "",
+				"source": "C:/Users/svanderhoeven/Downloads/Geo_Maassluis_default.gpkg|layername=default_buitengrens"
+			},
+			{
+				"name": "pastel",
+				"title": "Achtergrondkaart",
+				"service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "",
+						"name": "default"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wmts",
+				"style": "default",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=pastel&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
+			}
+		]
+	},
+	{
+		"thema_name": "Emissies",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "landelijk_gebied:STIKSTOF_EMISSIES",
+				"title": "Stikstof emissies 2022",
+				"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "NH3 totaal emissie kg j km2",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='landelijk_gebied:STIKSTOF_EMISSIES' url='https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities' version='2.0.0'"
+			},
+			{
+				"name": "grijs",
+				"title": "grijs",
+				"service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+				"tilematrixsets": "EPSG:28992",
+				"crs": "EPSG:28992",
+				"imgformats": "image/png",
+				"styles": [
+					{
+						"title": "",
+						"name": "default"
+					}
+				],
+				"layer_type": "Raster",
+				"service_type": "wmts",
+				"style": "default",
+				"source": "crs=EPSG:28992&tileMatrixSet=EPSG:28992&layers=grijs&styles=default&format=image/png&url=https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request%3DGetCapabilities%26service%3DWMTS"
+			}
+		]
+	},
+	{
+		"thema_name": "Groenblauw gebied",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "landelijk_gebied:GROENBLAUWE_DOORADERING_VLAK",
+				"title": "Groen Blauwe Dooradering (GBDA) - vlak",
+				"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Categorie Provincie",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='landelijk_gebied:GROENBLAUWE_DOORADERING_VLAK' url='https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities' version='2.0.0'"
+			},
+			{
+				"name": "landelijk_gebied:GROENBLAUWE_RUIMTE",
+				"title": "Groenblauwe ruimte landelijk gebied",
+				"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Hoofdgroep",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='landelijk_gebied:GROENBLAUWE_RUIMTE' url='https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities' version='2.0.0'"
+			}
+		]
 	}
 ]

@@ -456,7 +456,8 @@ class LayerManager:
             "layers-nad.json",  # eigen kaartlagen
             "layers-delfland.json",  # eigen kaartlagen, https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities
             "layers-gwsw.json",  # gwsw
-            "layers-pzh.json",  # provincie zuid-holland
+            "layers-pzh-wfs.json",  # provincie zuid-holland
+            "layers-pzh-wms.json",  # provincie zuid-holland
             "layers-klimaatatlas.json",  # klimaatatlas
             "layers-pdok.json",  # pdok
         ]
