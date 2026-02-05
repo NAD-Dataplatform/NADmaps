@@ -62,7 +62,8 @@ from .lib.style import StyleManager
 from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
-from .lib.ingest import IngestLayersManager
+# from .lib.ingest import IngestLayersManager
+from .lib.ingest_v2 import IngestLayersManager
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
