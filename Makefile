@@ -25,7 +25,8 @@
 
 PLUGINNAME = nad_maps
 
-QGISDIR=C:\Users\svanderhoeven\AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins
+# QGISDIR=C:\Users\<user>\AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins
+PLUGINDIR = $(CURDIR)
 
 #################################################
 # Normally you would not need to edit below here
@@ -38,8 +39,8 @@ clean:
 	@echo "-----------------------------------"
 	@echo "Cleaning"
 	@echo "-----------------------------------"
-	find $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME) -iname "*.pyc" -delete
-	find $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME) -iname ".git" -prune -exec rm -Rf {} \;
+	find $(PLUGINDIR) -iname "*.pyc" -delete
+	find $(PLUGINDIR) -iname ".git" -prune -exec rm -Rf {} \;
 
 zip: clean
 	@echo
@@ -49,7 +50,9 @@ zip: clean
 	# The zip target deploys the plugin and creates a zip file with the deployed
 	# content. You can then upload the zip file on http://plugins.qgis.org
 	rm -f $(PLUGINNAME).zip
-	cd $(HOME)/$(QGISDIR)/python/plugins; zip -9r $(CURDIR)/$(PLUGINNAME).zip $(PLUGINNAME)
+	cd $(PLUGINDIR)
+	cd ../ 
+	zip -9r $(PLUGINDIR)/$(PLUGINNAME).zip $(PLUGINNAME)
 
 
 upload: zip
