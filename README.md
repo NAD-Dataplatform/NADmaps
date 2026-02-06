@@ -32,10 +32,7 @@ Deze repository bevat een plugin voor gebruik in QGIS. Doel van de plugin is om 
 
 ## 🤖 Installatie
 
-Op dit moment is de plugin niet beschikbaar via de ingebouwde plugin manager van QGIS. Om de plugin te installeren kan je de volgende stappen zetten:
-- Download deze repository op github via Code > Download ZIP
-- Open QGIS en ga naar de plugin manager
-- Kies 'Installeren vanuit ZIP' en selecteer het zip-bestand
+De plugin is beschikbaar via de plugin-manager van QGIS. De uitleg over installatie is hier te vinden: [github.com/NAD-Dataplatform/NADmaps/wiki](https://github.com/NAD-Dataplatform/NADmaps/wiki/1.-Installatie)
 
 --- 
 
@@ -48,7 +45,7 @@ Op dit moment is de plugin niet beschikbaar via de ingebouwde plugin manager van
 
 ## 🌐 Links
 
-- **GitHub Repo:** [github.com/Siebrand-HHD/NADmaps](https://github.com/Siebrand-HHD/NADmaps)
+- **GitHub Repo:** [github.com/NAD-Dataplatform/NADmaps](https://github.com/NAD-Dataplatform/NADmaps)
 - **Website:** [www.waterketendelfland.nl](https://www.waterketendelfland.nl/default.aspx)
 
 ---
