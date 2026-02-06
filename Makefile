@@ -25,7 +25,7 @@
 
 PLUGINNAME = nad_maps
 
-# QGISDIR=C:\Users\svanderhoeven\AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins
+# QGISDIR=C:\Users\<user>\AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins
 PLUGINDIR = $(CURDIR)
 
 #################################################
