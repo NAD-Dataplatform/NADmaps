@@ -62,8 +62,8 @@ from .lib.style import StyleManager
 from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
-# from .lib.ingest import IngestLayersManager
-from .lib.ingest_v2 import IngestLayersManager
+from .lib.ingest import IngestLayersManager
+# from .lib.ingest_v2 import IngestLayersManager
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -428,7 +428,7 @@ class NADMaps:
         # Activate to log performance by tracking load times of the canvas
         # self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
         # self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
-        self.dlg.pushButtonGetLayers.clicked.connect(self.ingest_manager.get_layer_list)
+        self.dlg.pushButtonGetLayers.clicked.connect(self.ingest_manager.get_layers)
 
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 

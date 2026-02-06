@@ -450,20 +450,24 @@ class LayerManager:
     ############################# All web layer list #############################
 
     def load_layer_list(self):
-        layer_list = []
-        # add a new json file with layer description to the resources/layers folder
-        self.layer_files = [
-            "layers-nad.json",  # eigen kaartlagen
-            "layers-delfland.json",  # eigen kaartlagen, https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities
-            "layers-gwsw.json",  # gwsw
-            "layers-pzh-wfs.json",  # provincie zuid-holland
-            "layers-pzh-wms.json",  # provincie zuid-holland
-            "layers-klimaatatlas.json",  # klimaatatlas
-            "layers-pdok.json",  # pdok
-        ]
+        file_path = os.path.join(self.plugin_dir, "resources", "layers")
 
+        self.layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
+
+        # add a new json file with layer description to the resources/layers folder
+        # self.layer_files = [
+        #     "layers-nad.json",  # eigen kaartlagen
+        #     "layers-delfland.json",  # eigen kaartlagen, https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities
+        #     "layers-gwsw.json",  # gwsw
+        #     "layers-pzh-wfs.json",  # provincie zuid-holland
+        #     "layers-pzh-wms.json",  # provincie zuid-holland
+        #     "layers-klimaatatlas.json",  # klimaatatlas
+        #     "layers-pdok.json",  # pdok
+        # ]
+
+        layer_list = []
         for file in self.layer_files:
-            layer_path = os.path.join(self.plugin_dir, "resources", "layers", file)
+            layer_path = os.path.join(file_path, file)
             with open(layer_path, "r", encoding="utf-8") as f:
                 layer_list.extend(json.load(f))
 

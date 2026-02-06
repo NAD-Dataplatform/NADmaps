@@ -6,7 +6,8 @@
 # handmatig (achtergrondkaarten) 
 # CSW voor pdok & provincie zuidholland 
 
-# in lijst inklapbare categorieen 
+# in lijst inklapbare categorieen
+import certifi
 
 import json 
 import os.path 
@@ -15,79 +16,79 @@ import re
 
 import requests 
 from owslib.csw import CatalogueServiceWeb  # type: ignore 
-# from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post 
-# from owslib.wms import WebMapService 
-# from owslib.wfs import WebFeatureService 
+# from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post
 from owslib.wfs import WebFeatureService 
-from owslib.wms import WebMapService 
+from owslib.wms import WebMapService
+from owslib.util import Authentication
 
 from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl 
 import urllib.request, urllib.parse, urllib.error 
-# import urllib2, 
 import xml.etree.ElementTree as ET 
 from .constants import PLUGIN_NAME 
 from qgis.PyQt.QtNetwork import QNetworkRequest 
 from qgis.PyQt.QtCore import QUrl 
-from qgis.core import QgsNetworkAccessManager 
+from qgis.core import QgsNetworkAccessManager
 
 from qgis.PyQt.QtCore import Qt 
 from qgis.core import Qgis 
 
 class IngestLayersManager(): 
-    def __init__(self, dlg, iface, plugin_dir, log): 
+    def __init__(self, dlg, iface, plugin_dir, log):
 
-        assert dlg is not None, "LayerManager: dlg is None" 
-        assert iface is not None, "LayerManager: iface is None" 
-        assert plugin_dir is not None, "LayerManager: plugin_dir is None" 
-        assert log is not None, "LayerManager: log is None" 
+        assert dlg is not None, "LayerManager: dlg is None"
+        assert iface is not None, "LayerManager: iface is None"
+        assert plugin_dir is not None, "LayerManager: plugin_dir is None"
+        assert log is not None, "LayerManager: log is None"
 
-        self.dlg = dlg 
-        self.iface = iface 
-        self.plugin_dir = plugin_dir 
-        self.log = log 
+        self.dlg = dlg
+        self.iface = iface
+        self.plugin_dir = plugin_dir
+        self.log = log
+
+        self.auth = Authentication(cert=certifi.where())
+        # self.auth = Authentication(verify=certifi.where())
+        # self.auth = Authentication(verify=False)
 
         # Set default layer loading behaviour 
-        self.service_type_mapping = { 
-            "wms": "WMS", 
-            "wmts": "WMTS", 
-            "wfs": "WFS", 
-            "wcs": "WCS", 
-            "api features": "OGC API - Features", 
-            "api tiles": "OGC API - Tiles", 
+        self.service_type_mapping = {
+            "wms": "WMS",
+            "wmts": "WMTS",
+            "wfs": "WFS",
+            "wcs": "WCS",
+            "api features": "OGC API - Features",
+            "api tiles": "OGC API - Tiles",
         } 
-        self.protocol_to_type_mapping = { 
-            "OGC:WMS": "wms", 
-            "OGC:WMTS": "wmts", 
-            "OGC:WFS": "wfs", 
-            "OGC:WCS": "wcs", 
-            "OGC:API features": "api features", 
-            "OGC:API tiles": "api tiles", 
+        self.protocol_to_type_mapping = {
+            "OGC:WMS": "wms",
+            "OGC:WMTS": "wmts",
+            "OGC:WFS": "wfs",
+            "OGC:WCS": "wcs",
+            "OGC:API features": "api features",
+            "OGC:API tiles": "api tiles",
         } 
-        self.wfs_urls = { 
-            "hhd": { 
-                "url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities", 
-                "title": "Legger Delfland", 
-            } 
+        self.wfs_urls = {
+            "hhd": {
+                "url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+                "title": "Legger Delfland",
+            },
+            "klimaatatlas": {
+                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?request=getCapabilities",
+                "title": "Klimaatatlas",
+            },
         } 
-        self.wms_urls = { 
-            "klimaatatlas": { 
-                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities", 
-                "title": "Klimaatatlas", 
-            }, 
-            "test": { 
-                "url": "https://service.pdok.nl/provincies/zwemwaterkwaliteit-provinciaal-rijkswateren/wms/v1_0?request=GetCapabilities&service=WMS", 
-                "title": "test",
-            } 
-        } 
+        self.wms_urls = {
+            "klimaatatlas": {
+                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+                "title": "Klimaatatlas",
+            },
+        }
 
     def save_json_file(self, data, filename):
         """
-        Docstring for save_json_file
         Save json data to specified filepath 
         
-        :param self: Description
-        :param data: Description
-        :param filename: Description
+        :param data: json body to save
+        :param filename: path to file
         """
         dir_path = os.path.join( 
             self.plugin_dir, 
@@ -106,11 +107,11 @@ class IngestLayersManager():
         except Exception as e: 
             self.log(f"[save_json_file] Failed to save recordes. Error message: {e}") 
 
-    def ingest_wfs_layers(self): 
+    def ingest_wfs_layers(self):
         for source in self.wfs_urls: 
             url = self.wfs_urls[source]["url"] 
             service_title = self.wfs_urls[source]["title"] 
-            wfs = WebFeatureService(url, version="2.0.0") 
+            wfs = WebFeatureService(url, version="2.0.0", auth=self.auth) 
 
             wfs_items = wfs.items() 
             layer_list = [] 
@@ -125,13 +126,13 @@ class IngestLayersManager():
                     "service_type": "wfs", 
                 } 
                 layer_list.append(layer) 
-            self.save_json_file(layer_list, f"layers-{source}") 
+            self.save_json_file(layer_list, f"wfs-{source}") 
 
     def ingest_wms_layers(self): 
         for source in self.wms_urls: 
             url = self.wms_urls[source]["url"] 
             service_title = self.wms_urls[source]["title"] 
-            wms = WebMapService(url, version="1.3.0") 
+            wms = WebMapService(url, version="1.3.0", auth=self.auth) 
             wms_items = wms.items() 
             layer_list = [] 
 
@@ -168,18 +169,18 @@ class IngestLayersManager():
                     "service_type": "wms", 
                 } 
                 layer_list.append(layer) 
-            self.save_json_file(layer_list, f"layers-{source}") 
+            self.save_json_file(layer_list, f"wms-{source}") 
 
     def ingest_gwsw_layers(self): 
         base_url = "https://geodata.gwsw.nl/" 
         nad_ids = [ 
             "Delft", "DenHaag",
-        ] 
+        ]
 
     def get_layers(self): 
         # get_csw_lists() 
-        # self.ingest_wfs_layers() 
-        self.ingest_wms_layers() 
+        self.ingest_wfs_layers()
+        self.ingest_wms_layers()
 
     def get_csw_lists(self): 
         """
