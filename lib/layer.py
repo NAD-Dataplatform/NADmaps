@@ -276,9 +276,13 @@ class LayerManager:
 
     ############################# Search in all layers list ######################
 
-    def filter_layers(self, string):
-        # remove selection if one row is selected
-        self.dlg.mapListView.selectRow(0)
+    def filter_layers(self, string: str):
+        """
+        Filter the list of layers using the search bar
+
+        :param string: str
+        Text written by the user in the search bar
+        """
         self.layerProxyModel.setFilterCaseSensitivity(
             Qt.CaseSensitivity.CaseInsensitive
         )
@@ -289,8 +293,7 @@ class LayerManager:
         string = ""
         for s in strlist:
             string += f"{s}.*"
-        # print(f"string: {string}")
-        # self.log(f"List string {string}")
+
         regexp = QRegularExpression(
             string,
             QRegularExpression.PatternOption.CaseInsensitiveOption
@@ -399,38 +402,39 @@ class LayerManager:
         :return layer_list: dict
         """
         file_path = os.path.join(self.plugin_dir, "resources", "layers")
-        self.layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
-        self.log(f"layer files found: {self.layer_files}")
+        layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
+        self.log(f"layer files found: {layer_files}")
 
         # self.treeView.setSortingEnabled(True)
         parentItem = self.layerModel.invisibleRootItem()
         self.log(f"parentItem: {parentItem}")
 
-        child_items = []
-        layer_list = []
-        for i, file in enumerate(self.layer_files):
-            self.log(f"Adding file data for file: {file}, i = {i}")
-            child_items.append(file)
+        for file_name in layer_files:
+            self.log(f"Adding file data for file: {file_name}")
+            self.add_source_rows(file_name, file_path)
 
-            # item_name = QAbstractItemModel(file)
-            # self.layerModel.setItem(i, item_name)
 
-            layer_path = os.path.join(file_path, file)
-            with open(layer_path, "r", encoding="utf-8") as f:
-                layer_list.extend(json.load(f))
+        #     child_items.append(file)
+
+        #     # item_name = QAbstractItemModel(file)
+        #     # self.layerModel.setItem(i, item_name)
+
+        #     layer_path = os.path.join(file_path, file)
+        #     with open(layer_path, "r", encoding="utf-8") as f:
+        #         layer_list.extend(json.load(f))
             
-            # parent = 
+        #     # parent = 
 
-        for layer in layer_list:
-            if isinstance(layer["name"], str):
-                self.add_source_row2(self.layerModel, layer)
+        # for layer in layer_list:
+        #     if isinstance(layer["name"], str):
+        #         self.add_source_row2(self.layerModel, layer)
 
         # Format the table layout
-        self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
-        self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
+        # self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
+        # self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
         self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
         self.dlg.mapListView.setColumnWidth( 0, 250 )  # set name to 300px (there are some huge layernames)
-        self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
+        # self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
         # self.dlg.mapListView.resizeColumnsToContents()
 
         self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service"])
@@ -438,47 +442,59 @@ class LayerManager:
         self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
 
-        return layer_list
+        # return layer_list
 
 
-    def add_source_row2(self, parent, serviceLayer):
+    def add_source_rows(self, json_file, file_path):
         """
         Add a row to the layerModel (QStandardItemModel) in table format. 
         We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
         See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
         
-        :param serviceLayer: json object with info like service type (wfs, wms, etc.), name and url
+        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
         """
-        # Layer name (first column, so we add json layer data as a hidden value)
-        layername = serviceLayer["title"]
-        itemLayername = QStandardItem(str(serviceLayer["title"]))
-        itemLayername.setData(serviceLayer, Qt.ItemDataRole.UserRole)
+        layer_path = os.path.join(file_path, json_file)
+        with open(layer_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-        # Service type
-        stype = (
-            self.service_type_mapping[serviceLayer["service_type"]]
-            if serviceLayer["service_type"] in self.service_type_mapping
-            else serviceLayer["service_type"].upper()
-        )
-        itemType = QStandardItem(str(stype))
+        # Create parent item (subheader)
+        parent = QStandardItem(json_file)
+        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
 
-        # Service name (e.g. PDOK or Legger Delfland)
-        itemServicetitle = QStandardItem(str(serviceLayer["service_title"]))
+        for layer in data:
+            # Layer name (first column, so we add json layer data as a hidden value)
+            layername = layer["title"]
+            itemLayername = QStandardItem(str(layer["title"]))
+            itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
 
-        # Item filter (used to search filter in. This column is hidden from the user)
-        itemFilter = QStandardItem(
-            f"{serviceLayer['service_type']} {layername} {serviceLayer['service_title']} {serviceLayer['service_abstract']}"
-        )
+            # Service type
+            stype = (
+                self.service_type_mapping[layer["service_type"]]
+                if layer["service_type"] in self.service_type_mapping
+                else layer["service_type"].upper()
+            )
+            itemType = QStandardItem(str(stype))
 
-        # tooltip = "Dubbelklik om een kaartlaag in te laden"
-        tooltip = serviceLayer["service_abstract"]
-        itemType.setToolTip(tooltip)
-        itemLayername.setToolTip(tooltip)
-        itemServicetitle.setToolTip(tooltip)
+            # Service name (e.g. PDOK or Legger Delfland)
+            itemServicetitle = QStandardItem(str(layer["service_title"]))
 
-        parent.appendRow(
-            [itemLayername, itemType, itemServicetitle, itemFilter]
-        )
+            # Item filter (used to search filter in. This column is hidden from the user)
+            itemFilter = QStandardItem(
+                f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
+            )
+
+            # tooltip = "Dubbelklik om een kaartlaag in te laden"
+            tooltip = layer["service_abstract"]
+            itemType.setToolTip(tooltip)
+            itemLayername.setToolTip(tooltip)
+            itemServicetitle.setToolTip(tooltip)
+
+            parent.appendRow(
+                [itemLayername, itemType, itemServicetitle, itemFilter]
+            )
+
+        self.layerModel.appendRow(parent_row)
+
 
     def add_source_row(self, serviceLayer):
         """
