@@ -6,7 +6,6 @@
 # handmatig (achtergrondkaarten) 
 # CSW voor pdok & provincie zuidholland 
 
-# in lijst inklapbare categorieen
 import certifi
 
 import json 
@@ -44,12 +43,13 @@ class IngestLayersManager():
         self.iface = iface
         self.plugin_dir = plugin_dir
         self.log = log
-
-        self.auth = Authentication(cert=certifi.where())
-        # self.auth = Authentication(verify=certifi.where())
+        
+        # cert = certifi.where() # C:\OSGeo4W\apps\Python312\Lib\site-packages\certifi\cacert.pem
+        # cert = False # Skips certification (not for production!)
+        # self.auth = Authentication(cert=cert)
         # self.auth = Authentication(verify=False)
 
-        # Set default layer loading behaviour 
+        # Set default layer loading behaviour
         self.service_type_mapping = {
             "wms": "WMS",
             "wmts": "WMTS",
@@ -75,11 +75,35 @@ class IngestLayersManager():
                 "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?request=getCapabilities",
                 "title": "Klimaatatlas",
             },
+            "waterketeninbeeld": {
+                "url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wfs?request=getcapabilities",
+                "title": "Waterketen in Beeld",
+            },
+            "rijnland1": {
+                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+                "title": "Legger Rijnland: Oppervlakte water", 
+            },
+            "rijnland2": {
+                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+                "title": "Legger Rijnland: Primaire keringen", 
+            },
         } 
         self.wms_urls = {
             "klimaatatlas": {
                 "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
                 "title": "Klimaatatlas",
+            },
+            "waterketeninbeeld": {
+                "url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+                "title": "Waterketen in Beeld"
+            },
+            "rijnland3": {
+                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+                "title": "Legger Rijnland: Regionale keringen", 
+            },
+            "rijnland2": {
+                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+                "title": "Legger Rijnland: Kunstwerken", 
             },
         }
 
@@ -108,14 +132,15 @@ class IngestLayersManager():
             self.log(f"[save_json_file] Failed to save recordes. Error message: {e}") 
 
     def ingest_wfs_layers(self):
-        for source in self.wfs_urls: 
-            url = self.wfs_urls[source]["url"] 
-            service_title = self.wfs_urls[source]["title"] 
-            wfs = WebFeatureService(url, version="2.0.0", auth=self.auth) 
+        for source in self.wfs_urls:
+            url = self.wfs_urls[source]["url"]
+            service_title = self.wfs_urls[source]["title"]
+            wfs = WebFeatureService(url, version="2.0.0")
+            # wfs = WebFeatureService(url, version="2.0.0", auth=self.auth)
 
-            wfs_items = wfs.items() 
-            layer_list = [] 
-            for _, c in wfs_items: 
+            wfs_items = wfs.items()
+            layer_list = []
+            for _, c in wfs_items:
                 layer = { 
                     "name": c.id, 
                     "title": c.title, 
@@ -132,7 +157,7 @@ class IngestLayersManager():
         for source in self.wms_urls: 
             url = self.wms_urls[source]["url"] 
             service_title = self.wms_urls[source]["title"] 
-            wms = WebMapService(url, version="1.3.0", auth=self.auth) 
+            wms = WebMapService(url, version="1.3.0") 
             wms_items = wms.items() 
             layer_list = [] 
 
@@ -180,7 +205,7 @@ class IngestLayersManager():
     def get_layers(self): 
         # get_csw_lists() 
         self.ingest_wfs_layers()
-        self.ingest_wms_layers()
+        # self.ingest_wms_layers()
 
     def get_csw_lists(self): 
         """

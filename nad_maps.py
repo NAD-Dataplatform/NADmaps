@@ -115,28 +115,26 @@ class NADMaps:
                 )
 
         # if user did not select a working directory, then skip the creation of folder and path creation
-        if self.working_dir in ["", None]:  
-            self.log(
-                "Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.",
-                1,
-            )  # set warning message
+        if self.working_dir in ["", None]:
+            self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1)  
         else:
-            os.makedirs(self.working_dir, exist_ok=True)
-            os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-            os.makedirs(
-                os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True
-            )
+            try:
+                os.makedirs(self.working_dir, exist_ok=True)
+                os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
+                os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
 
-            # save the working directory to the settings, such that it is available next time the plugin is started
-            QSettings().setValue("NADmaps/working_dir", self.working_dir)
-            self.dlg.lineEditFilePath.setText(self.working_dir)
+                # save the working directory to the settings, such that it is available next time the plugin is started
+                QSettings().setValue("NADmaps/working_dir", self.working_dir)
+                self.dlg.lineEditFilePath.setText(self.working_dir)
 
-            self.user_styling_path = os.path.join(
-                self.working_dir, "styling", "styling.json"
-            )
-            self.user_styling_files_path = os.path.join(
-                self.working_dir, "styling", "qml_files"
-            )
+                self.user_styling_path = os.path.join(
+                    self.working_dir, "styling", "styling.json"
+                )
+                self.user_styling_files_path = os.path.join(
+                    self.working_dir, "styling", "qml_files"
+                )
+            except Exception as e:
+                self.log(f"Kon geen werkmap aanmaken. De plugin kan niet goed functioneren zonder werkmap.", 1)
 
         # define plugin paths
         self.plugin_styling_path = os.path.join(
@@ -194,7 +192,7 @@ class NADMaps:
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
         self.autostart = QSettings().value("NADmaps/autostart", False, type=bool)
-        self.log(f"Autostart value is {self.autostart} type is {type(self.autostart)}")
+        self.log(f"Autostart value is {self.autostart}")
 
         if self.autostart == True:
             self.log("self.autostart == True")

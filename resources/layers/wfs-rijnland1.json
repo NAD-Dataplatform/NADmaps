@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Legger_Oppervlaktewater_Vigerend:Watergang_begroeiing",
+        "title": "Watergang_begroeiing",
+        "abstract": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Oppervlakte water",
+        "service_abstract": "Legger Rijnland: Oppervlakte water",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Oppervlaktewater_Vigerend:Watergang_As",
+        "title": "Watergang_As",
+        "abstract": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Oppervlakte water",
+        "service_abstract": "Legger Rijnland: Oppervlakte water",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Oppervlaktewater_Vigerend:Watergang_Vlak",
+        "title": "Watergang_Vlak",
+        "abstract": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Oppervlakte water",
+        "service_abstract": "Legger Rijnland: Oppervlakte water",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Oppervlaktewater_Vigerend:Watergang_Kernzone",
+        "title": "Watergang_Kernzone",
+        "abstract": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Oppervlakte water",
+        "service_abstract": "Legger Rijnland: Oppervlakte water",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Oppervlaktewater_Vigerend:Watergang_Beschermingszone",
+        "title": "Watergang_Beschermingszone",
+        "abstract": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Oppervlakte water",
+        "service_abstract": "Legger Rijnland: Oppervlakte water",
+        "service_type": "wfs"
+    }
+]

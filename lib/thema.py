@@ -401,18 +401,11 @@ class ThemaManager:
             itemFilter = QStandardItem(str(""))
             self.themaModel.appendRow([itemThema, itemFavorite, itemSource, itemFilter])
 
-        self.themaModel.setHeaderData(2, Qt.Orientation.Horizontal, "Bron")
-        self.themaModel.setHeaderData(1, Qt.Orientation.Horizontal, "Favoriet")
-        self.themaModel.setHeaderData(0, Qt.Orientation.Horizontal, "Thema")
-        self.themaModel.horizontalHeaderItem(2).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
-        self.themaModel.horizontalHeaderItem(1).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
-        self.themaModel.horizontalHeaderItem(0).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
+        self.themaModel.setHorizontalHeaderLabels(["Thema", "Favoriet", "Bron"])
+        self.themaModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.themaModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.themaModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+
         self.dlg.themaView.horizontalHeader().setStretchLastSection(True)
         self.dlg.themaView.hideColumn(3)
         self.dlg.themaView.setColumnWidth(
@@ -572,23 +565,13 @@ class ThemaManager:
                 self.themaMapModel.appendRow(
                     [itemLayername, itemProvider, itemStyle, itemSource]
                 )
+        
+        self.themaMapModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Opmaak", "Bron"])
+        self.themaMapModel.horizontalHeaderItem(3).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.themaMapModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.themaMapModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.themaMapModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
 
-        self.themaMapModel.setHeaderData(3, Qt.Orientation.Horizontal, "Bron")
-        self.themaMapModel.setHeaderData(2, Qt.Orientation.Horizontal, "Opmaak")
-        self.themaMapModel.setHeaderData(1, Qt.Orientation.Horizontal, "Type")
-        self.themaMapModel.setHeaderData(0, Qt.Orientation.Horizontal, "Laagnaam")
-        self.themaMapModel.horizontalHeaderItem(3).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
-        self.themaMapModel.horizontalHeaderItem(2).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
-        self.themaMapModel.horizontalHeaderItem(1).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
-        self.themaMapModel.horizontalHeaderItem(0).setTextAlignment(
-            Qt.AlignmentFlag.AlignLeft
-        )
         self.dlg.themaMapListView.horizontalHeader().setStretchLastSection(True)
         # self.dlg.themaMapListView.hideColumn(3)
 
