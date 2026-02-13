@@ -24,3 +24,11 @@ PRINT_QUALITY_OPTIONS = {
     "Zeer hoog (600 DPI)": 600,
 }
 WIKI_URL = "https://github.com/NAD-Dataplatform/NADmaps/wiki"
+SERVICE_TYPE_MAPPING = {
+    "wms": "WMS",
+    "wmts": "WMTS",
+    "wfs": "WFS",
+    "wcs": "WCS",
+    "api features": "OGC API - Features",
+    "api tiles": "OGC API - Tiles",
+}

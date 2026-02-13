@@ -6,7 +6,7 @@ import json
 import os.path
 
 from qgis.PyQt.QtGui import QStandardItem, QStandardItemModel
-from qgis.PyQt.QtWidgets import QAbstractItemView, QTreeView, QHeaderView, QTableWidgetItem
+from qgis.PyQt.QtWidgets import QAbstractItemView
 from qgis.PyQt.QtCore import (
     Qt,
     QSettings,
@@ -25,9 +25,7 @@ from qgis.core import (
     QgsDataSourceUri,
 )
 
-from qgis.core import QgsMessageLog
-from .constants import PLUGIN_NAME
-# QgsMessageLog.logMessage(str(layer), PLUGIN_NAME, 2)
+from .constants import SERVICE_TYPE_MAPPING
 
 from .utility import (
     extract_spatialiate_db,
@@ -226,30 +224,24 @@ class LayerManager:
         
         QgsProject.instance().layerTreeRoot().layerOrderChanged.connect( lambda: self.update_active_layers_list() )
         QgsProject.instance().layerTreeRoot().nameChanged.connect( lambda: self.update_active_layers_list() )
-        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect( lambda: self.update_active_layers_list() )
-        QgsProject.instance().layerTreeRoot().nameChanged.connect( lambda: self.update_active_layers_list() )
 
         ##################################################################
         # Model for the list of all layers available via the plugin
         self.layerModel = QStandardItemModel()
 
-        # Add filtering models
-        self.layerFilter = QSortFilterProxyModel()
-        self.layerFilter.setSourceModel(self.layerModel)
-        self.layerFilter.setFilterKeyColumn(4)
-
+        # Add filtering model
         self.layerProxyModel = QSortFilterProxyModel()
-        self.layerProxyModel.setSourceModel(self.layerFilter)
+        self.layerProxyModel.setSourceModel(self.layerModel)
         self.layerProxyModel.setFilterKeyColumn(3)
 
-        # Add treeview functionality
-        self.treeView = QTreeView()
-        self.treeView.setModel(self.layerProxyModel)
-
+        self.layerProxyModel.setFilterCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+        self.layerProxyModel.setRecursiveFilteringEnabled(True) # Filter on children as well
+        
         # Attach model to GUI object mapListView
         self.dlg.mapListView.setModel(self.layerProxyModel)
+        self.dlg.mapListView.setAlternatingRowColors(True)
         self.dlg.mapListView.setEditTriggers( QAbstractItemView.EditTrigger.NoEditTriggers )
-        self.dlg.mapListView.setEditTriggers( QAbstractItemView.EditTrigger.NoEditTriggers )
+
         self.dlg.mapListView.selectionModel().selectionChanged.connect( self.get_current_layer )
         self.dlg.mapListView.doubleClicked.connect( lambda: self.load_layer(None) )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
@@ -257,14 +249,7 @@ class LayerManager:
 
         ##################################################################
         # Set default layer loading behaviour
-        self.service_type_mapping = {
-            "wms": "WMS",
-            "wmts": "WMTS",
-            "wfs": "WFS",
-            "wcs": "WCS",
-            "api features": "OGC API - Features",
-            "api tiles": "OGC API - Tiles",
-        }
+        self.service_type_mapping = SERVICE_TYPE_MAPPING
         self.default_tree_locations = {
             "wms": "top",
             "wmts": "bottom",
@@ -283,12 +268,8 @@ class LayerManager:
         :param string: str
         Text written by the user in the search bar
         """
-        self.layerProxyModel.setFilterCaseSensitivity(
-            Qt.CaseSensitivity.CaseInsensitive
-        )
-        self.layerProxyModel.setFilterCaseSensitivity(
-            Qt.CaseSensitivity.CaseInsensitive
-        )
+        # self.dlg.mapListView.selectRow(0)
+
         strlist = string.strip().split(" ")
         string = ""
         for s in strlist:
@@ -299,11 +280,7 @@ class LayerManager:
             QRegularExpression.PatternOption.CaseInsensitiveOption
             | QRegularExpression.PatternOption.InvertedGreedinessOption,
         )
-        regexp = QRegularExpression(
-            string,
-            QRegularExpression.PatternOption.CaseInsensitiveOption
-            | QRegularExpression.PatternOption.InvertedGreedinessOption,
-        )
+
         self.layerProxyModel.setFilterRegularExpression(regexp)
         self.layerProxyModel.insertRow
 
@@ -392,7 +369,6 @@ class LayerManager:
         self.dlg.activeMapListView.setColumnWidth(0, 200)  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
 
-
     ############################# All web layer list #############################
 
     def load_layer_list(self) -> dict:
@@ -405,47 +381,37 @@ class LayerManager:
         layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
         self.log(f"layer files found: {layer_files}")
 
-        # self.treeView.setSortingEnabled(True)
         parentItem = self.layerModel.invisibleRootItem()
         self.log(f"parentItem: {parentItem}")
 
+        meta_data = self.get_meta_data()
+
         for file_name in layer_files:
-            self.log(f"Adding file data for file: {file_name}")
-            self.add_source_rows(file_name, file_path)
+            title = None
+            if file_name == "all-nad.json":
+                title = "NAD kaartlagen"
+            else:
+                for dataset in meta_data:
+                    meta_data_name = f"{dataset["name"]}-{dataset["service_type"]}.json"
+                    if meta_data_name == file_name:
+                        title = dataset["title"]
 
+            if not title:
+                self.log(f"Dataset with file name {file_name} has no metadata.")
+                continue
 
-        #     child_items.append(file)
-
-        #     # item_name = QAbstractItemModel(file)
-        #     # self.layerModel.setItem(i, item_name)
-
-        #     layer_path = os.path.join(file_path, file)
-        #     with open(layer_path, "r", encoding="utf-8") as f:
-        #         layer_list.extend(json.load(f))
-            
-        #     # parent = 
-
-        # for layer in layer_list:
-        #     if isinstance(layer["name"], str):
-        #         self.add_source_row2(self.layerModel, layer)
+            self.add_source_rows(file_name, file_path, title)
 
         # Format the table layout
-        # self.dlg.mapListView.verticalHeader().setSectionsClickable(False)
-        # self.dlg.mapListView.horizontalHeader().setSectionsClickable(False)
         self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
         self.dlg.mapListView.setColumnWidth( 0, 250 )  # set name to 300px (there are some huge layernames)
-        # self.dlg.mapListView.horizontalHeader().setStretchLastSection(True)
-        # self.dlg.mapListView.resizeColumnsToContents()
 
-        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service"])
+        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
         self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
 
-        # return layer_list
-
-
-    def add_source_rows(self, json_file, file_path):
+    def add_source_rows(self, json_file: str, file_path: str, title: str):
         """
         Add a row to the layerModel (QStandardItemModel) in table format. 
         We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
@@ -458,7 +424,7 @@ class LayerManager:
             data = json.load(f)
 
         # Create parent item (subheader)
-        parent = QStandardItem(json_file)
+        parent = QStandardItem(title)
         parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
 
         for layer in data:
@@ -495,45 +461,20 @@ class LayerManager:
 
         self.layerModel.appendRow(parent_row)
 
+    def get_meta_data(self):
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
+        source_filepaths = [os.path.join(root, name)
+             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
+             for name in files
+             if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
 
-    def add_source_row(self, serviceLayer):
-        """
-        Add a row to the layerModel (QStandardItemModel) in table format. 
-        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
-        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
-        
-        :param serviceLayer: json object with info like service type (wfs, wms, etc.), name and url
-        """
-        # Layer name (first column, so we add json layer data as a hidden value)
-        layername = serviceLayer["title"]
-        itemLayername = QStandardItem(str(serviceLayer["title"]))
-        itemLayername.setData(serviceLayer, Qt.ItemDataRole.UserRole)
+        meta_data = []
+        for source in source_filepaths:
+            with open(source, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            meta_data.extend(data)
 
-        # Service type
-        stype = (
-            self.service_type_mapping[serviceLayer["service_type"]]
-            if serviceLayer["service_type"] in self.service_type_mapping
-            else serviceLayer["service_type"].upper()
-        )
-        itemType = QStandardItem(str(stype))
-
-        # Service name (e.g. PDOK or Legger Delfland)
-        itemServicetitle = QStandardItem(str(serviceLayer["service_title"]))
-
-        # Item filter (used to search filter in. This column is hidden from the user)
-        itemFilter = QStandardItem(
-            f"{serviceLayer['service_type']} {layername} {serviceLayer['service_title']} {serviceLayer['service_abstract']}"
-        )
-
-        # tooltip = "Dubbelklik om een kaartlaag in te laden"
-        tooltip = serviceLayer["service_abstract"]
-        itemType.setToolTip(tooltip)
-        itemLayername.setToolTip(tooltip)
-        itemServicetitle.setToolTip(tooltip)
-
-        self.layerModel.appendRow(
-            [itemLayername, itemType, itemServicetitle, itemFilter]
-        )
+        return meta_data
 
     def load_layer(self, tree_location=None):
         """Adds a QgsLayer to the project and layer tree.
@@ -565,4 +506,3 @@ class LayerManager:
             layer_tree.insertChildNode(0, new_layer_tree_layer)
         if tree_location == "bottom":
             layer_tree.insertChildNode(-1, new_layer_tree_layer)
-

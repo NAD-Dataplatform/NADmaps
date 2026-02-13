@@ -132,78 +132,94 @@ class IngestLayersManager():
             self.log(f"[save_json_file] Failed to save recordes. Error message: {e}") 
 
     def ingest_wfs_layers(self, urls):
-        for source in urls:
-            url = urls[source]["url"]
-            service_title = urls[source]["title"]
-            wfs = WebFeatureService(url, version="2.0.0")
+        for service_data in urls:
+            service_url = service_data["url"] 
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+
+            try:
+                wfs = WebFeatureService(service_url, version="2.0.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebFeatureService niet vinden. Error {e}")
+                continue
             # wfs = WebFeatureService(url, version="2.0.0", auth=self.auth)
 
             wfs_items = wfs.items()
             layer_list = []
             for _, c in wfs_items:
-                layer = { 
-                    "name": c.id, 
-                    "title": c.title, 
-                    "abstract": service_title, 
-                    "service_url": url, 
-                    "service_title": service_title, 
-                    "service_abstract": service_title, 
-                    "service_type": "wfs", 
-                } 
-                layer_list.append(layer) 
-            self.save_json_file(layer_list, f"wfs-{source}") 
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_title,
+                    "service_type": "wfs",
+                }
+                layer_list.append(layer)
+            self.save_json_file(layer_list, f"{service_name}-wfs") 
 
-    def ingest_wms_layers(self, urls): 
-        for source in urls: 
-            url = urls[source]["url"] 
-            service_title = urls[source]["title"] 
-            wms = WebMapService(url, version="1.3.0") 
-            wms_items = wms.items() 
-            layer_list = [] 
-
-            for _, c in wms_items:                 
-                # get styles 
-                styles = [] 
-                for s in c.styles: 
-                    style = { 
-                        "title": c.styles[s]["title"], 
-                        "name": s 
-                    } 
-                    styles.append(style) 
-                # get crs value 
-                crs = "" 
-                if "EPSG:28992" in c.crsOptions: 
-                    crs = "EPSG:28992" 
-                elif "EPSG:4326" in c.crsOptions: 
-                    crs = "EPSG:4326" 
+    def ingest_wms_layers(self, urls):
+        for service_data in urls:
+            service_url = service_data["url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            
+            try:
+                wms = WebMapService(service_url, version="1.3.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebMapService niet vinden. Error {e}")
+                continue
+            
+            wms_items = wms.items()
+            layer_list = []
+            for _, c in wms_items:
+                # get styles
+                styles = []
+                for s in c.styles:
+                    style = {
+                        "title": c.styles[s]["title"],
+                        "name": s
+                    }
+                    styles.append(style)
+                # get crs value
+                crs = ""
+                if "EPSG:28992" in c.crsOptions:
+                    crs = "EPSG:28992"
+                elif "EPSG:4326" in c.crsOptions:
+                    crs = "EPSG:4326"
                 else: 
-                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...") 
-                    self.log(f"   url: {url}") 
-                    continue 
+                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...")
+                    self.log(f"   url: {service_url}")
+                    continue
 
-                # construct layer object 
-                layer = { 
-                    "name": c.id, 
-                    "title": c.title, 
-                    "abstract": service_title, 
-                    "styles": styles, 
-                    "crs": crs, 
-                    "service_url": url, 
-                    "service_title": service_title, 
-                    "service_abstract": service_title, 
-                    "service_type": "wms", 
-                } 
-                layer_list.append(layer) 
-            self.save_json_file(layer_list, f"wms-{source}") 
+                # construct layer object
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "styles": styles,
+                    "crs": crs,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_title,
+                    "service_type": "wms",
+                }
+                layer_list.append(layer)
+                
+            self.save_json_file(layer_list, f"{service_name}-wms")
 
-    def ingest_gwsw_layers(self): 
-        base_url = "https://geodata.gwsw.nl/" 
-        nad_ids = [ 
+    def ingest_gwsw_layers(self):
+        base_url = "https://geodata.gwsw.nl/"
+        nad_ids = [
             "Delft", "DenHaag",
         ]
 
     def get_layers(self):
-        # 1. start with csw urls to list
+        # 1. Extract service urls from CatalogueServiceWeb urls
+        # get_csw_lists()
+        
+        # 2. Add csw urls to list
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
         
         source_filepaths = [os.path.join(root, name)
@@ -211,9 +227,9 @@ class IngestLayersManager():
              for name in files
              if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
         
-        self.log(f"List of source files: {source_filepaths}")
+        self.log(f"List of source files: {source_filepaths}", 0)
         
-        # 2. Gather all the resulting urls
+        # 3. Gather all the resulting urls
         url_list = []
         for source_path in source_filepaths:
             with open(source_path, "r", encoding="utf-8") as f:
@@ -221,20 +237,18 @@ class IngestLayersManager():
 
             url_list.extend(data)
 
-        # 3. Split between service type
+        # 4. Split between service type
         wfs_urls = [url_data for url_data in url_list if url_data["service_type"] == "wfs"]
         wms_urls = [url_data for url_data in url_list if url_data["service_type"] == "wms"]
         
-        self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls")
+        self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
 
-        # 3. Run the service type ingest functions
+        # 5. Run the service type ingest functions
         self.ingest_wfs_layers(wfs_urls)
         self.ingest_wms_layers(wms_urls)
         return
         # 4. special ones like gwsw?
         
-        # get_csw_lists() 
-        self.ingest_wfs_layers(self.wfs_urls)
 
     def get_csw_lists(self): 
         """

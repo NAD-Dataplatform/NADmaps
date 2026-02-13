@@ -12,15 +12,12 @@ from qgis.PyQt.QtCore import (
 )
 from qgis.core import (
     QgsProject,
-    QgsRasterLayer,
-    QgsVectorLayer,
-    QgsSettings,
 )
 from qgis.PyQt.QtWidgets import QAbstractItemView, QMessageBox
 
-from .style import StyleManager
+from .constants import SERVICE_TYPE_MAPPING
+from .style import StyleManager, get_style_code
 from .layer import create_new_layer
-from .style import get_style_code
 from .utility import (
     extract_name,
     extract_url,
@@ -33,7 +30,6 @@ from .utility import (
     extract_oat_style,
     extract_oat_style_url,
 )
-
 
 
 class ThemaManager:
@@ -75,10 +71,10 @@ class ThemaManager:
 
         self.current_thema = None
         self.current_layer = None
+
         self.themaModel = QStandardItemModel()
         self.dlg.themaView.setModel(self.themaModel)
 
-        self.themaModel = QStandardItemModel()
         self.favoriteFilterThema = QSortFilterProxyModel()
         self.favoriteFilterThema.setSourceModel(self.themaModel)
         self.favoriteFilterThema.setFilterKeyColumn(1)
@@ -121,14 +117,7 @@ class ThemaManager:
             lambda: self.load_thema_layers()
         )  # Using lambda here to prevent sending signal parameters to the loadService() function
 
-        self.service_type_mapping = {
-            "wms": "WMS",
-            "wmts": "WMTS",
-            "wfs": "WFS",
-            "wcs": "WCS",
-            "api features": "OGC API - Features",
-            "api tiles": "OGC API - Tiles",
-        }
+        self.service_type_mapping = SERVICE_TYPE_MAPPING
 
         self.layer_type_mapping = {
             0: "Vector",

@@ -1,0 +1,1118 @@
+[
+    {
+        "name": "2021_rvw_discrp_driant_v1",
+        "title": "2021_rvw_discrp_driant_v1",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "rvw_driant_v1"
+            },
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "discrp_driant_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "2022_rvw_discrp_driant_v1",
+        "title": "2022_rvw_discrp_driant_v1",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "rvw_driant_v1"
+            },
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "discrp_driant_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "2023_rvw_discrp_driant_v1",
+        "title": "2023_rvw_discrp_driant_v1",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "rvw_driant_v1"
+            },
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "discrp_driant_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "2024_rvw_discrp_driant_v1",
+        "title": "2024_rvw_discrp_driant_v1",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "rvw_driant_v1"
+            },
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "discrp_driant_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "Groei_gemeenten_image_2024",
+        "title": "Groei_gemeenten_image_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L5_6_Bevolkingsgroei_CBS_&_Primos_gemeenten",
+                "name": "Bevolkingsgroei_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "Groei_land_image_2024",
+        "title": "Groei_land_image_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Bevolkingsgroei_CBS_&_Primos_Land",
+                "name": "wkib_bevolkingsgroei_land"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "Groei_provincies_image_2024",
+        "title": "Groei_provincies_image_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Bevolkingsgroei_CBS_&_Primos_Provincie",
+                "name": "wkib_bevolkingsgroei_provincie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "Groei_zuiveringseenheden_image_2024",
+        "title": "Groei_zuiveringseenheden_image_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L7_8_Bevolkingsgroei_CBS_&_Primos_zuiveringseenheden",
+                "name": "wkib_bevolkingsgroei_zuiveringseenheden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "RVwater_op_rwzi",
+        "title": "RVwater_op_rwzi",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "wkib_rioolvreemd_water"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "RVwater_op_ws",
+        "title": "RVwater_op_ws",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "rioolvreemd_water",
+                "name": "wkib_rioolvreemd_water"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "Zuiveringseenheden_2023_2024",
+        "title": "Zuiveringseenheden_2023_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "ws_waterschap_zuiveringseenheid",
+                "name": "wkib_zuiveringseenheden_2024"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "discrp_op_rwzi",
+        "title": "discrp_op_rwzi",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "wkib_discrepantie_rwzi_waves"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "discrp_op_ws",
+        "title": "discrp_op_ws",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "discrepantie_ve_ie",
+                "name": "wkib_discrepantie_ws_waves"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gemeenten_beschikbaar",
+        "title": "gemeenten_beschikbaar",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Waterschap op GWSW",
+                "name": "wkib_gemeente_beschikbaar_pdok"
+            },
+            {
+                "title": "Waterschap op GWSW",
+                "name": "wkib_gemeente_beschikbaar_gwsw"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_fout_in_leiding_en_segment_v2",
+        "title": "gkw_fout_in_leiding_en_segment_v2",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_fout_in_leiding_en_segment_v2",
+                "name": "gkw_fout_in_leiding_en_segment_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_fout_in_zuiveh",
+        "title": "gkw_fout_in_zuiveh",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_topo_fout",
+                "name": "wkib_ws_topo_fout"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_iba",
+        "title": "gkw_iba",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_IBA",
+                "name": "gkw_IBA"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_kathodischebescherming",
+        "title": "gkw_kathodischebescherming",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_kathodischebescherming",
+                "name": "gkw_kathodischebescherming"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_leiding",
+        "title": "gkw_leiding",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_leidingen",
+                "name": "gkw_leidingen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_leidingsegment",
+        "title": "gkw_leidingsegment",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_leidingsegment",
+                "name": "gkw_leidingsegment"
+            },
+            {
+                "title": "gkw_leidingsegment_diam",
+                "name": "gkw_leidingsegment_diam"
+            },
+            {
+                "title": "gkw_leidingsegment_materiaal",
+                "name": "gkw_leidingsegment_materiaal"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_lozingspunt",
+        "title": "gkw_lozingspunt",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_lozingspunt",
+                "name": "gkw_lozingspunt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_mantelbuis",
+        "title": "gkw_mantelbuis",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_mantelbuis",
+                "name": "gkw_mantelbuis"
+            },
+            {
+                "title": "gkw_leidingsegment_materiaal",
+                "name": "gkw_leidingsegment_materiaal"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_nooduitlaat",
+        "title": "gkw_nooduitlaat",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_nooduitlaat",
+                "name": "gkw_nooduitlaat"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_ontluchter",
+        "title": "gkw_ontluchter",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_ontluchter",
+                "name": "gkw_ontluchter"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_oordeel_leidingsegmenten",
+        "title": "gkw_oordeel_leidingsegmenten",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "oordeel_leidingensegmenten",
+                "name": "oordeel_leidingensegmenten_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_oordeel_leidingsegmenten_v2",
+        "title": "gkw_oordeel_leidingsegmenten_v2",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "oordeel_leidingensegmenten",
+                "name": "oordeel_leidingensegmenten_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_oordeel_mantelbuis",
+        "title": "gkw_oordeel_mantelbuis",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "oordeel_mantelbuizen",
+                "name": "oordeel_mantelbuizen_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_oordeel_rioolgemalen",
+        "title": "gkw_oordeel_rioolgemalen",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "oordeel_rioolgemaal",
+                "name": "oordeel_rioolgemalen_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_overnamepunt",
+        "title": "gkw_overnamepunt",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_overnamepunt",
+                "name": "gkw_overnamepunt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_overnamepuntgebied",
+        "title": "gkw_overnamepuntgebied",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_overnamepuntgebied",
+                "name": "gkw_overnamepuntgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_pigging_installatie",
+        "title": "gkw_pigging_installatie",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_pigging_installatie",
+                "name": "gkw_pigging_installatie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_put",
+        "title": "gkw_put",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_put",
+                "name": "gkw_put"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_rioleringsgebied",
+        "title": "gkw_rioleringsgebied",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_rioleringsgebied",
+                "name": "gkw_rioleringsgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_rioolafsluiter",
+        "title": "gkw_rioolafsluiter",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_rioolafsluiter",
+                "name": "gkw_rioolafsluiter"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_rioolgemaal",
+        "title": "gkw_rioolgemaal",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_rioolgemaal_type",
+                "name": "gkw_rioolgemaal_type"
+            },
+            {
+                "title": "gkw_rioolgemaal_capaciteit",
+                "name": "gkw_rioolgemaal_capaciteit"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_rwzi",
+        "title": "gkw_rwzi",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_rwzi",
+                "name": "gkw_rwzi"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_waterschap_beschikbaar",
+        "title": "gkw_waterschap_beschikbaar",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Waterschap ontsloten",
+                "name": "wkib_ws_waterschap_ontsloten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "gkw_zuiveringseenheid",
+        "title": "gkw_zuiveringseenheid",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "gkw_zuiveringseenheid",
+                "name": "gkw_zuiveringseenheid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterschap_leidingsegment_diameter",
+        "title": "waterschap_leidingsegment_diameter",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Leidingsegmenten_diameter_v1",
+                "name": "Leidingsegmenten_diameter_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterschap_leidingsegment_materiaal",
+        "title": "waterschap_leidingsegment",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Leidingsegmenten_materialen_v2",
+                "name": "Leidingsegmenten_materialen_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterschapsgrenzen_wkib",
+        "title": "waterschapsgrenzen_wkib",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Waterschapsgrenzen_NL",
+                "name": "waterschapsgrenzen_wkib"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_groei_gemeenten_image",
+        "title": "wkib_groei_gemeenten_image",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L5_6_Bevolkingsgroei_CBS_&_Primos_gemeenten",
+                "name": "wkib_bevolkingsgroei_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_groei_land_image",
+        "title": "wkib_groei_land_image",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Bevolkingsgroei_CBS_&_Primos_Land",
+                "name": "wkib_bevolkingsgroei_land"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_groei_provincies_image",
+        "title": "wkib_groei_provincies_image",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Bevolkingsgroei_CBS_&_Primos_Provincie",
+                "name": "wkib_bevolkingsgroei_provincie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_groei_zuiveringseenheden_image",
+        "title": "wkib_groei_zuiveringseenheden_image",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L7_8_Bevolkingsgroei_CBS_&_Primos_zuiveringseenheden",
+                "name": "wkib_bevolkingsgroei_zuiveringseenheden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_rioolwaterzuiveringen_cbs",
+        "title": "wkib_rioolwaterzuiveringen_cbs",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_rwzi",
+                "name": "wkib_rwzi"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_rwzi_CBS_2024",
+        "title": "wkib_rwzi_CBS_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_rwzi",
+                "name": "wkib_rwzi"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_waterschapsgrenzen_nl",
+        "title": "wkib_waterschapsgrenzen_nl",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Waterschapsgrenzen_NL",
+                "name": "wkib_waterschapsgrenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_zuivering_schap_grenzen",
+        "title": "wkib_zuivering_schap_grenzen",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L4_Zuiveringsgrenzen_WS_NL",
+                "name": "wkib_zuivering_schap_grenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_zuiveringseenheden_2024",
+        "title": "wkib_zuiveringseenheden_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "ws_waterschap_zuiveringseenheid",
+                "name": "wkib_zuiveringseenheden_2024"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_zuiveringseenheden_cbs",
+        "title": "wkib_zuiveringseenheden_cbs",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_zuiveringseenheden_cbs",
+                "name": "wkib_zuiveringseenheden_cbs"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "wkib_zuiveringsschapgrenzen_2024",
+        "title": "wkib_zuiveringsschapgrenzen_2024",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "L4_Zuiveringsgrenzen_WS_NL",
+                "name": "wkib_zuivering_schap_grenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_fout_in_zuiveh",
+        "title": "fout_in_zuiveh",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_topo_fout",
+                "name": "wkib_ws_topo_fout"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_beschikbaar",
+        "title": "waterschap_beschikbaar",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "Waterschap ontsloten",
+                "name": "wkib_ws_waterschap_ontsloten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_constructieonderdeel",
+        "title": "waterschap_constructieonderdeel",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_constructieonderdeel",
+                "name": "wkib_ws_constructieonderdeel"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_iba",
+        "title": "waterschap_iba",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_IBA",
+                "name": "wkib_ws_IBA"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_leiding",
+        "title": "waterschap_leiding",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_leiding_v2",
+                "name": "wkib_ws_leiding_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_leidingsegment",
+        "title": "waterschap_leidingsegment",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_leidingsegment_v1",
+                "name": "wkib_ws_leidingsegment_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_lozingspunt",
+        "title": "waterschap_lozingspunt",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_lozingspunt",
+                "name": "wkib_ws_lozingspunt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_mantelbuis",
+        "title": "waterschap_mantelbuis",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_mantelbuis_v1",
+                "name": "wkib_ws_mantelbuis_v1"
+            },
+            {
+                "title": "Mantelbuizen_materiaal_v1",
+                "name": "Mantelbuizen_materiaal_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_nooduitlaat",
+        "title": "waterschap_nooduitlaat",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_nooduitlaat_v2",
+                "name": "wkib_ws_nooduitlaat_v2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_overnamepunt",
+        "title": "waterschap_overnamepunt",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkin_ws_overnamepunt",
+                "name": "wkin_ws_overnamepunt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_put",
+        "title": "waterschap_put",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_put",
+                "name": "wkib_ws_put"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_rioleringsgebied",
+        "title": "waterschap_rioleringsgebied",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "ws_waterschap_rioleringsgebied",
+                "name": "wkib_ws_rioleringsgebied_all_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_rioolgemaal",
+        "title": "waterschap_rioolgemaal",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_rioolgemaal",
+                "name": "wkib_ws_rioolgemaal"
+            },
+            {
+                "title": "rioolgemaal_cap_v1",
+                "name": "rioolgemaal_cap_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_rwzi",
+        "title": "waterschap_rwzi",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "wkib_ws_rwzi",
+                "name": "wkib_ws_rwzi"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    },
+    {
+        "name": "ws_waterschap_zuiveringseenheid",
+        "title": "waterschap_zuiveringseenheid",
+        "abstract": "Waterketen in Beeld",
+        "styles": [
+            {
+                "title": "ws_waterschap_zuiveringseenheid",
+                "name": "wkib_ws_zuiveringseenheid_all_v1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_title": "Waterketen in Beeld",
+        "service_abstract": "Waterketen in Beeld",
+        "service_type": "wms"
+    }
+]

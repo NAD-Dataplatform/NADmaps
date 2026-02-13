@@ -8,13 +8,13 @@
     {
         "name": "klimaatatlas",
         "title": "Klimaatatlas",
-        "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?request=getCapabilities",
+        "url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
         "service_type": "wfs"
     },
     {
         "name": "klimaatatlas",
         "title": "Klimaatatlas",
-        "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
+        "url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
         "service_type": "wms"
     },
     {
