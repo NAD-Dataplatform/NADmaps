@@ -389,7 +389,7 @@ class LayerManager:
                 title = "NAD kaartlagen"
             else:
                 for dataset in meta_data:
-                    meta_data_name = f"{dataset["name"]}-{dataset["service_type"]}.json"
+                    meta_data_name = f"{dataset['name']}-{dataset['service_type']}.json"
                     if meta_data_name == file_name:
                         service_type = (
                             self.service_type_mapping[dataset["service_type"]]
