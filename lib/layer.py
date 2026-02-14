@@ -396,7 +396,7 @@ class LayerManager:
                             if dataset["service_type"] in self.service_type_mapping
                             else dataset["service_type"].upper()
                         )
-                        title = f"{dataset["title"]} [{service_type}]"
+                        title = f"{dataset['title']} [{service_type}]"
 
             if not title:
                 self.log(f"Dataset with file name {file_name} has no metadata.")
