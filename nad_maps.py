@@ -304,7 +304,7 @@ class NADMaps:
 
         # init autoload standard area checkbox
         checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
-        self.log(f"auto zoom to standard area is checked: {checked} of type: {type(checked)}")
+        self.log(f"auto zoom to standard area is checked: {checked}")
         self.dlg.checkBox_StandardArea.setChecked(checked)
         if not checked:  # if unchecked, zoom is not required during this session
             self.log("zoom_completed is set to True", 0)

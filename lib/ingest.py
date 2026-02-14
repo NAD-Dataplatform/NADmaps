@@ -18,12 +18,11 @@ from owslib.csw import CatalogueServiceWeb  # type: ignore
 # from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post
 from owslib.wfs import WebFeatureService 
 from owslib.wms import WebMapService
-from owslib.util import Authentication
 
 from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl 
 import urllib.request, urllib.parse, urllib.error 
-import xml.etree.ElementTree as ET 
-from .constants import PLUGIN_NAME 
+import xml.etree.ElementTree as ET
+from .constants import SERVICE_TYPE_MAPPING
 from qgis.PyQt.QtNetwork import QNetworkRequest 
 from qgis.PyQt.QtCore import QUrl 
 from qgis.core import QgsNetworkAccessManager
@@ -50,14 +49,7 @@ class IngestLayersManager():
         # self.auth = Authentication(verify=False)
 
         # Set default layer loading behaviour
-        self.service_type_mapping = {
-            "wms": "WMS",
-            "wmts": "WMTS",
-            "wfs": "WFS",
-            "wcs": "WCS",
-            "api features": "OGC API - Features",
-            "api tiles": "OGC API - Tiles",
-        } 
+        self.service_type_mapping = SERVICE_TYPE_MAPPING
         self.protocol_to_type_mapping = {
             "OGC:WMS": "wms",
             "OGC:WMTS": "wmts",
@@ -66,46 +58,7 @@ class IngestLayersManager():
             "OGC:API features": "api features",
             "OGC:API tiles": "api tiles",
         } 
-        self.wfs_urls = {
-            "hhd": {
-                "url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-                "title": "Legger Delfland",
-            },
-            "klimaatatlas": {
-                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?request=getCapabilities",
-                "title": "Klimaatatlas",
-            },
-            "waterketeninbeeld": {
-                "url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wfs?request=getcapabilities",
-                "title": "Waterketen in Beeld",
-            },
-            "rijnland1": {
-                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
-                "title": "Legger Rijnland: Oppervlakte water", 
-            },
-            "rijnland2": {
-                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
-                "title": "Legger Rijnland: Primaire keringen", 
-            },
-        } 
-        self.wms_urls = {
-            "klimaatatlas": {
-                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
-                "title": "Klimaatatlas",
-            },
-            "waterketeninbeeld": {
-                "url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
-                "title": "Waterketen in Beeld"
-            },
-            "rijnland3": {
-                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
-                "title": "Legger Rijnland: Regionale keringen", 
-            },
-            "rijnland2": {
-                "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
-                "title": "Legger Rijnland: Kunstwerken", 
-            },
-        }
+
 
     def save_json_file(self, data, filename):
         """

@@ -12,6 +12,7 @@ from qgis.PyQt.QtCore import (
     QSettings,
     QRegularExpression,
     QSortFilterProxyModel,
+    QPoint
 )
 from qgis.core import (
     Qgis,
@@ -282,7 +283,6 @@ class LayerManager:
         )
 
         self.layerProxyModel.setFilterRegularExpression(regexp)
-        self.layerProxyModel.insertRow
 
     ############################# Active layer list #############################
 
@@ -381,9 +381,6 @@ class LayerManager:
         layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
         self.log(f"layer files found: {layer_files}")
 
-        parentItem = self.layerModel.invisibleRootItem()
-        self.log(f"parentItem: {parentItem}")
-
         meta_data = self.get_meta_data()
 
         for file_name in layer_files:
@@ -394,7 +391,12 @@ class LayerManager:
                 for dataset in meta_data:
                     meta_data_name = f"{dataset["name"]}-{dataset["service_type"]}.json"
                     if meta_data_name == file_name:
-                        title = dataset["title"]
+                        service_type = (
+                            self.service_type_mapping[dataset["service_type"]]
+                            if dataset["service_type"] in self.service_type_mapping
+                            else dataset["service_type"].upper()
+                        )
+                        title = f"{dataset["title"]} [{service_type}]"
 
             if not title:
                 self.log(f"Dataset with file name {file_name} has no metadata.")
@@ -403,13 +405,19 @@ class LayerManager:
             self.add_source_rows(file_name, file_path, title)
 
         # Format the table layout
+        self.dlg.mapListView.hideColumn(2)             # hide Service name
         self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
-        self.dlg.mapListView.setColumnWidth( 0, 250 )  # set name to 300px (there are some huge layernames)
+        self.dlg.mapListView.setColumnWidth( 0, 300 )  # set name to 300px (there are some huge layernames)
 
         self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
         self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+
+        # TODO: expand the first parent
+        point = QPoint(0, 0)
+        first_row = self.dlg.mapListView.indexAt(point)
+        self.dlg.mapListView.setExpanded(first_row, True)
 
     def add_source_rows(self, json_file: str, file_path: str, title: str):
         """
