@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Legger_Primaire_Kering_Vigerend:PrimaireKeringAsVigerend",
+        "title": "PrimaireKeringAsVigerend",
+        "abstract": "Legger Rijnland: Primaire keringen",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Primaire keringen",
+        "service_abstract": "Legger Rijnland: Primaire keringen",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Primaire_Kering_Vigerend:Onderhoudsplicht",
+        "title": "Onderhoudsplicht",
+        "abstract": "Legger Rijnland: Primaire keringen",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Primaire keringen",
+        "service_abstract": "Legger Rijnland: Primaire keringen",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Primaire_Kering_Vigerend:PrimaireKeringZoneVigerend",
+        "title": "PrimaireKeringZoneVigerend",
+        "abstract": "Legger Rijnland: Primaire keringen",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Primaire keringen",
+        "service_abstract": "Legger Rijnland: Primaire keringen",
+        "service_type": "wfs"
+    },
+    {
+        "name": "Legger_Primaire_Kering_Vigerend:Strandpaal",
+        "title": "Strandpaal",
+        "abstract": "Legger Rijnland: Primaire keringen",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_title": "Legger Rijnland: Primaire keringen",
+        "service_abstract": "Legger Rijnland: Primaire keringen",
+        "service_type": "wfs"
+    }
+]

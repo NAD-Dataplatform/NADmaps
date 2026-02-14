@@ -1,0 +1,82 @@
+[
+    {
+        "name": "1",
+        "title": "Buitenbeschermingszone",
+        "abstract": "Legger Rijnland: Regionale keringen",
+        "styles": [
+            {
+                "title": "Buitenbeschermingszone",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_title": "Legger Rijnland: Regionale keringen",
+        "service_abstract": "Legger Rijnland: Regionale keringen",
+        "service_type": "wms"
+    },
+    {
+        "name": "2",
+        "title": "Beschermingszone",
+        "abstract": "Legger Rijnland: Regionale keringen",
+        "styles": [
+            {
+                "title": "Beschermingszone",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_title": "Legger Rijnland: Regionale keringen",
+        "service_abstract": "Legger Rijnland: Regionale keringen",
+        "service_type": "wms"
+    },
+    {
+        "name": "3",
+        "title": "Profiel van Vrije Ruimte",
+        "abstract": "Legger Rijnland: Regionale keringen",
+        "styles": [
+            {
+                "title": "Profiel van Vrije Ruimte",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_title": "Legger Rijnland: Regionale keringen",
+        "service_abstract": "Legger Rijnland: Regionale keringen",
+        "service_type": "wms"
+    },
+    {
+        "name": "4",
+        "title": "Kernzone",
+        "abstract": "Legger Rijnland: Regionale keringen",
+        "styles": [
+            {
+                "title": "Kernzone",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_title": "Legger Rijnland: Regionale keringen",
+        "service_abstract": "Legger Rijnland: Regionale keringen",
+        "service_type": "wms"
+    },
+    {
+        "name": "5",
+        "title": "Regionale kering as (vigerend)",
+        "abstract": "Legger Rijnland: Regionale keringen",
+        "styles": [
+            {
+                "title": "Regionale kering as (vigerend)",
+                "name": "default"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_title": "Legger Rijnland: Regionale keringen",
+        "service_abstract": "Legger Rijnland: Regionale keringen",
+        "service_type": "wms"
+    }
+]

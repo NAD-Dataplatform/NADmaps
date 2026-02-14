@@ -1,6 +1,6 @@
 PLUGIN_NAME = "NAD Kaarten"
 PLUGIN_ID = "nad_maps"
-ADMIN_USERNAMES = ['svanderhoeven', 'devandenberg']
+ADMIN_USERNAMES = ['svanderhoeven']
 # ADMIN_USERNAMES = ['']
 SERVICE_ENDPOINT = "https://api.pdok.nl/bzk/locatieserver/search/v3_1"
 PAPER_OPTIONS = [
@@ -24,3 +24,11 @@ PRINT_QUALITY_OPTIONS = {
     "Zeer hoog (600 DPI)": 600,
 }
 WIKI_URL = "https://github.com/NAD-Dataplatform/NADmaps/wiki"
+SERVICE_TYPE_MAPPING = {
+    "wms": "WMS",
+    "wmts": "WMTS",
+    "wfs": "WFS",
+    "wcs": "WCS",
+    "api features": "OGC API - Features",
+    "api tiles": "OGC API - Tiles",
+}

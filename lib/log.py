@@ -37,6 +37,12 @@ class LoggingManager:
         self.log(f"Rendering finished in {toc - self.tic:0.4f} seconds.", 0)
 
     def log(self, text, lvl=1):
+        """
+        Display log messages in the logging table
+        
+        :param text: Log message
+        :param lvl: Log level: 0 = INFO, 1 = WARNING, 2 = CRITICAL
+        """
         if not isinstance(text, str):
             text = str(text)
         

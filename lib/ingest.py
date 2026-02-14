@@ -6,7 +6,6 @@
 # handmatig (achtergrondkaarten) 
 # CSW voor pdok & provincie zuidholland 
 
-# in lijst inklapbare categorieen
 import certifi
 
 import json 
@@ -19,12 +18,11 @@ from owslib.csw import CatalogueServiceWeb  # type: ignore
 # from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post
 from owslib.wfs import WebFeatureService 
 from owslib.wms import WebMapService
-from owslib.util import Authentication
 
 from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl 
 import urllib.request, urllib.parse, urllib.error 
-import xml.etree.ElementTree as ET 
-from .constants import PLUGIN_NAME 
+import xml.etree.ElementTree as ET
+from .constants import SERVICE_TYPE_MAPPING
 from qgis.PyQt.QtNetwork import QNetworkRequest 
 from qgis.PyQt.QtCore import QUrl 
 from qgis.core import QgsNetworkAccessManager
@@ -44,20 +42,14 @@ class IngestLayersManager():
         self.iface = iface
         self.plugin_dir = plugin_dir
         self.log = log
-
-        self.auth = Authentication(cert=certifi.where())
-        # self.auth = Authentication(verify=certifi.where())
+        
+        # cert = certifi.where() # C:\OSGeo4W\apps\Python312\Lib\site-packages\certifi\cacert.pem
+        # cert = False # Skips certification (not for production!)
+        # self.auth = Authentication(cert=cert)
         # self.auth = Authentication(verify=False)
 
-        # Set default layer loading behaviour 
-        self.service_type_mapping = {
-            "wms": "WMS",
-            "wmts": "WMTS",
-            "wfs": "WFS",
-            "wcs": "WCS",
-            "api features": "OGC API - Features",
-            "api tiles": "OGC API - Tiles",
-        } 
+        # Set default layer loading behaviour
+        self.service_type_mapping = SERVICE_TYPE_MAPPING
         self.protocol_to_type_mapping = {
             "OGC:WMS": "wms",
             "OGC:WMTS": "wmts",
@@ -66,22 +58,7 @@ class IngestLayersManager():
             "OGC:API features": "api features",
             "OGC:API tiles": "api tiles",
         } 
-        self.wfs_urls = {
-            "hhd": {
-                "url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-                "title": "Legger Delfland",
-            },
-            "klimaatatlas": {
-                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?request=getCapabilities",
-                "title": "Klimaatatlas",
-            },
-        } 
-        self.wms_urls = {
-            "klimaatatlas": {
-                "url": "https://apps.geodan.nl/public/data/org/gws/YWFMLMWERURF/kea_public/wms?request=getCapabilities",
-                "title": "Klimaatatlas",
-            },
-        }
+
 
     def save_json_file(self, data, filename):
         """
@@ -107,80 +84,124 @@ class IngestLayersManager():
         except Exception as e: 
             self.log(f"[save_json_file] Failed to save recordes. Error message: {e}") 
 
-    def ingest_wfs_layers(self):
-        for source in self.wfs_urls: 
-            url = self.wfs_urls[source]["url"] 
-            service_title = self.wfs_urls[source]["title"] 
-            wfs = WebFeatureService(url, version="2.0.0", auth=self.auth) 
+    def ingest_wfs_layers(self, urls):
+        for service_data in urls:
+            service_url = service_data["url"] 
+            service_name = service_data["name"]
+            service_title = service_data["title"]
 
-            wfs_items = wfs.items() 
-            layer_list = [] 
-            for _, c in wfs_items: 
-                layer = { 
-                    "name": c.id, 
-                    "title": c.title, 
-                    "abstract": service_title, 
-                    "service_url": url, 
-                    "service_title": service_title, 
-                    "service_abstract": service_title, 
-                    "service_type": "wfs", 
-                } 
-                layer_list.append(layer) 
-            self.save_json_file(layer_list, f"wfs-{source}") 
+            try:
+                wfs = WebFeatureService(service_url, version="2.0.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebFeatureService niet vinden. Error {e}")
+                continue
+            # wfs = WebFeatureService(url, version="2.0.0", auth=self.auth)
 
-    def ingest_wms_layers(self): 
-        for source in self.wms_urls: 
-            url = self.wms_urls[source]["url"] 
-            service_title = self.wms_urls[source]["title"] 
-            wms = WebMapService(url, version="1.3.0", auth=self.auth) 
-            wms_items = wms.items() 
-            layer_list = [] 
+            wfs_items = wfs.items()
+            layer_list = []
+            for _, c in wfs_items:
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_title,
+                    "service_type": "wfs",
+                }
+                layer_list.append(layer)
+            self.save_json_file(layer_list, f"{service_name}-wfs") 
 
-            for _, c in wms_items:                 
-                # get styles 
-                styles = [] 
-                for s in c.styles: 
-                    style = { 
-                        "title": c.styles[s]["title"], 
-                        "name": s 
-                    } 
-                    styles.append(style) 
-                # get crs value 
-                crs = "" 
-                if "EPSG:28992" in c.crsOptions: 
-                    crs = "EPSG:28992" 
-                elif "EPSG:4326" in c.crsOptions: 
-                    crs = "EPSG:4326" 
+    def ingest_wms_layers(self, urls):
+        for service_data in urls:
+            service_url = service_data["url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            
+            try:
+                wms = WebMapService(service_url, version="1.3.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebMapService niet vinden. Error {e}")
+                continue
+            
+            wms_items = wms.items()
+            layer_list = []
+            for _, c in wms_items:
+                # get styles
+                styles = []
+                for s in c.styles:
+                    style = {
+                        "title": c.styles[s]["title"],
+                        "name": s
+                    }
+                    styles.append(style)
+                # get crs value
+                crs = ""
+                if "EPSG:28992" in c.crsOptions:
+                    crs = "EPSG:28992"
+                elif "EPSG:4326" in c.crsOptions:
+                    crs = "EPSG:4326"
                 else: 
-                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...") 
-                    self.log(f"   url: {url}") 
-                    continue 
+                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...")
+                    self.log(f"   url: {service_url}")
+                    continue
 
-                # construct layer object 
-                layer = { 
-                    "name": c.id, 
-                    "title": c.title, 
-                    "abstract": service_title, 
-                    "styles": styles, 
-                    "crs": crs, 
-                    "service_url": url, 
-                    "service_title": service_title, 
-                    "service_abstract": service_title, 
-                    "service_type": "wms", 
-                } 
-                layer_list.append(layer) 
-            self.save_json_file(layer_list, f"wms-{source}") 
+                # construct layer object
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "styles": styles,
+                    "crs": crs,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_title,
+                    "service_type": "wms",
+                }
+                layer_list.append(layer)
+                
+            self.save_json_file(layer_list, f"{service_name}-wms")
 
-    def ingest_gwsw_layers(self): 
-        base_url = "https://geodata.gwsw.nl/" 
-        nad_ids = [ 
+    def ingest_gwsw_layers(self):
+        base_url = "https://geodata.gwsw.nl/"
+        nad_ids = [
             "Delft", "DenHaag",
         ]
 
-    def get_layers(self): 
-        # get_csw_lists() 
-        self.ingest_wfs_layers()
-        self.ingest_wms_layers()
+    def get_layers(self):
+        # 1. Extract service urls from CatalogueServiceWeb urls
+        # get_csw_lists()
+        
+        # 2. Add csw urls to list
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
+        
+        source_filepaths = [os.path.join(root, name)
+             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
+             for name in files
+             if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
+        
+        self.log(f"List of source files: {source_filepaths}", 0)
+        
+        # 3. Gather all the resulting urls
+        url_list = []
+        for source_path in source_filepaths:
+            with open(source_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            url_list.extend(data)
+
+        # 4. Split between service type
+        wfs_urls = [url_data for url_data in url_list if url_data["service_type"] == "wfs"]
+        wms_urls = [url_data for url_data in url_list if url_data["service_type"] == "wms"]
+        
+        self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
+
+        # 5. Run the service type ingest functions
+        self.ingest_wfs_layers(wfs_urls)
+        self.ingest_wms_layers(wms_urls)
+        return
+        # 4. special ones like gwsw?
+        
 
     def get_csw_lists(self): 
         """
@@ -190,8 +211,8 @@ class IngestLayersManager():
         :param self: Description
         """
         csw_urls = { 
-            # "pzh": "https://opendata.zuid-holland.nl/geonetwork/srv/dut/csw", # only has wfs and wms layers 
-            "pdok": "https://nationaalgeoregister.nl/geonetwork/srv/dut/csw", 
+            "pzh": "https://opendata.zuid-holland.nl/geonetwork/srv/dut/csw", # only has wfs and wms layers 
+            # "pdok": "https://nationaalgeoregister.nl/geonetwork/srv/dut/csw", 
         } 
         # https://qgis.org/pyqgis/3.44/core/QgsAuthConfigurationStorage.html#qgis.core.QgsAuthConfigurationStorage.storeCertIdentity # opslaan van een PEM bestand in QGIS 
         # pdok: https://service.pdok.nl & https://api.pdok.nl, maar nationaalgeoregister heeft ook vanalles zoals https://opengeodata.zeeland.nl/, https://data.rivm.nl/ of https://maps.bodemdata.nl 
@@ -348,99 +369,7 @@ class IngestLayersManager():
 
         return csw_list_classified 
 
-    def compare_files(self):
-        """
-        get layers takes the layers from one json file and compares them, saving the differences 
-        
-        :param self: Description
-        """
-        pdok_list = [] 
-        geo_list = [] 
-        pdok_path = os.path.join(self.plugin_dir, "resources", "layers", "raw", "pdok_test.json") # list from pdok services plugin 
-        geo_path = os.path.join(self.plugin_dir, "resources", "layers", "raw2", "layer_list_pdok.json") # list nationaal georegister that mention pdok 
-
-        with open(pdok_path, "r", encoding="utf-8") as f: 
-            pdok_list.extend(json.load(f)) 
-
-        with open(geo_path, "r", encoding="utf-8") as f: 
-            geo_list.extend(json.load(f)) 
-
-        diff_layer_list = [] 
-        for obj in pdok_list: 
-            if obj not in geo_list: 
-                diff_layer_list.append(obj) 
-        # Save metadata to JSON 
-        path = self.create_directory("raw2") # add the raw-data folder to gitignore 
-        diff_list_path = os.path.join( 
-            path, 
-            f"lost_list.json", 
-        ) 
-        try: 
-            with open(diff_list_path, encoding="utf-8", mode="w") as f: 
-                json.dump(diff_layer_list, f, indent=4) 
-                self.log(f"[get_layers] Saved {len(diff_layer_list)} records to {diff_list_path}", lvl=3) 
-        except Exception as e: 
-                self.log(f"[get_layers] Failed to save recordes: {e}") 
-
-    def COMMENTEDSTUFF(self): 
-        pass 
-        # def csw_format_layer(self, csw_list): 
-        #     self.log("here!") 
-        #     layer_list = [] 
-        #     layer = None 
-        #     for record in csw_list: 
-        #         service_type = record["service_type"] 
-        #         if service_type == "wfs": 
-        #             layer = { 
-        #                 "name": record["name"], 
-        #                 "title": record["title"], 
-        #                 "abstract": "abstract" 
-        #                 "service_url": record["url"], 
-        #                 "service_title": "service_title", 
-        #                 "service_abstract": record["abstract"], 
-        #                 "service_type": "wfs", 
-        #             } 
-        #         elif service_type == "wms": 
-        #             layer = { 
-        #                 "name": "top25raster", 
-        #                 "title": "TOP25raster", 
-        #                 "abstract": "TOP25raster wordt softwarematig afgeleid uit TOP10NL. Het Kadaster heeft gekozen voor een detailniveau dat uitstekend geschikt is voor middenschalige toepassingen. TOP25raster is geschikt als topografische ondergrond in GIS, CAD en Desktop Mapping.", 
-        #                 "styles": [ 
-        #                     { 
-        #                         "title": "TOP25raster", 
-        #                         "name": "default" 
-        #                     } 
-        #                 ], 
-        #                 "crs": "EPSG:28992,EPSG:25831,EPSG:25832,EPSG:3034,EPSG:3035,EPSG:3857,EPSG:4258,EPSG:4326,CRS:84", 
-        #                 "minscale": "4000", 
-        #                 "maxscale": "50000", 
-        #                 "imgformats": "image/png,image/jpeg,image/png; mode=8bit,image/vnd.jpeg-png,image/vnd.jpeg-png8", 
-        #                 "service_url": "https://service.pdok.nl/brt/topraster/wms/v1_0?request=GetCapabilities&service=WMS", 
-        #                 "service_title": "BRT TOPraster", 
-        #                 "service_abstract": "Deze WMS bevat verschillende producten van de Basisregistratie Topografie (BRT) in rastervorm.", 
-        #                 "service_type": "wms", 
-        #             } 
-
-            # WFS 
-
-            # name = getattr(r, "title", "") 
-            # uris = getattr(r, "uris", []) 
-            # has_getcapabilities = any("request=GetCapabilities" in uri.get("url", "") for uri in uris ) 
-            # self.log(f"layer: {name} has getcapabilities: {has_getcapabilities} or ") 
-            #         "name": getattr(r, "title", ""), 
-            #         "title": getattr(r, "title", ""), 
-            #         "abstract": getattr(r, "title", ""), 
-
-            #         "styles": getattr(r, "title", ""), # for wms, wmts, api tiles 
-            #         "tiles": getattr(r, "tiles", ""), # for api tiles 
-            #         "crs": getattr(r, "crs", ""), # for wms, wmts, api tiles (alleen correct in webmercators crs epsg 3857) 
-            #         "tilematrixsets": getattr(r, "crs", ""), # for wmts 
-            #         "imgformats": getattr(r, "title", ""), # for wmts 
-
-            #         "service_url": getattr(r, "title", ""), 
-            #         "service_title": getattr(r, "title", ""), 
-            #         "service_abstract": getattr(r, "title", ""), 
-            #         "service_type": getattr(r, "title", ""), 
+########################## OLD CODE ########################################## 
 
     def extract_oat_info(self, url): 
         with urllib.request.urlopen(url) as response: 
@@ -461,8 +390,6 @@ class IngestLayersManager():
                 elif link["rel"].endswith("tiling-schemes"): 
                     link_matrix_sets = link["href"] 
                 self.log(f"descr: {link_description}, styles: {link_styles}, tiles: {link_tiles}, matrix_sets: {link_matrix_sets}") 
-
-########################## OLD CODE ########################################## 
 
     def assign_service_type(self, csw_list: list): 
         csw_list_classified = [] 

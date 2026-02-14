@@ -557,7 +557,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QTableView" name="mapListView">
+        <widget class="QTreeView" name="mapListView">
          <property name="enabled">
           <bool>true</bool>
          </property>
