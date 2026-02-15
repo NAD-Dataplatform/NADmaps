@@ -46,16 +46,15 @@ from qgis.PyQt.QtWidgets import (
 from .lib.constants import (
     PLUGIN_NAME,
     ADMIN_USERNAMES,
-    PAPER_OPTIONS,
-    FORMAT_OPTIONS,
-    PLACEMENT_OPTIONS,
-    PRINT_QUALITY_OPTIONS,
+    # PAPER_OPTIONS,
+    # FORMAT_OPTIONS,
+    # PLACEMENT_OPTIONS,
+    # PRINT_QUALITY_OPTIONS,
     WIKI_URL,
 )
 
 from .gui.nad_maps_dockwidget import NADMapsDockWidget
 
-# from .lib.load_layers import LoadLayers ### LayerManager
 from .lib.layer import LayerManager
 from .lib.thema import ThemaManager
 from .lib.style import StyleManager
@@ -63,7 +62,6 @@ from .lib.log import LoggingManager
 from .lib.export import ExportManager
 from .lib.search_location import SearchLocationManager
 from .lib.ingest import IngestLayersManager
-# from .lib.ingest_v2 import IngestLayersManager
 
 #########################################################################################
 ####################  Run main script to initiate when NAD button is pressed ############
@@ -98,21 +96,6 @@ class NADMaps:
 
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
-
-
-        # QSettings().setValue("NADmaps/working_dir", "") # for testing purposes, always re-comment after usage!
-        # if self.working_dir in ["", None]:
-        #     set_directory = QMessageBox.question(
-        #         self.dlg,
-        #         "Werkmap selecteren",
-        #         "Deze plug-in gebruikt een lokale werkmap om goed te functioneren. Wilt u de werkmap nu selecteren? Anders kunt u later nog de werkmap veranderen of instellen in het tabblad 'Instellingen'",
-        #         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-        #     )
-        #     if set_directory == QMessageBox.StandardButton.Yes:
-        #         self.working_dir = QFileDialog.getExistingDirectory(
-        #             self.dlg, "Selecteer een werkmap", ""
-        #         )
-
 
         # initialize the working directory from settings
         self.working_dir = QSettings().value("NADmaps/working_dir")
@@ -155,9 +138,7 @@ class NADMaps:
             creator=self.creator,
             log=self.log,
         )
-        self.search_manager = SearchLocationManager(
-            dlg=self.dlg, iface=self.iface, log=self.log
-        )
+        self.search_manager = SearchLocationManager(dlg=self.dlg, iface=self.iface, log=self.log)
         self.layer_manager = LayerManager(
             dlg=self.dlg,
             iface=self.iface,
@@ -177,6 +158,13 @@ class NADMaps:
             iface=self.iface,
             plugin_dir=self.plugin_dir,
             log=self.log,
+        )
+        self.export_manager = ExportManager(
+            dlg=self.dlg,
+            iface=self.iface,
+            working_dir=self.working_dir,
+            log=self.log,
+            project=None
         )
 
         # Declare instance attributes
@@ -290,9 +278,8 @@ class NADMaps:
         )
 
         # init the values for the export settings
-        self.init_export_comboboxes()
-        self.load_export_settings()
-        self.check_map_name()  # To enable or disable pushbutton
+        self.export_manager.init_export_comboboxes()
+        self.export_manager.check_map_name()  # To enable or disable pushbutton
 
         # init autostart checkbox
         self.dlg.checkBox_AutoStart.setChecked(
@@ -413,20 +400,6 @@ class NADMaps:
         self.dlg.checkBox_MaxNumFeatures.clicked.connect(     lambda: self.set_maxnumfeatures_checkbox() ) # maxNumFeatures spinbox
         self.dlg.spinBox_MaxNumFeatures.valueChanged.connect( lambda: self.set_maxnumfeatures() )
 
-        # Export_tab interactions
-        self.dlg.lineEdit_FileName.textChanged.connect(self.check_map_name)
-        self.dlg.comboBox_PapierFormaat.currentIndexChanged.connect( self.on_paper_format_changed )
-        self.dlg.comboBox_BestandsFormaat.currentIndexChanged.connect( self.on_file_format_changed )
-        self.dlg.comboBox_PrintQuality.currentIndexChanged.connect( self.on_print_quality_changed )
-
-        self.dlg.checkBox_Noordpijl.stateChanged.connect(  lambda: self.on_north_checkbox_changed() )
-        self.dlg.checkBox_Legenda.stateChanged.connect(self.on_legend_checkbox_changed)
-        self.dlg.checkBox_Schaalbalk.stateChanged.connect( self.on_scale_checkbox_changed )
-        self.dlg.checkBox_Titel.stateChanged.connect(self.on_titel_checkbox_changed)
-
-        self.dlg.pushButton_ExporteerMap.clicked.connect(self.export_map_button_pressed)
-
-        self.dlg.stylingGroupBox.setEnabled(False)
 
         # update the information on the current selection of active layers
         self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
@@ -441,7 +414,7 @@ class NADMaps:
         # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
 
     #########################################################################################
-    ################################  General utility functions ########################
+    ################################  General utility functions #############################
     #########################################################################################
 
     def set_working_directory(self, path):
@@ -459,6 +432,7 @@ class NADMaps:
 
         self.thema_manager.set_working_directory(path)
         self.style_manager.set_working_directory(path)
+        self.export_manager.set_working_directory(path)
 
         self.user_styling_path = os.path.join(path, "styling", "styling.json")
         self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
@@ -634,298 +608,3 @@ class NADMaps:
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
         return QCoreApplication.translate("NADMaps", message)
-
-    def init_export_comboboxes(self):
-        paper_items = [
-            str(self.dlg.comboBox_PapierFormaat.itemText(i))
-            for i in range(self.dlg.comboBox_PapierFormaat.count())
-        ]
-        file_items = [
-            str(self.dlg.comboBox_BestandsFormaat.itemText(i))
-            for i in range(self.dlg.comboBox_BestandsFormaat.count())
-        ]
-        print_quality_items = [
-            str(self.dlg.comboBox_PrintQuality.itemText(i))
-            for i in range(self.dlg.comboBox_PrintQuality.count())
-        ]
-
-        legend_placement_items = [
-            str(self.dlg.comboBox_LegendaPlacement.itemText(i))
-            for i in range(self.dlg.comboBox_LegendaPlacement.count())
-        ]
-        schaalbalk_placement_items = [
-            str(self.dlg.comboBox_SchaalbalkPlacement.itemText(i))
-            for i in range(self.dlg.comboBox_SchaalbalkPlacement.count())
-        ]
-        noordpijl_placement_items = [
-            str(self.dlg.comboBox_NoordpijlPlacement.itemText(i))
-            for i in range(self.dlg.comboBox_NoordpijlPlacement.count())
-        ]
-
-        if paper_items != PAPER_OPTIONS:
-            self.dlg.comboBox_PapierFormaat.clear()
-            for item in PAPER_OPTIONS:
-                self.dlg.comboBox_PapierFormaat.addItem(item)
-
-        if file_items != FORMAT_OPTIONS:
-            self.dlg.comboBox_BestandsFormaat.clear()
-            for item in FORMAT_OPTIONS:
-                self.dlg.comboBox_BestandsFormaat.addItem(item)
-
-        print_quality_options = list(PRINT_QUALITY_OPTIONS.keys())
-        if print_quality_items != print_quality_options:
-            self.dlg.comboBox_PrintQuality.clear()
-            for item in print_quality_options:
-                self.dlg.comboBox_PrintQuality.addItem(item)
-
-        if (
-            legend_placement_items != PLACEMENT_OPTIONS
-            or schaalbalk_placement_items != PLACEMENT_OPTIONS
-            or noordpijl_placement_items != PLACEMENT_OPTIONS
-        ):
-            self.dlg.comboBox_LegendaPlacement.clear()
-            self.dlg.comboBox_SchaalbalkPlacement.clear()
-            self.dlg.comboBox_NoordpijlPlacement.clear()
-            for item in PLACEMENT_OPTIONS:
-                self.dlg.comboBox_LegendaPlacement.addItem(item)
-                self.dlg.comboBox_SchaalbalkPlacement.addItem(item)
-                self.dlg.comboBox_NoordpijlPlacement.addItem(item)
-
-    def save_export_settings(self):
-        QSettings().setValue(
-            "NADmaps/export/paper_format", self.dlg.comboBox_PapierFormaat.currentText()
-        )
-        QSettings().setValue(
-            "NADmaps/export/file_format",
-            self.dlg.comboBox_BestandsFormaat.currentText(),
-        )
-        QSettings().setValue(
-            "NADmaps/export/print_quality", self.dlg.comboBox_PrintQuality.currentText()
-        )
-        QSettings().setValue(
-            "NADmaps/export/include_north",
-            "true" if self.dlg.checkBox_Noordpijl.isChecked() else "false",
-        )
-        QSettings().setValue(
-            "NADmaps/export/noordpijl_placement",
-            self.dlg.comboBox_NoordpijlPlacement.currentText(),
-        )
-        QSettings().setValue(
-            "NADmaps/export/include_legend",
-            "true" if self.dlg.checkBox_Legenda.isChecked() else "false",
-        )
-        QSettings().setValue(
-            "NADmaps/export/legend_placement",
-            self.dlg.comboBox_LegendaPlacement.currentText(),
-        )
-        QSettings().setValue(
-            "NADmaps/export/include_scale",
-            "true" if self.dlg.checkBox_Schaalbalk.isChecked() else "false",
-        )
-        QSettings().setValue(
-            "NADmaps/export/scale_placement",
-            self.dlg.comboBox_SchaalbalkPlacement.currentText(),
-        )
-        QSettings().setValue(
-            "NADmaps/export/include_title",
-            "true" if self.dlg.checkBox_Titel.isChecked() else "false",
-        )
-        QSettings().setValue("NADmaps/export/title", self.dlg.lineEdit_Titel.text())
-        QSettings().setValue(
-            "NADmaps/export/title_font_size",
-            str(self.dlg.spinBox_TitelFontSize.value()),
-        )
-
-    def load_export_settings(self):
-        saved_paper = str(QSettings().value("NADmaps/export/paper_format", "A4 staand"))
-        if saved_paper in [
-            str(self.dlg.comboBox_PapierFormaat.itemText(i))
-            for i in range(self.dlg.comboBox_PapierFormaat.count())
-        ]:
-            self.dlg.comboBox_PapierFormaat.setCurrentText(saved_paper)
-        else:
-            self.dlg.comboBox_PapierFormaat.setCurrentIndex(0)
-
-        saved_format = str(QSettings().value("NADmaps/export/file_format", "PNG"))
-        format_items = [
-            str(self.dlg.comboBox_BestandsFormaat.itemText(i))
-            for i in range(self.dlg.comboBox_BestandsFormaat.count())
-        ]
-        if saved_format in format_items:
-            self.dlg.comboBox_BestandsFormaat.setCurrentText(saved_format)
-        else:
-            self.dlg.comboBox_BestandsFormaat.setCurrentIndex(0)
-
-        saved_quality = str(
-            QSettings().value("NADmaps/export/print_quality", "Normale kwaliteit")
-        )
-        quality_items = [
-            str(self.dlg.comboBox_PrintQuality.itemText(i))
-            for i in range(self.dlg.comboBox_PrintQuality.count())
-        ]
-        if saved_quality in quality_items:
-            # self.dlg.comboBox_PrintQuality.setCurrentText(saved_quality)
-            self.dlg.comboBox_PrintQuality.setCurrentText("Iets geks")
-        else:
-            # self.dlg.comboBox_PrintQuality.setCurrentIndex(0)
-            self.dlg.comboBox_PrintQuality.setCurrentText(
-                f"Saved quality: {saved_quality} zit niet in de lijst van opties: {quality_items}"
-            )
-
-        self.dlg.checkBox_Noordpijl.setChecked(
-            QSettings().value("NADmaps/export/include_north", "false") == "true"
-        )
-        self.set_noordpijl_placement_combobox()
-        self.dlg.checkBox_Legenda.setChecked(
-            QSettings().value("NADmaps/export/include_legend", "false") == "true"
-        )
-        self.set_legenda_placement_combobox()
-        self.dlg.checkBox_Schaalbalk.setChecked(
-            QSettings().value("NADmaps/export/include_scale", "false") == "true"
-        )
-        self.set_schaalbalk_placement_combobox()
-        self.dlg.checkBox_Titel.setChecked(
-            QSettings().value("NADmaps/export/include_title", "false") == "true"
-        )
-        self.set_titel_line_edit()
-        self.dlg.lineEdit_Titel.setText(QSettings().value("NADmaps/export/title", ""))
-        self.dlg.spinBox_TitelFontSize.setValue(
-            int(QSettings().value("NADmaps/export/title_font_size", 20))
-        )
-
-    def on_paper_format_changed(self):
-        self.save_export_settings()
-
-    def on_file_format_changed(self):
-        self.save_export_settings()
-
-    def on_print_quality_changed(self):
-        self.save_export_settings()
-
-    def on_north_checkbox_changed(self):
-        self.set_noordpijl_placement_combobox()
-        self.save_export_settings()
-
-    def on_legend_checkbox_changed(self):
-        self.set_legenda_placement_combobox()
-        self.save_export_settings()
-
-    def on_scale_checkbox_changed(self):
-        self.set_schaalbalk_placement_combobox()
-        self.save_export_settings()
-
-    def on_titel_checkbox_changed(self):
-        self.save_export_settings()
-        self.set_titel_line_edit()
-
-    def set_noordpijl_placement_combobox(self):
-        if self.dlg.checkBox_Noordpijl.isChecked():
-            self.dlg.comboBox_NoordpijlPlacement.setVisible(True)
-            self.dlg.comboBox_NoordpijlPlacement.setEnabled(True)
-            self.dlg.comboBox_NoordpijlPlacement.setFocus()
-            self.dlg.comboBox_NoordpijlPlacement.setCurrentText("Linksboven")
-        else:
-            self.dlg.comboBox_NoordpijlPlacement.setVisible(False)
-
-    def set_legenda_placement_combobox(self):
-        if self.dlg.checkBox_Legenda.isChecked():
-            self.dlg.comboBox_LegendaPlacement.setVisible(True)
-            self.dlg.comboBox_LegendaPlacement.setEnabled(True)
-            self.dlg.comboBox_LegendaPlacement.setFocus()
-            self.dlg.comboBox_LegendaPlacement.setCurrentText("Rechtsonder")
-        else:
-            self.dlg.comboBox_LegendaPlacement.setVisible(False)
-
-    def set_schaalbalk_placement_combobox(self):
-        if self.dlg.checkBox_Schaalbalk.isChecked():
-            self.dlg.comboBox_SchaalbalkPlacement.setVisible(True)
-            self.dlg.comboBox_SchaalbalkPlacement.setEnabled(True)
-            self.dlg.comboBox_SchaalbalkPlacement.setFocus()
-            self.dlg.comboBox_SchaalbalkPlacement.setCurrentText("Linksonder")
-        else:
-            self.dlg.comboBox_SchaalbalkPlacement.setVisible(False)
-
-    def set_titel_line_edit(self):
-        if self.dlg.checkBox_Titel.isChecked():
-            self.dlg.lineEdit_Titel.setText(self.dlg.lineEdit_FileName.text())
-            self.dlg.lineEdit_Titel.setVisible(True)
-            self.dlg.spinBox_TitelFontSize.setVisible(True)
-            self.dlg.lineEdit_Titel.setEnabled(True)
-            self.dlg.lineEdit_Titel.setFocus()
-        else:
-            self.dlg.lineEdit_Titel.setVisible(False)
-            self.dlg.spinBox_TitelFontSize.setVisible(False)
-
-    def check_map_name(self):
-        map_name = self.dlg.lineEdit_FileName.text()
-        self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
-
-    def export_map_button_pressed(self):
-        if not os.path.exists(self.working_dir):
-            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
-            return
-
-        file_path = self.generate_export_path()
-        if not file_path:
-            self.log("Geen bestandsnaam opgegeven", 1)
-            return
-        if os.path.exists(file_path):
-            overwrite = QMessageBox.question(
-                self.dlg,
-                "Bestand bestaat al",
-                f"Het bestand {file_path} bestaat al. Wilt u het overschrijven?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            )
-            if overwrite == QMessageBox.StandardButton.No:
-                return
-
-        if not os.path.exists(os.path.dirname(file_path)):
-            os.makedirs(os.path.dirname(file_path))
-
-        export_manager = ExportManager(dlg=self.dlg, log=self.log, project=None)
-
-        print_quality = self.dlg.comboBox_PrintQuality.currentText()
-        dpi = PRINT_QUALITY_OPTIONS.get(print_quality)
-
-        settings_dict = {
-            "paper_format": self.dlg.comboBox_PapierFormaat.currentText(),
-            "file_format": self.dlg.comboBox_BestandsFormaat.currentText().lower(),
-            "dpi": dpi,
-            "include_north": self.dlg.checkBox_Noordpijl.isChecked(),
-            "north_placement": self.dlg.comboBox_NoordpijlPlacement.currentText(),
-            "include_legend": self.dlg.checkBox_Legenda.isChecked(),
-            "legend_placement": self.dlg.comboBox_LegendaPlacement.currentText(),
-            "include_scale": self.dlg.checkBox_Schaalbalk.isChecked(),
-            "scale_placement": self.dlg.comboBox_SchaalbalkPlacement.currentText(),
-            "include_title": self.dlg.checkBox_Titel.isChecked(),
-            "title": self.dlg.lineEdit_Titel.text(),
-            "title_font_size": self.dlg.spinBox_TitelFontSize.value(),
-            "canvas": self.iface.mapCanvas(),
-        }
-        layout = export_manager.build_layout(settings_dict)
-
-        success = export_manager.export(layout, file_path)
-        if success:
-            self.log(f"Kaart succesvol geëxporteerd naar {file_path}", 3)
-            QMessageBox.information(
-                self.dlg,
-                "Export succesvol",
-                f"De kaart is succesvol geëxporteerd naar {file_path}.",
-            )
-        else:
-            self.log(f"Fout bij het exporteren van de kaart naar {file_path}", 2)
-            QMessageBox.critical(
-                self.dlg,
-                "Export mislukt",
-                f"Het exporteren van de kaart naar {file_path} is mislukt.",
-            )
-
-    def generate_export_path(self):
-        map_name = self.dlg.lineEdit_FileName.text()
-        if not map_name:
-            return
-
-        file_format = self.dlg.comboBox_BestandsFormaat.currentText()
-        return os.path.join(
-            self.working_dir, "export", f"{map_name}.{file_format.lower()}"
-        )
