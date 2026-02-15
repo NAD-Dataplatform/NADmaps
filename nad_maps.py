@@ -99,20 +99,23 @@ class NADMaps:
         self.log_manager = LoggingManager(dlg=self.dlg)
         self.log = self.log_manager.log
 
-        # initialize the working directory from settings
+
         # QSettings().setValue("NADmaps/working_dir", "") # for testing purposes, always re-comment after usage!
+        # if self.working_dir in ["", None]:
+        #     set_directory = QMessageBox.question(
+        #         self.dlg,
+        #         "Werkmap selecteren",
+        #         "Deze plug-in gebruikt een lokale werkmap om goed te functioneren. Wilt u de werkmap nu selecteren? Anders kunt u later nog de werkmap veranderen of instellen in het tabblad 'Instellingen'",
+        #         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+        #     )
+        #     if set_directory == QMessageBox.StandardButton.Yes:
+        #         self.working_dir = QFileDialog.getExistingDirectory(
+        #             self.dlg, "Selecteer een werkmap", ""
+        #         )
+
+
+        # initialize the working directory from settings
         self.working_dir = QSettings().value("NADmaps/working_dir")
-        if self.working_dir in ["", None]:
-            set_directory = QMessageBox.question(
-                self.dlg,
-                "Werkmap selecteren",
-                "Deze plug-in gebruikt een lokale werkmap om goed te functioneren. Wilt u de werkmap nu selecteren? Anders kunt u later nog de werkmap veranderen of instellen in het tabblad 'Instellingen'",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-            )
-            if set_directory == QMessageBox.StandardButton.Yes:
-                self.working_dir = QFileDialog.getExistingDirectory(
-                    self.dlg, "Selecteer een werkmap", ""
-                )
 
         # if user did not select a working directory, then skip the creation of folder and path creation
         if self.working_dir in ["", None]:
@@ -357,12 +360,19 @@ class NADMaps:
         url = QUrl(WIKI_URL)
         QDesktopServices.openUrl(url)
 
+    def go_to_tab(self, tab_index: int):
+        self.dlg.tabWidget.setCurrentIndex(tab_index)
+
     def setup_interactions(self):
         """
         This does a setup of all the button interactions.
         """
         # Click functions
-        self.dlg.helpButton.clicked.connect(            lambda: self.open_wiki() )
+        self.dlg.wikiButton.clicked.connect(            lambda: self.open_wiki() )
+        self.dlg.goLagenButton.clicked.connect(         lambda: self.go_to_tab(1) )
+        self.dlg.goThemaButton.clicked.connect(         lambda: self.go_to_tab(2) )
+        self.dlg.goActievelagenButton.clicked.connect(  lambda: self.go_to_tab(3) )
+        self.dlg.goExporterenButton.clicked.connect(    lambda: self.go_to_tab(4) )
 
         # Active layer tab
         self.dlg.loadStyleButton.clicked.connect(       lambda: self.style_manager.load_styling() )
@@ -448,6 +458,7 @@ class NADMaps:
         os.makedirs(os.path.join(path, "styling", "qml_files"), exist_ok=True)
 
         self.thema_manager.set_working_directory(path)
+        self.style_manager.set_working_directory(path)
 
         self.user_styling_path = os.path.join(path, "styling", "styling.json")
         self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
