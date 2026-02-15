@@ -718,5 +718,180 @@
 				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='landelijk_gebied:GROENBLAUWE_RUIMTE' url='https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities' version='2.0.0'"
 			}
 		]
+	},
+	{
+		"thema_name": "Legger Delfland",
+		"creator": "Plugin",
+		"layers": [
+			{
+				"name": "LeggerDelfland:Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+				"title": "Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Rood",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Primaire_waterkering_Zeewering__landwaartse_begrenzing' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
+				"title": "Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Rood",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Primaire_waterkering_Delflandsedijk__buitenkruinlijn' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Overige_waterkering__polderkade_middenkruinlijn",
+				"title": "Overige_waterkering__polderkade_middenkruinlijn",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Groen",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Overige_waterkering__polderkade_middenkruinlijn' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Regionale_waterkering__buitenkruinlijn",
+				"title": "Regionale_waterkering__buitenkruinlijn",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Oranje",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Regionale_waterkering__buitenkruinlijn' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__ruimtelijke_reserveringszone",
+				"title": "Waterkering__ruimtelijke_reserveringszone",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Geruit",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__ruimtelijke_reserveringszone' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__buitenbeschermingszone_landzijde",
+				"title": "Waterkering: buitenbeschermingszone landzijde",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gestreept",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__buitenbeschermingszone_landzijde' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__beschermingszone_binnenzijde_of_landwaarts",
+				"title": "Waterkering: beschermingszone binnenzijde of landwaarts",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gestreept",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__beschermingszone_binnenzijde_of_landwaarts' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__buitenbeschermingszone_rivierzijde",
+				"title": "Waterkering: buitenbeschermingszone rivierzijde",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gestreept",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__buitenbeschermingszone_rivierzijde' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__beschermingszone_buitenzijde_of_zeewaarts",
+				"title": "Waterkering: beschermingszone buitenzijde of zeewaarts",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Gestreept",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__beschermingszone_buitenzijde_of_zeewaarts' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
+				"title": "Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Roze",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
+				"title": "Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Roze",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Oppervlaktewaterlichaam__watervoerend_deel",
+				"title": "Oppervlaktewaterlichaam: watervoerend deel",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Blauw",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Oppervlaktewaterlichaam__watervoerend_deel' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			},
+			{
+				"name": "LeggerDelfland:Oppervlaktewaterlichaam__primair_water",
+				"title": "Oppervlaktewaterlichaam__primair_water",
+				"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+				"tilematrixsets": "",
+				"crs": "",
+				"imgformats": "",
+				"styles": [],
+				"layer_type": "Vector",
+				"service_type": "wfs",
+				"style": "Blauw",
+				"source": " pagingEnabled='true' restrictToRequestBBOX='1' srsname='EPSG:28992' typename='LeggerDelfland:Oppervlaktewaterlichaam__primair_water' url='https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities' version='2.0.0'"
+			}
+		]
 	}
 ]
