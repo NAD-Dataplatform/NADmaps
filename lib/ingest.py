@@ -163,10 +163,57 @@ class IngestLayersManager():
             self.save_json_file(layer_list, f"{service_name}-wms")
 
     def ingest_gwsw_layers(self):
-        base_url = "https://geodata.gwsw.nl/"
-        nad_ids = [
-            "Delft", "DenHaag",
-        ]
+        base_url = "https://geodata.gwsw.nl"
+        nad_ids = {
+            "Delft"          : "Delft",
+            "DenHaag"        : "Den Haag",
+            "Lansingerland"  : "Lansingerland",
+            "Leidschendam"   : "Leidschendam-Voorburg",
+            "Maassluis"      : "Maassluis",
+            "Middendelfland" : "Midden-Delfland",
+            "Pijnacker"      : "Pijnacker-Nootdorp",
+            "Rijswijk"       : "Rijswijk",
+            "Schiedam"       : "Schiedam",
+            "Vlaardingen"    : "Vlaardingen",
+            "Westland"       : "Westland",
+            "Zoetermeer"     : "Zoetermeer",
+        }
+        gwsw_names = {
+            "gwsw:Default_Buitengrens" : "Gebied",
+            "gwsw:Default_Punt"        : "Rioolput",
+            "gwsw:Default_Punt_deel"   : "Rioolput deel",
+            "gwsw:Default_Lijn"        : "Rioolleiding",
+            "gwsw:Default_Lijn_deel"   : "Rioolleiding deel",
+        }
+
+        layer_list = []
+        for id in nad_ids:
+            url = f"{base_url}/{id}"
+
+            try:
+                wfs = WebFeatureService(url, version="2.0.0")
+            except Exception as e:
+                self.log(f"Kon de {url} WebFeatureService niet vinden. Error {e}")
+                continue
+            
+            wfs_items = wfs.items()
+            for _, c in wfs_items:
+                self.log(f"c.id = {c.id}")
+                title = f"{nad_ids[id]}: {gwsw_names[c.id]}"
+                self.log(f"title = {title}")
+                
+                layer = {
+                    "name": c.id,
+                    "title": title,
+                    "abstract": "",
+                    "service_url": url,
+                    "service_title": "Stedelijk Water (Riolering) WFS",
+                    "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+                    "service_type": "wfs",
+                }
+                layer_list.append(layer)
+
+        self.save_json_file(layer_list, f"gwsw-wfs")
 
     def get_layers(self):
         # 1. Extract service urls from CatalogueServiceWeb urls
@@ -199,6 +246,7 @@ class IngestLayersManager():
         # 5. Run the service type ingest functions
         self.ingest_wfs_layers(wfs_urls)
         self.ingest_wms_layers(wms_urls)
+        self.ingest_gwsw_layers()
         return
         # 4. special ones like gwsw?
         
