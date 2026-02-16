@@ -383,11 +383,13 @@ class LayerManager:
 
         meta_data = self.get_meta_data()
 
+        layer_list = []
         for file_name in layer_files:
             title = None
             if file_name == "all-nad.json":
                 title = "NAD kaartlagen"
             else:
+                # Add title from metadata to the layer
                 for dataset in meta_data:
                     meta_data_name = f"{dataset['name']}-{dataset['service_type']}.json"
                     if meta_data_name == file_name:
@@ -402,7 +404,8 @@ class LayerManager:
                 self.log(f"Dataset with file name {file_name} has no metadata.")
                 continue
 
-            self.add_source_rows(file_name, file_path, title)
+            layers = self.add_source_rows(file_name, file_path, title)
+            layer_list.extend(layers)
 
         # Format the table layout
         self.dlg.mapListView.hideColumn(2)             # hide Service name
@@ -419,7 +422,9 @@ class LayerManager:
         first_row = self.dlg.mapListView.indexAt(point)
         self.dlg.mapListView.setExpanded(first_row, True)
 
-    def add_source_rows(self, json_file: str, file_path: str, title: str):
+        return layer_list
+
+    def add_source_rows(self, json_file: str, file_path: str, title: str) -> dict:
         """
         Add a row to the layerModel (QStandardItemModel) in table format. 
         We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
@@ -468,6 +473,8 @@ class LayerManager:
             )
 
         self.layerModel.appendRow(parent_row)
+
+        return data
 
     def get_meta_data(self):
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
