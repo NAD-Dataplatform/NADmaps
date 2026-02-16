@@ -388,6 +388,8 @@ class LayerManager:
             title = None
             if file_name == "all-nad.json":
                 title = "NAD kaartlagen"
+            if file_name == "gwsw-wfs.json":
+                title = "GWSW Rioolgegevens [WFS]"
             else:
                 # Add title from metadata to the layer
                 for dataset in meta_data:

@@ -1,0 +1,542 @@
+[
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Delft: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Delft: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Delft: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Delft: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Delft: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Den Haag: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Den Haag: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Den Haag: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Den Haag: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Den Haag: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Lansingerland: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Lansingerland: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Lansingerland: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Lansingerland: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Lansingerland: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Leidschendam-Voorburg: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Leidschendam-Voorburg: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Leidschendam-Voorburg: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Leidschendam-Voorburg: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Leidschendam-Voorburg: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Maassluis: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Maassluis: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Maassluis: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Maassluis: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Maassluis: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Midden-Delfland: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Midden-Delfland: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Midden-Delfland: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Midden-Delfland: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Midden-Delfland: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Pijnacker-Nootdorp: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Pijnacker-Nootdorp: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Pijnacker-Nootdorp: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Pijnacker-Nootdorp: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Pijnacker-Nootdorp: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Rijswijk: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Rijswijk: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Rijswijk: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Rijswijk: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Rijswijk: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Schiedam: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Schiedam: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Schiedam: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Schiedam: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Schiedam: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Vlaardingen: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Vlaardingen: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Vlaardingen: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Vlaardingen: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Vlaardingen: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Westland: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Westland: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Westland: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Westland: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Westland: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Buitengrens",
+        "title": "Zoetermeer: Gebied",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Zoetermeer: Rioolput",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Punt_deel",
+        "title": "Zoetermeer: Rioolput deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Zoetermeer: Rioolleiding",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    },
+    {
+        "name": "gwsw:Default_Lijn_deel",
+        "title": "Zoetermeer: Rioolleiding deel",
+        "abstract": "",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "service_title": "Stedelijk Water (Riolering) WFS",
+        "service_abstract": "Systemen voor stedelijk water met kenmerken gericht op beheeractiviteiten. Deze dataset omvat informatie over rioleringsgebieden bestaande uit riool-, transportstelsels  bestaande uit putten, (aansluit)leidingen, lozingspunten, pompen en gemalen. Deze service is opgezet conform het GWSW, Gegevens Woordenboek Stedelijk Water, van stichting Rioned. Voor meer informatie over de gebruikte termen, definities en samenhang van de objecten zie https://data.gwsw.nl",
+        "service_type": "wfs"
+    }
+]
