@@ -262,8 +262,8 @@ class NADMaps:
             self.thema_manager.update_thema_list()
 
             # Create a list of all layers available via the plugin
-            self.layer_list = self.layer_manager.load_layer_list()
-            self.style_manager.set_layer_list(self.layer_list)
+            layer_list = self.layer_manager.load_layer_list()
+            self.style_manager.set_layer_list(layer_list)
 
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
             QgsProject.instance().setCrs(projectCrs)

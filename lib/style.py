@@ -393,71 +393,66 @@ class StyleManager:
         nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
 
         # enable or disable the styling-functions
-        if nr_of_selected_rows == 1:
-            data = self.dlg.activeMapListView.selectedIndexes()[0].data(
-                Qt.ItemDataRole.UserRole
-            )
+        if nr_of_selected_rows != 1:
+            return
+    
+        data = self.dlg.activeMapListView.selectedIndexes()[0].data(
+            Qt.ItemDataRole.UserRole
+        )
 
-            uri = data.source()  # source is the uri of the layer
-            title = data.name()
-            display_name = ""
+        uri = data.source()  # source is the uri of the layer
+        title = data.name()
+        display_name = ""
 
-            if "\"" in uri:
-                uri = uri.replace('"', '\'') # For solving situations like this: Oracle source is "DB"."LAYER" 
-            service_type = extract_service_type(uri, data.providerType())
+        if "\"" in uri:
+            uri = uri.replace('"', '\'') # For solving situations like this: Oracle source is "DB"."LAYER" 
+        service_type = extract_service_type(uri, data.providerType())
+        name = extract_name(uri, service_type, title)
+        url = extract_url(uri, service_type)
 
-            name = extract_name(uri, service_type, title)
-            url = extract_url(uri, service_type)
+        # Raster type services
+        if service_type in ["wms", "wmts", "api tiles"]:
+            existing_layer = False
 
+            for layer in self.layer_list:
+                if layer["name"] == name and layer["service_url"] == url:
+                    styles = layer["styles"]
+                    existing_layer = True
+                    for style in styles:
+                        # We look for the best readable text to use as our style title
+                        if service_type == "api tiles":
+                            title = style["name"]
+                        else:
+                            title = style["title"]
+                            if title == "":
+                                title = style["name"]
+                        self.dlg.stylingComboBox.addItem(title, data)
+                    break
 
-            if service_type == "wms" or service_type == "wmts" or service_type == "api tiles":
-                existing_layer = False
-
+            # in case the user added a raster layer that is not in the list
+            if not existing_layer:
                 if service_type == "api tiles":
                     display_name = extract_oat_style(title)
-                    self.log(display_name)
-                        
-                    for layer in self.layer_list:
-                        if layer["name"] == name and layer["service_url"] == url:
-                            styles = layer["styles"]
-                            existing_layer = True
-                            for style in styles:
-                                title = style["name"]
-                                self.dlg.stylingComboBox.addItem(title, data)
-                            break
-
                 else:
                     display_name = extract_wms_style_name(uri)
-                    for layer in self.layer_list:
-                        if layer["name"] == name and layer["service_url"] == url:
-                            styles = layer["styles"]
-                            existing_layer = True
-                            for style in styles:
-                                title = style["title"]
-                                if title == "":
-                                    title = style["name"]
-                                self.dlg.stylingComboBox.addItem(title, data)
-                            break
+                    
+                self.dlg.stylingComboBox.addItem(display_name, data)
+        
+        # Vector type services
+        else:
+            # Load vector styles which are all user/plugin defined (not available in web services)
+            layer_style_list = self.get_layer_style_list()
+            for layer in layer_style_list:
+                if url == layer["service_url"] and name == layer["name"]:
+                    # self.log(f"Update style list, layer is {layer["name"]} and url is {layer["service_url"]}")
+                    styles = layer["styles"]
+                    for style in styles:
+                        if style["creator"].lower() != "plugin":
+                            display_name = f'{style["name"]} | toegevoegd door: {style["creator"]}'
+                        else:
+                            display_name = style["name"]
 
+                        self.dlg.stylingComboBox.addItem(display_name, data)
 
-                # in case the user added a raster layer that is not in the list
-                if not existing_layer:
-                    self.dlg.stylingComboBox.addItem(display_name, data)
-                
-            else:
-                # Load vector styles which are all user/plugin defined (not available in web services)
-                layer_style_list = self.get_layer_style_list()
-                for layer in layer_style_list:
-                    if url == layer["service_url"] and name == layer["name"]:
-                        # self.log(f"Update style list, layer is {layer["name"]} and url is {layer["service_url"]}")
-                        styles = layer["styles"]
-                        for style in styles:
-                            if style["creator"].lower() != "plugin":
-                                display_name = f'{style["name"]} | toegevoegd door: {style["creator"]}'
-                            else:
-                                display_name = style["name"]
-
-                            self.dlg.stylingComboBox.addItem(display_name, data)
-
-            # in all cases add the style name to the layer properties
-            data.setCustomProperty( "layerStyle", display_name )
+        # in all cases add the style name to the layer properties
+        data.setCustomProperty( "layerStyle", display_name )
