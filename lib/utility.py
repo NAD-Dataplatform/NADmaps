@@ -206,6 +206,20 @@ def extract_wcs_url(uri):
     else:
         return None
 
+# xyz
+def extract_xyz_url(uri):
+    """
+    Extract the url from a QGIS WCS layer URI string.
+
+    Example:
+        uri = "type=xyz&url=https://tile1.f4map.com/tiles/f4_2d/%7Bz%7D/%7Bx%7D/%7By%7D.png"
+        extract_xyz_url(uri)
+        # returns: "'https://tile1.f4map.com/tiles/f4_2d/{z}/{x}/{y}.png'"
+    """
+    url = uri.split("&url=", 1)[1]
+    url = urllib.parse.unquote(url)
+    return url
+
 
 # url for wfs, api features, wms or wmts
 
@@ -279,17 +293,21 @@ def extract_service_type(uri, provider_type):
     """
     Extract the layer type from a QGIS layer source string and layer providerType.
     """
-    service_type = provider_type
     if "wmts" in uri.lower():
         # https://docs.qgis.org/3.40/en/docs/server_manual/services/wmts.html
         service_type = "wmts"
-    if provider_type == "OAPIF":
+    elif "{z}/{x}/{y}" in uri.lower() or "%7Bz%7D/%7Bx%7D/%7By%7D" in uri:
+        service_type = "xyz"
+    elif provider_type == "OAPIF":
         # https://docs.qgis.org/3.40/en/docs/server_manual/services/ogcapif.html
         service_type = "api features"
-    if provider_type == "xyzvectortiles" and "http" in uri.lower():
+    elif provider_type == "xyzvectortiles" and "http" in uri.lower():
         # local vector tiles are also a possibility:
         # https://docs.qgis.org/3.40/en/docs/user_manual/working_with_vector_tiles/vector_tiles.html#supported-formats
         service_type = "api tiles"
+    else:
+        service_type = provider_type
+
     return service_type
 
 def extract_name(uri, service_type, title=""):
@@ -312,6 +330,8 @@ def extract_url(uri, service_type):
         url = extract_oat_url(uri)
     elif service_type == "wcs":
         url = extract_wcs_url(uri)
+    elif service_type == "xyz":
+        url = extract_xyz_url(uri)
     else:
         url = uri
     return url

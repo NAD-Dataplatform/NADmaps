@@ -250,6 +250,9 @@ class ThemaManager:
             provider_type = layer.providerType()
             layer_type = self.layer_type_mapping[layer.type()]
             service_type = extract_service_type(uri, provider_type)
+            self.log(f"uri: {uri}")
+            self.log(f"provider_type: {provider_type}")
+            self.log(f"service type: {service_type}")
 
             title = layer.name()
             name = extract_name(uri, service_type, title)
@@ -260,10 +263,6 @@ class ThemaManager:
             styles = []
             # style_name = layer.style
             style_name = layer.customProperty("layerStyle", "")
-            # style_code = layer.style
-
-            # extra data
-            # style = layer.customProperty("layerStyle", "")
 
             if service_type == "wms" or service_type == "wmts":
                 style_title = extract_wms_style_title(title)
@@ -290,7 +289,10 @@ class ThemaManager:
                     "url": style_url
                 }
                 styles.append(style_dict)
+            elif service_type == "xyz":
+                uri = url
 
+            self.log(f"service type2: {service_type}")
             # collect the results 
             layer_dict = {
                 "name": name, # uri requirement
