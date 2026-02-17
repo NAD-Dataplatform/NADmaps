@@ -1,0 +1,160 @@
+[
+    {
+        "name": "pastel",
+        "title": "Achtergrondkaart",
+        "abstract": "pastel",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=GetCapabilities&service=WMTS",
+        "service_title": "BRT Achtergrondkaart WMTS",
+        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT). De BRT Achtergrondkaart is beschikbaar in vier verschillende thema's: standaard, grijs, pastel en water.\n         De BRT Achtergrondkaart wordt ontsloten in de projecties: EPSG 28992 (RD), EPSG 25831 (ETRS89 UTM zone 31N) en EPSG 3857 (WGS84 WebMercator).",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_orthoHR",
+        "title": "Luchtfoto Actueel Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "EPSG:28992",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland in hoge en lage resolutie.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "osm",
+        "title": "OpenBasisKaart - OSM - EPSG:28992",
+        "abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "styles": [ 
+            {
+                "title": "",
+                "name": "default"
+            } 
+        ],
+        "tilematrixsets": "rd",
+        "imgformats": "image/png",
+        "service_url": "https://www.openbasiskaart.nl/mapcache/wmts/?SERVICE=WMTS&REQUEST=GETCAPABILITIES",
+        "service_title": "OpenBasisKaart.nl",
+        "service_abstract": "Basiskaart op basis van OpenStreetMap data (map data copyright OpenStreetMap contributors, http://www.openstreetmap.org/copyright). Visuele stijl op basis van MapServer basemaps: http://github.com/opengeogroep/basemaps/tree/openbasiskaart-6-2. http://www.openbasiskaart.nl/ is powered by http://www.opengeogroep.nl/. Te gebruiken als fair-use 'as-is', voor meer mogelijkheden neem contact op met info@opengeogroep.nl.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_ortho25IR",
+        "title": "Luchtfoto Actueel Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset in 25cm resolutie infrarood luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tilematrixsets": "OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Landelijke Voorziening Beeldmateriaal",
+        "service_abstract": "Een jaarlijks te vernieuwen dataset van luchtopnamen van Nederland met een resolutie van 25cm.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "F4map 2D",
+        "title": "F4map 2D",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://tile1.f4map.com/tiles/f4_2d/{z}/{x}/{y}.png",
+        "service_title": "F4map",
+        "service_abstract": "F4 participates in the Open Source movement. For this reason, they use OpenStreetMap for their mapping database. Website: https://www.f4map.com/",
+        "service_type": "xyz"
+    },
+    {
+        "name": "CartoDB Light All",
+        "title": "CartoDB Light All",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+        "service_title": "CARTO Basemaps",
+        "service_abstract": "The data for the CARTO basemaps is based on OpenStreetMap. Website: https://docs.carto.com/faqs/carto-basemaps",
+        "service_type": "xyz"
+    },
+    {
+        "name": "CartoDB Light No Labels",
+        "title": "CartoDB Light No Labels",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png",
+        "service_title": "CARTO Basemaps",
+        "service_abstract": "The data for the CARTO basemaps is based on OpenStreetMap. Website: https://docs.carto.com/faqs/carto-basemaps",
+        "service_type": "xyz"
+    },
+    {
+        "name": "CartoDB Voyager",
+        "title": "CartoDB Voyager",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
+        "service_title": "CARTO Basemaps",
+        "service_abstract": "The data for the CARTO basemaps is based on OpenStreetMap. Website: https://docs.carto.com/faqs/carto-basemaps",
+        "service_type": "xyz"
+    },
+    {
+        "name": "CartoDB Voyager No Labels",
+        "title": "CartoDB Voyager No Labels",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}.png",
+        "service_title": "CARTO Basemaps",
+        "service_abstract": "The data for the CARTO basemaps is based on OpenStreetMap. Website: https://docs.carto.com/faqs/carto-basemaps",
+        "service_type": "xyz"
+    },
+    {
+        "name": "Open Street Map",
+        "title": "Open Street Map",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "service_title": "Open Street Map",
+        "service_abstract": "OpenStreetMap wordt gemaakt door een gemeenschap van kaartmakers die gegevens over wegen, paden, cafés, treinstations en nog veel meer, over de hele wereld bijdragen en onderhouden. Website: https://www.openstreetmap.org/",
+        "service_type": "xyz"
+    },
+    {
+        "name": "Open Topo Map",
+        "title": "Open Topo Map",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://tile.opentopomap.org/{z}/{x}/{y}.png",
+        "service_title": "Open Topo Map",
+        "service_abstract": "OpenTopoMap is een gratis, topografische kaart gemaakt op basis van de gegevens van de OpenStreetMap en SRTM-verhogingsgegevens. Website: https://opentopomap.org/",
+        "service_type": "xyz"
+    },
+    {
+        "name": "World Topo Map",
+        "title": "World Topo Map",
+        "abstract": "Achtergrondkaart",
+        "service_url": "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+        "service_title": "World Topographic Map van ESRI",
+        "service_abstract": "World Topographic Map is designed to be used as a basemap by GIS professionals and as a reference map by anyone. The map includes cities, water features, physiographic features, contours, parks, landmarks, highways, roads, railways, airports, and administrative boundaries, overlaid on shaded relief imagery for added context. Website: https://www.arcgis.com/",
+        "service_type": "xyz"
+    },
+    {
+        "name": "World Imagery",
+        "title": "World Imagery",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "service_title": "World Imagery van ESRI",
+        "service_abstract": "This layer presents low-resolution satellite imagery for the world and high-resolution satellite and aerial imagery, typically within 3-5 years of currency, for most of the world. Website: https://www.arcgis.com/",
+        "service_type": "xyz"
+    },
+    {
+        "name": "World Imagery (Clarity)",
+        "title": "World Imagery (Clarity)",
+        "abstract": "Achtergrondkaart",
+        "service_url": "https://clarity.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "service_title": "World Imagery (Clarity) Beta van ESRI",
+        "service_abstract": "This map features the World Imagery (Clarity) tile layer as a basemap layer. Website: https://www.arcgis.com/",
+        "service_type": "xyz"
+    }
+]

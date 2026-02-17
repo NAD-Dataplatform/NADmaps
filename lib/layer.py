@@ -163,6 +163,13 @@ def create_spatialite_layer(layer, title=None):
     uri.setDataSource(schema, table, geom_column)
     return QgsVectorLayer(uri.uri(), title, 'spatialite')
 
+def create_xyz_layer(name, url):
+    uri = QgsDataSourceUri()
+    uri.setParam("type", "xyz")
+    uri.setParam("url", url)
+    return QgsRasterLayer(str(uri.encodedUri(), "utf-8"), name, "wms")
+
+
 def create_new_layer(layer):
     servicetype = layer["service_type"]
     title = layer["title"]
@@ -183,6 +190,8 @@ def create_new_layer(layer):
         return create_oat_layer(layer, url, title)
     elif servicetype == "spatialite":
         return create_spatialite_layer(layer, title)
+    elif servicetype == "xyz":
+        return create_xyz_layer(layername, url)
     else:
         try:
             layer_type = layer["layer_type"]
@@ -258,6 +267,7 @@ class LayerManager:
             "wcs": "top",
             "api features": "top",
             "api tiles": "bottom",
+            "xyz": "bottom",
         }
 
     ############################# Search in all layers list ######################
@@ -386,6 +396,8 @@ class LayerManager:
         layer_list = []
         for file_name in layer_files:
             title = None
+            if file_name == "all-achtergrond.json":
+                title = "Achtergrondkaarten"
             if file_name == "all-nad.json":
                 title = "NAD kaartlagen"
             if file_name == "gwsw-wfs.json":
