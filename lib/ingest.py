@@ -177,6 +177,7 @@ class IngestLayersManager():
             "Vlaardingen"    : "Vlaardingen",
             "Westland"       : "Westland",
             "Zoetermeer"     : "Zoetermeer",
+            "WS_WaterschappenAfvalwaterKeten": "Waterschappen",
         }
         gwsw_names = {
             "gwsw:Default_Buitengrens" : "Gebied",

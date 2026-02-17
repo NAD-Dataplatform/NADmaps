@@ -48,7 +48,7 @@
         "service_type": "wms"
     },
     {
-        "name": "rijnland_kunstwwerk",
+        "name": "rijnland_kunstwerk",
         "title": "Legger Rijnland: Kunstwerken",
         "url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
         "service_type": "wms"
