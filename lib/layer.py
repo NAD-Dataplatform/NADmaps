@@ -44,9 +44,9 @@ def create_wfs_layer(layername, url, title=None):
     return QgsVectorLayer(uri, title, "wfs")
 
 def create_wms_layer(layer, layername, url, title=None):
-    if "imgformats" in layer:
+    try:
         imgformat = layer["imgformats"].split(",")[0]
-    else:
+    except:
         imgformat = "image/png"
 
     try:
@@ -120,7 +120,11 @@ def create_wmts_layer(layer, layername, url, title=None):
     if Qgis.QGIS_VERSION_INT < 10900:
         return None
     url = quote_wmts_url(url)
-    imgformat = layer["imgformats"].split(",")[0]
+
+    try:
+        imgformat = layer["imgformats"].split(",")[0]
+    except:
+        imgformat = "image/png"
 
     tilematrixsets = layer["tilematrixsets"]
     if tilematrixsets.startswith("EPSG:"):
