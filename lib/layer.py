@@ -393,7 +393,6 @@ class LayerManager:
         """
         file_path = os.path.join(self.plugin_dir, "resources", "layers")
         layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
-        self.log(f"layer files found: {layer_files}")
 
         meta_data = self.get_meta_data()
 
@@ -419,7 +418,7 @@ class LayerManager:
                         title = f"{dataset['title']} [{service_type}]"
 
             if not title:
-                self.log(f"Dataset with file name {file_name} has no metadata.")
+                self.log(f"[load_layer_list] Dataset met naam {file_name} heeft geen metadata.")
                 continue
 
             layers = self.add_source_rows(file_name, file_path, title)

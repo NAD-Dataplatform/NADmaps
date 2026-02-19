@@ -1,0 +1,518 @@
+[
+    {
+        "name": "vierkant_100m",
+        "title": "Vierkant 100m 2019",
+        "abstract": "CBS Vierkantstatistieken 100m 2019 WMS",
+        "styles": [
+            {
+                "title": "Aantal inwoners",
+                "name": "cbsvierkant100m_aantal_inwoners"
+            },
+            {
+                "title": "Aantal mannen",
+                "name": "cbsvierkant100m_aantal_mannen"
+            },
+            {
+                "title": "Aantal vrouwen",
+                "name": "cbsvierkant100m_aantal_vrouwen"
+            },
+            {
+                "title": "Aantal inwoners jonger dan 15 jaar",
+                "name": "cbsvierkant100m_aantal_inwoners_0_tot_15_jaar"
+            },
+            {
+                "title": "Aantal inwoners 15 tot 25 jaar",
+                "name": "cbsvierkant100m_aantal_inwoners_15_tot_25_jaar"
+            },
+            {
+                "title": "Aantal inwoners 25 tot 45 jaar",
+                "name": "cbsvierkant100m_aantal_inwoners_25_tot_45_jaar"
+            },
+            {
+                "title": "Aantal inwoners 45 tot 65 jaar",
+                "name": "cbsvierkant100m_aantal_inwoners_45_tot_65_jaar"
+            },
+            {
+                "title": "Aantal inwoners 65 jaar en ouder",
+                "name": "cbsvierkant100m_aantal_inwoners_65_jaar_en_ouder"
+            },
+            {
+                "title": "Percentage inwoners met Nederlandse achtergrond",
+                "name": "cbsvierkant100m_percentage_nederlandse_achtergrond"
+            },
+            {
+                "title": "Percentage inwoners met westerse migratie achtergrond",
+                "name": "cbsvierkant100m_percentage_westerse_migr_achtergr"
+            },
+            {
+                "title": "Percentage inwoners met niet-westerse migratie achtergrond",
+                "name": "cbsvierkant100m_percentage_niet_westerse_migr_achtergr"
+            },
+            {
+                "title": "Aantal particuliere huishoudens",
+                "name": "cbsvierkant100m_aantal_part_huishoudens"
+            },
+            {
+                "title": "Aantal eenpersoonshuishoudens",
+                "name": "cbsvierkant100m_aantal_eenpersoonshuishoudens"
+            },
+            {
+                "title": "Aantal meerpersoonshuishoudens zonder kind",
+                "name": "cbsvierkant100m_aantal_meerpersoonshuishoudens_zonder_kind"
+            },
+            {
+                "title": "Aantal tweeouder huishoudens",
+                "name": "cbsvierkant100m_aantal_tweeouderhuishoudens"
+            },
+            {
+                "title": "Gemiddelde huishoudensgrootte",
+                "name": "cbsvierkant100m_gemiddelde_huishoudensgrootte"
+            },
+            {
+                "title": "Aantal woningen",
+                "name": "cbsvierkant100m_aantal_woningen"
+            },
+            {
+                "title": "Aantal woningen bouwjaar voor 1945",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_voor_1945"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 45 tot 65",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_45_tot_65"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 65 tot 75",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_65_tot_75"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 75 tot 85",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_75_tot_85"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 85 tot 95",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_85_tot_95"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 95 tot 05",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_95_tot_05"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 05 tot 15",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_05_tot_15"
+            },
+            {
+                "title": "Aantal woningen bouwjaar 2015 tot 2025",
+                "name": "cbsvierkant100m_aantal_woningen_bouwjaar_15_en_later"
+            },
+            {
+                "title": "Aantal meergezins woningen",
+                "name": "cbsvierkant100m_aantal_meergezins_woningen"
+            },
+            {
+                "title": "Percentage koopwoningen",
+                "name": "cbsvierkant100m_percentage_koopwoningen"
+            },
+            {
+                "title": "Percentage huurwoningen",
+                "name": "cbsvierkant100m_percentage_huurwoningen"
+            },
+            {
+                "title": "Aantal huurwoningen van woningcorporatie",
+                "name": "cbsvierkant100m_aantal_huurwoningen_in_bezit_woningcorporaties"
+            },
+            {
+                "title": "WOZ-waarde woning",
+                "name": "cbsvierkant100m_gemiddelde_woz_waarde_woning"
+            },
+            {
+                "title": "Gas gebruik woning",
+                "name": "cbsvierkant100m_gemiddeld_gasverbruik_woning"
+            },
+            {
+                "title": "Elektra gebruik woning",
+                "name": "cbsvierkant100m_gemiddeld_elektriciteitsverbruik_woning"
+            },
+            {
+                "title": "Mediaan inkomen huishouden",
+                "name": "cbsvierkant100m_mediaan_inkomen_huishouden"
+            },
+            {
+                "title": "Aantal inwoners met uitkering onder AOW leeftijd",
+                "name": "cbsvierkant100m_aantal_personen_met_uitkering_onder_aowlft"
+            },
+            {
+                "title": "Dichtstbijzijnde grote supermarkt",
+                "name": "cbsvierkant100m_dichtstbijzijnde_grote_supermarkt_afstand_in_km"
+            },
+            {
+                "title": "Aantal grote supermarkten binnen 1 km",
+                "name": "cbsvierkant100m_grote_supermarkt_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal grote supermarkten binnen 3 km",
+                "name": "cbsvierkant100m_grote_supermarkt_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal grote supermarkten binnen 5 km",
+                "name": "cbsvierkant100m_grote_supermarkt_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde winkel overig dagelijkse levensmiddelen",
+                "name": "cbsvierkant100m_dichtstbijzijnde_winkel_ov_dagel_levensm_afst_in_km"
+            },
+            {
+                "title": "Aantal winkels overige dagelijkse levensm binnen 1 km",
+                "name": "cbsvierkant100m_winkels_ov_dagel_levensm_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal winkels overige dagelijkse levensm binnen 3 km",
+                "name": "cbsvierkant100m_winkels_ov_dagel_levensm_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal winkels overige dagelijkse levensm binnen 5 km",
+                "name": "cbsvierkant100m_winkels_ov_dagel_levensm_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde warenhuis",
+                "name": "cbsvierkant100m_dichtstbijzijnde_warenhuis_afstand_in_km"
+            },
+            {
+                "title": "Aantal warenhuizen binnen 5 km",
+                "name": "cbsvierkant100m_warenhuis_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal warenhuizen binnen 10 km",
+                "name": "cbsvierkant100m_warenhuis_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal warenhuizen binnen 20 km",
+                "name": "cbsvierkant100m_warenhuis_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde cafe",
+                "name": "cbsvierkant100m_dichtstbijzijnde_cafe_afstand_in_km"
+            },
+            {
+                "title": "Aantal cafe's binnen 1 km",
+                "name": "cbsvierkant100m_cafe_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal cafe's binnen 3 km",
+                "name": "cbsvierkant100m_cafe_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal cafe's binnen 5 km",
+                "name": "cbsvierkant100m_cafe_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde cafetaria",
+                "name": "cbsvierkant100m_dichtstbijzijnde_cafetaria_afstand_in_km"
+            },
+            {
+                "title": "Aantal cafetaria binnen 1 km",
+                "name": "cbsvierkant100m_cafetaria_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal cafetaria binnen 3 km",
+                "name": "cbsvierkant100m_cafetaria_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal cafetaria binnen 5 km",
+                "name": "cbsvierkant100m_cafetaria_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde hotel",
+                "name": "cbsvierkant100m_dichtstbijzijnde_hotel_afstand_in_km"
+            },
+            {
+                "title": "Aantal hotels binnen 5 km",
+                "name": "cbsvierkant100m_hotel_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal hotels binnen 10 km",
+                "name": "cbsvierkant100m_hotel_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal hotels binnen 20 km",
+                "name": "cbsvierkant100m_hotel_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde restaurant",
+                "name": "cbsvierkant100m_dichtstbijzijnde_restaurant_afstand_in_km"
+            },
+            {
+                "title": "Aantal restaurants binnen 1 km",
+                "name": "cbsvierkant100m_restaurant_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal restaurants binnen 3 km",
+                "name": "cbsvierkant100m_restaurant_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal restaurants binnen 5 km",
+                "name": "cbsvierkant100m_restaurant_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde buitenschoolse opvang",
+                "name": "cbsvierkant100m_dichtstbijzijnde_buitenschoolse_opvang_afstand_in_km"
+            },
+            {
+                "title": "Aantal buitenschoolse opvang binnen 1 km",
+                "name": "cbsvierkant100m_buitenschoolse_opvang_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal buitenschoolse opvang binnen 3 km",
+                "name": "cbsvierkant100m_buitenschoolse_opvang_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal buitenschoolse opvang binnen 5 km",
+                "name": "cbsvierkant100m_buitenschoolse_opvang_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde kinderdagverblijf",
+                "name": "cbsvierkant100m_dichtstbijzijnde_kinderdagverblijf_afstand_in_km"
+            },
+            {
+                "title": "Aantal kinderdagverblijven binnen 1 km",
+                "name": "cbsvierkant100m_kinderdagverblijf_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal kinderdagverblijven binnen 3 km",
+                "name": "cbsvierkant100m_kinderdagverblijf_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal kinderdagverblijven binnen 5 km",
+                "name": "cbsvierkant100m_kinderdagverblijf_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde brandweerkazerne",
+                "name": "cbsvierkant100m_dichtstbijzijnde_brandweerkazerne_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde oprit hoofdverkeersweg",
+                "name": "cbsvierkant100m_dichtstbijzijnde_oprit_hoofdverkeersweg_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde overstapstation",
+                "name": "cbsvierkant100m_dichtstbijzijnde_overstapstation_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde treinstation",
+                "name": "cbsvierkant100m_dichtstbijzijnde_treinstation_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde attractiepark",
+                "name": "cbsvierkant100m_dichtstbijzijnde_attractiepark_afstand_in_km"
+            },
+            {
+                "title": "Aantal attractieparken binnen 10 km",
+                "name": "cbsvierkant100m_attractiepark_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal attractieparken binnen 20 km",
+                "name": "cbsvierkant100m_attractiepark_aantal_binnen_20_km"
+            },
+            {
+                "title": "Aantal attractieparken binnen 50 km",
+                "name": "cbsvierkant100m_attractiepark_aantal_binnen_50_km"
+            },
+            {
+                "title": "Dichtstbijzijnde bioscoop",
+                "name": "cbsvierkant100m_dichtstbijzijnde_bioscoop_afstand_in_km"
+            },
+            {
+                "title": "Aantal bioscopen binnen 5 km",
+                "name": "cbsvierkant100m_bioscoop_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal bioscopen binnen 10 km",
+                "name": "cbsvierkant100m_bioscoop_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal bioscopen binnen 20 km",
+                "name": "cbsvierkant100m_bioscoop_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde museum",
+                "name": "cbsvierkant100m_dichtstbijzijnde_museum_afstand_in_km"
+            },
+            {
+                "title": "Aantal musea binnen 5 km",
+                "name": "cbsvierkant100m_museum_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal musea binnen 10 km",
+                "name": "cbsvierkant100m_museum_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal musea binnen 20 km",
+                "name": "cbsvierkant100m_museum_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde theater",
+                "name": "cbsvierkant100m_dichtstbijzijnde_theater_afstand_in_km"
+            },
+            {
+                "title": "Aantal theaters binnen 5 km",
+                "name": "cbsvierkant100m_theater_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal theaters binnen 10 km",
+                "name": "cbsvierkant100m_theater_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal theaters binnen 20 km",
+                "name": "cbsvierkant100m_theater_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde bibliotheek",
+                "name": "cbsvierkant100m_dichtstbijzijnde_bibliotheek_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde kunstijsbaan",
+                "name": "cbsvierkant100m_dichtstbijzijnde_kunstijsbaan_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde poppodium",
+                "name": "cbsvierkant100m_dichtstbijzijnde_poppodium_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde sauna",
+                "name": "cbsvierkant100m_dichtstbijzijnde_sauna_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde zonnebank",
+                "name": "cbsvierkant100m_dichtstbijzijnde_zonnebank_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde zwembad",
+                "name": "cbsvierkant100m_dichtstbijzijnde_zwembad_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde basisonderwijs",
+                "name": "cbsvierkant100m_dichtstbijzijnde_basisonderwijs_afstand_in_km"
+            },
+            {
+                "title": "Aantal basisonderwijs binnen 1 km",
+                "name": "cbsvierkant100m_basisonderwijs_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal basisonderwijs binnen 3 km",
+                "name": "cbsvierkant100m_basisonderwijs_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal basisonderwijs binnen 5 km",
+                "name": "cbsvierkant100m_basisonderwijs_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde HAVO-VWO onderwijs",
+                "name": "cbsvierkant100m_dichtstbijzijnde_havo_vwo_afstand_in_km"
+            },
+            {
+                "title": "Aantal HAVO-VWO onderwijs binnen 3 km",
+                "name": "cbsvierkant100m_havo_vwo_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal HAVO-VWO onderwijs binnen 5 km",
+                "name": "cbsvierkant100m_havo_vwo_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal HAVO-VWO onderwijs binnen 10 km",
+                "name": "cbsvierkant100m_havo_vwo_aantal_binnen_10_km"
+            },
+            {
+                "title": "Dichtstbijzijnde VMBO onderwijs",
+                "name": "cbsvierkant100m_dichtstbijzijnde_vmbo_afstand_in_km"
+            },
+            {
+                "title": "Aantal VMBO onderwijs binnen 3 km",
+                "name": "cbsvierkant100m_vmbo_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal VMBO onderwijs binnen 5 km",
+                "name": "cbsvierkant100m_vmbo_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal VMBO onderwijs binnen 10 km",
+                "name": "cbsvierkant100m_vmbo_aantal_binnen_10_km"
+            },
+            {
+                "title": "Dichtstbijzijnde voortgezet onderwijs",
+                "name": "cbsvierkant100m_dichtstbijzijnde_voortgezet_onderwijs_afstand_in_km"
+            },
+            {
+                "title": "Aantal voortgezet onderwijs binnen 3 km",
+                "name": "cbsvierkant100m_voortgezet_onderwijs_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal voortgezet onderwijs binnen 5 km",
+                "name": "cbsvierkant100m_voortgezet_onderwijs_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal voortgezet onderwijs binnen 10 km",
+                "name": "cbsvierkant100m_voortgezet_onderwijs_aantal_binnen_10_km"
+            },
+            {
+                "title": "Dichtstbijzijnde huisartspraktijk",
+                "name": "cbsvierkant100m_dichtstbijzijnde_huisartsenpraktijk_afstand_in_km"
+            },
+            {
+                "title": "Aantal huisartspraktijken binnen 1 km",
+                "name": "cbsvierkant100m_huisartsenpraktijk_aantal_binnen_1_km"
+            },
+            {
+                "title": "Aantal huisartspraktijken binnen 3 km",
+                "name": "cbsvierkant100m_huisartsenpraktijk_aantal_binnen_3_km"
+            },
+            {
+                "title": "Aantal huisartspraktijken binnen 5 km",
+                "name": "cbsvierkant100m_huisartsenpraktijk_aantal_binnen_5_km"
+            },
+            {
+                "title": "Dichtstbijzijnde ziekenhuis exclusief buitenpolikliniek",
+                "name": "cbsvierkant100m_dichtstbijzijnde_ziekenh_excl_buitenpoli_afst_in_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen exclusief buitenpolikliniek binnen 5 km",
+                "name": "cbsvierkant100m_ziekenhuis_excl_buitenpoli_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen exclusief buitenpolikliniek binnen 10 km",
+                "name": "cbsvierkant100m_ziekenhuis_excl_buitenpoli_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen exclusief buitenpolikliniek binnen 20 km",
+                "name": "cbsvierkant100m_ziekenhuis_excl_buitenpoli_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde ziekenhuis inclusief buitenpolikliniek",
+                "name": "cbsvierkant100m_dichtstbijzijnde_ziekenh_incl_buitenpoli_afst_in_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen inclusief buitenpolikliniek binnen 5 km",
+                "name": "cbsvierkant100m_ziekenhuis_incl_buitenpoli_aantal_binnen_5_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen inclusief buitenpolikliniek binnen 10 km",
+                "name": "cbsvierkant100m_ziekenhuis_incl_buitenpoli_aantal_binnen_10_km"
+            },
+            {
+                "title": "Aantal ziekenhuizen inclusief buitenpolikliniek binnen 20 km",
+                "name": "cbsvierkant100m_ziekenhuis_incl_buitenpoli_aantal_binnen_20_km"
+            },
+            {
+                "title": "Dichtstbijzijnde apotheek",
+                "name": "cbsvierkant100m_dichtstbijzijnde_apotheek_afstand_in_km"
+            },
+            {
+                "title": "Dichtstbijzijnde huisartsenpost",
+                "name": "cbsvierkant100m_dichtstbijzijnde_huisartsenpost_afstand_in_km"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://service.pdok.nl/cbs/vierkantstatistieken100m/2019/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "CBS Vierkantstatistieken 100m 2019 WMS",
+        "service_abstract": "CBS Vierkantstatistieken 100m 2019 WMS",
+        "service_type": "wms"
+    }
+]

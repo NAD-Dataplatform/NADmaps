@@ -1,10 +1,10 @@
 [
     {
-        "name": "pdok",
+        "name": "PDOK",
         "url": "https://nationaalgeoregister.nl/geonetwork/srv/dut/csw"
     },
     {
-        "name": "pzh",
+        "name": "Provincie Zuid-Holland",
         "url": "https://opendata.zuid-holland.nl/geonetwork/srv/dut/csw"
     }
 ]

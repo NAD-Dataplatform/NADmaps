@@ -1,0 +1,2490 @@
+[
+    {
+        "name": "Achterhoek_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "Achterhoek_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Achterhoek_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Achterhoek_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Afstand_tot_koelte",
+        "title": "Afstand_tot_koelte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Afstand_tot_koelte",
+                "name": "Afstand_tot_koelte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "ARKNZK_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "ARKNZK_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "ARKNZK_BRS_basisgebeurtenis_waterdiepte",
+        "title": "ARKNZK_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "BGV_BKB_2024",
+        "title": "BGV_Boomkroonbedekking_2024",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "A raster style",
+                "name": "BGV_BKB_2024"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "BGV_landbedekking_2024",
+        "title": "BGV_landbedekking_2024",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BGV_Landbedekking_2024",
+                "name": "BGV_Landbedekking_2024"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "BGV_ONO_2024",
+        "title": "BGV_OpenbaarNietopenbaar_2024",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BGV_ONO",
+                "name": "BGV_ONO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bknsn_hoofdklasse",
+        "title": "bknsn_hoofdklasse",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bknsn_hoofdklasse",
+                "name": "bknsn_hoofdklasse"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bknsn_subklasse",
+        "title": "bknsn_subklasse",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bknsn_subklasse",
+                "name": "bknsn_subklasse"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bkns_subklasse_2023_dreigingen_kansen",
+        "title": "bkns_subklasse_2023_dreigingen_kansen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BKNS_subklasse_2023_dreigingen_kansen",
+                "name": "BKNS_subklasse_2023_dreigingen_kansen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2050hoog",
+        "title": "bodemdaling_2020_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2050laag",
+        "title": "bodemdaling_2020_2050laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2100hoog",
+        "title": "bodemdaling_2020_2100hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_2020_2100laag",
+        "title": "bodemdaling_2020_2100laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050_mild_sterk",
+                "name": "bodemdaling_2020_2050_mild_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "bodemdaling_ophoging",
+        "title": "bodemdaling_ophoging",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "bodemdaling_2020_2050",
+                "name": "bodemdaling_2020_2050"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "BrabantseDelta_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "BrabantseDelta_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "BrabantseDelta_BRS_basisgebeurtenis_waterdiepte",
+        "title": "BrabantseDelta_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "buurten_schaduwkaart_fiets_en_wandelpaden",
+        "title": "buurten_schaduwkaart_fiets_en_wandelpaden",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "schaduwkaart_fiets_wandelpaden_buurt_210524",
+                "name": "buurten_schaduwkaart_fiets_en_wandelpaden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "droge_verdiepingen_extreem_kleine_kans_20251120",
+        "title": "droge_verdiepingen_extreem_kleine_kans_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "droge_verdiepingen_extreem_kleine_kans_20251120",
+                "name": "droge_verdiepingen_extreem_kleine_kans_20251120"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "droogtegevoeligheidgrondwaterafhankelijkenatuur",
+        "title": "droogtegevoeligheidgrondwaterafhankelijkenatuur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Droogtegevoeligheid",
+                "name": "Droogtegevoeligheid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "droogtestress_2050hoog",
+        "title": "droogtestress_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "droogtestress_2050_r_droogte",
+                "name": "droogtestress_2050_r_droogte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "droogtestress_huidig",
+        "title": "droogtestress_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "droogtestres_huidig_r_droogte",
+                "name": "droogtestres_huidig_r_droogte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "eenzame_75plussers",
+        "title": "eenzame_75plussers",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "eenzame_75plussers_hitte",
+                "name": "eenzame_75plussers_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Friesland_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Friesland_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Gebiedsindeling_BRS",
+        "title": "Gebiedsindeling_BRS",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Regios",
+                "name": "BRS_Regios"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Gemeentegrenzen",
+        "title": "Gemeentegrenzen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Gemeentegrenzen",
+                "name": "Gemeentegrenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "gevoeligheid_watererosie",
+        "title": "gevoeligheid_watererosie",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "gevoeligheid_watererosie_r_wateroverlast",
+                "name": "gevoeligheid_watererosie_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "gevoelstemperatuur_2012",
+        "title": "gevoelstemperatuur_2012",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GevTemp2012_2022",
+                "name": "GevTemp2012_2022"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "gevoelstemperatuur_2022",
+        "title": "gevoelstemperatuur_2022",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GevTemp2012_2022",
+                "name": "GevTemp2012_2022"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GevoelstemperatuurBuurt_2012",
+        "title": "GevoelstemperatuurBuurt_2012",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GevoelstemperatuurBuurt_2012",
+                "name": "GevoelstemperatuurBuurt_2012"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GevoelstemperatuurBuurt_2022",
+        "title": "GevoelstemperatuurBuurt_2022",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GevoelstemperatuurBuurt_2022",
+                "name": "GevoelstemperatuurBuurt_2022"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLG_2050Hoog",
+        "title": "GLG_2050Hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLG_2050Laag",
+        "title": "GLG_2050Laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLG_2085Hoog",
+        "title": "GLG_2085Hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLG_2085Laag",
+        "title": "GLG_2085Laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLG_Huidig",
+        "title": "GLG_Huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_Huidig",
+                "name": "GLG_Huidig"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Gron_NOD_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Gron_NOD_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "hitteeiland",
+        "title": "hitteeiland",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "hitteeiland_r_hitte",
+                "name": "hitteeiland_r_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "JaarlijkseKansOpWindkracht10",
+        "title": "JaarlijkseKansOpWindkracht10",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "JaarlijkseKansOpWindkracht10",
+                "name": "JaarlijkseKansOpWindkracht10"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "JaarlijkseKansOpWindkracht11",
+        "title": "JaarlijkseKansOpWindkracht11",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "JaarlijkseKansOpWindkracht11",
+                "name": "JaarlijkseKansOpWindkracht11"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "JaarlijkseKansOpWindkracht8",
+        "title": "JaarlijkseKansOpWindkracht8",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "JaarlijkseKansOpWindkracht8",
+                "name": "JaarlijkseKansOpWindkracht8"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "JaarlijkseKansOpWindkracht9",
+        "title": "JaarlijkseKansOpWindkracht9",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "JaarlijkseKansOpWindkracht9",
+                "name": "JaarlijkseKansOpWindkracht9"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "kans_grondwateroverlast_2050hoog",
+        "title": "kans_grondwateroverlast_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "kans_grondwateroverlast_wateroverlast",
+                "name": "kans_grondwateroverlast_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "kwel_infiltratie_2050hoog",
+        "title": "kwel_infiltratie_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "kwel_infiltratie_2050_r_wateroverlast",
+                "name": "kwel_infiltratie_2050_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "kwel_infiltratie_huidig",
+        "title": "kwel_infiltratie_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "kwel_infiltratie_huidig_r_wateroverlast",
+                "name": "kwel_infiltratie_huidig_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "LG_extreemdroogjaar_2050Hoog",
+        "title": "LG_extreemdroogjaar_2050Hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "LG_extreemdroogjaar_2085Hoog",
+        "title": "LG_extreemdroogjaar_2085Hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_verschil",
+                "name": "GLG_verschil"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "LG_extreemdroogjaar_Huidig",
+        "title": "LG_extreemdroogjaar_Huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "GLG_Huidig",
+                "name": "GLG_Huidig"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "ligging_grensvlak_tussen_zoet_en_zout_grondwater",
+        "title": "ligging_grensvlak_tussen_zoet_en_zout_grondwater",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Ligging_grensvlak_tussen_zoet_en_zout_grondwater",
+                "name": "Ligging_grensvlak_tussen_zoet_en_zout_grondwater"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Limburg_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Limburg_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Maatgevende_Grondwaterstand_GHG_1911_2010",
+        "title": "Maatgevende_Grondwaterstand_GHG_1911_2010",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Maatgevende_Grondwaterstand_GHG_1911_2010",
+                "name": "Maatgevende_Grondwaterstand_GHG_1911_2010"
+            },
+            {
+                "title": "OntwateringsdiepteEnOndergrondseRuimtes_GHG_1911_2010",
+                "name": "OntwateringsdiepteEnOndergrondseRuimtes_GHG_1911_2010"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Maximale_Grondwaterstand_HG3_1911_2010",
+        "title": "Maximale_Grondwaterstand_HG3_1911_2010",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Maximale_Grondwaterstand_HG3_1911_2010",
+                "name": "Maximale_Grondwaterstand_HG3_1911_2010"
+            },
+            {
+                "title": "OntwateringsdiepteEnOndergrondseRuimtes_HG3_1911_2010",
+                "name": "OntwateringsdiepteEnOndergrondseRuimtes_HG3_1911_2010"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_extreem_kleine_kans_20251219",
+        "title": "maximale_waterdiepte_nederland_extreem_kleine_kans_20251219",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleOverstromingsdiepteNederland_LIWO",
+                "name": "MaximaleOverstromingsdiepteNederland_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_extreem_kleine_kans_20260128",
+        "title": "maximale_waterdiepte_nederland_extreem_kleine_kans_20260128",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_grote_kans_20251219",
+        "title": "maximale_waterdiepte_nederland_grote_kans_20251219",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleOverstromingsdiepteNederland_LIWO",
+                "name": "MaximaleOverstromingsdiepteNederland_LIWO"
+            },
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_grote_kans_20260128",
+        "title": "maximale_waterdiepte_nederland_grote_kans_20260128",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_kleine_kans_20251219",
+        "title": "maximale_waterdiepte_nederland_kleine_kans_20251219",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleOverstromingsdiepteNederland_LIWO",
+                "name": "MaximaleOverstromingsdiepteNederland_LIWO"
+            },
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_kleine_kans_20260128",
+        "title": "maximale_waterdiepte_nederland_kleine_kans_20260128",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_middelgrote_kans_20251219",
+        "title": "maximale_waterdiepte_nederland_middelgrote_kans_20251219",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleOverstromingsdiepteNederland_LIWO",
+                "name": "MaximaleOverstromingsdiepteNederland_LIWO"
+            },
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_middelgrote_kans_20260128",
+        "title": "maximale_waterdiepte_nederland_middelgrote_kans_20260128",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_zeer_kleine_kans_20251219",
+        "title": "maximale_waterdiepte_nederland_zeer_kleine_kans_20251219",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleOverstromingsdiepteNederland_LIWO",
+                "name": "MaximaleOverstromingsdiepteNederland_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "maximale_waterdiepte_nederland_zeer_kleine_kans_20260128",
+        "title": "maximale_waterdiepte_nederland_zeer_kleine_kans_20260128",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaximaleWaterdiepte_LIWO",
+                "name": "MaximaleWaterdiepte_LIWO"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "MaxStijgingGrondwaterstand_HG3_tov_MaatgevendeGrondwaterstand_GHG_1911_2010",
+        "title": "MaxStijgingGrondwaterstand_HG3_tov_MaatgevendeGrondwaterstand_GHG_1911_2010",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "MaxStijgingGrondwaterstand_HG3_tov_MaatgevendeGrondwaterstand_GHG_1911_2010",
+                "name": "MaxStijgingGrondwaterstand_HG3_tov_MaatgevendeGrondwaterstand_GHG_1911_2010"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "natuurbrandrisico_2050hoog",
+        "title": "natuurbrandrisico_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Natuurbrandgevoeligheid_sterk",
+                "name": "Natuurbrandgevoeligheid_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "natuurbrandrisico_huidig",
+        "title": "natuurbrandrisico_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Natuurbrandgevoeligheid_sterk",
+                "name": "Natuurbrandgevoeligheid_sterk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "NBrabantOost_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "NBrabantOost_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "NBrabantOost_BRS_basisgebeurtenis_waterdiepte",
+        "title": "NBrabantOost_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_05m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_05m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_05m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_0m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_0m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_0m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_1m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_1m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_1m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_3m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_3m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Oppervlaktewaterverzilting_3mZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3mZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Oppervlaktewaterverzilting",
+                "name": "Oppervlaktewaterverzilting"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "opwarming_oppervlaktewater_2050hoog",
+        "title": "opwarming_oppervlaktewater_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "opwarming_oppervlaktewater_2050_hitte",
+                "name": "opwarming_oppervlaktewater_2050_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "opwarming_oppervlaktewater_huidig",
+        "title": "opwarming_oppervlaktewater_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "opwarming_oppervlaktewater_huidig_hitte",
+                "name": "opwarming_oppervlaktewater_huidig_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "OverijsselseVecht_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "OverijsselseVecht_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "OverijsselseVecht_BRS_basisgebeurtenis_waterdiepte",
+        "title": "OverijsselseVecht_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_huidig_0_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_huidig_0_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_huidig_200_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_huidig_200_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_huidig_20_cm",
+        "title": "plaatsgebonden_overstromingskans_huidig_20_cm",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "plaatsgebonden_overstromingskans_2050_0cm",
+                "name": "plaatsgebonden_overstromingskans_2050_0cm"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_huidig_20_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_huidig_20_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_huidig_50_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_huidig_50_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_2050_0_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_2050_0_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_2050_200_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_2050_200_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_2050_20_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_2050_20_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_2050_50_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_2050_50_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_0_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_0_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_200_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_200_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_20_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_20_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_50_cm_20251120",
+        "title": "plaatsgebonden_overstromingskans_norm_plus_klimaatverandering_2100_50_cm_20251120",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Plaatsgebonden_overstromingskans",
+                "name": "Plaatsgebonden_overstromingskans"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Provinciegrenzen",
+        "title": "Provinciegrenzen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Provinciegrenzen",
+                "name": "Provinciegrenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risico_ondergrondverdichting",
+        "title": "risico_ondergrondverdichting",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risico_grondverdichting_r_wateroverlast",
+                "name": "risico_grondverdichting_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risicopaalrot_2050hoog",
+        "title": "risicopaalrot_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risicopaalrot_2050wh",
+                "name": "risicopaalrot_2050wh"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risicopaalrot_2050laag",
+        "title": "risicopaalrot_2050laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risicopaalrot_2050gl",
+                "name": "risicopaalrot_2050gl"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risicopaalrot_huidig",
+        "title": "risicopaalrot_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risicopaalrot_huidig",
+                "name": "risicopaalrot_huidig"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risicoverschilzetting_2050hoog",
+        "title": "risicoverschilzetting_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risicoverschilzetting_2050wh",
+                "name": "risicoverschilzetting_2050wh"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "risicoverschilzetting_2050laag",
+        "title": "risicoverschilzetting_2050laag",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "risicoverschilzetting_2050gl",
+                "name": "risicoverschilzetting_2050gl"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Rivierenland_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "Rivierenland_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Rivierenland_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Rivierenland_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "RMM_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "RMM_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "RMM_BRS_basisgebeurtenis_waterdiepte",
+        "title": "RMM_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "schaduwkaart_fiets_en_wandelpaden",
+        "title": "schaduwkaart_fiets_en_wandelpaden",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "schaduwkaart_fiets_en_wandelpaden",
+                "name": "schaduwkaart_fiets_en_wandelpaden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "SchaduwOpGebouwen",
+        "title": "SchaduwOpGebouwen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "SchaduwOpGebouwen",
+                "name": "SchaduwOpGebouwen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Scheldestromen_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "Scheldestromen_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Scheldestromen_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Scheldestromen_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "signaalkaart_bodemdaling_mei15mei18",
+        "title": "signaalkaart_bodemdaling_mei15mei18",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "signaalkaart_bodemdaling_mei15mei18_r_droogte",
+                "name": "signaalkaart_bodemdaling_mei15mei18_r_droogte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "signaalkaart_bodemdaling_okt16okt18",
+        "title": "signaalkaart_bodemdaling_okt16okt18",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "signaalkaart_bodemdaling_okt16okt18_r_droogte",
+                "name": "signaalkaart_bodemdaling_okt16okt18_r_droogte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "sociale_kwetsbaarheid_hitte",
+        "title": "SocialeKwetsbaarheidHitte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "SocialeKwetsbaarheidHitte",
+                "name": "sociale_kwetsbaarheid_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "stedelijke_infiltratiekansen",
+        "title": "stedelijke_infiltratiekansen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Stedelijke_Infiltratiekansen",
+                "name": "Stedelijke_Infiltratiekansen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "stijging_waterstanden_2050hoog",
+        "title": "stijging_waterstanden_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "stijging_waterstanden_2050_overstroming",
+                "name": "stijging_waterstanden_2050_overstroming"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Toenamehoogtedijkenenduinenbijnormbij1mzeespiegelstijging",
+        "title": "Toenamehoogtedijkenenduinenbijnormbij1mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "dijk2",
+                "name": "dijk2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Toenamehoogtedijkenenduinenbijnormbij3mzeespiegelstijging",
+        "title": "Toenamehoogtedijkenenduinenbijnormbij3mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "dijk",
+                "name": "dijk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "totaalkaartklimaatbuffers",
+        "title": "TotaalkaartKlimaatbuffers",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "totaalkaartklimaatbuffers",
+                "name": "totaalkaartklimaatbuffers"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "ValleiVeluwe_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "ValleiVeluwe_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "ValleiVeluwe_BRS_basisgebeurtenis_waterdiepte",
+        "title": "ValleiVeluwe_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Verandering_doorspoelwatervraag_05m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_05m_ZSS",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Verandering_doorspoelwatervraag_05m_ZSS",
+                "name": "Verandering_doorspoelwatervraag_05m_ZSS"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Verandering_doorspoelwatervraag_1m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_1m_ZSS",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Verandering_doorspoelwatervraag_1m_ZSS",
+                "name": "Verandering_doorspoelwatervraag_1m_ZSS"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Verandering_doorspoelwatervraag_3m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_3m_ZSS",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Verandering_doorspoelwatervraag_3m_ZSS",
+                "name": "Verandering_doorspoelwatervraag_3m_ZSS"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Veranderingwaterstandbijnormbij1mzeespiegelstijging",
+        "title": "Veranderingwaterstandbijnormbij1mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "waterstand2",
+                "name": "waterstand2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Veranderingwaterstandbijnormbij3mzeespiegelstijging",
+        "title": "Veranderingwaterstandbijnormbij3mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "waterstand",
+                "name": "waterstand"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "warme_nachten_2050hoog",
+        "title": "warme_nachten_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "warme_nachten_2050_r_hitte",
+                "name": "warme_nachten_2050_r_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "warme_nachten_huidig",
+        "title": "warme_nachten_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "warme_nachten_huidig_r_hitte",
+                "name": "warme_nachten_huidig_r_hitte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterdiepte_neerslag_140mm_2uur",
+        "title": "waterdiepte_neerslag_140mm_2uur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "waterdiepte_neerslag_1-1000_r_wateroverlast",
+                "name": "waterdiepte_neerslag_1-1000_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterdiepte_neerslag_70mm_2uur",
+        "title": "waterdiepte_neerslag_70mm_2uur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "waterdiepte_neerslag_1-100_r_wateroverlast",
+                "name": "waterdiepte_neerslag_1-100_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Waterschapsgrenzen",
+        "title": "Waterschapsgrenzen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Waterschapsgrenzen",
+                "name": "Waterschapsgrenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "werkregiogrenzen14012022",
+        "title": "Werkregio_grenzen",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "werkregiogrenzen",
+                "name": "werkregiogrenzen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "wijktypen_buurten",
+        "title": "Wijktypen_buurten_2023",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "wijktypen_buurten",
+                "name": "wijktypen_buurten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "wijktypen_PC6",
+        "title": "wijktypen_PC6",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "wijktypen_pc6",
+                "name": "wijktypen_pc6"
+            },
+            {
+                "title": "wijktypen_buurten",
+                "name": "wijktypen_buurten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "WindstotenT10",
+        "title": "WindstotenT10",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "WindstotenT10",
+                "name": "WindstotenT10"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "WindstotenT100",
+        "title": "WindstotenT100",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "WindstotenT100",
+                "name": "WindstotenT100"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_autonoom_05m",
+        "title": "zoutvracht_bijdrage_autonoom_05m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_autonoom_1m",
+        "title": "zoutvracht_bijdrage_autonoom_1m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_autonoom_3m",
+        "title": "zoutvracht_bijdrage_autonoom_3m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_bodemdaling_05m",
+        "title": "zoutvracht_bijdrage_bodemdaling_05m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_bodemdaling_1m",
+        "title": "zoutvracht_bijdrage_bodemdaling_1m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_bodemdaling_3m",
+        "title": "zoutvracht_bijdrage_bodemdaling_3m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_zss_05m",
+        "title": "zoutvracht_bijdrage_zss_05m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_zss_1m",
+        "title": "zoutvracht_bijdrage_zss_1m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_bijdrage_zss_3m",
+        "title": "zoutvracht_bijdrage_zss_3m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_huidig",
+        "title": "zoutvracht_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht_huidig",
+                "name": "Zoutvracht_huidig"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_05m",
+        "title": "zoutvracht_verschil_05m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_1m",
+        "title": "zoutvracht_verschil_1m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zoutvracht_verschil_3m",
+        "title": "zoutvracht_verschil_3m",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "Zoutvracht",
+                "name": "Zoutvracht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Zuiderzeeland_BRS_basisgebeurtenis_overstromingsduur",
+        "title": "Zuiderzeeland_BRS_basisgebeurtenis_overstromingsduur",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Overstromingsduur",
+                "name": "BRS_Overstromingsduur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "Zuiderzeeland_BRS_basisgebeurtenis_waterdiepte",
+        "title": "Zuiderzeeland_BRS_basisgebeurtenis_waterdiepte",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "BRS_Waterdiepte",
+                "name": "BRS_Waterdiepte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zuurstofstress_2050hoog",
+        "title": "zuurstofstress_2050hoog",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "zuurstofstress_2050_r_wateroverlast",
+                "name": "zuurstofstress_2050_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    },
+    {
+        "name": "zuurstofstress_huidig",
+        "title": "zuurstofstress_huidig",
+        "abstract": "Klimaatatlas",
+        "styles": [
+            {
+                "title": "zuurstofstress_huidig_r_wateroverlast",
+                "name": "zuurstofstress_huidig_r_wateroverlast"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wms"
+    }
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "name": "postcode6:postcode6",
+        "title": "Postcode 2019, volledig",
+        "abstract": "CBS Postcode6 statistieken 2019 WFS",
+        "service_url": "https://service.pdok.nl/cbs/postcode6/2019/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "service_title": "CBS Postcode6 statistieken 2019 WFS",
+        "service_abstract": "CBS Postcode6 statistieken 2019 WFS",
+        "service_type": "wfs"
+    }
+]

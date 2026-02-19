@@ -1234,9 +1234,16 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButtonGetCSWdata">
+            <property name="text">
+             <string>CatalogueServiceWeb data ophalen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButtonGetLayers">
             <property name="text">
-             <string>Opnieuw ophalen</string>
+             <string>getCapabilities bestanden uitlezen</string>
             </property>
            </widget>
           </item>

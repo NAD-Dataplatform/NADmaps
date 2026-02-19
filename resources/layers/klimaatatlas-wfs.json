@@ -1,0 +1,443 @@
+[
+    {
+        "name": "kea_public:Afstand_tot_koelte",
+        "title": "Afstand_tot_koelte",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Gebiedsindeling_BRS",
+        "title": "Gebiedsindeling_BRS",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Gemeentegrenzen",
+        "title": "Gemeentegrenzen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:GevoelstemperatuurBuurt_2012",
+        "title": "GevoelstemperatuurBuurt_2012",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:GevoelstemperatuurBuurt_2022",
+        "title": "GevoelstemperatuurBuurt_2022",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_05m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_05m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_05m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_05m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_0m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_0m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_0m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_0m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_1m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_1m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_1m_ZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_1m_ZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_3mZSS_500m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3mZSS_500m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_3m_ZSS_1000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3m_ZSS_1000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Oppervlaktewaterverzilting_3m_ZSS_2000m3_Rijn",
+        "title": "Oppervlaktewaterverzilting_3m_ZSS_2000m3_Rijn",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Provinciegrenzen",
+        "title": "Provinciegrenzen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:SchaduwOpGebouwen",
+        "title": "SchaduwOpGebouwen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:sociale_kwetsbaarheid_hitte",
+        "title": "SocialeKwetsbaarheidHitte",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Toenamehoogtedijkenenduinenbijnormbij1mzeespiegelstijging",
+        "title": "Toenamehoogtedijkenenduinenbijnormbij1mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Toenamehoogtedijkenenduinenbijnormbij3mzeespiegelstijging",
+        "title": "Toenamehoogtedijkenenduinenbijnormbij3mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:totaalkaartklimaatbuffers",
+        "title": "TotaalkaartKlimaatbuffers",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Verandering_doorspoelwatervraag_05m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_05m_ZSS",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Verandering_doorspoelwatervraag_1m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_1m_ZSS",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Verandering_doorspoelwatervraag_3m_ZSS",
+        "title": "Verandering_doorspoelwatervraag_3m_ZSS",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Veranderingwaterstandbijnormbij1mzeespiegelstijging",
+        "title": "Veranderingwaterstandbijnormbij1mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Veranderingwaterstandbijnormbij3mzeespiegelstijging",
+        "title": "Veranderingwaterstandbijnormbij3mzeespiegelstijging",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:Waterschapsgrenzen",
+        "title": "Waterschapsgrenzen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:werkregiogrenzen14012022",
+        "title": "Werkregio_grenzen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:wijktypen_buurten",
+        "title": "Wijktypen_buurten_2023",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:bkns_subklasse_2023_dreigingen_kansen",
+        "title": "bkns_subklasse_2023_dreigingen_kansen",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:bknsn_hoofdklasse",
+        "title": "bknsn_hoofdklasse",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:bknsn_subklasse",
+        "title": "bknsn_subklasse",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:buurten_schaduwkaart_fiets_en_wandelpaden",
+        "title": "buurten_schaduwkaart_fiets_en_wandelpaden",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:droge_verdiepingen_extreem_kleine_kans_20251120",
+        "title": "droge_verdiepingen_extreem_kleine_kans_20251120",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:droogtegevoeligheidgrondwaterafhankelijkenatuur",
+        "title": "droogtegevoeligheidgrondwaterafhankelijkenatuur",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:eenzame_75plussers",
+        "title": "eenzame_75plussers",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:kans_grondwateroverlast_2050hoog",
+        "title": "kans_grondwateroverlast_2050hoog",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:opwarming_oppervlaktewater_2050hoog",
+        "title": "opwarming_oppervlaktewater_2050hoog",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:opwarming_oppervlaktewater_huidig",
+        "title": "opwarming_oppervlaktewater_huidig",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:risicopaalrot_2050hoog",
+        "title": "risicopaalrot_2050hoog",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:risicopaalrot_2050laag",
+        "title": "risicopaalrot_2050laag",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:risicopaalrot_huidig",
+        "title": "risicopaalrot_huidig",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:risicoverschilzetting_2050hoog",
+        "title": "risicoverschilzetting_2050hoog",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:risicoverschilzetting_2050laag",
+        "title": "risicoverschilzetting_2050laag",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:schaduwkaart_fiets_en_wandelpaden",
+        "title": "schaduwkaart_fiets_en_wandelpaden",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:stijging_waterstanden_2050hoog",
+        "title": "stijging_waterstanden_2050hoog",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    },
+    {
+        "name": "kea_public:wijktypen_PC6",
+        "title": "wijktypen_PC6",
+        "abstract": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_title": "Klimaatatlas",
+        "service_abstract": "Klimaatatlas",
+        "service_type": "wfs"
+    }
+]

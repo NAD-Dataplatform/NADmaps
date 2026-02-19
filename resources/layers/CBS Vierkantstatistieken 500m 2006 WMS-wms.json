@@ -1,0 +1,26 @@
+[
+    {
+        "name": "vierkant_500m",
+        "title": "Vierkant 500m",
+        "abstract": "CBS Vierkantstatistieken 500m 2006 WMS",
+        "styles": [
+            {
+                "title": "Aantal inwoners",
+                "name": "cbsvierkanten500m_aantal_inwoners"
+            },
+            {
+                "title": "Aantal woningen",
+                "name": "cbsvierkanten500m_aantal_woning"
+            },
+            {
+                "title": "Omgevingsadressendichtheid",
+                "name": "cbsvierkanten500m_omgevingsadressendichtheid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://service.pdok.nl/cbs/vierkantstatistieken500m/2006/wms/v1_0?request=GetCapabilities&service=WMS",
+        "service_title": "CBS Vierkantstatistieken 500m 2006 WMS",
+        "service_abstract": "CBS Vierkantstatistieken 500m 2006 WMS",
+        "service_type": "wms"
+    }
+]
