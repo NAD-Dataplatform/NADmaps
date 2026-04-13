@@ -1,0 +1,1058 @@
+[
+    {
+        "name": "AARDWARMTEPROJECTEN",
+        "title": "Aardwarmteprojecten ZH",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Warmte - Aardwarmteprojecten ZH",
+                "name": "Energie_Warmte_-_Aardwarmteprojecten_ZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "ELEKTRICITEITSSTATIONS_TENNET_EN_NETBEHEERDERS_ZUIDHOLLAND_2024_PUNTLOCATIES",
+        "title": "Elektriciteitstations Tennet en Netbeheerders Zuid-Holland 2024 - Puntlocaties",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Elektriciteitstations Tennet en netbeheerders ZH 2024 - Puntlocaties",
+                "name": "Energie_Elektriciteitstations_Tennet_en_netbeheerders_ZH_2024_-_Puntlocaties"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "ELEKTRICITEITSSTATIONS_TENNET_EN_NETBEHEERDERS_ZUIDHOLLAND_2024_VLAKKEN",
+        "title": "Elektriciteitstations Tennet en Netbeheerders Zuid-Holland 2024 - Vlakken",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Elektriciteitstations Tennet en netbeheerders ZH 2024 - Vlakken",
+                "name": "Energie_Elektriciteitstations_Tennet_en_netbeheerders_ZH_2024_-_Vlakken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "EP_ONLINE",
+        "title": "Energielabels en Energieprestaties - Basisregistratie Adressen en Gebouwen (BAG) Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Energielabels en Energieprestaties - BAG ZH",
+                "name": "Energie_Energielabels_en_Energieprestaties_-_BAG_ZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "EP_ONLINE_2024",
+        "title": "Energielabels en Energieprestaties - Basisregistratie Adressen en Gebouwen (BAG) Zuid-Holland 2024",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Energielabels en Energieprestaties 2024 - BAG ZH",
+                "name": "Energie_Energielabels_en_Energieprestaties_2024_-_BAG_ZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIEDSINDELING_NETBEHEERDERS_WARMTE",
+        "title": "Gebiedsindeling Warmtenetten - Netbeheerders",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Warmte - Gebiedsindeling netbeheerders warmte",
+                "name": "Energie_Warmte_-_Gebiedsindeling_netbeheerders_warmte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF1_WIND",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 1 wind",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF1_ZON",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 1 zon",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF2_WIND",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 2 wind",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF2_ZON",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 2 zon",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF3_WIND",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 3 wind",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF3_ZON",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 3 zon",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF4_WIND",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 4 wind",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_ALTERNATIEF4_ZON",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Alternatief 4 zon",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_BELANGRIJK_WEIDEVOGELGEBIED_ONTWIKKELING",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Belangrijk weidevogelgebied",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_BEOORDELINGEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Beoordelingen",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_BEOORDELINGEN_OVERLAPPEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Beoordelingen aantal overlappen",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_EXTERNE_VEILIGHEID",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Externe veiligheid",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_EXTERNE_VEILIGHEID_LOS",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Externe veiligheid los",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_EXTERNE_VEILIGHEID_LUCHTVAART_TOETSINGSVLAKKEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Externe veiligheid luchtvaart toetsingsvlakken",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GANZENRUSTGEBIEDEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Ganzenrustgebieden",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GELUID",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Geluid",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GELUID_EXTRABUFFER",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Geluid extra buffer",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GEVOELIGHEIDSKAART_BROEDVOGELS_EN_NIET_BROEDVOGELS",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 gecombineerde gevoeligheidskaart broedvogels en niet-broedvogels op basis van belangrijke verspreidingsgebieden en vliegbewegingen",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GEVOELIGHEIDSKAART_VOGELTREK",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 treksterkte van trekvogels",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_GRONDWATERBESCHERMINGSGEBIEDEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Grondwaterbeschermingsgebieden",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_NATURA2000_ZH_AVG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Natura 2000",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_NATURA2000_ZH_HR_AVG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Natura2000 Habitat Richtlijn",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_NATURA2000_ZH_VR_AVG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Natura2000 Vogel Richtlijn",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_NATURA2000_ZH_VR_EN_HR_AVG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Natura2000 Habitat Richtlijn en Vogel Richtlijn",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_NATUURNETWERK_NEDERLAND",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 NatuurNetwerk Nederland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RES_1_0",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Zoekgebieden zon en wind Regionale Energiestrategie (RES) 1.0",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Zoekgebieden zon en wind RES 1.0",
+                "name": "Energie_MER_Energietransitie_2022_Zoekgebieden_zon_en_wind_RES_1_0"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RES_1_0_PS",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Zoekgebieden zon en wind Regionale Energiestrategie (RES) 1.0 Provinciale Staten (PS)",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Zoekgebieden zon en wind RES 1.0 PS",
+                "name": "Energie_MER_Energietransitie_2022_Zoekgebieden_zon_en_wind_RES_1_0_PS"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RES_1_0_ZOEKGEBIEDEN_NODIG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Zoekgebieden zon en wind Regionale Energiestrategie (RES) 1.0 nodig voor analyse",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RES_REGIOS",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Regionale Energiestrategie (RES) regio\u2019s",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_WIND_BEOORDELING_PLAATSINGSVISIE",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling zoekgebieden wind plaatsingsvisie ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_WIND_BEOORDELING_RUIMTELIJKE_KWALITEIT",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling wind ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_WIND_BEOORDELING_ZOEKGEBIEDEN",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 milieueffectbeoordeling zoekgebieden wind ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_ZON_BEOORDELING_INPASSING_EINDRESULTAAT",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling inpassing zoekgebieden zon ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_ZON_BEOORDELING_ONDERLEGGER",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling zon onderlegger ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_RUIMTE_ZON_WERKBESTAND_BEOORDELING",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling zon werkbestand onderlegger ruimte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STATIONS_20220502",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 transformatorstations",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Point",
+                "name": "point"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STATIONS_BUFFERS_WIND_20220321",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 buffers voor wind rond transformatorstations 21-3-2022",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STATIONS_BUFFERS_WIND_20220420",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 buffers voor wind rond transformatorstations 20-4-2022",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STATIONS_BUFFERS_ZON_20220321",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 buffers voor zon rond transformatorstations 21-3-2022",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STATIONS_BUFFERS_ZON_20220420",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 buffers voor zon rond transformatorstations 20-4-2022",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STIKSTOFGEVOELIGE_NATURA2000_AVG",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Stikstofgevoelige Natura 2000",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_STILTEGEBIED",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 Stiltegebieden",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_VLEERMUIZEN_BEOORDELING",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 beoordeling vleermuizen",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "MER_ET_WONINGBOUWLOCATIES_3HA_NA_3HERZ_BUF500M",
+        "title": "Milieueffectrapportage (MER) Energietransitie 2022 woningbouwlocaties buffer",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "PMIEK_PROJECTEN_VLAKKEN_2023",
+        "title": "Provinciaal meerjarenprogramma infrastructuur energie en klimaat (pMIEK) projecten - concreet en voorverkenning - vlakken",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "N-MIEK gebied HIC",
+                "name": "Energie_pMIEK_N-MIEK_gebied_HIC"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_DISTRIBUTIELEIDINGEN_WARMTE",
+        "title": "Regionale Distributieleidingen Warmte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Warmte - Regionale distributieleidingen",
+                "name": "Energie_Warmte_-_Regionale_distributieleidingen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_TRANSPORTLEIDINGEN_WARMTE",
+        "title": "Regionale Transportleidingen Warmte",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Warmte - Regionale transportleidingen",
+                "name": "Energie_Warmte_-_Regionale_transportleidingen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_GFT",
+        "title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "GFT in ton per gemeente",
+                "name": "Energie_reststromen_GFT_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_GROENAFVAL",
+        "title": "Organische reststroom - Jaarlijks vrijkomend groenafval in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Groenafval in ton per gemeente",
+                "name": "Energie_reststromen_Groenafval_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_HOUTAFVAL_A_EN_B",
+        "title": "Organische reststroom - Jaarlijks vrijkomend A-hout en B-hout in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "A hout en B hout in ton per gemeente",
+                "name": "Energie_reststromen_A_hout_en_B_hout_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_HOUTAFVAL_C",
+        "title": "Organische reststroom - Jaarlijks vrijkomend C-hout in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "C hout in ton per gemeente",
+                "name": "Energie_reststromen_C_hout_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_MEST_DUN",
+        "title": "Organische reststroom - Jaarlijks vrijkomende dunne mest in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Dunne mest in ton per gemeente",
+                "name": "Energie_reststromen_Dunne_mest_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_MEST_VAST",
+        "title": "Organische reststroom - Jaarlijks vrijkomende vaste mest in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Vaste mest in ton per gemeente",
+                "name": "Energie_reststromen_Vaste_mest_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_TUINAFVAL",
+        "title": "Organische reststroom - Jaarlijks vrijkomend grof tuinafval in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Grof tuinafval in ton per gemeente",
+                "name": "Energie_reststromen_Grof_tuinafval_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_VGI_AFVAL_BIO_AFBREEKBAAR",
+        "title": "Organische reststroom - Jaarlijks vrijkomend biologisch afbreekbaar afval (VGI) in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Biologisch afbreekbaar afval in ton per gemeente",
+                "name": "Energie_reststromen_Biologisch_afbreekbaar_afval_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_VGI_AFVAL_PLANTAARDIG_WEEFSEL",
+        "title": "Organische reststroom - Jaarlijks vrijkomend plantaardig weefsel (VGI) in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Afval van plantaardige weefsels",
+                "name": "Energie_reststromen_Afval_van_plantaardige_weefsels"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_VGI_NIETONDER_200137_VALLENDHOUT",
+        "title": "Organische reststroom - Jaarlijks vrijkomend \u2018niet onder 20 01 37 vallend hout\u2019 afval (VGI) in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Niet onder 20 01 37 vallend hout",
+                "name": "Energie_reststromen_Niet_onder_20_01_37_vallend_hout"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "RESTSTROMEN_VGI_VERWERKING_ONGESCHIKT_MATERIAAL",
+        "title": "Organische reststroom - Jaarlijks vrijkomende voor consumptie of verwerking ongeschikt materiaal (VGI) in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Voor consumptie en verwerking ongeschikt materiaal in ton per gemeente",
+                "name": "Energie_reststromen_Voor_consumptie_en_verwerking_ongeschikt_materiaal_in_ton_per_gemeente"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "WINDENERGIE_ALTERNATIEVE_GEBIEDEN",
+        "title": "Windenergie alternatieve gebieden in Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Windenergie alternatieve gebieden ZH",
+                "name": "Energie_Windenergie_alternatieve_gebieden_ZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    },
+    {
+        "name": "WINDSTATS_WINDTURBINES_PZH",
+        "title": "Windturbinegegevens Windstats Zuid-Holland",
+        "abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "styles": [
+            {
+                "title": "Windturbines WindStats ZH",
+                "name": "Energie_Windturbines_WindStats_ZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/energie/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_abstract": "Organische reststroom - Jaarlijks vrijkomend groente-, fruit- en tuinafval (GFT) in Zuid-Holland",
+        "service_type": "wms"
+    }
+]

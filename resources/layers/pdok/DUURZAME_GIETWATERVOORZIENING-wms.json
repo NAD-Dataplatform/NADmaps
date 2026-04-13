@@ -1,0 +1,1506 @@
+[
+    {
+        "name": "BEDRIJVENTERREIN",
+        "title": "Omgevingsbeleid - werkingsgebied Bedrijventerrein",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bedrijventerrein",
+                "name": "Omgevingsbeleid_Bedrijventerrein"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BEPERKINGENGEBIED_GESLOTEN_STORTPLAATS",
+        "title": "Omgevingsbeleid - werkingsgebied Beperkingengebied gesloten stortplaats",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beperkingengebied_gesloten_stortplaats",
+                "name": "Omgevingsbeleid_Beperkingengebied_gesloten_stortplaats"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BEPERKINGENGEBIED_PROVINCIALE_VAARWEG",
+        "title": "Omgevingsbeleid - werkingsgebied Beperkingengebied provinciale vaarweg",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beperkingengebied_provinciale_vaarweg",
+                "name": "Omgevingsbeleid_Beperkingengebied_provinciale_vaarweg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BEPERKINGENGEBIED_PROVINCIALE_WEG",
+        "title": "Omgevingsbeleid - werkingsgebied Beperkingengebied provinciale weg",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beperkingengebied_provinciale_weg",
+                "name": "Omgevingsbeleid_Beperkingengebied_provinciale_weg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BESCHERMINGSCATEGORIE_1",
+        "title": "Omgevingsbeleid - werkingsgebied Beschermingscategorie 1",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beschermingscategorie_1",
+                "name": "Omgevingsbeleid_Beschermingscategorie_1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BESCHERMINGSCATEGORIE_2",
+        "title": "Omgevingsbeleid - werkingsgebied Beschermingscategorie 2",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beschermingscategorie_2",
+                "name": "Omgevingsbeleid_Beschermingscategorie_2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BESCHERMINGSCATEGORIE_3",
+        "title": "Omgevingsbeleid - werkingsgebied Beschermingscategorie 3",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Beschermingscategorie_3",
+                "name": "Omgevingsbeleid_Beschermingscategorie_3"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BESTUURLIJKE_AFSPRAKEN_WONEN",
+        "title": "Omgevingsbeleid - werkingsgebied Bestuurlijke afspraken wonen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bestuurlijke_afspraken_wonen",
+                "name": "Omgevingsbeleid_Bestuurlijke_afspraken_wonen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BIJZONDER_PROVINCIAAL_LANDSCHAP_MIDDEN_DELFLAND",
+        "title": "Omgevingsbeleid - werkingsgebied Bijzonder provinciaal landschap Midden-Delfland",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bijzonder_provinciaal_landschap_Midden_Delfland",
+                "name": "Omgevingsbeleid_Bijzonder_provinciaal_landschap_Midden_Delfland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BODEMDALINGSGEVOELIG_GEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Bodemdalingsgevoelig gebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bodemdalingsgevoelig_gebied",
+                "name": "Omgevingsbeleid_Bodemdalingsgevoelig_gebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BOLLENTEELTGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Bollenteeltgebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bollenteeltgebied",
+                "name": "Omgevingsbeleid_Bollenteeltgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BOOM_EN_SIERTEELTGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Boom en sierteeltgebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Boom_en_sierteeltgebied",
+                "name": "Omgevingsbeleid_Boom_en_sierteeltgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BOS_EN_BOMEN",
+        "title": "Omgevingsbeleid - werkingsgebied Bos en bomen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Bos_en_bomen",
+                "name": "Omgevingsbeleid_Bos_en_bomen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "BUIJTENLAND_VAN_RHOON",
+        "title": "Omgevingsbeleid - werkingsgebied Buijtenland van Rhoon",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "CAMPUS",
+        "title": "Omgevingsbeleid - werkingsgebied Campus",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Campus",
+                "name": "Omgevingsbeleid_Campus"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "CLUSTER_VOOR_GROTE_RUIMTEVRAGERS",
+        "title": "Omgevingsbeleid - werkingsgebied Cluster voor grote ruimtevragers",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Cluster_voor_grote_ruimtevragers",
+                "name": "Omgevingsbeleid_Cluster_voor_grote_ruimtevragers"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "COMPENSATIEGEBIED_BOLLENTEELT",
+        "title": "Omgevingsbeleid - werkingsgebied Compensatiegebied bollenteelt",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Compensatiegebied_bollenteelt",
+                "name": "Omgevingsbeleid_Compensatiegebied_bollenteelt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "CONCESSIE_EN_CONTRACTGEBIED_OPENBAAR_VERVOER",
+        "title": "Omgevingsbeleid - werkingsgebied Concessie en contractgebied openbaar vervoer",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_CONCESSIE_EN_CONTRACTGEBIED_OPENBAAR_VERVOER",
+                "name": "Omgevingsbeleid_CONCESSIE_EN_CONTRACTGEBIED_OPENBAAR_VERVOER"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "DETAILHANDEL",
+        "title": "Omgevingsbeleid - werkingsgebied Detailhandel",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Detailhandel",
+                "name": "Omgevingsbeleid_Detailhandel"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "DRINKWATERINFRASTRUCTUUR",
+        "title": "Omgevingsbeleid - werkingsgebied Drinkwaterinfrastructuur",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Drinkwaterinfrastructuur",
+                "name": "Omgevingsbeleid_Drinkwaterinfrastructuur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "DRINKWATERPRODUCTIE_EN_INFRASTRUCTUUR",
+        "title": "Omgevingsbeleid - werkingsgebied Drinkwaterproductie en infrastructuur",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Drinkwaterproductie_en_infrastructuur",
+                "name": "Omgevingsbeleid_Drinkwaterproductie_en_infrastructuur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "DUURZAME_GIETWATERVOORZIENING",
+        "title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Duurzame_gietwatervoorziening",
+                "name": "Omgevingsbeleid_Duurzame_gietwatervoorziening"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "ERFGOED_BELEVEN",
+        "title": "Omgevingsbeleid - werkingsgebied Erfgoed beleven",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Erfgoed_beleven",
+                "name": "Omgevingsbeleid_Erfgoed_beleven"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "ERFGOED_BESCHERMEN",
+        "title": "Omgevingsbeleid - werkingsgebied Erfgoed beschermen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Erfgoed_beschermen",
+                "name": "Omgevingsbeleid_Erfgoed_beschermen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "ERFGOED_SUBSIDIEREGELING",
+        "title": "Omgevingsbeleid - werkingsgebied Erfgoed subsidieregeling",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Erfgoed_subsidieregeling",
+                "name": "Omgevingsbeleid_Erfgoed_subsidieregeling"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "EXTERNE_VEILIGHEID",
+        "title": "Omgevingsbeleid - werkingsgebied Externe veiligheid",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Externe_veiligheid",
+                "name": "Omgevingsbeleid_Externe_veiligheid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GANZENRUSTGEBIEDEN",
+        "title": "Omgevingsbeleid - werkingsgebied Ganzenrustgebieden",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Ganzenrustgebieden",
+                "name": "Omgevingsbeleid_Ganzenrustgebieden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIEDSAANPAK_VEEN",
+        "title": "Omgevingsbeleid - werkingsgebied Gebiedsaanpak veen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Gebiedsaanpak_veen",
+                "name": "Omgevingsbeleid_Gebiedsaanpak_veen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIED_MET_GRONDWATERBEHEER_ROTTERDAM",
+        "title": "Omgevingsbeleid - werkingsgebied Gebied met grondwaterbeheer Rotterdam",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Gebied_met_grondwaterbeheer_Rotterdam",
+                "name": "Omgevingsbeleid_Gebied_met_grondwaterbeheer_Rotterdam"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIED_MET_HOGE_OF_ZEER_HOGE_BEKENDE_ARCHEOLOGISCHE_WAARDE",
+        "title": "Omgevingsbeleid - werkingsgebied Gebied met hoge of zeer hoge bekende archeologische waarde",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Gebied_met_hoge_of_zeer_hoge_bekende_archeologische_waarde",
+                "name": "Omgevingsbeleid_Gebied_met_hoge_of_zeer_hoge_bekende_archeologische_waarde"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIED_MET_HOGE_OF_ZEER_HOGE_BEKENDE_ARCHEOLOGISCHE_WAARDE_EN_NEDER_GERMAANSE_LIMES_VERWACHTINGSZONE",
+        "title": "Omgevingsbeleid - werkingsgebied Gebied met hoge of zeer hoge bekende archeologische waarde en Neder Germaanse Limes verwachtingszone",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEBIED_MET_WATERKWANTITEITSNORM",
+        "title": "Omgevingsbeleid - werkingsgebied Gebied met waterkwantiteitsnorm",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Gebied_met_waterkwantiteitsnorm",
+                "name": "Omgevingsbeleid_Gebied_met_waterkwantiteitsnorm"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GEURHINDER",
+        "title": "Omgevingsbeleid - werkingsgebied Geurhinder",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Geurhinder",
+                "name": "Omgevingsbeleid_Geurhinder"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GLASTUINBOUW",
+        "title": "Omgevingsbeleid - werkingsgebied Glastuinbouw",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Glastuinbouw",
+                "name": "Omgevingsbeleid_Glastuinbouw"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GROENBLAUWE_STRUCTUUR",
+        "title": "Omgevingsbeleid - werkingsgebied Groenblauwe structuur",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Groenblauwe_structuur",
+                "name": "Omgevingsbeleid_Groenblauwe_structuur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GRONDWATERBESCHERMINGSGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Grondwaterbeschermingsgebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Grondwaterbeschermingsgebied",
+                "name": "Omgevingsbeleid_Grondwaterbeschermingsgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "GROTE_BUITENSTEDELIJKE_BOUWLOCATIE",
+        "title": "Omgevingsbeleid - werkingsgebied Grote buitenstedelijke bouwlocatie",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Grote_buitenstedelijke_bouwlocatie",
+                "name": "Omgevingsbeleid_Grote_buitenstedelijke_bouwlocatie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HAVENINDUSTRIEEL_COMPLEX",
+        "title": "Omgevingsbeleid - werkingsgebied Havenindustrieel complex",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Default Polygon",
+                "name": "polygon"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HOOFDFIETSNETWERK_VERORDENING",
+        "title": "Omgevingsbeleid - werkingsgebied Hoofdfietsnetwerk Omgevingsverordening",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_HOOFDFIETSNETWERK_VERORDENING",
+                "name": "Omgevingsbeleid_HOOFDFIETSNETWERK_VERORDENING"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HOOFDFIETSNETWERK_VISIE",
+        "title": "Omgevingsbeleid - werkingsgebied Hoofdfietsnetwerk",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_HOOFDFIETSNETWERK_VISIE",
+                "name": "Omgevingsbeleid_HOOFDFIETSNETWERK_VISIE"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HOOFDRAILNET",
+        "title": "Omgevingsbeleid - werkingsgebied Hoofdrailnet",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Hoofdrailnet",
+                "name": "Omgevingsbeleid_Hoofdrailnet"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HOOFDWANDELNETWERK_VERORDENING",
+        "title": "Omgevingsbeleid - werkingsgebied Hoofdwandelnetwerk Omgevingsverordening",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_HOOFDWANDELNETWERK_VERORDENING",
+                "name": "Omgevingsbeleid_HOOFDWANDELNETWERK_VERORDENING"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "HOOFDWANDELNETWERK_VISIE",
+        "title": "Omgevingsbeleid - werkingsgebied Hoofdwandelnetwerk",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_HOOFDWANDELNETWERK_VISIE",
+                "name": "Omgevingsbeleid_HOOFDWANDELNETWERK_VISIE"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "INTERNATIONALE_TREINVERBINDING",
+        "title": "Omgevingsbeleid - werkingsgebied Internationale treinverbinding",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Internationale_treinverbinding",
+                "name": "Omgevingsbeleid_Internationale_treinverbinding"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "KANTOREN",
+        "title": "Omgevingsbeleid - werkingsgebied Kantoren",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Kantoren",
+                "name": "Omgevingsbeleid_Kantoren"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "KERNNET_LOGISTIEK_SVIR",
+        "title": "Omgevingsbeleid - werkingsgebied Kernnet logistiek Structuurvisie Infrastructuur en Ruimte (SVIR)",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Kernnet_logistiek_SVIR",
+                "name": "Omgevingsbeleid_Kernnet_logistiek_SVIR"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "LANDGOED_EN_KASTEELBIOTOOP",
+        "title": "Omgevingsbeleid - werkingsgebied Landgoed en kasteelbiotoop",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Landgoed_en_kasteelbiotoop",
+                "name": "Omgevingsbeleid_Landgoed_en_kasteelbiotoop"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "LUCHTHAVEN",
+        "title": "Omgevingsbeleid - werkingsgebied Luchthaven",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Luchthaven",
+                "name": "Omgevingsbeleid_Luchthaven"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "MAATWERKGEBIED_BOOM_EN_SIERTEELT",
+        "title": "Omgevingsbeleid - werkingsgebied Maatwerkgebied boom en sierteelt",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Maatwerkgebied_boom_en_sierteelt",
+                "name": "Omgevingsbeleid_Maatwerkgebied_boom_en_sierteelt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "MAATWERKGEBIED_GLASTUINBOUW",
+        "title": "Omgevingsbeleid - werkingsgebied Maatwerkgebied glastuinbouw",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Maatwerkgebied_glastuinbouw",
+                "name": "Omgevingsbeleid_Maatwerkgebied_glastuinbouw"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOLENBIOTOOP",
+        "title": "Omgevingsbeleid - werkingsgebied Molenbiotoop",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Molenbiotoop",
+                "name": "Omgevingsbeleid_Molenbiotoop"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "NATURA2000_GEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Natura2000 gebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Natura2000_gebied",
+                "name": "Omgevingsbeleid_Natura2000_gebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "NATUURNETWERK_NEDERLAND",
+        "title": "Omgevingsbeleid - werkingsgebied NatuurNetwerk Nederland",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_NatuurNetwerk_Nederland",
+                "name": "Omgevingsbeleid_NatuurNetwerk_Nederland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "NEDER_GERMAANSE_LIMES_VERWACHTINGSZONE",
+        "title": "Omgevingsbeleid - werkingsgebied Neder Germaanse Limes verwachtingszone",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Neder_Germaanse_Limes_verwachtingszone",
+                "name": "Omgevingsbeleid_Neder_Germaanse_Limes_verwachtingszone"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "NIET_BASISNET_TRANSPORTROUTE_IN_VERBAND_MET_GROEPSRISICO",
+        "title": "Omgevingsbeleid - werkingsgebied Niet Basisnet transportroute in verband met groepsrisico",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Niet_Basisnet_transportroute_in_verband_met_groepsrisico",
+                "name": "Omgevingsbeleid_Niet_Basisnet_transportroute_in_verband_met_groepsrisico"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "ONTGRONDINGEN",
+        "title": "Omgevingsbeleid - werkingsgebied Ontgrondingen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Ontgrondingen",
+                "name": "Omgevingsbeleid_Ontgrondingen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PEILBESLUITGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Peilbesluitgebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Peilbesluitgebied",
+                "name": "Omgevingsbeleid_Peilbesluitgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PERSONENVERVOER_ZERO_EMISSIE",
+        "title": "Omgevingsbeleid - werkingsgebied Personenvervoer Zero emissie",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Personenvervoer_Zero_emissie",
+                "name": "Omgevingsbeleid_Personenvervoer_Zero_emissie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PROVINCIALE_INFRASTRUCTUUR",
+        "title": "Omgevingsbeleid - werkingsgebied Provinciale infrastructuur",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Provinciale_infrastructuur",
+                "name": "Omgevingsbeleid_Provinciale_infrastructuur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PROVINCIALE_VAARWEG",
+        "title": "Omgevingsbeleid - werkingsgebied Provinciale vaarweg",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Provinciale_vaarweg",
+                "name": "Omgevingsbeleid_Provinciale_vaarweg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PROVINCIALE_VAARWEGDELEN",
+        "title": "Omgevingsbeleid - werkingsgebied Provinciale vaarwegdelen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Provinciale_vaarwegdelen",
+                "name": "Omgevingsbeleid_Provinciale_vaarwegdelen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PROVINCIALE_WEG",
+        "title": "Omgevingsbeleid - werkingsgebied Provinciale weg",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Provinciale_weg",
+                "name": "Omgevingsbeleid_Provinciale_weg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "PROVINCIE_ZUID_HOLLAND",
+        "title": "Omgevingsbeleid - werkingsgebied Provincie Zuid Holland",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Provincie_Zuid_Holland",
+                "name": "Omgevingsbeleid_Provincie_Zuid_Holland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RECREATIEGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Recreatiegebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Recreatiegebied",
+                "name": "Omgevingsbeleid_Recreatiegebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RECREATIETOERVAARTNET",
+        "title": "Omgevingsbeleid - werkingsgebied Recreatietoervaartnet",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Recreatietoervaartnet",
+                "name": "Omgevingsbeleid_Recreatietoervaartnet"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RECREATIEVE_FIETSROUTES",
+        "title": "Omgevingsbeleid - werkingsgebied Recreatieve fietsroutes",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Recreatieve_fietsroutes",
+                "name": "Omgevingsbeleid_Recreatieve_fietsroutes"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_ENERGIESTRATEGIE_RES",
+        "title": "Omgevingsbeleid - werkingsgebied Regionale Energiestrategie (RES)",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Regionale_energiestrategie_RES",
+                "name": "Omgevingsbeleid_Regionale_energiestrategie_RES"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_VAARWEGEN",
+        "title": "Omgevingsbeleid - werkingsgebied Regionale vaarwegen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Regionale_vaarwegen",
+                "name": "Omgevingsbeleid_Regionale_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_VEENWEIDE_STRATEGIE",
+        "title": "Omgevingsbeleid - werkingsgebied Regionale veenweide strategie",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Regionale_veenweide_strategie",
+                "name": "Omgevingsbeleid_Regionale_veenweide_strategie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "REGIONALE_WATERKERING",
+        "title": "Omgevingsbeleid - werkingsgebied Regionale waterkering",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Regionale_waterkering",
+                "name": "Omgevingsbeleid_Regionale_waterkering"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RES_ZOEKGEBIEDEN_ZON_EN_WIND",
+        "title": "Omgevingsbeleid - werkingsgebied Regionale Energiestrategie (RES) zoekgebieden zon en wind",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_RES_zoekgebieden_zon_en_wind",
+                "name": "Omgevingsbeleid_RES_zoekgebieden_zon_en_wind"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RISICOGEBIEDEN_EXTERNE_VEILIGHEID",
+        "title": "Omgevingsbeleid - werkingsgebied Risicogebieden externe veiligheid",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Risicogebieden_externe_veiligheid",
+                "name": "Omgevingsbeleid_Risicogebieden_externe_veiligheid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "RUIMTELIJKE_KWALITEIT_EN_BESCHERMINGSCATEGORIEEN",
+        "title": "Omgevingsbeleid - werkingsgebied Ruimtelijke kwaliteit en beschermingscategorie\u00ebn",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Ruimtelijke_kwaliteit_en_beschermingscategorieen",
+                "name": "Omgevingsbeleid_Ruimtelijke_kwaliteit_en_beschermingscategorieen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "SCHIPHOL_GELUID",
+        "title": "Omgevingsbeleid - werkingsgebied Schiphol geluid",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Schiphol_geluid",
+                "name": "Omgevingsbeleid_Schiphol_geluid"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "STATIONSOMGEVING",
+        "title": "Omgevingsbeleid - werkingsgebied Stationsomgeving",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Stationsomgeving",
+                "name": "Omgevingsbeleid_Stationsomgeving"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "STEDELIJKE_ONTWIKKELING",
+        "title": "Omgevingsbeleid - werkingsgebied Stedelijke ontwikkeling",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Stedelijke_ontwikkeling",
+                "name": "Omgevingsbeleid_Stedelijke_ontwikkeling"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "STILTEGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Stiltegebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Stiltegebied",
+                "name": "Omgevingsbeleid_Stiltegebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "STORTPLAATS_WET_MILIEUBEHEER",
+        "title": "Omgevingsbeleid - werkingsgebied Stortplaats Wet milieubeheer",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Stortplaats_Wet_milieubeheer",
+                "name": "Omgevingsbeleid_Stortplaats_Wet_milieubeheer"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "TEELTAREAAL_GREENPORT_AALSMEER",
+        "title": "Omgevingsbeleid - werkingsgebied Teeltareaal Greenport Aalsmeer",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Teeltareaal_Greenport_Aalsmeer",
+                "name": "Omgevingsbeleid_Teeltareaal_Greenport_Aalsmeer"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "TEELTAREAAL_GREENPORT_BOLLENSTREEK",
+        "title": "Omgevingsbeleid - werkingsgebied Teeltareaal Greenport Bollenstreek",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Teeltareaal_Greenport_Bollenstreek",
+                "name": "Omgevingsbeleid_Teeltareaal_Greenport_Bollenstreek"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "TEELTAREAAL_GREENPORT_BOSKOOP",
+        "title": "Omgevingsbeleid - werkingsgebied Teeltareaal Greenport Boskoop",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Teeltareaal_Greenport_Boskoop",
+                "name": "Omgevingsbeleid_Teeltareaal_Greenport_Boskoop"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "TEELTAREAAL_GREENPORT_WEST_HOLLAND",
+        "title": "Omgevingsbeleid - werkingsgebied Teeltareaal Greenport West Holland",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Teeltareaal_Greenport_West_Holland",
+                "name": "Omgevingsbeleid_Teeltareaal_Greenport_West_Holland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "TRANSFORMATIEGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Transformatiegebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Transformatiegebied",
+                "name": "Omgevingsbeleid_Transformatiegebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "VEILIGHEIDSZONE_NIEUWE_WATERWEG_EN_NIEUWE_MAAS",
+        "title": "Omgevingsbeleid - werkingsgebied Veiligheidszone Nieuwe Waterweg en Nieuwe Maas",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Veiligheidszone_Nieuwe_Waterweg_en_Nieuwe_Maas",
+                "name": "Omgevingsbeleid_Veiligheidszone_Nieuwe_Waterweg_en_Nieuwe_Maas"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "VERBLIJFSRECREATIE_BUITEN_BESTAAND_STADS_EN_DORPSGEBIED",
+        "title": "Omgevingsbeleid - werkingsgebied Verblijfsrecreatie buiten bestaand stads en dorpsgebied",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Verblijfsrecreatie_buiten_bestaand_stads_en_dorpsgebied",
+                "name": "Omgevingsbeleid_Verblijfsrecreatie_buiten_bestaand_stads_en_dorpsgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "VLIETZONE",
+        "title": "Omgevingsbeleid - werkingsgebied Vlietzone",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Vlietzone",
+                "name": "Omgevingsbeleid_Vlietzone"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "VRIJWARINGSZONE_PROVINCIALE_VAARWEG",
+        "title": "Omgevingsbeleid - werkingsgebied Vrijwaringszone provinciale vaarweg",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Vrijwaringszone_provinciale_vaarweg",
+                "name": "Omgevingsbeleid_Vrijwaringszone_provinciale_vaarweg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WATERGEBONDEN_BEDRIJVENTERREIN",
+        "title": "Omgevingsbeleid - werkingsgebied Watergebonden bedrijventerrein",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Watergebonden_bedrijventerrein",
+                "name": "Omgevingsbeleid_Watergebonden_bedrijventerrein"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WATERSCHAPPEN",
+        "title": "Omgevingsbeleid - werkingsgebied Waterschappen",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Waterschappen",
+                "name": "Omgevingsbeleid_Waterschappen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WERELDERFGOED_HOLLANDSE_WATERLINIES",
+        "title": "Omgevingsbeleid - werkingsgebied Werelderfgoed Hollandse Waterlinies",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Werelderfgoed_Hollandse_Waterlinies",
+                "name": "Omgevingsbeleid_Werelderfgoed_Hollandse_Waterlinies"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WERELDERFGOED_NEDER_GERMAANSE_LIMES_BUFFERZONE",
+        "title": "Omgevingsbeleid - werkingsgebied Werelderfgoed Neder Germaanse Limes bufferzone",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_bufferzone",
+                "name": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_bufferzone"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WERELDERFGOED_NEDER_GERMAANSE_LIMES_KERNZONE_1",
+        "title": "Omgevingsbeleid - werkingsgebied Werelderfgoed Neder Germaanse Limes kernzone 1",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_kernzone_1",
+                "name": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_kernzone_1"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WERELDERFGOED_NEDER_GERMAANSE_LIMES_KERNZONE_2",
+        "title": "Omgevingsbeleid - werkingsgebied Werelderfgoed Neder Germaanse Limes kernzone 2",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_kernzone_2",
+                "name": "Omgevingsbeleid_Werelderfgoed_Neder_Germaanse_Limes_kernzone_2"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    },
+    {
+        "name": "WINDENERGIE",
+        "title": "Omgevingsbeleid - werkingsgebied Windenergie",
+        "abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "styles": [
+            {
+                "title": "Omgevingsbeleid_Windenergie",
+                "name": "Omgevingsbeleid_Windenergie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/omgevingsbeleid/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_abstract": "Omgevingsbeleid - werkingsgebied Duurzame gietwatervoorziening",
+        "service_type": "wms"
+    }
+]

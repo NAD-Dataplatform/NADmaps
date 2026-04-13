@@ -1,0 +1,2606 @@
+[
+    {
+        "name": "ABS_DVM_AFSLUITBOMEN",
+        "title": "Areaal beheer - Afsluitbomen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Afsluitbomen",
+                "name": "Verkeer_tbv_infor_Afsluitbomen"
+            },
+            {
+                "title": "Afsluitbomen",
+                "name": "Verkeer_tbv_OMS_Afsluitbomen"
+            },
+            {
+                "title": "Afsluitbomen",
+                "name": "Verkeer_weg_beheer_Afsluitbomen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_DVM_CAMERAS",
+        "title": "Areaal beheer - Camera's, t.b.v. Dynamisch verkeersmanagement, langs de provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Camera s",
+                "name": "Verkeer_tbv_infor_Camera_s"
+            },
+            {
+                "title": "Camera s",
+                "name": "Verkeer_tbv_OMS_Camera_s"
+            },
+            {
+                "title": "Camera s",
+                "name": "Verkeer_weg_beheer_Camera_s"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_DVM_DRIPS",
+        "title": "Areaal beheer - Dynamische route-informatiepanelen (DRIP)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Drips",
+                "name": "Verkeer_tbv_infor_Drips"
+            },
+            {
+                "title": "Drips",
+                "name": "Verkeer_weg_beheer_Drips"
+            },
+            {
+                "title": "Drips",
+                "name": "Verkeer_tbv_OMS_Drips"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_DVM_VRI",
+        "title": "Areaal beheer - Verkeersregelinstallatie (VRI) schakelkasten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "VRI-Installatie",
+                "name": "Verkeer_tbv_infor_VRI-Installatie"
+            },
+            {
+                "title": "VRI-Installatie",
+                "name": "Verkeer_tbv_OMS_VRI-Installatie"
+            },
+            {
+                "title": "VRI-Installatie",
+                "name": "Verkeer_weg_beheer_VRI-Installatie"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_GRN_BANKEN_PICKNICKTAFELS",
+        "title": "Areaal beheer - Bankjes en Picknicktafels",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bankjes en picknicktafels",
+                "name": "Verkeer_weg_groenbeheer_Bankjes_en_picknicktafels"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_GRN_FAUNAVOORZIENING",
+        "title": "Areaal beheer - Faunavoorzieningen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Faunavoorzieningen",
+                "name": "Verkeer_weg_groenbeheer_Faunavoorzieningen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_BETONNING",
+        "title": "Vaarweg - Betonning",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Betonning",
+                "name": "Verkeer_vaarweg_objecten_Betonning"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_BOLDERS",
+        "title": "Vaarweg - Bolders",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bolders",
+                "name": "Verkeer_vaarweg_objecten_Bolders"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_CAMERAS",
+        "title": "Vaarweg - Camera's",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Camera s",
+                "name": "Verkeer_vaarweg_objecten_Camera_s"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_GELEIDEWERK",
+        "title": "Vaarweg - Geleidewerk en remmingswerk",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Geleidewerken",
+                "name": "Verkeer_vaarweg_objecten_Geleidewerken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_GEMETEN_HECTOMETRERING_VERVALLEN_2011",
+        "title": "Vaarweg - Hectometrering - gemeten - historie",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hectometrering vaarwegen - vervallen 2011",
+                "name": "Verkeer_grenzen_Hectometrering_vaarwegen_-_vervallen_2011"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_KUNSTWERKEN",
+        "title": "Vaarweg - Kunstwerken proviciale vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Labels van bruggen",
+                "name": "Verkeer_vaarweg_objecten_Labels_van_bruggen"
+            },
+            {
+                "title": "Kunstwerken",
+                "name": "Verkeer_vaarweg_objecten_Kunstwerken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_BELEIDSRUIMTE",
+        "title": "Vaarweg - Beleidsruimte",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Beleidsruimte - vaarwater",
+                "name": "Verkeer_vaarweg_beheer_Beleidsruimte_-_vaarwater"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_BEREKENDE_HECTOMETRERING",
+        "title": "Vaarweg - Hectometrering",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hectometrering vaarwegen - berekend",
+                "name": "Verkeer_grenzen_Hectometrering_vaarwegen_-_berekend"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_DOORVAARTEN",
+        "title": "Vaarweg - Doorvaarten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Doorvaarten",
+                "name": "Verkeer_vaarweg_beheer_Doorvaarten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_LIGPLAATSEN_OPENBAAR",
+        "title": "Vaarweg - Ligplaatsen - openbaar",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Ligplaatsen - openbaar",
+                "name": "Verkeer_vaarweg_beheer_Ligplaatsen_-_openbaar"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VAARSTROOK",
+        "title": "Vaarweg - Vaarstrook",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Vaarstrook",
+                "name": "Verkeer_vaarweg_beheer_Vaarstrook"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VAARSTROOK_AS",
+        "title": "Vaarweg - As vaarstrook",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "As vaarstrook",
+                "name": "Verkeer_vaarweg_beheer_As_vaarstrook"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VEILIGHEIDSSTROOK",
+        "title": "Vaarweg - Veiligheidsvaarstrook",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Veiligheidsstrook",
+                "name": "Verkeer_vaarweg_beheer_Veiligheidsstrook"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VEILIGHEIDSZONES",
+        "title": "Vaarweg - Veiligheidszones",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Veiligheidszones",
+                "name": "Verkeer_vaarweg_beheer_Veiligheidszones"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VEREISTE_VAARSTROOK",
+        "title": "Vaarweg - Vereiste vaarstrook (knelpunten)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Vereiste vaarstrook - knelpunten",
+                "name": "Verkeer_vaarweg_beheer_Vereiste_vaarstrook_-_knelpunten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VOORZIENINGEN_L_OPEN",
+        "title": "Vaarweg - Vergunningen - Voorzieningen lijnen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Nautische voorzieningen - lijn",
+                "name": "Verkeer_vaarweg_beheer_Nautische_voorzieningen_-_lijn"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VOORZIENINGEN_P_OPEN",
+        "title": "Vaarweg - Vergunningen - Voorzieningen punten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Nautische voorzieningen - punt",
+                "name": "Verkeer_vaarweg_beheer_Nautische_voorzieningen_-_punt"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VOORZIENINGEN_V_OPEN",
+        "title": "Vaarweg - Vergunningen - Voorzieningen vlakken",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Nautische voorzieningen - vlak",
+                "name": "Verkeer_vaarweg_beheer_Nautische_voorzieningen_-_vlak"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_LB_VRIJWARINGSZONES",
+        "title": "Vaarwegbeheer - Vrijwaringszones vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Vrijwaringszones - vaarwegen",
+                "name": "Verkeer_vaarweg_beheer_Vrijwaringszones_-_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_MEERPALEN_STOELEN",
+        "title": "Vaarweg - Meerpalen en meerstoelen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Meerpalen en stoelen",
+                "name": "Verkeer_vaarweg_objecten_Meerpalen_en_stoelen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_OEVERS",
+        "title": "Vaarweg - Oevers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Oevers - dynamisch",
+                "name": "Verkeer_vaarweg_oevers_Oevers_-_dynamisch"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_OEVERS_IN_EN_UITLATEN",
+        "title": "Vaarweg - In- en uitlaten oevers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "In en uitlaten",
+                "name": "Verkeer_vaarweg_oevers_In_en_uitlaten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_PEILSCHAAL",
+        "title": "Vaarweg - Peilschalen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Peilschalen",
+                "name": "Verkeer_vaarweg_objecten_Peilschalen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_REDDINGSBOEIEN",
+        "title": "Vaarweg - Reddingsboeien",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Reddingsboeien",
+                "name": "Verkeer_vaarweg_objecten_Reddingsboeien"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_STEIGERS",
+        "title": "Vaarweg - Steigers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Steigers",
+                "name": "Verkeer_vaarweg_objecten_Steigers"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_TRAP",
+        "title": "Vaarweg - Drenkelingtrappen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Drenkelingentrappen",
+                "name": "Verkeer_vaarweg_objecten_Drenkelingentrappen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_VERKEERSSPIEGEL",
+        "title": "Vaarweg - Verkeersspiegel",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeersspiegels",
+                "name": "Verkeer_vaarweg_objecten_Verkeersspiegels"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_VLAGGENMAST",
+        "title": "Vaarweg - vlaggenmasten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Vlaggenmasten",
+                "name": "Verkeer_vaarweg_objecten_Vlaggenmasten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_WALSTROOM",
+        "title": "Vaarweg - Walstroomlocatie in beheer van de Provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Walstroom locaties",
+                "name": "Verkeer_tbv_infor_Walstroom_locaties"
+            },
+            {
+                "title": "Walstroom locaties",
+                "name": "Verkeer_vaarweg_objecten_Walstroom_locaties"
+            },
+            {
+                "title": "Walstroom locaties",
+                "name": "Verkeer_tbv_OMS_Walstroom_locaties"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_VW_ZINKERS",
+        "title": "Areaal beheer - Zinkers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Zinkers",
+                "name": "Verkeer_vaarweg_objecten_Zinkers"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_ABRI",
+        "title": "Areaal beheer - Abri",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Abri",
+                "name": "Verkeer_weg_beheer_Abri"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_AFVALBAK",
+        "title": "Areaal beheer - Afvalbak",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Afvalbak",
+                "name": "Verkeer_weg_beheer_Afvalbak"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_BLOK",
+        "title": "Areaal beheer - Blok",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Blokken",
+                "name": "Verkeer_weg_beheer_Blokken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_BOMEN",
+        "title": "Areaal beheer - Bomen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bomen",
+                "name": "Verkeer_weg_groenbeheer_Bomen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_DUIKERS",
+        "title": "Areaal beheer - Duikers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Duikers",
+                "name": "Verkeer_weg_beheer_Duikers"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_FIETSENREK",
+        "title": "Areaal beheer - Fietsenrek langs provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietsenrek",
+                "name": "Verkeer_weg_beheer_Fietsenrek"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_GELEIDERAIL",
+        "title": "Areaal beheer - Geleiderail langs de provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Geleiderail",
+                "name": "Verkeer_weg_beheer_Geleiderail"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_GELUIDSWERING",
+        "title": "Areaal beheer - Geluidswering langs de provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Geluidswering",
+                "name": "Verkeer_weg_beheer_Geluidswering"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_GMS_KAST",
+        "title": "Areaal beheer - Gladheidmeldsysteem (GMS) langs de provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "GMS kasten",
+                "name": "Verkeer_weg_beheer_GMS_kasten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_GROEN",
+        "title": "Areaal beheer - Groen - groenobjecten langs de provinciale wegen en vaarwegen in beheer van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Groenbeheer",
+                "name": "Verkeer_weg_groenbeheer_Groenbeheer"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_HAGEN",
+        "title": "Areaal beheer - Hagen langs de provinciale wegen en vaarwegen in beheer van de Provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hagen",
+                "name": "Verkeer_weg_groenbeheer_Hagen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_HALTEPAAL",
+        "title": "Areaal beheer - Haltepalen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Haltepaal",
+                "name": "Verkeer_weg_beheer_Haltepaal"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_HECTOMETRERING",
+        "title": "Areaal beheer - Hectometrering - hectometerpunten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Default Point",
+                "name": "point"
+            },
+            {
+                "title": "Hectometerpunten - gemeten",
+                "name": "Verkeer_grenzen_Hectometerpunten_-_gemeten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_HEK",
+        "title": "Areaal beheer - Hekken",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hekken - alle",
+                "name": "Verkeer_weg_beheer_Hekken_-_alle"
+            },
+            {
+                "title": "Hekken - faunarasters",
+                "name": "Verkeer_weg_beheer_Hekken_-_faunarasters"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_INFORMATIEBORD_PUNT",
+        "title": "Areaal beheer - Informatiebord - punt",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Informatiebord",
+                "name": "Verkeer_weg_beheer_Informatiebord"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_KEERCONSTRUCTIE",
+        "title": "Keerconstructies (keerwand of keermuur) langs water in beheer van de Provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Keercontructies langs provinciale wegen en vaarwegen",
+                "name": "Verkeer_vaarweg_oevers_Keercontructies_langs_provinciale_wegen_en_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_KUNSTOBJECT",
+        "title": "Areaal beheer - Kunstobjecten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Kunstobjecten",
+                "name": "Verkeer_weg_beheer_Kunstobjecten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_KUNSTWERKEN",
+        "title": "Areaal beheer - Kunstwerken (bruggen en sluizen)- Provinciale wegen en vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Kunstwerken",
+                "name": "Verkeer_tbv_infor_Kunstwerken"
+            },
+            {
+                "title": "Kunstwerken - totaal",
+                "name": "Verkeer_weg_beheer_Kunstwerken_-_totaal"
+            },
+            {
+                "title": "Kunstwerken",
+                "name": "Verkeer_tbv_OMS_Kunstwerken"
+            },
+            {
+                "title": "Kunstwerken - soort",
+                "name": "Verkeer_weg_beheer_Kunstwerken_-_soort"
+            },
+            {
+                "title": "Kunstwerken - belasting",
+                "name": "Verkeer_weg_beheer_Kunstwerken_-_belasting"
+            },
+            {
+                "title": "Kunstwerken - soort - label",
+                "name": "Verkeer_weg_beheer_Kunstwerken_-_soort_-_label"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_ONDERHOUD_BEHEER_GRENS_OPEN",
+        "title": "Areaal beheer - Onderhouds- en beheergrenzen provinciale wegen en vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Onderhoudsgrens wegen en vaarwegen",
+                "name": "Verkeer_grenzen_Onderhoudsgrens_wegen_en_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_ONDERHOUD_BEHEER_GRENS_VLAK",
+        "title": "Areaal beheer - Onderhoudsgrens wegen en vaarwegen - vlak",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Onderhoudsgrens wegen - vlak",
+                "name": "Verkeer_grenzen_Onderhoudsgrens_wegen_-_vlak"
+            },
+            {
+                "title": "Onderhoudsgrens vaarwegen - vlak",
+                "name": "Verkeer_grenzen_Onderhoudsgrens_vaarwegen_-_vlak"
+            },
+            {
+                "title": "Onderhoudsgrens wegen en vaarwegen en bedrijfsvoering - vlak",
+                "name": "Verkeer_grenzen_Onderhoudsgrens_wegen_en_vaarwegen_en_bedrijfsvoering_-_vlak"
+            },
+            {
+                "title": "Onderhoudsgrens bedrijfsvoering - vlak",
+                "name": "Verkeer_grenzen_Onderhoudsgrens_bedrijfsvoering_-_vlak"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_OVL",
+        "title": "Areaal beheer - Lichtmasten - Openbare Verlichting",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "OVL - Lichtmasten",
+                "name": "Verkeer_tbv_infor_OVL_-_Lichtmasten"
+            },
+            {
+                "title": "OVL - Lichtmasten",
+                "name": "Verkeer_tbv_OMS_OVL_-_Lichtmasten"
+            },
+            {
+                "title": "Openbare verlichting - Lichtmasten",
+                "name": "Verkeer_weg_beheer_Openbare_verlichting_-_Lichtmasten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_OVL_KASTEN",
+        "title": "Areaal beheer - Schakelkasten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "OVL - Schakelkasten",
+                "name": "Verkeer_tbv_infor_OVL_-_Schakelkasten"
+            },
+            {
+                "title": "Openbare verlichting - Schakelkasten",
+                "name": "Verkeer_weg_beheer_Openbare_verlichting_-_Schakelkasten"
+            },
+            {
+                "title": "OVL - Schakelkasten",
+                "name": "Verkeer_tbv_OMS_OVL_-_Schakelkasten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_PARKEERTEREINEN_CARPOOLPLAATSEN",
+        "title": "Areaal beheer - Parkeerterreinen en carpoolplaatsen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Parkeerterreinen en carpoolplaatsen",
+                "name": "Verkeer_weg_beheer_Parkeerterreinen_en_carpoolplaatsen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_PORTAAL_LIGGERS",
+        "title": "Areaal beheer - Portalen met en zonder verkeersregelinstallatie (VRI) langs de provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Default Line",
+                "name": "line"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_PUT",
+        "title": "Areaal beheer - Rioolputten en kolken",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Rioolputten en kolken",
+                "name": "Verkeer_weg_beheer_Rioolputten_en_kolken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_ROTONDES",
+        "title": "Areaal beheer - Rotondes op/langs provinciale wegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Rotondes",
+                "name": "Verkeer_weg_beheer_Rotondes"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_SLOTEN",
+        "title": "Areaal beheer - Sloten en ander water in de omgeving van de proviciale wegen en vaarwegen in Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Sloten",
+                "name": "Verkeer_weg_groenbeheer_Sloten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_TRAJECTEN",
+        "title": "Areaal beheer - Trajectindeling wegen (inclusief Fietspaden in beheer Zuid-Holland)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Trajectindeling provinciale wegen",
+                "name": "Verkeer_grenzen_Trajectindeling_provinciale_wegen"
+            },
+            {
+                "title": "Wegtrajecten",
+                "name": "Verkeer_tbv_OMS_Wegtrajecten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_VERHARDING",
+        "title": "Areaal beheer - Wegvakonderdelen met deklaag, verharding en type",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Wegvakken",
+                "name": "Verkeer_weg_beheer_Wegvakken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_VERKEERSBORDEN",
+        "title": "Areaal beheer - Verkeersborden",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeersborden",
+                "name": "Verkeer_weg_beheer_Verkeersborden"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_WALBESCHERMING",
+        "title": "Walbescherming langs water in beheer van de Provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Walbescherming langs proviciale wegen en vaarwegen",
+                "name": "Verkeer_vaarweg_oevers_Walbescherming_langs_proviciale_wegen_en_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "ABS_W_WATER",
+        "title": "Areaal beheer - Water in het onderhouds- en beheergebied land provinciale wegen en vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Water in gebied in eigendom PZH",
+                "name": "Verkeer_weg_groenbeheer_Water_in_gebied_in_eigendom_PZH"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_BEDIENINGSCENTRALES",
+        "title": "Bedieningscentrales voor bruggen en sluizen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bedieningscentrales",
+                "name": "Verkeer_grenzen_Bedieningscentrales"
+            },
+            {
+                "title": "Bedieningscentrales",
+                "name": "Verkeer_tbv_OMS_Bedieningscentrales"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_BERMSLOTEN_VASTGESTELDE_SCOPE_BAGGERPLICHT",
+        "title": "Bermsloten met vastgestelde scope baggerplicht",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bermsloten vastgestelde scope baggerplicht",
+                "name": "Verkeer_weg_groenbeheer_Bermsloten_vastgestelde_scope_baggerplicht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_BUSHALTES",
+        "title": "Bushaltes langs de provinciale wegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bushaltes",
+                "name": "Verkeer_weg_beheer_Bushaltes"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_EXPLOSIEVEN_INVENTARISATIE_2015",
+        "title": "Onderzoek naar Niet Gesprongen Explosieven Vaarwegen 2015",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Explosieven inventarisatie uit 2015",
+                "name": "Verkeer_vaarweg_oevers_Explosieven_inventarisatie_uit_2015"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_KABELS",
+        "title": "Areaal beheer - Verkeersregelinstallatie (VRI) kabels",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "VRI-Kabels",
+                "name": "Verkeer_tbv_infor_VRI-Kabels"
+            },
+            {
+                "title": "BKW - anders",
+                "name": "Verkeer_weg_beheer_BKW_-_anders"
+            },
+            {
+                "title": "BKW - signaal-electra brug",
+                "name": "Verkeer_weg_beheer_BKW_-_signaal-electra_brug"
+            },
+            {
+                "title": "BKW - afvoerleiding brug",
+                "name": "Verkeer_weg_beheer_BKW_-_afvoerleiding_brug"
+            },
+            {
+                "title": "BKW - electra kabel brug",
+                "name": "Verkeer_weg_beheer_BKW_-_electra_kabel_brug"
+            },
+            {
+                "title": "COB - data kabel brug",
+                "name": "Verkeer_weg_beheer_COB_-_data_kabel_brug"
+            },
+            {
+                "title": "VRI-Kabels",
+                "name": "Verkeer_tbv_OMS_VRI-Kabels"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_KABEL_OVL",
+        "title": "Areaal beheer - Kabel, mantelbuizen en persingen Openbare Verlichting",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Openbare verlichting - Kabel",
+                "name": "Verkeer_weg_beheer_Openbare_verlichting_-_Kabel"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_KABEL_OVL_KOPPELING",
+        "title": "Areaal beheer - Koppelingen - Openbare Verlichting",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Openbare verlichting - Koppeling",
+                "name": "Verkeer_weg_beheer_Openbare_verlichting_-_Koppeling"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_KABEL_OVL_TEKST",
+        "title": "Areaal beheer - Kabel - tekst Openbare Verlichting",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Openbare verlichting - Kabel Tekst",
+                "name": "Verkeer_weg_beheer_Openbare_verlichting_-_Kabel_Tekst"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_OVEREENKOMSTEN_DERDEN",
+        "title": "Areaal beheer - Overeenkomsten met derden",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Default Line",
+                "name": "line"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_RAYONS",
+        "title": "Rayon-indeling Dienst Beheer Infrastructuur",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Rayons DBI",
+                "name": "Grenzen_Rayons_DBI"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_REGIOINDELING",
+        "title": "Regio-indeling Dienst Beheer Infrastructuur",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Regio-indeling DBI",
+                "name": "Grenzen_Regio-indeling_DBI"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_REGIOINDELING_IC_DESK",
+        "title": "Regioindeling IC-desk",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Regio-indeling DBI - IC-desk",
+                "name": "Grenzen_Regio-indeling_DBI_-_IC-desk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_STEUNPUNTEN",
+        "title": "Steunpunten - Provincie Zuid-Holland - domein Uitvoering",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Steunpunten",
+                "name": "Verkeer_grenzen_Steunpunten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_TRAJECT_VAARWEGEN",
+        "title": "Areaal beheer - Trajectindeling vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Maximale vaarsnelheid",
+                "name": "Verkeer_grenzen_Maximale_vaarsnelheid"
+            },
+            {
+                "title": "Trajectindeling vaarwegen",
+                "name": "Verkeer_grenzen_Trajectindeling_vaarwegen"
+            },
+            {
+                "title": "Trajectindeling vaarwegen - met namen",
+                "name": "Verkeer_grenzen_Trajectindeling_vaarwegen_-_met_namen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_VW_BODEMPROFIEL_LIJN",
+        "title": "Vaarweg - Dwarsprofielen vaargeulen, lijnen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Dwarsprofiel - lijn",
+                "name": "Verkeer_vaarweg_profielen_Dwarsprofiel_-_lijn"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_VW_BRUGSENSOREN",
+        "title": "Vaarweg - Bruggen met bewegingssensor",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Bruggen met bewegingssensor",
+                "name": "Verkeer_vaarweg_beheer_Bruggen_met_bewegingssensor"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "DBI_VW_VAARTUIGTELPUNTEN",
+        "title": "Vaarweg - Vaartuigtelpunten langs provinciale vaarwegen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Telpunten langs vaarweg",
+                "name": "Verkeer_vaarweg_beheer_Telpunten_langs_vaarweg"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_NDW_FIETSINTENSITEIT_2023",
+        "title": "Fietsintensiteit met breedte label en veiligheidsrisico - aangeleverd door Nationaal dataportaal wegverkeer (NDW) - 2023",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietsintensiteit met breedte label  - Veiligheidsrisico - NDW",
+                "name": "Verkeer_fietsgegevens_Fietsintensiteit_met_breedte_label__-_Veiligheidsrisico_-_NDW"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_NTF_OPGAVES_FIETSPARKEREN",
+        "title": "Nationaal Toekomstbeeld Fiets (NTF) - Opgaves fiets parkeren",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "NTF opgaves fietsparkeren",
+                "name": "Verkeer_fietsgegevens_NTF_opgaves_fietsparkeren"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_NTF_OPGAVES_NETWERK",
+        "title": "Nationaal Toekomstbeeld Fiets (NTF) Opgaves netwerk",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "NTF opgaves fietsnetwerk",
+                "name": "Verkeer_fietsgegevens_NTF_opgaves_fietsnetwerk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_NTF_OPGAVES_ONDERZOEKSGEBIED",
+        "title": "Nationaal Toekomstbeeld Fiets (NTF) Opgaves onderzoeksgebied 2021",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "NTF opgaves onderzoeksgebied",
+                "name": "Verkeer_fietsgegevens_NTF_opgaves_onderzoeksgebied"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_SCHOOLFIETSROUTES_FIETSPAD",
+        "title": "Schoolfietsroutes en fietspaden 2021",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietspaden aantal scholieren",
+                "name": "Verkeer_fietsgegevens_Fietspaden_aantal_scholieren"
+            },
+            {
+                "title": "Fietspaden breedte klasse",
+                "name": "Verkeer_fietsgegevens_Fietspaden_breedte_klasse"
+            },
+            {
+                "title": "Fietspaden soort fietspad",
+                "name": "Verkeer_fietsgegevens_Fietspaden_soort_fietspad"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_SCHOOLFIETSROUTES_LANDBOUWVERKEER_WEG",
+        "title": "Schoolfietsroutes en landbouwverkeer wegen 2021",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Wegen aantal scholieren",
+                "name": "Verkeer_fietsgegevens_Wegen_aantal_scholieren"
+            },
+            {
+                "title": "Landbouwroutes",
+                "name": "Verkeer_fietsgegevens_Landbouwroutes"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_SPEEDPEDELEC",
+        "title": "Toegankelijkheid Speedpedelec",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Toegankelijkheid speedpedelec",
+                "name": "Verkeer_fietsgegevens_Toegankelijkheid_speedpedelec"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "FIETS_SPI_FIETSERSBOND",
+        "title": "Safety Performance Index (SPI) Fietserbond",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietsersbond_SPI",
+                "name": "Verkeer_fietsgegevens_Fietsersbond_SPI"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_IN_EN_UITSTAPPERS_TREINSTATIONS",
+        "title": "In en uitstappers treinstations t/m 2024",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "In- en Uitstappers treinstations - werkdag - vanaf 2000",
+                "name": "Verkeer_mobiliteit_OV_In-_en_Uitstappers_treinstations_-_werkdag_-_vanaf_2000"
+            },
+            {
+                "title": "In- en Uitstappers treinstations - werkdag - 2024",
+                "name": "Verkeer_mobiliteit_OV_In-_en_Uitstappers_treinstations_-_werkdag_-_2024"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_OV_HALTES_INVLOEDSGEBIEDEN_2023",
+        "title": "OV - Invloedsgebieden Zuid-Holland 2023",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "OV-haltes Invloedsgebieden Zuid-Holland 2023",
+                "name": "Verkeer_mobiliteit_OV_OV-haltes_Invloedsgebieden_Zuid-Holland_2023"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_OV_HALTES_NL",
+        "title": "OV - Haltes in Nederland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "OV-haltes Nederland",
+                "name": "Verkeer_mobiliteit_OV_OV-haltes_Nederland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_OV_LIJNEN_NL",
+        "title": "OV - Lijnen in Nederland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "OV-lijnen Nederland",
+                "name": "Verkeer_mobiliteit_OV_OV-lijnen_Nederland"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_OV_RNET_HALTES_VISUALISATIELAAG",
+        "title": "OV - R-net begin- en eindhaltes (visualisatielaag)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "R-net haltes",
+                "name": "Verkeer_Rnet_R-net_haltes"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "MOBILITEIT_OV_RNET_LIJNEN",
+        "title": "OV - R-net lijnverbindingen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "R-net lijnen",
+                "name": "Verkeer_Rnet_R-net_lijnen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_INTENSITEITEN_FIETSPADEN_TELWEEK_2017",
+        "title": "Netwerkanalyse 2018 - Intensiteiten op fietspaden telweek 2017",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Intensiteiten fietspaden - fietstelweek 2017",
+                "name": "Verkeer_netwerkanalyse_Intensiteiten_fietspaden_-_fietstelweek_2017"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_INTENSITEITEN_FIETSPADEN_TELWEEK_2017_DISSOLVE",
+        "title": "Netwerkanalyse 2018 - Intensiteiten op fietspaden telweek 2017 - Dissolve, voor versnelde weergave",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Intensiteiten fietspaden - fietstelweek 2017 - snel",
+                "name": "Verkeer_netwerkanalyse_Intensiteiten_fietspaden_-_fietstelweek_2017_-_snel"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_INVENTARISATIE_KNELPUNTEN",
+        "title": "Netwerkanalyse 2018 - Inventarisatie knelpunten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Inventarisatie knelpunten overig - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_overig_-_2018"
+            },
+            {
+                "title": "Inventarisatie knelpunten openbaar vervoer - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_openbaar_vervoer_-_2018"
+            },
+            {
+                "title": "Inventarisatie knelpunten vaarwegen - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_vaarwegen_-_2018"
+            },
+            {
+                "title": "Inventarisatie knelpunten wegen - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_wegen_-_2018"
+            },
+            {
+                "title": "Inventarisatie knelpunten fiets - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_fiets_-_2018"
+            },
+            {
+                "title": "Inventarisatie knelpunten - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_knelpunten_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_INVENTARISATIE_PROJECTEN",
+        "title": "Netwerkanalyse 2018 - Inventaristie projecten (weg, fiets, water, ov, overige)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Inventarisatie projecten overig - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_overig_-_2018"
+            },
+            {
+                "title": "Inventarisatie projecten wegen - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_wegen_-_2018"
+            },
+            {
+                "title": "Inventarisatie projecten vaarwegen - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_vaarwegen_-_2018"
+            },
+            {
+                "title": "Inventarisatie projecten - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_-_2018"
+            },
+            {
+                "title": "Inventarisatie projecten fiets - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_fiets_-_2018"
+            },
+            {
+                "title": "Inventarisatie projecten openbaar vervoer - 2018",
+                "name": "Verkeer_netwerkanalyse_Inventarisatie_projecten_openbaar_vervoer_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_KNELPUNTEN_DOORSTROMING_WEGEN",
+        "title": "Netwerkanalyse 2018 - Doorstroming wegen met knelpunten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Doorstromingsknelpunten - 2018",
+                "name": "Verkeer_netwerkanalyse_Doorstromingsknelpunten_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_NRM_2014_2030",
+        "title": "Netwerkanalyse 2018 - verkeersintensiteiten 2014 en prognose 2030",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Etmaalintensiteiten 2014 - NRM - 2018",
+                "name": "Verkeer_netwerkanalyse_Etmaalintensiteiten_2014_-_NRM_-_2018"
+            },
+            {
+                "title": "Etmaalintensiteiten 2030 - NRM - 2018",
+                "name": "Verkeer_netwerkanalyse_Etmaalintensiteiten_2030_-_NRM_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_ONGEVALLEN_ALLE_PZH_2014_2017",
+        "title": "Netwerkanalyse 2018 - Ongevallen provinciale wegen periode 2014-2017",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Ongevallen 2014 - 2017 - ViaStat - 2018",
+                "name": "Verkeer_netwerkanalyse_Ongevallen_2014_-_2017_-_ViaStat_-_2018"
+            },
+            {
+                "title": "Letselongevallen 2014 - 2017 - ViaStat - 2018",
+                "name": "Verkeer_netwerkanalyse_Letselongevallen_2014_-_2017_-_ViaStat_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_ONGEVALLEN_FIETS_PZH_2014_2017",
+        "title": "Netwerkanalyse 2018 - Fiets ongevallen provinciale wegen periode 2014-2017",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietsongevallen 2014 - 2017 - ViaStat",
+                "name": "Verkeer_netwerkanalyse_Fietsongevallen_2014_-_2017_-_ViaStat"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_PARALLELWEGEN_FIETSPADEN_1_RICHTING_VOOR_KAART_1_OP_300000",
+        "title": "Netwerkanalyse 2018 - Fietspad - 1 richting - alleen voor visualisatie 1 op 300000",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Parallelwegen - Fietspaden 1r - 2018",
+                "name": "Verkeer_netwerkanalyse_Parallelwegen_-_Fietspaden_1r_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_PARALLELWEGEN_FIETSPADEN_2_RICHTINGEN_VOOR_KAART_1_OP_300000",
+        "title": "Netwerkanalyse 2018 - Fietspad - 2 richtingen - alleen voor visualitatie 1 op 300000",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Parallelwegen - Fietspaden 2r - 2018",
+                "name": "Verkeer_netwerkanalyse_Parallelwegen_-_Fietspaden_2r_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_PARALLELWEGEN_VOOR_KAART_1_OP_300000",
+        "title": "Netwerkanalyse 2018 - Parallelwegen - alleen voor visualitatie 1 op 300000",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Parallelwegen - Parallelwegen - 2018",
+                "name": "Verkeer_netwerkanalyse_Parallelwegen_-_Parallelwegen_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_PZH_HOLLANDSE_BANEN",
+        "title": "Netwerkanalyse 2018 - Hollandse banen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hollandse banen - 2018",
+                "name": "Verkeer_netwerkanalyse_Hollandse_banen_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_PZH_OV_LIJNEN_DATA",
+        "title": "Netwerkanalyse 2018 - Openbaarvervoerslijnen 2017",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Openbaarvervoer lijnen - 2018",
+                "name": "Verkeer_netwerkanalyse_Openbaarvervoer_lijnen_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NETWERKANALYSE_2018_WEGHIERARCHIE",
+        "title": "Netwerkanalyse 2018 - Wegenhierarchie",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Wegenhierarchie overig - 2018",
+                "name": "Verkeer_netwerkanalyse_Wegenhierarchie_overig_-_2018"
+            },
+            {
+                "title": "Wegenhierarchie mogelijke nieuwe verbindingen - 2018",
+                "name": "Verkeer_netwerkanalyse_Wegenhierarchie_mogelijke_nieuwe_verbindingen_-_2018"
+            },
+            {
+                "title": "Wegenhierarchie regionaal netwerk - 2018",
+                "name": "Verkeer_netwerkanalyse_Wegenhierarchie_regionaal_netwerk_-_2018"
+            },
+            {
+                "title": "Wegenhierarchie Internationaal en nationaal - 2018",
+                "name": "Verkeer_netwerkanalyse_Wegenhierarchie_Internationaal_en_nationaal_-_2018"
+            },
+            {
+                "title": "Wegenhierarchie bovenregionaal - 2018",
+                "name": "Verkeer_netwerkanalyse_Wegenhierarchie_bovenregionaal_-_2018"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_VAARWEG",
+        "title": "Nationaal Wegen Bestand (NWB) - Vaarwegen vaarwegvakken",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Default Line",
+                "name": "line"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_VAARWEG_KMPUNT",
+        "title": "Nationaal Wegen Bestand (NWB) Vaarwegen kilometermarkeringen",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Kilometerraai vaarwegen",
+                "name": "Verkeer_rws_Kilometerraai_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_BREEDTE_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Wegbreedte - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietspaden - NWB - breedte",
+                "name": "Verkeer_rws_Fietspaden_-_NWB_-_breedte"
+            },
+            {
+                "title": "Provinciale wegen - NWB - breedte",
+                "name": "Verkeer_rws_Provinciale_wegen_-_NWB_-_breedte"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_CATEGORISERING_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Wegcategorisering - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Categorisering wegen - NWB - Fietspaden",
+                "name": "Verkeer_rws_Categorisering_wegen_-_NWB_-_Fietspaden"
+            },
+            {
+                "title": "Categorisering wegen - NWB - Fietspaden met onderverdeling",
+                "name": "Verkeer_rws_Categorisering_wegen_-_NWB_-_Fietspaden_met_onderverdeling"
+            },
+            {
+                "title": "Categorisering wegen - NWB - Overzicht",
+                "name": "Verkeer_rws_Categorisering_wegen_-_NWB_-_Overzicht"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_FIETSSTROOIROUTES_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Fietsstrooiroutes - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Fietsstooiroutes - NWB - Wegvakken voor de fiets toegankelijk",
+                "name": "Verkeer_rws_Fietsstooiroutes_-_NWB_-_Wegvakken_voor_de_fiets_toegankelijk"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_HECTOPUNT",
+        "title": "Nationaal Wegen Bestand (NWB) Hectopunten",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Hectometerpunten - NWB",
+                "name": "Verkeer_rws_Hectometerpunten_-_NWB"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_LIGHT",
+        "title": "Nationaal Wegen Bestand (NWB) light",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Wegen boven 96000",
+                "name": "Verkeer_rws_Wegen_boven_96000"
+            },
+            {
+                "title": "Wegen - zoeken",
+                "name": "Verkeer_rws_Wegen_-_zoeken"
+            },
+            {
+                "title": "Wegen 96000-48001",
+                "name": "Verkeer_rws_Wegen_96000-48001"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_MAXIMALE_SNELHEDEN_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Maximale snelheden - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Maximale snelheden NWB - alle wegen",
+                "name": "Verkeer_rws_Maximale_snelheden_NWB_-_alle_wegen"
+            },
+            {
+                "title": "Afwijkende snelheid tussen 19.00 en 07.00 uur",
+                "name": "Verkeer_rws_Afwijkende_snelheid_tussen_19_00_en_07_00_uur"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_SCHOOLZONES_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Schoolzones - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Schoolzones - NWB",
+                "name": "Verkeer_rws_Schoolzones_-_NWB"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_TOTAAL",
+        "title": "Nationaal Wegen Bestand (NWB) totaal",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Default Line",
+                "name": "line"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_TOTAAL_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - alle wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Wegen 48000-12001",
+                "name": "Verkeer_rws_Wegen_48000-12001"
+            },
+            {
+                "title": "Wegen onder 12000",
+                "name": "Verkeer_rws_Wegen_onder_12000"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "NWB_WEG_VERKEERSTYPE_PZH",
+        "title": "Nationaal Wegen Bestand (NWB) - Verkeerstype - op wegen binnen de grens van de provincie Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeerstype - NWB - Alleen bromfietsen en snorfietsen en fietsen en deels voetgangers",
+                "name": "Verkeer_rws_Verkeerstype_-_NWB_-_Alleen_bromfietsen_en_snorfietsen_en_fietsen_en_deels_voetgangers"
+            },
+            {
+                "title": "Verkeerstype - NWB - Weggebruikers toegestaan - overzicht",
+                "name": "Verkeer_rws_Verkeerstype_-_NWB_-_Weggebruikers_toegestaan_-_overzicht"
+            },
+            {
+                "title": "Verkeerstype - NWB - Weggebruikers toegestaan - overzicht - provinciale wegen",
+                "name": "Verkeer_rws_Verkeerstype_-_NWB_-_Weggebruikers_toegestaan_-_overzicht_-_provinciale_wegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_FV_2014_ZICHTLIJNVLAKKEN",
+        "title": "Vaarweg - Zichtlijngebieden - 2014",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Zichtlijnvlakken - 2014",
+                "name": "Verkeer_vaarweg_beheer_Zichtlijnvlakken_-_2014"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_FV_TRAJECTSCHEIDINGEN",
+        "title": "Functiekaarten vaarwegen - Trajectscheidingen - versie 2014",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Trajectscheidingen vaarwegen",
+                "name": "Verkeer_grenzen_Trajectscheidingen_vaarwegen"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_VW_2009_MOGELIJK_EXPLOSIEVE_LOC",
+        "title": "Mogelijke explosieve locaties - inventarisatie 2009",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Mogelijk explosieve locaties uit 2009",
+                "name": "Verkeer_vaarweg_oevers_Mogelijk_explosieve_locaties_uit_2009"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_VW_2009_NAT_VRIEND_OEVER",
+        "title": "Natuurvriendelijke oevers - inventarisatie 2009",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Natuurvriendelijke oevers - inventarisatie 2009",
+                "name": "Verkeer_vaarweg_oevers_Natuurvriendelijke_oevers_-_inventarisatie_2009"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_VW_OEVERVAKKEN",
+        "title": "Vaarweg - Oevervakken",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Oevervakken",
+                "name": "Verkeer_vaarweg_oevers_Oevervakken"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRJ_VW_ROBO_OVEREENKOMSTEN",
+        "title": "Regeling Overname Bescherming Oevers Zuid-Holland (ROBO) overeenkomsten oevers",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "ROBO overeenkomsten",
+                "name": "Verkeer_vaarweg_oevers_ROBO_overeenkomsten"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRORAIL_SPOORWEGEN_FUNCTIONELE_SPOORTAK",
+        "title": "Spoorwegen - Prorail - spoorvakken (spoortak)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Spoortak - spooras - boven 48000",
+                "name": "Verkeer_rws_Spoortak_-_spooras_-_boven_48000"
+            },
+            {
+                "title": "Spoortak - spooras - onder 48000",
+                "name": "Verkeer_rws_Spoortak_-_spooras_-_onder_48000"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRORAIL_SPOORWEGEN_OVERWEG_ZH",
+        "title": "Spoorwegen - Prorail - spoorweg-overgang",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Spoorweg overgang - boven 48000",
+                "name": "Verkeer_rws_Spoorweg_overgang_-_boven_48000"
+            },
+            {
+                "title": "Spoorweg overgang - onder 48000",
+                "name": "Verkeer_rws_Spoorweg_overgang_-_onder_48000"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRORAIL_SPOORWEGEN_STATION",
+        "title": "Spoorwegen - Prorail - stations",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Treinstations",
+                "name": "Verkeer_rws_Treinstations"
+            },
+            {
+                "title": "Treinstations - onder 48000",
+                "name": "Verkeer_rws_Treinstations_-_onder_48000"
+            },
+            {
+                "title": "Treinstations - boven 48000",
+                "name": "Verkeer_rws_Treinstations_-_boven_48000"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "PRORAIL_SPOORWEGEN_TRACE",
+        "title": "Spoorwegen - Prorail - spoorvakken (trace)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Spoortrace - boven 48000",
+                "name": "Verkeer_rws_Spoortrace_-_boven_48000"
+            },
+            {
+                "title": "Spoortrace - onder 48000",
+                "name": "Verkeer_rws_Spoortrace_-_onder_48000"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "VERKEERSINTENSITEIT_MEETPUNTEN_MET_PDF",
+        "title": "Meetpunten verkeerstellingen langs provinciale wegen Zuid-Holland",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeerstellingen - Meetpunten - met pdf",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeerstellingen_-_Meetpunten_-_met_pdf"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "VERKEERSINTENSITEIT_MEETVAKKEN_PZH_WEEKDAG",
+        "title": "Verkeersintensiteit Provinciale wegen weekdag (2010 en later)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2010",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2010"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2012",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2012"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2013",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2013"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2011",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2011"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2010 tm 2024",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2010_tm_2024"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2014",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2014"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2016",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2016"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2018",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2018"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2023",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2023"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2020",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2020"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2017",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2017"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2024",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2024"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2019",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2019"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2022",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2022"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2021",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2021"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen weekdagen 2015",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_weekdagen_2015"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    },
+    {
+        "name": "VERKEERSINTENSITEIT_MEETVAKKEN_PZH_WERKDAG",
+        "title": "Verkeersintensiteit Provinciale wegen werkdag (2010 en later)",
+        "abstract": "Areaal beheer - Blok",
+        "styles": [
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2010",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2010"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2023",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2023"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2024",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2024"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2021",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2021"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2022",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2022"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2020",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2020"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2014",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2014"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2011",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2011"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2015",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2015"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2016",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2016"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2018",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2018"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2010 tm 2024",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2010_tm_2024"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2013",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2013"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2012",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2012"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2019",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2019"
+            },
+            {
+                "title": "Verkeersintensiteit Provinciale wegen werkdagen 2017",
+                "name": "Verkeer_weg_intensiteit_pzh_Verkeersintensiteit_Provinciale_wegen_werkdagen_2017"
+            }
+        ],
+        "crs": "EPSG:28992",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/verkeer/wms?service=WMS&version=1.3.0&request=GetCapabilities",
+        "service_title": "Areaal beheer - Blok",
+        "service_abstract": "Areaal beheer - Blok",
+        "service_type": "wms"
+    }
+]

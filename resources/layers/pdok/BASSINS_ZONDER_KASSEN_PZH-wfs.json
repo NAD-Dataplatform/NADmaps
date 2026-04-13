@@ -1,0 +1,524 @@
+[
+    {
+        "name": "water:HHDELFLAND_AFSLUITER",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Afsluiters",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_INSPECTIEPUT",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Inspectieput",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_KATHODISCHEBESCHERMING",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Kathodische bescherming",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_LEIDINGSEGMENT",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Leidingsegment",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_MANTELBUIS",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Mantelbuis",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_MEETPUNT",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Meetpunt",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_ONTLUCHTER",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Ontluchter",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_RIOOLGEMAAL",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Rioolgemaal",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:HHDELFLAND_RWZI",
+        "title": "Afvalwatertransportstelsel Hoogheemraadschap van Delfland - Rioolwaterzuiveringen",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:VEILIGHEID_ROR_WATERKERINGEN_2018",
+        "title": "Beschermingsniveau regionale waterkeringen",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:VEILIGHEID_ROR_WATERKERINGEN_AGV_HHR_PROVNH",
+        "title": "Beschermingsniveau regionale waterkeringen Noord-Holland (gedeeltelijk)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:VEILIGHEID_ROR_WATERKERINGEN_AGV_HDSR_PROVU",
+        "title": "Beschermingsniveau regionale waterkeringen Utrecht (gedeeltelijk)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:VEILIGHEID_ROR_BOCHT_DELFTSE_SCHIE",
+        "title": "Bocht Delftse Schie",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DELTAWERKEN_NEDERLAND",
+        "title": "Deltawerken Nederland",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_GEBIEDSDOSSIERS",
+        "title": "Drinkwater gebiedsdossiers",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_ZOEKGEBIEDEN",
+        "title": "Drinkwater zoekgebieden",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_BEDRIJVEN",
+        "title": "Drinkwaterbedrijven",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_INFRASTRUCTUUR",
+        "title": "Drinkwaterinfrastructuur",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_PRODUCTIEKETEN",
+        "title": "Drinkwaterproductieketen",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:BB_DROOGLEGGING_ZH_2025",
+        "title": "Drooglegging in percelen Zuid-Holland 2025 (vector)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:SNO_MILIEUBELASTING",
+        "title": "GeSommeerde NormOverschrijding (SNO) milieubelasting - Beoordeling 2022",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:WATERBERGING_ONDERGRONDS",
+        "title": "Greenports ondergrondse opslag 1e watervoerend pakket - 2014",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_GRONDWATERAFH_OPPVWATERLICHAMEN",
+        "title": "Grondwaterafhankelijke oppervlaktelichamen 2021 (concept)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_GRONDWATERAFH_TERRESTISCHE_NATUUR",
+        "title": "Grondwaterafhankelijke terrestische natuur 2021 (concept)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:BESCHERMINGSGEBIED_GRONDWATER",
+        "title": "Grondwaterbeschermingsgebieden",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_GRONDWATERLICHAMEN_BESCHERM",
+        "title": "Grondwaterlichamen met beschermingsgebieden",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_MAATREGELEN_OWL_VLAK_2021",
+        "title": "Kaderrichtlijn Water (KRW) - Maatregelen 2021",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_MAATREGELEN_OWL_VLAK_2022",
+        "title": "Kaderrichtlijn Water (KRW) - Maatregelen 2022",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_MAATREGELEN_OWL_LIJN_2021",
+        "title": "Kaderrichtlijn Water (KRW) - Maatregelen, lijnen 2021",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_MAATREGELEN_OWL_LIJN_2022",
+        "title": "Kaderrichtlijn Water (KRW) - Maatregelen, lijnen 2022",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_VLAK_2018",
+        "title": "Kaderrichtlijn Water (KRW) - Toestandsbeoordeling oppervlaktewaterlichamen 2018",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_VLAK_2021",
+        "title": "Kaderrichtlijn Water (KRW) - Toestandsbeoordeling oppervlaktewaterlichamen 2021",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_VLAK_2022",
+        "title": "Kaderrichtlijn Water (KRW) - Toestandsbeoordeling oppervlaktewaterlichamen 2022",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_LIJN_2021",
+        "title": "Kaderrichtlijn Water (KRW) - Toestandsbeoordeling oppervlaktewaterlichamen, lijnen 2021",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_LIJN_2022",
+        "title": "Kaderrichtlijn Water (KRW) - Toestandsbeoordeling oppervlaktewaterlichamen, lijnen 2022",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_2020",
+        "title": "Kaderrichtlijn Water - Toestandsbeoordeling oppervlaktewaterlichamen 2020",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OW_KWALITEIT_LIJN_2018",
+        "title": "Kaderrichtlijn Water - Toestandsbeoordeling oppervlaktewaterlichamen, lijnen 2018",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_DEELSTROOMGEBIEDDISTRICT",
+        "title": "Kaderrichtlijn Water deelstroomgebieden",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KWA_INLAATPUNTEN",
+        "title": "Kleinschalige wateraanvoervoorzieningen - inlaatpunten",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KWA_OVERIGE_OBJECTEN",
+        "title": "Kleinschalige wateraanvoervoorzieningen - overige objecten",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KWA_ROUTE_WATERLOOP",
+        "title": "Kleinschalige wateraanvoervoorzieningen - route waterloop",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:GRONDWATERKWALITEIT_MEETPUTTEN",
+        "title": "Meetputten grondwaterkwaliteit",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:GRONDWATERKWANTITEIT_MEETPUTTEN",
+        "title": "Meetputten voor grondwaterkwantiteit",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:OW_HOOFDINLAATPUNTEN",
+        "title": "Oppervlaktewater - hoofdinlaatpunten",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:OW_INLAATGEBIEDEN",
+        "title": "Oppervlaktewater - inlaatgebieden",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:OW_VERZILTINGSLIJNEN",
+        "title": "Oppervlaktewater - verziltingslijnen",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OPPERVLAKTEWATERLICHAMEN_VLAK_2018",
+        "title": "Oppervlaktewaterlichamen 2018",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:KRW_OPPERVLAKTEWATERLICHAMEN_LIJN_2018",
+        "title": "Oppervlaktewaterlichamen, lijnen 2018",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:LEGGER_PEILBESLUITEN",
+        "title": "Peilbesluiten",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:TOPLIJST_VERDROOGDE_GEBIEDEN",
+        "title": "Prioritaire gebieden verdrogingbestrijding Zuid-Holland (TOP)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:STRATEGISCH_DRINKWATERRESERVES",
+        "title": "Strategische drinkwaterreserves",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:VAARWEGEN_RECREATIE_1984",
+        "title": "Vaststelling Provinciaal Recreatievaarwegenplan 1984 van Zuid-Holland",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:BASSINS_MET_KASSEN_PZH",
+        "title": "Waterbassins met kassen in Provincie Zuid-Holland",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:BASSINS_ZONDER_KASSEN_PZH",
+        "title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:WATERSCHAPPEN",
+        "title": "Waterschappen",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:WATERWINNING_LOKALE_DEELTEST_KRW",
+        "title": "Waterwinningen trend kwaliteit 2021 (concept)",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_6_UUR_ZONES_VLAK",
+        "title": "Zes uur zones drinkwater Rijkswaterstaat",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    },
+    {
+        "name": "water:DRINKWATER_6_UUR_ZONES_PUNT",
+        "title": "Zes uur zones drinkwater Rijkswaterstaat innamepunten",
+        "abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/water/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_abstract": "Waterbassins zonder kassen in Provincie Zuid-Holland",
+        "service_type": "wfs"
+    }
+]

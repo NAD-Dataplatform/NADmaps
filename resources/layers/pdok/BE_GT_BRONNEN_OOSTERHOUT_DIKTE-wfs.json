@@ -1,0 +1,929 @@
+[
+    {
+        "name": "bodem:BB_AARDKUNDIGE_WAARDEN",
+        "title": "Aardkundige waarden Zuid-Holland",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_AARDWARMTE_BORINGEN",
+        "title": "Aardwarmteboringen",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_BOORGATEN",
+        "title": "Aardwarmteputten - boorgaten",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_AFDEKKING",
+        "title": "Afdekking bodem",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BETON_METSELZAND",
+        "title": "Beton- en Metselzand",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_KWELKAART_VEENWEIDEGEBIEDEN",
+        "title": "Bodem - Bodemdaling - Kwelkaart Veenweidegebieden (2021)",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMDALING_ONTWATERDIEPTE_05",
+        "title": "Bodemdaling - Ontwateringsdiepte 0,5 meter",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMDALING_ONTWATERDIEPTE_10",
+        "title": "Bodemdaling - Ontwateringsdiepte 1,0 meter",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMDALING_ONTWATERDIEPTE_15",
+        "title": "Bodemdaling - Ontwateringsdiepte 1,5 meter",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BODEMKAART",
+        "title": "Bodemkaart",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BODEMKAART_2021",
+        "title": "Bodemkaart 2021",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMKWALITEIT_LG_BOVENGRONDS",
+        "title": "Bodemkwaliteitskaart landelijk gebied bovengronds",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMKWALITEIT_LG_GRENS",
+        "title": "Bodemkwaliteitskaart landelijk gebied grens",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMKWALITEIT_LG_ONDERGRONDS",
+        "title": "Bodemkwaliteitskaart landelijk gebied ondergronds",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_SPOEDLOCATIES",
+        "title": "Bodemsanering Spoedlocaties",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_BSB_TOT_LIJST_GEGEOCODEERD",
+        "title": "Bodemsanering vervuilde bedrijfsterreinen",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_DROOGLEGGING_VEENWEIDEN_2016",
+        "title": "CO2 emissies uit Veenweidegebieden 2016",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:VEENWEIDEN_DROOGLEGGING_2021",
+        "title": "CO2 emissies uit Veenweidegebieden 2021",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_BODEMKWALITEIT_DIFFUUS",
+        "title": "Diffuse bodemkwaliteit",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_DEKLAAG_DIKTE",
+        "title": "Dikte kleidek",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_DRAAGKRACHT",
+        "title": "Draagkracht",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_DROOGLEGGING_ZH_2021",
+        "title": "Drooglegging in percelen Zuid-Holland 2021",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:GEOLOGISCHE_KAART",
+        "title": "Geologische kaart",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:GEOLOGISCHE_OPPERVLAKTEKAART",
+        "title": "Geologische oppervlakte kaart",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:GEOMORFOLOGISCHE_KAART",
+        "title": "Geomorfologische Kaart van Nederland, versie 2023",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GEOTHERMIE_VERG_TOTAAL",
+        "title": "Geothermie, vergunningen totaal",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:WKO_ZOETBRAK_ONDIEP_WVP_EERSTE",
+        "title": "Geschiktheidskaart Warmte-koudeopslag zoet/brak: 1e watervoerende pakket",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:WKO_ZOETBRAK_DIEP_WVP_TWEEDE_DERDE",
+        "title": "Geschiktheidskaart Warmte-koudeopslag zoet/brak: 2e en 3e watervoerende pakket",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_GRONDWATERONTTREKKING",
+        "title": "Grondwateronttrekkingen groter dan 12.000 m3 in 2015",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:GRONDWATERTRAPPEN",
+        "title": "Grondwatertrappenkaart 2017",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_HBB_PUNTEN_PZH",
+        "title": "Historisch Bodem Bestand",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_HBB_PUNTEN_BUITEN_PZH",
+        "title": "Historisch Bodem Bestand buiten Zuid-Holland",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:KLEIDEK_OP_VEEN_BOORPUTTEN",
+        "title": "Kleidek op veen - boorputten",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_KOOLWATERSTOF_VERG_VERLEEND",
+        "title": "Koolwaterstoffen, vergunningen verleend",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_KWEL_INFILTRATIE",
+        "title": "Kwel-infiltratie",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_GRONDWATERONTTREKKING_WEST_OOSTLAND",
+        "title": "Locaties grondwateronttrekking Westland-Oostland",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_TOTAAL_COP10_TRET25_CONTOUR",
+        "title": "Potentieel Geothermie Totaal (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_TRIAS_COP10_TRET25_CONTOUR",
+        "title": "Potentieel geothermie Germaanse Trias Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_RIJNLAND_COP10_TRET25_CONTOUR",
+        "title": "Potentieel geothermie Rijnland Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_RIJNLAND_COP15_TRET35_CONTOUR",
+        "title": "Potentieel geothermie Rijnland Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_SCHIELAND_COP10_TRET25_CONTOUR",
+        "title": "Potentieel geothermie Schieland Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_SCHIELAND_COP15_TRET35_CONTOUR",
+        "title": "Potentieel geothermie Schieland Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_TOTAAL_COP15_TRET35_CONTOUR",
+        "title": "Potentieel geothermie Totaal (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_GT_TRIAS_COP15_TRET35_CONTOUR",
+        "title": "Potentieel geothermie Trias Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BREUKEN_KN",
+        "title": "Potentieel geothermie Zuid-Holland - breuklijnen Basis Rijnland Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BREUKEN_S",
+        "title": "Potentieel geothermie Zuid-Holland - breuklijnen Basis Schieland Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BREUKEN_RB",
+        "title": "Potentieel geothermie Zuid-Holland - breuklijnen Onder Germaanse Trias groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_OLIE_GAS_KRIJTTRIAS",
+        "title": "Potentieel geothermie Zuid-Holland - olie- en gasvelden",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_BRUSSELSZAND",
+        "title": "Potentieel geothermie bronnen Brussels Zand",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_TRIAS_POT",
+        "title": "Potentieel geothermie bronnen Germaanse Trias Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_RIJNLAND",
+        "title": "Potentieel geothermie bronnen Rijnland Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_SCHIELAND",
+        "title": "Potentieel geothermie bronnen Schieland Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_MAASSLUIS",
+        "title": "Potentieel geothermie bronnen formatie van Maassluis",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_BRUSSELSZAND_DIEPTE",
+        "title": "Potentieel geothermie bronnen voor diepte Brussels Zand",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_MAASSLUIS_DIEPTE",
+        "title": "Potentieel geothermie bronnen voor diepte van formatie van Maassluis",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_OOSTERHOUT_DIEPTE",
+        "title": "Potentieel geothermie bronnen voor diepte van formatie van Oosterhout",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_OOSTERHOUT_DIKTE",
+        "title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_TRIAS",
+        "title": "Potentieel geothermie bronnen voor onzekerheid Germaanse Trias Groep",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_BRONNEN_OOSTERHOUT",
+        "title": "Potentieel geothermie bronnen voor onzekerheid formatie van Oosterhout",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_HTO_BRUSSELSZAND_CONTOUR",
+        "title": "Potentieel hoge temperatuuropslag Zand van Brussel contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_HTO_MAASSLUIS_CONTOUR",
+        "title": "Potentieel hoge temperatuuropslag formatie van Maassluis contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_HTO_OOSTERHOUT_CONTOUR",
+        "title": "Potentieel hoge temperatuuropslag formatie van Oosterhout contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_OGT_RIJNLAND_CONTOUR",
+        "title": "Potentieel ondiepe geothermie Rijnland Groep contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_OGT_BRUSSELSZAND_CONTOUR",
+        "title": "Potentieel ondiepe geothermie Zand van Brussel contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_OGT_MAASSLUIS_CONTOUR",
+        "title": "Potentieel ondiepe geothermie formatie van Maassluis contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_OGT_OOSTERHOUT_CONTOUR",
+        "title": "Potentieel ondiepe geothermie formatie van Oosterhout contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_SCHALIEGAS",
+        "title": "Schaliegas",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_AARDGAS_VERVANGING_BUURT",
+        "title": "Signaleringskaart Aardgas (buurten)",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_AARDGASTRACES",
+        "title": "Signaleringskaart Aardgas (traces)",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_BODEMDALING_DRAAGKRACHT",
+        "title": "Signaleringskaart Draagkracht",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ENERGIE_GEOTHERMIE",
+        "title": "Signaleringskaart Geothermie",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_BODEMDALING_STABILITEIT",
+        "title": "Signaleringskaart Stabiliteit",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_BODEMDALING_TOTAALKAART",
+        "title": "Signaleringskaart Totaalkaart Bodemdaling",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_BODEMDALING_VEENOXIDATIE",
+        "title": "Signaleringskaart Veenoxidatie",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_WATER_VOORRAAD_DRINK_EN_GRONDWATER",
+        "title": "Signaleringskaart Voorraad Drink- en Grondwater",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_WATER_VOORRAADBERGING",
+        "title": "Signaleringskaart Voorraadberging",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ENERGIE_WKO_BEPERKINGEN",
+        "title": "Signaleringskaart Warmte Koude Opslag, Beperkingen",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ENERGIE_WKO_POTENTIE",
+        "title": "Signaleringskaart Warmte Koude Opslag, Potentie",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_WARMTEDISTRIBUTIENET",
+        "title": "Signaleringskaart Warmte transportleiding",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_WARMTENETPERPOSTCODE",
+        "title": "Signaleringskaart Warmtenet (Postcode)",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_AARDGAS_EN_OVERIGE_LEIDINGEN",
+        "title": "Signaleringskaart buisleidingen - Aardgas- en overige leidingen",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_BUISLEIDING_STRAAT_STROOK",
+        "title": "Signaleringskaart buisleidingen Visie Ruimte en Mobiliteit",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_RIOLERINGBUURTEN",
+        "title": "Signaleringskaart riolering",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_RIOLERINGTRACES",
+        "title": "Signaleringskaart riolering (traces)",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_RIOLERINGTRACES_2017",
+        "title": "Signaleringskaart riolering (traces) 2017",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ONDERGRONDSEINFRA_RIOLERINGBUURTEN_2017",
+        "title": "Signaleringskaart riolering 2017",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:SK_ENERGIE_VOORRADEN",
+        "title": "Signaleringskaart voorraden",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_SLOOTDEMPINGEN",
+        "title": "Slootdempingen en stortplaatsen",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:STORTPLAATSEN_VOORMALIG",
+        "title": "Stortplaatsen Voormalig",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:STORTPLAATSEN_VOORMALIG_PUNT",
+        "title": "Stortplaatsen Voormalig, punten",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:WM_STORTLOCATIES",
+        "title": "Stortplaatsen Wet milieubeheer",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:WM_STORTLOCATIES_PUNT",
+        "title": "Stortplaatsen Wet milieubeheer, punten",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:STORTPLAATSEN_VM_HERONTW_2016",
+        "title": "Stortplaatsen voormalig hoog potentieel herontwikkeling",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:STORTPLAATSEN_VM_HERONTW_PUNT_2016",
+        "title": "Stortplaatsen voormalig hoog potentieel herontwikkeling, punten",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_TRIAS_COP10_TRET25_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Germaanse Trias Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_RIJNLAND_COP10_TRET25_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Rijnland Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_RIJNLAND_COP15_TRET35_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Rijnland Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_SCHIELAND_COP10_TRET25_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Schieland Groep (COP 10, Tretour 25) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_SCHIELAND_COP15_TRET35_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Schieland Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BE_GT_POT_VAK_TRIAS_COP15_TRET35_CONTOUR",
+        "title": "Vakkenkaart potentieel geothermie Trias Groep (COP 15, Tretour 35) contour",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_VERZILTING_ZOUTBELASTING_DEK",
+        "title": "Verzilting",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BS_WERKGEBIED_SBK",
+        "title": "Werkgebied Stichting Bodembeheer Krimpenerwaard",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    },
+    {
+        "name": "bodem:BB_ZOET_ZOUT_GRONDWATERVOORKOMEN",
+        "title": "Zoet-zout grondwatervoorkomens",
+        "abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/bodem/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "service_title": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_abstract": "Potentieel geothermie bronnen voor dikte van formatie van Oosterhout",
+        "service_type": "wfs"
+    }
+]
