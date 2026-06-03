@@ -88,7 +88,7 @@ class IngestLayersManager():
 
     ############################# Ingest getCapabilities files #############################
 
-    def ingest_wfs_layers(self, urls):
+    def ingest_wfs_layers(self, urls, subpath=None):
         for service_data in urls:
             service_url = service_data["service_url"] 
             service_name = service_data["name"]
@@ -114,9 +114,9 @@ class IngestLayersManager():
                     "service_type": "wfs",
                 }
                 layer_list.append(layer)
-            self.save_json_file(layer_list, f"{service_name}-wfs", "layers") 
+            self.save_json_file(layer_list, f"{service_name}-wfs", subpath) 
 
-    def ingest_wms_layers(self, urls):
+    def ingest_wms_layers(self, urls, subpath=None):
         for service_data in urls:
             service_url = service_data["service_url"]
             service_name = service_data["name"]
@@ -164,7 +164,7 @@ class IngestLayersManager():
                 }
                 layer_list.append(layer)
                 
-            self.save_json_file(layer_list, f"{service_name}-wms", "layers")
+            self.save_json_file(layer_list, f"{service_name}-wms", subpath)
 
     def ingest_gwsw_layers(self):
         base_url = "https://geodata.gwsw.nl"
@@ -216,7 +216,7 @@ class IngestLayersManager():
                 }
                 layer_list.append(layer)
 
-        self.save_json_file(layer_list, f"gwsw-wfs", "layers")
+        self.save_json_file(layer_list, "gwsw-wfs", os.path.join("layers", "custom"))
 
     def get_url_layers(self):
         # do stuff
@@ -249,14 +249,19 @@ class IngestLayersManager():
 
         for source in source_files:
             self.log(f"[get_csw_layers] source: {source}")
+            source_name = source.split('.')[0]
+            self.log(f"[get_csw_layers] source_name: {source_name}")
             with open(os.path.join(source_path, source), "r", encoding="utf-8") as f:
                 data = json.load(f)
 
             # self.log(data)
+            # continue
             # WFS (WebFeatureService)
-            continue
             wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wfs"]
-            self.ingest_wfs_layers(wfs_urls, source)
+            self.ingest_wfs_layers(wfs_urls, os.path.join("layers", "csw_generated", source_name))
+            # WMS (WebMapService)
+            wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wms"]
+            self.ingest_wms_layers(wfs_urls, os.path.join("layers", "csw_generated", source_name))
 
 
     # def get_csw_layers(self):
@@ -288,8 +293,8 @@ class IngestLayersManager():
         self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
 
         # 4. Run the service type ingest functions
-        self.ingest_wfs_layers(wfs_urls)
-        self.ingest_wms_layers(wms_urls)
+        # self.ingest_wfs_layers(wfs_urls)
+        # self.ingest_wms_layers(wms_urls)
         self.ingest_gwsw_layers()
         
 

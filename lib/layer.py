@@ -225,9 +225,6 @@ class LayerManager:
         self.style_manager = style_manager
         self.log = log
 
-        self.csw_file_name = "main_csw.json"
-        self.url_file_name = "url_list.json"
-        self.custom_file_name = "custom_url_list.json" # TODO
 
         ##################################################################
         # Model for the list of all active layers
@@ -382,25 +379,96 @@ class LayerManager:
         self.mapsModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         self.mapsModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
         
-        self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
         self.dlg.activeMapListView.hideColumn(4)
         self.dlg.activeMapListView.setColumnWidth(0, 200)  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
 
     ############################# All web layer list #############################
 
+    def get_meta_data(self):
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
+        source_filepaths = [os.path.join(root, name)
+             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
+             for name in files
+             if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
+
+        meta_data = []
+        for source in source_filepaths:
+            with open(source, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            meta_data.extend(data)
+
+        return meta_data
+
+    def read_layer_list(self, file_name):
+        file_path = os.path.join(self.plugin_dir, "resources", "layer_sources", file_name)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            self.log(f"[read_layer_list] Kon bestand {file_name} niet uitlezen. Foutmelding: {e}")
+
+        return data
+
     def load_layer_list(self) -> dict:
         """
-        Load the list of all map layers a Qt table.
+        Load the list of all map layers into a Qt table.
         
         :return layer_list: dict
         """
-        file_path = os.path.join(self.plugin_dir, "resources", "layers")
-        layer_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
+        layers_path = os.path.join(self.plugin_dir, "resources", "layers")
+        layer_files = [pos_json for pos_json in os.listdir(layers_path) if pos_json.endswith('.json')]
 
         meta_data = self.get_meta_data()
 
         layer_list = []
+
+        self.csw_file_name = "main_csw.json"
+        self.url_file_name = "url_list.json"
+        # =========================================
+        # Custom list
+        custom_file_list = self.read_layer_list("custom_list.json")
+        for file_data in custom_file_list:
+            name = file_data["name"]
+            file = file_data["file"]
+            self.log(f"file data, name: {name} and file: {file}")
+
+            custom_file_path = os.path.join(layers_path, "custom")
+
+            layers = self.add_source_rows(custom_file_path, file, name)
+
+            layer_list.extend(layers)
+
+        # =========================================
+        # URL list
+        url_file_list = self.read_layer_list("url_list.json")
+        for url_data in url_file_list:
+            file = url_data["name"]
+            title = url_data["title"]
+        
+
+        # =========================================
+        # CSW list
+
+
+        # Format the table layout
+        self.dlg.mapListView.hideColumn(2)             # hide Service name
+        self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
+        self.dlg.mapListView.setColumnWidth( 0, 300 )  # set name to 300px (there are some huge layernames)
+
+        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
+        self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+
+        # TODO: expand the first parent
+        point = QPoint(0, 0)
+        first_row = self.dlg.mapListView.indexAt(point)
+        self.dlg.mapListView.setExpanded(first_row, True)
+
+        return layer_list
+
+        # =========================================
         for file_name in layer_files:
             self.log(f"[load_layer_list] file_name {file_name}")
             title = None
@@ -530,7 +598,7 @@ class LayerManager:
         self.layerModel.appendRow(parent_row)
         self.layerModel.appendRow(parent_pdok_row)
 
-    def add_source_rows(self, json_file: str, file_path: str, title: str) -> dict:
+    def add_source_rows(self, file_path: str, json_file: str, title: str) -> dict:
         """
         Add a row to the layerModel (QStandardItemModel) in table format. 
         We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
@@ -581,21 +649,6 @@ class LayerManager:
         self.layerModel.appendRow(parent_row)
 
         return data
-
-    def get_meta_data(self):
-        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
-        source_filepaths = [os.path.join(root, name)
-             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
-             for name in files
-             if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
-
-        meta_data = []
-        for source in source_filepaths:
-            with open(source, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            meta_data.extend(data)
-
-        return meta_data
 
     def load_layer(self, tree_location=None):
         """Adds a QgsLayer to the project and layer tree.

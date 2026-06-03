@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Achtergrondkaart",
+        "file": "all-achtergrond.json"
+    },
+    {
+        "name": "NAD kaarten",
+        "file": "all-nad.json"
+    },
+    {
+        "name": "Den Haag",
+        "file": "denhaag.json"
+    },
+    {
+        "name": "Rotterdam",
+        "file": "rotterdam.json"
+    },
+    {
+        "name": "GWSW Rioolgegevens [WFS]",
+        "file": "gwsw-wfs.json"
+    }
+]
