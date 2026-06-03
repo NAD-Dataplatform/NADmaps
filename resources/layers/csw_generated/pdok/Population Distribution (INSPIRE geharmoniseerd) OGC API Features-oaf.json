@@ -1,0 +1,29 @@
+[
+    {
+        "name": "pd-nl-grid-2012",
+        "title": "NL population 2012 per 1km2 grid",
+        "abstract": "NL population 2012 per 1km2 grid ETRS LAEA",
+        "service_url": "https://api.pdok.nl/cbs/population-distribution/ogc/v1",
+        "service_title": "Population Distribution (INSPIRE geharmoniseerd) OGC API Features",
+        "service_abstract": "This dataset contains data with total population of the Netherlands referenced to statistical units according to the INSPIRE datamodel for Population Distribution version 3.0.",
+        "service_type": "api features"
+    },
+    {
+        "name": "pd-nl-lau-2018",
+        "title": "NL population 2018 per LAU region",
+        "abstract": "NL population 2018 per LAU (T=total, M=male, F=female, D=density)",
+        "service_url": "https://api.pdok.nl/cbs/population-distribution/ogc/v1",
+        "service_title": "Population Distribution (INSPIRE geharmoniseerd) OGC API Features",
+        "service_abstract": "This dataset contains data with total population of the Netherlands referenced to statistical units according to the INSPIRE datamodel for Population Distribution version 3.0.",
+        "service_type": "api features"
+    },
+    {
+        "name": "pd-nl-nuts2-2018",
+        "title": "NL population 2018 per NUTS2",
+        "abstract": "NL population 2018 per NUTS2",
+        "service_url": "https://api.pdok.nl/cbs/population-distribution/ogc/v1",
+        "service_title": "Population Distribution (INSPIRE geharmoniseerd) OGC API Features",
+        "service_abstract": "This dataset contains data with total population of the Netherlands referenced to statistical units according to the INSPIRE datamodel for Population Distribution version 3.0.",
+        "service_type": "api features"
+    }
+]

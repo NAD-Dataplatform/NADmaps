@@ -18,6 +18,8 @@ from owslib.csw import CatalogueServiceWeb  # type: ignore
 from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post
 from owslib.wfs import WebFeatureService 
 from owslib.wms import WebMapService
+from owslib.ogcapi.features import Features
+from owslib.ogcapi.features import Features
 
 from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl 
 import urllib.request, urllib.parse, urllib.error 
@@ -88,84 +90,6 @@ class IngestLayersManager():
 
     ############################# Ingest getCapabilities files #############################
 
-    def ingest_wfs_layers(self, urls, subpath=None):
-        for service_data in urls:
-            service_url = service_data["service_url"] 
-            service_name = service_data["name"]
-            service_title = service_data["title"]
-
-            try:
-                wfs = WebFeatureService(service_url, version="2.0.0")
-            except Exception as e:
-                self.log(f"Kon de {service_name} WebFeatureService niet vinden. Error {e}")
-                continue
-            # wfs = WebFeatureService(url, version="2.0.0", auth=self.auth)
-
-            wfs_items = wfs.items()
-            layer_list = []
-            for _, c in wfs_items:
-                layer = {
-                    "name": c.id,
-                    "title": c.title,
-                    "abstract": service_title,
-                    "service_url": service_url,
-                    "service_title": service_title,
-                    "service_abstract": service_title,
-                    "service_type": "wfs",
-                }
-                layer_list.append(layer)
-            self.save_json_file(layer_list, f"{service_name}-wfs", subpath) 
-
-    def ingest_wms_layers(self, urls, subpath=None):
-        for service_data in urls:
-            service_url = service_data["service_url"]
-            service_name = service_data["name"]
-            service_title = service_data["title"]
-            
-            try:
-                wms = WebMapService(service_url, version="1.3.0")
-            except Exception as e:
-                self.log(f"Kon de {service_name} WebMapService niet vinden. Error {e}")
-                continue
-            
-            wms_items = wms.items()
-            layer_list = []
-            for _, c in wms_items:
-                # get styles
-                styles = []
-                for s in c.styles:
-                    style = {
-                        "title": c.styles[s]["title"],
-                        "name": s
-                    }
-                    styles.append(style)
-                # get crs value
-                crs = ""
-                if "EPSG:28992" in c.crsOptions:
-                    crs = "EPSG:28992"
-                elif "EPSG:4326" in c.crsOptions:
-                    crs = "EPSG:4326"
-                else: 
-                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...")
-                    self.log(f"   url: {service_url}")
-                    continue
-
-                # construct layer object
-                layer = {
-                    "name": c.id,
-                    "title": c.title,
-                    "abstract": service_title,
-                    "styles": styles,
-                    "crs": crs,
-                    "service_url": service_url,
-                    "service_title": service_title,
-                    "service_abstract": service_title,
-                    "service_type": "wms",
-                }
-                layer_list.append(layer)
-                
-            self.save_json_file(layer_list, f"{service_name}-wms", subpath)
-
     def ingest_gwsw_layers(self):
         base_url = "https://geodata.gwsw.nl"
         nad_ids = {
@@ -218,6 +142,156 @@ class IngestLayersManager():
 
         self.save_json_file(layer_list, "gwsw-wfs", os.path.join("layers", "custom"))
 
+    def ingest_wfs_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"] 
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            service_abstract = service_data["abstract"]
+            #TODO: check service_data["abstract"] to add to the layer-data
+
+            try:
+                wfs = WebFeatureService(service_url, version="2.0.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebFeatureService niet vinden. Error {e}")
+                continue
+            # wfs = WebFeatureService(url, version="2.0.0", auth=self.auth)
+
+            wfs_items = wfs.items()
+            layer_list = []
+            for _, c in wfs_items:
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_abstract,
+                    "service_type": "wfs",
+                }
+                layer_list.append(layer)
+            self.save_json_file(layer_list, f"{service_name}-wfs", subpath) 
+
+    def ingest_wms_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            #TODO: check service_data["abstract"] to add to the layer-data
+            
+            try:
+                wms = WebMapService(service_url, version="1.3.0")
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebMapService niet vinden. Error {e}")
+                continue
+            
+            wms_items = wms.items()
+            layer_list = []
+            for _, c in wms_items:
+                # get styles
+                styles = []
+                for s in c.styles:
+                    style = {
+                        "title": c.styles[s]["title"],
+                        "name": s
+                    }
+                    styles.append(style)
+                # get crs value
+                crs = ""
+                if "EPSG:28992" in c.crsOptions:
+                    crs = "EPSG:28992"
+                elif "EPSG:4326" in c.crsOptions:
+                    crs = "EPSG:4326"
+                else: 
+                    self.log(f"Layer {c.title} has no relevant crs options. Ignore layer...")
+                    self.log(f"   url: {service_url}")
+                    continue
+
+                # construct layer object
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": service_title,
+                    "styles": styles,
+                    "crs": crs,
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_title,
+                    "service_type": "wms",
+                }
+                layer_list.append(layer)
+                
+            self.save_json_file(layer_list, f"{service_name}-wms", subpath)
+
+    def ingest_oaf_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            service_abstract = service_data["abstract"]
+
+            try:
+                oaf = Features(service_url)
+            except Exception as e:
+                self.log(f"Kon de {service_name} OGC API Features niet vinden. Error {e}")
+                continue
+
+            collections = oaf.collections()['collections']
+            self.log(f"[ingest_oaf_layers] length collections: {len(collections)}")
+
+            layer_list = []
+            for entry in collections:
+                self.log(f"entry: {entry["title"]}")
+                layer = {
+                    "name": entry["id"],
+                    "title": entry["title"],
+                    "abstract": entry["description"],
+                    "service_url": service_url,
+                    "service_title": service_title,
+                    "service_abstract": service_abstract,
+                    "service_type": "api features",
+                }
+                layer_list.append(layer)
+            self.save_json_file(layer_list, f"{service_name}-wfs", subpath)
+
+    # TODO: need some ogc api tiles layers first!
+    def ingest_oat_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            service_abstract = service_data["abstract"]
+
+            try:
+                oat = Features(service_url)
+            except Exception as e:
+                self.log(f"Kon de {service_name} OGC API Tiles niet vinden. Error {e}")
+                continue
+            
+            collections = oaf.collections()['collections']
+            self.log(f"[ingest_oaf_layers] length collections: {len(collections)}")
+
+            layer_list = []
+            for entry in collections:
+                self.log(f"entry: {entry["title"]}")
+
+    # TODO: need some wmts layers first!
+    def ingest_wmts_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            service_abstract = service_data["abstract"]
+
+    # TODO: need some wcs layers first!
+    def ingest_wcs_layers(self, urls, subpath=None):
+        for service_data in urls:
+            service_url = service_data["service_url"]
+            service_name = service_data["name"]
+            service_title = service_data["title"]
+            service_abstract = service_data["abstract"]
+
+
     def get_url_layers(self):
         # do stuff
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.url_file_name)
@@ -256,12 +330,19 @@ class IngestLayersManager():
 
             # self.log(data)
             # continue
+            # OGC API tiles
+            oat_urls = [url_data for url_data in data if url_data["service_type"] == "api tiles"]
+            self.ingest_oaf_layers(oat_urls, os.path.join("layers", "csw_generated", source_name))
+            return
+            # OGC API features
+            oaf_urls = [url_data for url_data in data if url_data["service_type"] == "api features"]
+            self.ingest_oaf_layers(oaf_urls, os.path.join("layers", "csw_generated", source_name))
             # WFS (WebFeatureService)
             wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wfs"]
             self.ingest_wfs_layers(wfs_urls, os.path.join("layers", "csw_generated", source_name))
             # WMS (WebMapService)
-            wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wms"]
-            self.ingest_wms_layers(wfs_urls, os.path.join("layers", "csw_generated", source_name))
+            wms_urls = [url_data for url_data in data if url_data["service_type"] == "wms"]
+            self.ingest_wms_layers(wms_urls, os.path.join("layers", "csw_generated", source_name))
 
 
     # def get_csw_layers(self):

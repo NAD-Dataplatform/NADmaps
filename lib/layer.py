@@ -468,11 +468,11 @@ class LayerManager:
                 itemLayername.setToolTip(tooltip)
                 itemServicetitle.setToolTip(tooltip)
                 
-                data_list.extend(data)
+                parent.appendRow(
+                    [itemLayername, itemType, itemServicetitle, itemFilter]
+                )
 
-            parent.appendRow(
-                [itemLayername, itemType, itemServicetitle, itemFilter]
-            )
+                data_list.extend(data)
 
         self.layerModel.appendRow(parent_row)
 
