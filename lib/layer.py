@@ -299,6 +299,237 @@ class LayerManager:
 
         self.layerProxyModel.setFilterRegularExpression(regexp)
 
+    ############################# Load clicked layer #############################
+
+    def load_layer(self, tree_location=None):
+        """Adds a QgsLayer to the project and layer tree.
+        tree_location can be 'default', 'top', 'bottom'
+        """
+        if self.current_layer is None:
+            return
+
+        servicetype = self.current_layer["service_type"]
+        if tree_location is None:
+            tree_location = self.default_tree_locations[servicetype]
+
+        new_layer = create_new_layer(self.current_layer)
+        if new_layer is None:
+            return
+
+        if tree_location not in ["default", "top", "bottom"]:
+            # TODO: proper error handling
+            return
+
+        if tree_location == "default":
+            QgsProject.instance().addMapLayer(new_layer, True)
+            return
+
+        QgsProject.instance().addMapLayer(new_layer, False)
+        new_layer_tree_layer = QgsLayerTreeLayer(new_layer)
+        layer_tree = self.iface.layerTreeCanvasBridge().rootGroup()
+        if tree_location == "top":
+            layer_tree.insertChildNode(0, new_layer_tree_layer)
+        if tree_location == "bottom":
+            layer_tree.insertChildNode(-1, new_layer_tree_layer)
+
+    ############################# All web layer list #############################
+
+    def read_layer_list(self, file_name):
+        file_path = os.path.join(self.plugin_dir, "resources", "layer_sources", file_name)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            self.log(f"[read_layer_list] Kon bestand {file_name} niet uitlezen. Foutmelding: {e}")
+
+        return data
+
+    def load_layer_list(self) -> dict:
+        """
+        Load the list of all map layers into a Qt table.
+        
+        :return layer_list: dict
+        """
+        layers_path = os.path.join(self.plugin_dir, "resources", "layers")
+
+        layer_list = []
+
+        # =========================================
+        # Custom list
+        custom_file_list = self.read_layer_list("custom_list.json")
+        for file_data in custom_file_list:
+            name = file_data["name"]
+            file = file_data["file"]
+            self.log(f"[load_layer_list] custom file data, name: {name} and file: {file}")
+
+            custom_file_path = os.path.join(layers_path, "custom")
+
+            layers = self.add_source_rows(custom_file_path, file, name)
+
+            layer_list.extend(layers)
+
+        # =========================================
+        # URL list
+        url_file_list = self.read_layer_list("url_list.json")
+        for url_data in url_file_list:
+            name = url_data["title"]
+            file = f"{url_data['name']}-{url_data['service_type']}.json"
+            self.log(f"[load_layer_list] url list file data, name: {name} and file: {file}")
+            
+            url_file_path = os.path.join(layers_path, "url_generated")
+            layers = self.add_source_rows(url_file_path, file, name)
+        
+            layer_list.extend(layers)
+
+        # =========================================
+        # CSW list
+        csw_file_path = os.path.join(layers_path, "csw_generated")
+        dir_list1 = os.listdir(csw_file_path)
+        dir_list = [item for item in os.listdir(csw_file_path) if os.path.isdir(os.path.join(csw_file_path,item))]
+
+        self.log(f"CSW directory list: {dir_list1}")
+        self.log(f"CSW directory list: {dir_list}")
+
+        for source in dir_list:
+            # Add parent row
+            self.log(f"[load_layer_list] CSW data for source: {source}")
+
+            # Add layer rows
+            file_path = os.path.join(csw_file_path, source)
+            
+            layers = self.add_csw_source_rows(file_path, source)
+
+            layer_list.extend(layers)
+
+        # =========================================
+        # Format the table layout
+        self.dlg.mapListView.hideColumn(2)             # hide Service name
+        self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
+        self.dlg.mapListView.setColumnWidth( 0, 300 )  # set name to 300px (there are some huge layernames)
+
+        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
+        self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+        self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
+
+        # Expand the first parent
+        point = QPoint(0, 0)
+        first_row = self.dlg.mapListView.indexAt(point)
+        self.dlg.mapListView.setExpanded(first_row, True)
+
+        return layer_list
+
+    def add_csw_source_rows(self, file_path: str, title: str) -> dict:
+        """
+        Add a row to the layerModel (QStandardItemModel) in table format. 
+        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
+        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
+        
+        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
+        """
+        # Create parent item (header)
+        parent = QStandardItem(title)
+        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
+    
+        layer_files = [file for file in os.listdir(file_path) if file.endswith('.json')]
+        
+        data_list = []
+        for layer_file in layer_files:
+            layer_path = os.path.join(file_path, layer_file)
+
+            with open(layer_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            for layer in data:
+                # Layer name (first column, so we add json layer data as a hidden value)
+                layername = layer["title"]
+                itemLayername = QStandardItem(str(layer["title"]))
+                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+
+                # Service type
+                stype = (
+                    self.service_type_mapping[layer["service_type"]]
+                    if layer["service_type"] in self.service_type_mapping
+                    else layer["service_type"].upper()
+                )
+                itemType = QStandardItem(str(stype))
+
+                # Service name (e.g. PDOK or Legger Delfland)
+                itemServicetitle = QStandardItem(str(layer["service_title"]))
+
+                # Item filter (used to search filter in. This column is hidden from the user)
+                itemFilter = QStandardItem(
+                    f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
+                )
+
+                # tooltip = "Dubbelklik om een kaartlaag in te laden"
+                tooltip = layer["service_abstract"]
+                itemType.setToolTip(tooltip)
+                itemLayername.setToolTip(tooltip)
+                itemServicetitle.setToolTip(tooltip)
+                
+                data_list.extend(data)
+
+            parent.appendRow(
+                [itemLayername, itemType, itemServicetitle, itemFilter]
+            )
+
+        self.layerModel.appendRow(parent_row)
+
+        return data_list
+
+    def add_source_rows(self, file_path: str, json_file: str, title: str) -> dict:
+        """
+        Add a row to the layerModel (QStandardItemModel) in table format. 
+        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
+        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
+        
+        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
+        """
+        # Create parent item (subheader)
+        parent = QStandardItem(title)
+        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
+
+        layer_path = os.path.join(file_path, json_file)
+        with open(layer_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        for layer in data:
+            # Layer name (first column, so we add json layer data as a hidden value)
+            layername = layer["title"]
+            itemLayername = QStandardItem(str(layer["title"]))
+            itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+
+            # Service type
+            stype = (
+                self.service_type_mapping[layer["service_type"]]
+                if layer["service_type"] in self.service_type_mapping
+                else layer["service_type"].upper()
+            )
+            itemType = QStandardItem(str(stype))
+
+            # Service name (e.g. PDOK or Legger Delfland)
+            itemServicetitle = QStandardItem(str(layer["service_title"]))
+
+            # Item filter (used to search filter in. This column is hidden from the user)
+            itemFilter = QStandardItem(
+                f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
+            )
+
+            # tooltip = "Dubbelklik om een kaartlaag in te laden"
+            tooltip = layer["service_abstract"]
+            itemType.setToolTip(tooltip)
+            itemLayername.setToolTip(tooltip)
+            itemServicetitle.setToolTip(tooltip)
+
+            parent.appendRow(
+                [itemLayername, itemType, itemServicetitle, itemFilter]
+            )
+
+        self.layerModel.appendRow(parent_row)
+
+        return data
+
     ############################# Active layer list #############################
 
     def get_current_layer(self, selectedIndexes):
@@ -382,301 +613,3 @@ class LayerManager:
         self.dlg.activeMapListView.hideColumn(4)
         self.dlg.activeMapListView.setColumnWidth(0, 200)  # set name to 300px (there are some huge layernames)
         self.dlg.activeMapListView.horizontalHeader().setStretchLastSection(True)
-
-    ############################# All web layer list #############################
-
-    def get_meta_data(self):
-        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
-        source_filepaths = [os.path.join(root, name)
-             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
-             for name in files
-             if name.endswith(".json") and not name.endswith("main_csw.json")] # get all json files except file containing the CatalogueServiceWeb urls
-
-        meta_data = []
-        for source in source_filepaths:
-            with open(source, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            meta_data.extend(data)
-
-        return meta_data
-
-    def read_layer_list(self, file_name):
-        file_path = os.path.join(self.plugin_dir, "resources", "layer_sources", file_name)
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-        except Exception as e:
-            self.log(f"[read_layer_list] Kon bestand {file_name} niet uitlezen. Foutmelding: {e}")
-
-        return data
-
-    def load_layer_list(self) -> dict:
-        """
-        Load the list of all map layers into a Qt table.
-        
-        :return layer_list: dict
-        """
-        layers_path = os.path.join(self.plugin_dir, "resources", "layers")
-        layer_files = [pos_json for pos_json in os.listdir(layers_path) if pos_json.endswith('.json')]
-
-        meta_data = self.get_meta_data()
-
-        layer_list = []
-
-        self.csw_file_name = "main_csw.json"
-        self.url_file_name = "url_list.json"
-        # =========================================
-        # Custom list
-        custom_file_list = self.read_layer_list("custom_list.json")
-        for file_data in custom_file_list:
-            name = file_data["name"]
-            file = file_data["file"]
-            self.log(f"file data, name: {name} and file: {file}")
-
-            custom_file_path = os.path.join(layers_path, "custom")
-
-            layers = self.add_source_rows(custom_file_path, file, name)
-
-            layer_list.extend(layers)
-
-        # =========================================
-        # URL list
-        url_file_list = self.read_layer_list("url_list.json")
-        for url_data in url_file_list:
-            file = url_data["name"]
-            title = url_data["title"]
-        
-
-        # =========================================
-        # CSW list
-
-
-        # Format the table layout
-        self.dlg.mapListView.hideColumn(2)             # hide Service name
-        self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
-        self.dlg.mapListView.setColumnWidth( 0, 300 )  # set name to 300px (there are some huge layernames)
-
-        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
-        self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-        self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-        self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-
-        # TODO: expand the first parent
-        point = QPoint(0, 0)
-        first_row = self.dlg.mapListView.indexAt(point)
-        self.dlg.mapListView.setExpanded(first_row, True)
-
-        return layer_list
-
-        # =========================================
-        for file_name in layer_files:
-            self.log(f"[load_layer_list] file_name {file_name}")
-            title = None
-            if file_name == "all-achtergrond.json":
-                title = "Achtergrondkaarten"
-            if file_name == "all-nad.json":
-                title = "NAD kaartlagen"
-            if file_name == "denhaag.json":
-                title = "Den Haag"
-            if file_name == "rotterdam.json":
-                title = "Rotterdam"
-            if file_name == "gwsw-wfs.json":
-                title = "GWSW Rioolgegevens [WFS]"
-            else:
-                # Add title from metadata to the layer
-                for dataset in meta_data:
-                    meta_data_name = f"{dataset['name']}-{dataset['service_type']}.json"
-                    if meta_data_name == file_name:
-                        service_type = (
-                            self.service_type_mapping[dataset["service_type"]]
-                            if dataset["service_type"] in self.service_type_mapping
-                            else dataset["service_type"].upper()
-                        )
-                        title = f"{dataset['title']} [{service_type}]"
-
-            if not title:
-                self.log(f"[load_layer_list] Dataset met naam {file_name} heeft geen metadata.")
-                continue
-
-            layers = self.add_source_rows(file_name, file_path, title)
-            layer_list.extend(layers)
-
-        ################### PDOK ##############
-        # pdok_file_path = os.path.join(self.plugin_dir, "resources", "layers", "pdok")
-        # pdok_layer_files = [pos_json for pos_json in os.listdir(pdok_file_path) if pos_json.endswith('.json')]
-        
-        # for file_name in pdok_layer_files:
-        #     title = None
-        #     # Add title from metadata to the layer
-        #     for dataset in meta_data:
-        #         meta_data_name = f"{dataset['name']}-{dataset['service_type']}.json"
-        #         if meta_data_name == file_name:
-        #             service_type = (
-        #                 self.service_type_mapping[dataset["service_type"]]
-        #                 if dataset["service_type"] in self.service_type_mapping
-        #                 else dataset["service_type"].upper()
-        #             )
-        #             title = f"{dataset['title']} [{service_type}]"
-
-        #     if not title:
-        #         self.log(f"[load_layer_list] Dataset met naam {file_name} heeft geen metadata.")
-        #         continue
-
-        #     layers = self.add_pdok_source_rows(file_name, pdok_file_path, title)
-        #     layer_list.extend(layers)
-
-        # Format the table layout
-        self.dlg.mapListView.hideColumn(2)             # hide Service name
-        self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
-        self.dlg.mapListView.setColumnWidth( 0, 300 )  # set name to 300px (there are some huge layernames)
-
-        self.layerModel.setHorizontalHeaderLabels(["Laagnaam", "Type", "Service", "Filter"])
-        self.layerModel.horizontalHeaderItem(2).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-        self.layerModel.horizontalHeaderItem(1).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-        self.layerModel.horizontalHeaderItem(0).setTextAlignment( Qt.AlignmentFlag.AlignLeft )
-
-        # TODO: expand the first parent
-        point = QPoint(0, 0)
-        first_row = self.dlg.mapListView.indexAt(point)
-        self.dlg.mapListView.setExpanded(first_row, True)
-
-        return layer_list
-
-
-    def add_pdok_source_rows(self, json_file: str, file_path: str, title: str) -> dict:
-        """
-        Add a row to the layerModel (QStandardItemModel) in table format. 
-        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
-        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
-        
-        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
-        """
-        layer_path = os.path.join(file_path, json_file)
-        with open(layer_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        # Create parent item (subheader)
-        parent_pdok = QStandardItem("PDOK")
-        parent_pdok_row = [parent_pdok, QStandardItem(""), QStandardItem(""), QStandardItem("")]
-
-        # Create parent item (subheader)
-        parent = QStandardItem(title)
-        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
-
-        for layer in data:
-            # Layer name (first column, so we add json layer data as a hidden value)
-            layername = layer["title"]
-            itemLayername = QStandardItem(str(layer["title"]))
-            itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
-
-            # Service type
-            stype = (
-                self.service_type_mapping[layer["service_type"]]
-                if layer["service_type"] in self.service_type_mapping
-                else layer["service_type"].upper()
-            )
-            itemType = QStandardItem(str(stype))
-
-            # Service name (e.g. PDOK or Legger Delfland)
-            itemServicetitle = QStandardItem(str(layer["service_title"]))
-
-            # Item filter (used to search filter in. This column is hidden from the user)
-            itemFilter = QStandardItem(
-                f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
-            )
-
-            # tooltip = "Dubbelklik om een kaartlaag in te laden"
-            tooltip = layer["service_abstract"]
-            itemType.setToolTip(tooltip)
-            itemLayername.setToolTip(tooltip)
-            itemServicetitle.setToolTip(tooltip)
-
-            parent.appendRow(
-                [itemLayername, itemType, itemServicetitle, itemFilter]
-            )
-
-        self.layerModel.appendRow(parent_row)
-        self.layerModel.appendRow(parent_pdok_row)
-
-    def add_source_rows(self, file_path: str, json_file: str, title: str) -> dict:
-        """
-        Add a row to the layerModel (QStandardItemModel) in table format. 
-        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
-        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
-        
-        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
-        """
-        layer_path = os.path.join(file_path, json_file)
-        with open(layer_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        # Create parent item (subheader)
-        parent = QStandardItem(title)
-        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
-
-        for layer in data:
-            # Layer name (first column, so we add json layer data as a hidden value)
-            layername = layer["title"]
-            itemLayername = QStandardItem(str(layer["title"]))
-            itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
-
-            # Service type
-            stype = (
-                self.service_type_mapping[layer["service_type"]]
-                if layer["service_type"] in self.service_type_mapping
-                else layer["service_type"].upper()
-            )
-            itemType = QStandardItem(str(stype))
-
-            # Service name (e.g. PDOK or Legger Delfland)
-            itemServicetitle = QStandardItem(str(layer["service_title"]))
-
-            # Item filter (used to search filter in. This column is hidden from the user)
-            itemFilter = QStandardItem(
-                f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
-            )
-
-            # tooltip = "Dubbelklik om een kaartlaag in te laden"
-            tooltip = layer["service_abstract"]
-            itemType.setToolTip(tooltip)
-            itemLayername.setToolTip(tooltip)
-            itemServicetitle.setToolTip(tooltip)
-
-            parent.appendRow(
-                [itemLayername, itemType, itemServicetitle, itemFilter]
-            )
-
-        self.layerModel.appendRow(parent_row)
-
-        return data
-
-    def load_layer(self, tree_location=None):
-        """Adds a QgsLayer to the project and layer tree.
-        tree_location can be 'default', 'top', 'bottom'
-        """
-        if self.current_layer is None:
-            return
-
-        servicetype = self.current_layer["service_type"]
-        if tree_location is None:
-            tree_location = self.default_tree_locations[servicetype]
-
-        new_layer = create_new_layer(self.current_layer)
-        if new_layer is None:
-            return
-
-        if tree_location not in ["default", "top", "bottom"]:
-            # TODO: proper error handling
-            return
-
-        if tree_location == "default":
-            QgsProject.instance().addMapLayer(new_layer, True)
-            return
-
-        QgsProject.instance().addMapLayer(new_layer, False)
-        new_layer_tree_layer = QgsLayerTreeLayer(new_layer)
-        layer_tree = self.iface.layerTreeCanvasBridge().rootGroup()
-        if tree_location == "top":
-            layer_tree.insertChildNode(0, new_layer_tree_layer)
-        if tree_location == "bottom":
-            layer_tree.insertChildNode(-1, new_layer_tree_layer)
