@@ -225,6 +225,10 @@ class LayerManager:
         self.style_manager = style_manager
         self.log = log
 
+        self.csw_file_name = "main_csw.json"
+        self.url_file_name = "url_list.json"
+        self.custom_file_name = "custom_url_list.json" # TODO
+
         ##################################################################
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
@@ -398,11 +402,16 @@ class LayerManager:
 
         layer_list = []
         for file_name in layer_files:
+            self.log(f"[load_layer_list] file_name {file_name}")
             title = None
             if file_name == "all-achtergrond.json":
                 title = "Achtergrondkaarten"
             if file_name == "all-nad.json":
                 title = "NAD kaartlagen"
+            if file_name == "denhaag.json":
+                title = "Den Haag"
+            if file_name == "rotterdam.json":
+                title = "Rotterdam"
             if file_name == "gwsw-wfs.json":
                 title = "GWSW Rioolgegevens [WFS]"
             else:
@@ -424,6 +433,30 @@ class LayerManager:
             layers = self.add_source_rows(file_name, file_path, title)
             layer_list.extend(layers)
 
+        ################### PDOK ##############
+        # pdok_file_path = os.path.join(self.plugin_dir, "resources", "layers", "pdok")
+        # pdok_layer_files = [pos_json for pos_json in os.listdir(pdok_file_path) if pos_json.endswith('.json')]
+        
+        # for file_name in pdok_layer_files:
+        #     title = None
+        #     # Add title from metadata to the layer
+        #     for dataset in meta_data:
+        #         meta_data_name = f"{dataset['name']}-{dataset['service_type']}.json"
+        #         if meta_data_name == file_name:
+        #             service_type = (
+        #                 self.service_type_mapping[dataset["service_type"]]
+        #                 if dataset["service_type"] in self.service_type_mapping
+        #                 else dataset["service_type"].upper()
+        #             )
+        #             title = f"{dataset['title']} [{service_type}]"
+
+        #     if not title:
+        #         self.log(f"[load_layer_list] Dataset met naam {file_name} heeft geen metadata.")
+        #         continue
+
+        #     layers = self.add_pdok_source_rows(file_name, pdok_file_path, title)
+        #     layer_list.extend(layers)
+
         # Format the table layout
         self.dlg.mapListView.hideColumn(2)             # hide Service name
         self.dlg.mapListView.hideColumn(3)             # hide itemFilter column
@@ -440,6 +473,62 @@ class LayerManager:
         self.dlg.mapListView.setExpanded(first_row, True)
 
         return layer_list
+
+
+    def add_pdok_source_rows(self, json_file: str, file_path: str, title: str) -> dict:
+        """
+        Add a row to the layerModel (QStandardItemModel) in table format. 
+        We fill the column values with text and add the serviceLayer-data to the UserRole of the first column.
+        See: https://www.riverbankcomputing.com/static/Docs/PyQt4/qt.html#ItemDataRole-enum
+        
+        :param json_file: json object with info like service type (wfs, wms, etc.), name and url
+        """
+        layer_path = os.path.join(file_path, json_file)
+        with open(layer_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Create parent item (subheader)
+        parent_pdok = QStandardItem("PDOK")
+        parent_pdok_row = [parent_pdok, QStandardItem(""), QStandardItem(""), QStandardItem("")]
+
+        # Create parent item (subheader)
+        parent = QStandardItem(title)
+        parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
+
+        for layer in data:
+            # Layer name (first column, so we add json layer data as a hidden value)
+            layername = layer["title"]
+            itemLayername = QStandardItem(str(layer["title"]))
+            itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+
+            # Service type
+            stype = (
+                self.service_type_mapping[layer["service_type"]]
+                if layer["service_type"] in self.service_type_mapping
+                else layer["service_type"].upper()
+            )
+            itemType = QStandardItem(str(stype))
+
+            # Service name (e.g. PDOK or Legger Delfland)
+            itemServicetitle = QStandardItem(str(layer["service_title"]))
+
+            # Item filter (used to search filter in. This column is hidden from the user)
+            itemFilter = QStandardItem(
+                f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
+            )
+
+            # tooltip = "Dubbelklik om een kaartlaag in te laden"
+            tooltip = layer["service_abstract"]
+            itemType.setToolTip(tooltip)
+            itemLayername.setToolTip(tooltip)
+            itemServicetitle.setToolTip(tooltip)
+
+            parent.appendRow(
+                [itemLayername, itemType, itemServicetitle, itemFilter]
+            )
+
+        self.layerModel.appendRow(parent_row)
+        self.layerModel.appendRow(parent_pdok_row)
 
     def add_source_rows(self, json_file: str, file_path: str, title: str) -> dict:
         """

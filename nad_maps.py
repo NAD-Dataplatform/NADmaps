@@ -408,10 +408,12 @@ class NADMaps:
         # Activate to log performance by tracking load times of the canvas
         # self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
         # self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
-        self.dlg.pushButtonGetCSWdata.clicked.connect(self.ingest_manager.get_csw_lists)
-        self.dlg.pushButtonGetLayers.clicked.connect(self.ingest_manager.get_layers)
 
-        # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+        # Update layer list (Alle kaartlagen)
+        self.dlg.pushButtonGetCSWlist.clicked.connect(  self.ingest_manager.get_csw_result)
+        self.dlg.pushButtonGetCSWLayers.clicked.connect(self.ingest_manager.get_csw_layers)
+        self.dlg.pushButtonGetLayers.clicked.connect(   self.ingest_manager.get_layers)
+
 
     #########################################################################################
     ################################  General utility functions #############################

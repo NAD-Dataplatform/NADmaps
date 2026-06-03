@@ -1234,16 +1234,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonGetCSWdata">
+           <widget class="QPushButton" name="pushButtonGetLayers">
             <property name="text">
-             <string>CatalogueServiceWeb data ophalen</string>
+             <string>getCapabilities bestanden uitlezen</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButtonGetLayers">
+           <widget class="QPushButton" name="pushButtonGetCSWlist">
             <property name="text">
-             <string>getCapabilities bestanden uitlezen</string>
+             <string>CatalogueServiceWeb metadata ophalen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonGetCSWLayers">
+            <property name="text">
+             <string>CatalogueServiceWeb bestanden ophalen</string>
             </property>
            </widget>
           </item>

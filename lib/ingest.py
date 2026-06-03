@@ -50,6 +50,8 @@ class IngestLayersManager():
 
         # Set default layer loading behaviour
         self.csw_file_name = "main_csw.json"
+        self.url_file_name = "url_list.json"
+
         self.service_type_mapping = SERVICE_TYPE_MAPPING
         self.protocol_to_type_mapping = {
             "OGC:WMS": "wms",
@@ -58,14 +60,14 @@ class IngestLayersManager():
             "OGC:WCS": "wcs",
             "OGC:API features": "api features",
             "OGC:API tiles": "api tiles",
-        } 
+        }
 
     def save_json_file(self, data, filename, subpath=None):
         """
         Save json data to specified filepath 
         
         :param data: json body to save
-        :param filename: path to file
+        :param filename: name of file
         """
         if subpath:
             dir_path = os.path.join(self.plugin_dir, "resources", subpath)
@@ -216,9 +218,53 @@ class IngestLayersManager():
 
         self.save_json_file(layer_list, f"gwsw-wfs", "layers")
 
+    def get_url_layers(self):
+        # do stuff
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.url_file_name)
+        self.des_path = os.path.join(self.plugin_dir, "resources", "layers", "url_generated")
+
+        with open(source_path, "r", encoding="utf-8") as f:
+            url_list = json.load(f)
+            
+        wfs_urls = [url_data for url_data in url_list if url_data["service_type"] == "wfs"]
+        wms_urls = [url_data for url_data in url_list if url_data["service_type"] == "wms"]
+
+        self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
+
+        # 4. Run the service type ingest functions
+        self.ingest_wfs_layers(wfs_urls)
+        self.ingest_wms_layers(wms_urls)
+        self.ingest_gwsw_layers()
+    
+    def get_csw_layers(self):
+        # do stuff
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
+        
+        source_filepaths = [os.path.join(root, name)
+             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
+             for name in files
+             if name.endswith(".json")] # get all json files except file containing the CatalogueServiceWeb urls
+        
+        source_files = [f for f in os.listdir(source_path)]
+
+        for source in source_files:
+            self.log(f"[get_csw_layers] source: {source}")
+            with open(os.path.join(source_path, source), "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            # self.log(data)
+            # WFS (WebFeatureService)
+            continue
+            wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wfs"]
+            self.ingest_wfs_layers(wfs_urls, source)
+
+
+    # def get_csw_layers(self):
+    #     # do stuff
+
     def get_layers(self):
         # 1. Get all relevant json files
-        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
         
         source_filepaths = [os.path.join(root, name)
              for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
@@ -313,14 +359,13 @@ class IngestLayersManager():
 
         return csw_list_classified
 
-    def get_csw_lists(self): 
+    def get_csw_result(self): 
         """
         Read CatalogueServiceWeb-URLs to retrieve available services.
         
         :param data: list with JSON objects containing CatalogueServiceWeb-URLs
         """
-        layer_sources_path = os.path.join(self.plugin_dir, "resources", "layer_sources")
-        csw_path = os.path.join(layer_sources_path, "csw_url", self.csw_file_name)
+        csw_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.csw_file_name)
         
         with open(csw_path, "r", encoding="utf-8") as f:
             data = json.load(f)

@@ -1,0 +1,20 @@
+[
+    {
+        "name": "NAD_kaartlagen_44WFS45:Afvoerpunt",
+        "title": "Afvoerpunt",
+        "abstract": "NAD rioolgebieden",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/NAD_kaartlagen_(WFS)/WFSServer?request=getcapabilities&service=wfs",
+        "service_title": "NAD kaartlagen",
+        "service_abstract": "info",
+        "service_type": "wfs"
+    },
+    {
+        "name": "NAD_kaartlagen_44WFS45:Rioleringsgebied",
+        "title": "Rioleringsgebied",
+        "abstract": "NAD rioolgebieden",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/NAD_kaartlagen_(WFS)/WFSServer?request=getcapabilities&service=wfs",
+        "service_title": "NAD kaartlagen",
+        "service_abstract": "info",
+        "service_type": "wfs"
+    }
+]
