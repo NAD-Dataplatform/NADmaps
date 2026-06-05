@@ -1,36 +1,18 @@
 ######################################################################################### 
 ######################################  Show and load layers ############################ 
 ######################################################################################### 
-# TODO 
-# opslag via xml <- deze eerst, misschien makkelijker 
-# handmatig (achtergrondkaarten) 
-# CSW voor pdok & provincie zuidholland 
 
+import json
+import os.path
+import os
+import requests
 import certifi
 
-import json 
-import os.path 
-import os 
-import re 
-
-import requests 
 from owslib.csw import CatalogueServiceWeb  # type: ignore 
-from owslib.util import cleanup_namespaces, bind_url, add_namespaces, OrderedDict, Authentication, openURL, http_post
 from owslib.wfs import WebFeatureService 
 from owslib.wms import WebMapService
-from owslib.ogcapi.features import Features
-from owslib.ogcapi.features import Features
 
-from urllib.parse import urlsplit, urlencode, urlparse, parse_qs, urlunparse, parse_qsl 
-import urllib.request, urllib.parse, urllib.error 
-import xml.etree.ElementTree as ET
 from .constants import SERVICE_TYPE_MAPPING
-from qgis.PyQt.QtNetwork import QNetworkRequest 
-from qgis.PyQt.QtCore import QUrl 
-from qgis.core import QgsNetworkAccessManager
-
-from qgis.PyQt.QtCore import Qt 
-from qgis.core import Qgis 
 
 class IngestLayersManager(): 
     def __init__(self, dlg, iface, plugin_dir, log):
@@ -45,13 +27,14 @@ class IngestLayersManager():
         self.plugin_dir = plugin_dir
         self.log = log
         
-        # cert = certifi.where() # C:\OSGeo4W\apps\Python312\Lib\site-packages\certifi\cacert.pem
         # cert = False # Skips certification (not for production!)
-        # self.auth = Authentication(cert=cert)
         # self.auth = Authentication(verify=False)
+        
+        # cert = certifi.where() # C:\OSGeo4W\apps\Python312\Lib\site-packages\certifi\cacert.pem
+        # self.auth = Authentication(cert=cert)
 
         # Set default layer loading behaviour
-        self.csw_file_name = "main_csw.json"
+        self.csw_file_name = "csw_list.json"
         self.url_file_name = "url_list.json"
 
         self.service_type_mapping = SERVICE_TYPE_MAPPING
@@ -256,24 +239,82 @@ class IngestLayersManager():
 
     # TODO: need some ogc api tiles layers first!
     def ingest_oat_layers(self, urls, subpath=None):
+        layer_list = []
         for service_data in urls:
             service_url = service_data["service_url"]
             service_name = service_data["name"]
-            service_title = service_data["title"]
-            service_abstract = service_data["abstract"]
 
             try:
-                oat = Features(service_url)
+                response = requests.get(service_url)
             except Exception as e:
-                self.log(f"Kon de {service_name} OGC API Tiles niet vinden. Error {e}")
+                self.log(f"Kon de {service_name} OGC API Tiles niet vinden. Foutmelding: {e}")
                 continue
-            
-            collections = oaf.collections()['collections']
-            self.log(f"[ingest_oaf_layers] length collections: {len(collections)}")
 
-            layer_list = []
-            for entry in collections:
-                self.log(f"entry: {entry["title"]}")
+            body = response.json()
+
+            styles = []
+            tiles = []
+            for link in body["links"]:
+                # ==== styles ====
+                if link["href"].endswith("styles"):
+                    styles_data = requests.get(link['href']).json()
+                    for s in styles_data["styles"]:
+                        style = {
+                            "id": s["id"],
+                            "name": s["title"],
+                            "url": s["links"][1]["href"]
+                        }
+                        styles.append(style)
+
+                # ==== tiles ====
+                if link["href"].endswith("tiles"):
+                    tiles_data = requests.get(link['href']).json()
+                    name = tiles_data["title"]
+                    abstract = tiles_data["description"]
+
+                    tilesets = []
+                    for t in tiles_data["tilesets"]:
+                        tile_limits = t["tileMatrixSetLimits"]
+                        max_zoomlevel = 0
+                        for l in tile_limits:
+                            zoomlevel = int(l["tileMatrix"])
+                            if zoomlevel > max_zoomlevel:
+                                max_zoomlevel = zoomlevel
+
+                        tileset = {
+                            "tileset_id": t["tileMatrixSetId"],
+                            "tileset_crs": t["crs"],
+                            "tileset_max_zoomlevel": max_zoomlevel
+                        }
+                        tilesets.append(tileset)
+
+                    tile_data = {
+                        "title": tiles_data["title"],
+                        "abstract": abstract,
+                        "tilesets" : tilesets
+                    }
+                    tiles.append(tile_data)
+            
+            # check if the layer has actual tilesets
+            if len(tiles) == 0:
+                continue
+
+            layer = {
+                "name": name,
+                "title": name,
+                "abstract": abstract,
+                "styles": styles,
+                "tiles": tiles,
+                "service_url": service_url,
+                "service_title": body["title"],
+                "service_abstract": body["description"],
+                "service_type": "api tiles",
+            }
+
+            layer_list.append(layer)
+
+        self.save_json_file(layer_list, "OGC API Tiles layers", subpath)
+        
 
     # TODO: need some wmts layers first!
     def ingest_wmts_layers(self, urls, subpath=None):
@@ -291,6 +332,7 @@ class IngestLayersManager():
             service_title = service_data["title"]
             service_abstract = service_data["abstract"]
 
+    ############################# Read list of getCapabilities-URLs #############################
 
     def get_url_layers(self):
         # do stuff
@@ -310,30 +352,29 @@ class IngestLayersManager():
         self.ingest_wms_layers(wms_urls)
         self.ingest_gwsw_layers()
     
+    ############################# Read list of CatalogueServiceWeb-URLs #############################
+
     def get_csw_layers(self):
         # do stuff
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
-        
-        source_filepaths = [os.path.join(root, name)
-             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
-             for name in files
-             if name.endswith(".json")] # get all json files except file containing the CatalogueServiceWeb urls
-        
         source_files = [f for f in os.listdir(source_path)]
 
         for source in source_files:
-            self.log(f"[get_csw_layers] source: {source}")
             source_name = source.split('.')[0]
+            self.log(f"[get_csw_layers] source: {source}")
             self.log(f"[get_csw_layers] source_name: {source_name}")
+
             with open(os.path.join(source_path, source), "r", encoding="utf-8") as f:
                 data = json.load(f)
 
-            # self.log(data)
-            # continue
+
             # OGC API tiles
             oat_urls = [url_data for url_data in data if url_data["service_type"] == "api tiles"]
-            self.ingest_oaf_layers(oat_urls, os.path.join("layers", "csw_generated", source_name))
+            self.ingest_oat_layers(oat_urls, os.path.join("layers", "csw_generated", source_name))
             return
+        
+            # ===========================
+            # Finished:
             # OGC API features
             oaf_urls = [url_data for url_data in data if url_data["service_type"] == "api features"]
             self.ingest_oaf_layers(oaf_urls, os.path.join("layers", "csw_generated", source_name))
@@ -345,41 +386,7 @@ class IngestLayersManager():
             self.ingest_wms_layers(wms_urls, os.path.join("layers", "csw_generated", source_name))
 
 
-    # def get_csw_layers(self):
-    #     # do stuff
-
-    def get_layers(self):
-        # 1. Get all relevant json files
-        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
-        
-        source_filepaths = [os.path.join(root, name)
-             for root, dirs, files in os.walk(source_path) # walk: to recursively iterate through a directory and all its subdirectories
-             for name in files
-             if name.endswith(".json") and not name.endswith(self.csw_file_name)] # get all json files except file containing the CatalogueServiceWeb urls
-        
-        self.log(f"List of source files: {source_filepaths}", 0)
-        
-        # 2. Gather all the resulting urls
-        url_list = []
-        for source_path in source_filepaths:
-            with open(source_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-
-            url_list.extend(data)
-
-        # 3. Split between service type
-        wfs_urls = [url_data for url_data in url_list if url_data["service_type"] == "wfs"]
-        wms_urls = [url_data for url_data in url_list if url_data["service_type"] == "wms"]
-        
-        self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
-
-        # 4. Run the service type ingest functions
-        # self.ingest_wfs_layers(wfs_urls)
-        # self.ingest_wms_layers(wms_urls)
-        self.ingest_gwsw_layers()
-        
-
-    ############################# Read CatalogueServiceWeb-URLs #############################
+    ############################# Read CatalogueServiceWeb metadata-URLs #############################
 
     def _format_csw_layer(self, record: object, csw_name: str) -> dict:
         """
@@ -418,6 +425,8 @@ class IngestLayersManager():
                 # Sometimes we get a protocol but the url is not useful for us
                 if service_type in ("wfs", "wms", "wmts", "wcs") and not "request=GetCapabilities" in url:
                     continue
+
+            # Sometimes we do not get a protocol so we want to deduce the service type based on the url
             elif protocol == "" and "request=GetCapabilities" in url:
                 if "wfs" in url.lower():
                     service_type = "wfs"
@@ -451,6 +460,7 @@ class IngestLayersManager():
         
         :param data: list with JSON objects containing CatalogueServiceWeb-URLs
         """
+        self.log("[get_csw_result] start", lvl=0)
         csw_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.csw_file_name)
         
         with open(csw_path, "r", encoding="utf-8") as f:
@@ -459,54 +469,67 @@ class IngestLayersManager():
         for csw_data in data: 
             csw_name = csw_data["name"]
             csw_url = csw_data["url"]
+
+
             
             # tijdelijk wat ophalen zonder SSL checks
             # auth = Authentication(verify=False)
             # csw = CatalogueServiceWeb(csw_url, timeout=60, auth=auth)
             try:
-                csw = CatalogueServiceWeb(csw_url, timeout=60)
+                if self.auth:
+                    csw = CatalogueServiceWeb(csw_url, timeout=60, auth=self.auth)
+                else:
+                    csw = CatalogueServiceWeb(csw_url, timeout=60)
             except Exception as e:
                 self.log(f"Kon de {csw_name} CatalogueServiceWeb niet vinden. Foutmelding: {e}")
                 # continue
 
-            self.log(f"[get_csw_lists] csw received: {csw}", lvl=0)
+            self.log(f"[get_csw_result] csw received: {csw}", lvl=0)
             page_size = 50
             all_records = {}
             start = 0
 
-            self.log(f"[get_csw_lists] Beginnen met gepagineerd ophalen van records. Aantal records per keer={page_size}", lvl=0)
+            self.log(f"[get_csw_result] Beginnen met gepagineerd ophalen van records. Aantal records per keer={page_size}", lvl=0)
             while True:
                 try:
                     csw.getrecords2(startposition=start, maxrecords=page_size, esn="full")
                 except Exception as e:
-                    self.log(f"[get_csw_lists] Kon geen records ophalen op startpositie={start}. Foutmelding: {e}")
+                    self.log(f"[get_csw_result] Kon geen records ophalen op startpositie={start}. Foutmelding: {e}")
                     break
 
                 if not csw.records:
-                    self.log(f"[get_csw_lists] Geen records meer beschikbaar op startpositie={start}")
+                    self.log(f"[get_csw_result] Geen records meer beschikbaar op startpositie={start}")
                     break
 
+                self.log(f"csw results: {csw.results}")
                 all_records.update(csw.records)
 
                 if len(csw.records) < page_size:
                     break
 
                 start += page_size
-                break # TODO: remove to get all data from the catalogue services
 
-            self.log(f"[get_csw_lists] Ophalen records afgerond. Totaal={len(all_records)}", lvl=0)
+            self.log(f"[get_csw_result] Ophalen records afgerond. Totaal={len(all_records)}", lvl=0)
 
+
+            csw_list = []
             try:
-                csw_list = []
                 for _, record in all_records.items():
-                    csw_record = self._format_csw_layer(record, csw_name)
-                    csw_list.extend(csw_record)
-            except Exception as e:
-                self.log(e)
+                    try:
+                        csw_record = self._format_csw_layer(record, csw_name)
+                        if len(csw_record) > 0:
+                            csw_list.extend(csw_record)
+                    except Exception as e:
+                        self.log(f"[get_csw_result] Kon record niet verwerken: {record}. Foutmelding: {e}")
+                        continue
 
-            self.log(f"[get_csw_lists] Formatting records naar een CSW lijst afgerond. Totaal={len(csw_list)}", lvl=0)
+            except Exception as e:
+                self.log(f"[get_csw_result] Verwerken van lijst met records is mislukt. Foutmelding: {e}")
+
+
+            self.log(f"[get_csw_result] Formatting records naar een CSW lijst afgerond. Totaal={len(csw_list)}", lvl=0)
             if len(csw_list) == 0:
-                self.log(f"[get_csw_lists] CSW lijst was leeg voor URL: {csw_url}")
+                self.log(f"[get_csw_result] CSW lijst was leeg voor URL: {csw_url}")
                 continue
             
             # Save data to JSON

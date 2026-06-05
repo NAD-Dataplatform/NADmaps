@@ -89,23 +89,22 @@ def build_tileset_url(url, tileset_id, for_request):
 
 def create_oat_layer(layer, url, title=None):
     crs = "EPSG:3857"
-    # used_tileset = [
-    #     tileset
-    #     for tileset in layer["tiles"][0]["tilesets"]
-    #     if tileset["tileset_crs"].endswith(crs.split(":")[1])
-    # ][0]
+    used_tileset = [
+        tileset
+        for tileset in layer["tiles"][0]["tilesets"]
+        if tileset["tileset_crs"].endswith(crs.split(":")[1])
+    ][0]
 
-    style = 0
+    style = 1
     name = layer["styles"][style]["name"]
     title += f" [{name}]"
     selected_style_url = layer["styles"][style]["url"]
 
-    # tileset_id = used_tileset["tileset_id"]
     tileset_id = "WebMercatorQuad"
     url_template = build_tileset_url(url, tileset_id, True)
 
-    # maxz_coord = used_tileset["tileset_max_zoomlevel"]
-    maxz_coord = 11
+    maxz_coord = used_tileset["tileset_max_zoomlevel"]
+    # maxz_coord = 17
     minz_coord = 0
 
     type = "xyz"

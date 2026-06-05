@@ -410,7 +410,7 @@ class NADMaps:
         # self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
 
         # Update layer list (Alle kaartlagen)
-        self.dlg.pushButtonGetLayers.clicked.connect(   self.ingest_manager.get_layers)
+        self.dlg.pushButtonGetLayers.clicked.connect(   self.ingest_manager.get_url_layers)
         self.dlg.pushButtonGetCSWlist.clicked.connect(  self.ingest_manager.get_csw_result)
         self.dlg.pushButtonGetCSWLayers.clicked.connect(self.ingest_manager.get_csw_layers)
 
