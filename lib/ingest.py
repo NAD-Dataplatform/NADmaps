@@ -11,6 +11,9 @@ import certifi
 from owslib.csw import CatalogueServiceWeb  # type: ignore 
 from owslib.wfs import WebFeatureService 
 from owslib.wms import WebMapService
+from owslib.wmts import WebMapTileService
+from owslib.wcs import WebCoverageService, wcs110  # type: ignore
+from owslib.ogcapi.features import Features
 
 from .constants import SERVICE_TYPE_MAPPING
 
@@ -27,17 +30,26 @@ class IngestLayersManager():
         self.plugin_dir = plugin_dir
         self.log = log
         
+        self.log("Init IngestLayersManager")
         # cert = False # Skips certification (not for production!)
         # self.auth = Authentication(verify=False)
         
         # cert = certifi.where() # C:\OSGeo4W\apps\Python312\Lib\site-packages\certifi\cacert.pem
         # self.auth = Authentication(cert=cert)
 
-        # Set default layer loading behaviour
+        # Set layer loading behaviour
         self.csw_file_name = "csw_list.json"
         self.url_file_name = "url_list.json"
 
         self.service_type_mapping = SERVICE_TYPE_MAPPING
+        for type in SERVICE_TYPE_MAPPING:
+            self.dlg.CSWLoadComboBox.addItem(type)
+        self.dlg.CSWLoadComboBox.setCurrentIndex(3)
+
+        source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
+        for file in os.listdir(source_path):
+            self.dlg.CSWsourceComboBox.addItem(file)
+
         self.protocol_to_type_mapping = {
             "OGC:WMS": "wms",
             "OGC:WMTS": "wmts",
@@ -46,6 +58,7 @@ class IngestLayersManager():
             "OGC:API features": "api features",
             "OGC:API tiles": "api tiles",
         }
+        
 
     def save_json_file(self, data, filename, subpath=None):
         """
@@ -210,13 +223,11 @@ class IngestLayersManager():
         for service_data in urls:
             service_url = service_data["service_url"]
             service_name = service_data["name"]
-            service_title = service_data["title"]
-            service_abstract = service_data["abstract"]
 
             try:
                 oaf = Features(service_url)
             except Exception as e:
-                self.log(f"Kon de {service_name} OGC API Features niet vinden. Error {e}")
+                self.log(f"[ingest_oaf_layers] Kon de {service_name} OGC API Features niet vinden. Error {e}")
                 continue
 
             collections = oaf.collections()['collections']
@@ -230,14 +241,17 @@ class IngestLayersManager():
                     "title": entry["title"],
                     "abstract": entry["description"],
                     "service_url": service_url,
-                    "service_title": service_title,
-                    "service_abstract": service_abstract,
+                    "service_title": service_data["title"],
+                    "service_abstract": service_data["abstract"],
                     "service_type": "api features",
                 }
                 layer_list.append(layer)
-            self.save_json_file(layer_list, f"{service_name}-wfs", subpath)
+            if len(layer_list) == 0:
+                self.log(f"[ingest_oaf_layers] url {service_url} voor service {service_name} had geen inhoud. Wordt overgeslagen...")
+                continue
 
-    # TODO: need some ogc api tiles layers first!
+            self.save_json_file(layer_list, f"{service_name}-oaf", subpath)
+
     def ingest_oat_layers(self, urls, subpath=None):
         layer_list = []
         for service_data in urls:
@@ -314,23 +328,102 @@ class IngestLayersManager():
             layer_list.append(layer)
 
         self.save_json_file(layer_list, "OGC API Tiles layers", subpath)
-        
 
-    # TODO: need some wmts layers first!
     def ingest_wmts_layers(self, urls, subpath=None):
         for service_data in urls:
             service_url = service_data["service_url"]
             service_name = service_data["name"]
-            service_title = service_data["title"]
-            service_abstract = service_data["abstract"]
+            
+            try:
+                wmts = WebMapTileService(service_url)
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebMapTileService niet vinden. Error {e}")
+                continue
 
-    # TODO: need some wcs layers first!
+            wmts_items = wmts.items()
+            layer_list = []
+
+            for _, c in wmts_items:
+                styles = []
+                for name, object in c.styles.items():
+                    title = ""
+                    if "title" in object:
+                        title = object["title"]
+                    
+                    style = {
+                        "title": title,
+                        "name": name
+                    }
+                    styles.append(style)
+
+                tilematrixsets = ",".join(list(c.tilematrixsetlinks.keys()))
+                imgformats = ",".join(c.formats)
+                
+                layer = {
+                    "name": c.id,
+                    "title": c.title,
+                    "abstract": c.abstract,
+                    "styles": styles,
+                    "tiles": tilematrixsets,  # "tilematrixsets": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible"
+                    "imgformats": imgformats, # "imgformats": "image/jpeg"
+                    "service_url": service_url,
+                    "service_title": service_data["title"],
+                    "service_abstract": service_data["abstract"],
+                    "service_type": "wmts",
+                }
+                layer_list.append(layer)
+
+            self.save_json_file(layer_list, f"{service_name}-wmts", subpath) 
+
+
     def ingest_wcs_layers(self, urls, subpath=None):
+        # TODO: remove duplicates from _layer_list
         for service_data in urls:
             service_url = service_data["service_url"]
             service_name = service_data["name"]
-            service_title = service_data["title"]
-            service_abstract = service_data["abstract"]
+
+            try:
+                wcs = WebCoverageService(service_url)
+            except Exception as e:
+                self.log(f"Kon de {service_name} WebCoverageService niet vinden. Error {e}")
+                continue
+
+            # self.log(wcs.contents.keys())
+            wcs_items = wcs.items()
+            layer_list = []
+
+            for _, c in wcs_items:
+                layer = {
+                    "name": c.id,
+                    "title": wcs.identification.title,
+                    "abstract": wcs.identification.abstract,
+                    "service_url": service_url,
+                    "service_title": service_data["title"],
+                    "service_abstract": service_data["abstract"],
+                    "service_type": "wcs",
+                }
+                layer_list.append(layer)
+
+            
+            self.save_json_file(layer_list, f"{service_name}-wcs", subpath) 
+            
+
+# dict_keys(['dsm_05m', 'dtm_05m'])
+# item: ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', 
+# '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', 
+# '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_elem', 
+# '_getAxisDescriptionsProperty', '_getGrid', '_getOtherBoundingBoxes', '_getSupportedCRSProperty', '_getSupportedFormatsProperty', '_getTimeLimits', 
+# '_getTimePositions', '_service', 
+# 'abstract', 'axisDescriptions', 'boundingBox', 'boundingBoxWGS84', 'boundingboxes', 'crsOptions', 'defaulttimeposition', 'grid', 
+# 'id', 'keywords', 'styles', 'supportedCRS', 'supportedFormats', 'timelimits', 'timepositions', 'title']
+
+        # "name": "dsm_05m",
+        # "title": "Digital Surface Model (DSM) 0.5m",
+        # "abstract": "Het AHN DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als \"water\" tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Er zijn geen verdere bewerkingen uitgevoerd.",
+        # "service_url": "https://service.pdok.nl/rws/actueel-hoogtebestand-nederland/wcs/v1_0?request=GetCapabilities&service=WCS",
+        # "service_title": "Actueel Hoogtebestand Nederland (AHN) WCS",
+        # "service_abstract": "Web Coverage Service (WCS) van het Actueel Hoogtebestand Nederland (AHN). Het AHN is de digitale hoogtekaart voor heel Nederland. Het bevat gedetailleerde en precieze hoogtegegevens met minimaal 10 hoogtemetingen per vierkante meter. AHN is een samenwerking van de provincies, Rijksoverheid en de waterschappen. De hoogte wordt gemeten met laseraltimetrie: een techniek waarbij een vliegtuig met een laserstraal het aardoppervlak aftast. Het huidige AHN is versie 4. Deze versie is ingewonnen over de jaren 2020, 2021 en 2022. Voor meer informatie over het AHN zie https://ahn.nl. In deze WCS zijn de AHN rasterbestanden met een resolutie van 0,5 meter opgenomen. Hierin is een onderscheid tussen het DTM en het DSM gemaakt. Het DTM is bedoeld als maaiveldbestand, waarbij alle punten geclassificeerd als 'maaiveld' tot een raster zijn herbemonsterd op basis van een Squared IDW methode. Het DSM is bedoeld als ruw bestand, waarbij alle punten behalve die geclassificeerd als 'water' tot een raster zijn herbemonsterd op basis van een Squared IDW methode.",
+        # "service_type": "wcs",
 
     ############################# Read list of getCapabilities-URLs #############################
 
@@ -355,35 +448,61 @@ class IngestLayersManager():
     ############################# Read list of CatalogueServiceWeb-URLs #############################
 
     def get_csw_layers(self):
-        # do stuff
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", "csw_result")
-        source_files = [f for f in os.listdir(source_path)]
+        service = self.dlg.CSWLoadComboBox.currentText()
+        source = self.dlg.CSWsourceComboBox.currentText()
 
-        for source in source_files:
-            source_name = source.split('.')[0]
-            self.log(f"[get_csw_layers] source: {source}")
-            self.log(f"[get_csw_layers] source_name: {source_name}")
+        # source_files = [f for f in os.listdir(source_path)]
+        # for source in source_files:
+        source_name = source.split('.')[0]
+        subpath = os.path.join("layers", "csw_generated", source_name)
 
-            with open(os.path.join(source_path, source), "r", encoding="utf-8") as f:
-                data = json.load(f)
+        self.log(f"[get_csw_layers] source: {source}")
+        self.log(f"[get_csw_layers] source_name: {source_name}")
+
+        # cleanup current content
+        dir_path = os.path.join(self.plugin_dir, "resources", subpath)
+        for filename in os.listdir(dir_path):
+            file_path = os.path.join(dir_path, filename)
+            try:
+                os.unlink(file_path)
+            except Exception as e:
+                self.log(f"Kon bestand niet verwijderen: {file_path}. Foutmelding: {e}")
+                continue
+
+        # ===========================
+        # read list with csw metadata
+        with open(os.path.join(source_path, source), "r", encoding="utf-8") as f:
+            data = json.load(f)
 
 
-            # OGC API tiles
-            oat_urls = [url_data for url_data in data if url_data["service_type"] == "api tiles"]
-            self.ingest_oat_layers(oat_urls, os.path.join("layers", "csw_generated", source_name))
-            return
-        
-            # ===========================
-            # Finished:
-            # OGC API features
-            oaf_urls = [url_data for url_data in data if url_data["service_type"] == "api features"]
-            self.ingest_oaf_layers(oaf_urls, os.path.join("layers", "csw_generated", source_name))
-            # WFS (WebFeatureService)
+        # ===========================
+        # query and save layer data files by type
+
+        if service == "wfs":
             wfs_urls = [url_data for url_data in data if url_data["service_type"] == "wfs"]
-            self.ingest_wfs_layers(wfs_urls, os.path.join("layers", "csw_generated", source_name))
-            # WMS (WebMapService)
+            self.ingest_wfs_layers(wfs_urls, subpath)
+        elif service == "wms":
             wms_urls = [url_data for url_data in data if url_data["service_type"] == "wms"]
-            self.ingest_wms_layers(wms_urls, os.path.join("layers", "csw_generated", source_name))
+            self.ingest_wms_layers(wms_urls, subpath)
+
+        elif service == "wmts":
+            wmts_urls = [url_data for url_data in data if url_data["service_type"] == "wmts"]
+            self.ingest_wmts_layers(wmts_urls, subpath)
+        elif service == "wcs":
+            wcs_urls = [url_data for url_data in data if url_data["service_type"] == "wcs"]
+            self.log(f"aantal wcs urls: {len(wcs_urls)}")
+            self.ingest_wcs_layers(wcs_urls, subpath)
+
+        elif service == "api features":
+            oaf_urls = [url_data for url_data in data if url_data["service_type"] == "api features"]
+            self.ingest_oaf_layers(oaf_urls, subpath)
+        elif service == "api tiles":
+            oat_urls = [url_data for url_data in data if url_data["service_type"] == "api tiles"]
+            self.ingest_oat_layers(oat_urls, subpath)
+        else:
+            self.log(f"Type service is onbekend: {service}", lvl=2)
+
 
 
     ############################# Read CatalogueServiceWeb metadata-URLs #############################
