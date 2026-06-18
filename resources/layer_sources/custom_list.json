@@ -16,7 +16,7 @@
         "file": "rotterdam.json"
     },
     {
-        "name": "GWSW Rioolgegevens [WFS]",
+        "name": "GWSW Rioolgegevens",
         "file": "gwsw-wfs.json"
     }
 ]

@@ -237,7 +237,7 @@ class NADMaps:
             self.log(f"Autostart failed. Error message: {e}")
 
     def show_dialog(self):
-        self.log("Showing NADMaps dialog after short delay.", 0)
+        self.log("Showing NADMaps dialog after short delay.", lvl=0)
         self.dlg.show()
         area = self.iface.mainWindow().dockWidgetArea(self.dlg)
         if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:

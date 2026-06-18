@@ -1,0 +1,401 @@
+[
+    {
+        "name": "BRT TOP10NL - Tiles",
+        "title": "BRT TOP10NL - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "brt_top10nl__netherlandsrdnewquad",
+                "name": "BRT TOP10NL Standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "brt_top10nl__europeanetrs89_laeaquad",
+                "name": "BRT TOP10NL Standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "brt_top10nl__webmercatorquad",
+                "name": "BRT TOP10NL Standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/brt/top10nl/ogc/v1/styles/brt_top10nl__webmercatorquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "BRT TOP10NL - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 11
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/brt/top10nl/ogc/v1",
+        "service_title": "BRT TOP10NL",
+        "service_abstract": "TOP10NL is een digitaal objectgericht kaartbestand wat ten grondslag ligt aan de topografische kaart 1:10000 en wat veelvuldig in diverse GIS- en CAD-systemen wordt gebruikt voor ondergrond, analyse-, en beheers- en planningsactiviteiten.",
+        "service_type": "api tiles"
+    },
+    {
+        "name": "BRT Achtergrondkaart - Tiles",
+        "title": "BRT Achtergrondkaart - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "standaard__netherlandsrdnewquad",
+                "name": "BRT Achtergrondkaart Standaard (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "standaard__europeanetrs89_laeaquad",
+                "name": "BRT Achtergrondkaart Standaard (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "standaard__webmercatorquad",
+                "name": "BRT Achtergrondkaart Standaard (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "standaard_zonder_labels__netherlandsrdnewquad",
+                "name": "BRT Achtergrondkaart Standaard - zonder labels (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard_zonder_labels__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "standaard_zonder_labels__europeanetrs89_laeaquad",
+                "name": "BRT Achtergrondkaart Standaard - zonder labels (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard_zonder_labels__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "standaard_zonder_labels__webmercatorquad",
+                "name": "BRT Achtergrondkaart Standaard - zonder labels (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/standaard_zonder_labels__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "luchtfoto_labels__netherlandsrdnewquad",
+                "name": "BRT Luchtfoto labels (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/luchtfoto_labels__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "luchtfoto_labels__europeanetrs89_laeaquad",
+                "name": "BRT Luchtfoto labels (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/luchtfoto_labels__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "luchtfoto_labels__webmercatorquad",
+                "name": "BRT Luchtfoto labels (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/luchtfoto_labels__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "darkmode__netherlandsrdnewquad",
+                "name": "BRT Achtergrondkaart Dark Mode (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/darkmode__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "darkmode__europeanetrs89_laeaquad",
+                "name": "BRT Achtergrondkaart Dark Mode (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/darkmode__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "darkmode__webmercatorquad",
+                "name": "BRT Achtergrondkaart Dark Mode (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1/styles/darkmode__webmercatorquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "BRT Achtergrondkaart - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/kadaster/brt-achtergrondkaart/ogc/v1",
+        "service_title": "BRT Achtergrondkaart",
+        "service_abstract": "De BRT Achtergrondkaart is afgeleid uit TOP10NL uit de Basisregistratie Topografie (BRT).",
+        "service_type": "api tiles"
+    },
+    {
+        "name": "Bestuurlijke Gebieden - Tiles",
+        "title": "Bestuurlijke Gebieden - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "bestuurlijkegebieden_standaardvisualisatie__netherlandsrdnewquad",
+                "name": "Bestuurlijke Gebieden Standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_standaardvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bestuurlijkegebieden_standaardvisualisatie__europeanetrs89_laeaquad",
+                "name": "Bestuurlijke Gebieden Standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_standaardvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bestuurlijkegebieden_standaardvisualisatie__webmercatorquad",
+                "name": "Bestuurlijke Gebieden Standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_standaardvisualisatie__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bestuurlijkegebieden_geannoteerd__netherlandsrdnewquad",
+                "name": "Bestuurlijke Gebieden gemeente labels (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_geannoteerd__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bestuurlijkegebieden_geannoteerd__europeanetrs89_laeaquad",
+                "name": "Bestuurlijke Gebieden gemeente labels (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_geannoteerd__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bestuurlijkegebieden_geannoteerd__webmercatorquad",
+                "name": "Bestuurlijke Gebieden gemeente labels (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1/styles/bestuurlijkegebieden_geannoteerd__webmercatorquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "Bestuurlijke Gebieden - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/kadaster/brk-bestuurlijke-gebieden/ogc/v1",
+        "service_title": "Bestuurlijke Gebieden",
+        "service_abstract": "Overzicht van de bestuurlijke indeling van Nederland in gemeenten en provincies alsmede de rijksgrens. Gegevens zijn afgeleid uit de Basisregistratie Kadaster (BRK). Lees meer over de Bestuurlijke gebieden en bekijk de vector tiles in de Vectortile Viewer.",
+        "service_type": "api tiles"
+    },
+    {
+        "name": "Basisregistratie Adressen en Gebouwen - Tiles",
+        "title": "Basisregistratie Adressen en Gebouwen - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "bag_standaardvisualisatie__netherlandsrdnewquad",
+                "name": "BAG Standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bag_standaardvisualisatie__webmercatorquad",
+                "name": "BAG Standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bag_standaardvisualisatie__europeanetrs89_laeaquad",
+                "name": "BAG Standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bag_standaardvisualisatie_compleet__netherlandsrdnewquad",
+                "name": "BAG Standaardvisualisatie compleet (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie_compleet__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bag_standaardvisualisatie_compleet__webmercatorquad",
+                "name": "BAG Standaardvisualisatie compleet (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie_compleet__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bag_standaardvisualisatie_compleet__europeanetrs89_laeaquad",
+                "name": "BAG Standaardvisualisatie compleet (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/bag/ogc/v2/styles/bag_standaardvisualisatie_compleet__europeanetrs89_laeaquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "Basisregistratie Adressen en Gebouwen - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/kadaster/bag/ogc/v2",
+        "service_title": "Basisregistratie Adressen en Gebouwen",
+        "service_abstract": "De gegevens bestaan uit BAG-panden inclusief panden met de status 'gesloopt' en een deel van BAG-gegevens van deze panden met de zich daarin bevindende verblijfsobjecten en adresinformatie. Ook de ligplaatsen en standplaatsen zijn opgenomen. Lees meer over de BAG. Bekijk de vector tiles in de Vectortile Viewer.",
+        "service_type": "api tiles"
+    },
+    {
+        "name": "Basisregistratie Grootschalige Topografie - Tiles",
+        "title": "Basisregistratie Grootschalige Topografie - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "bgt_standaardvisualisatie__netherlandsrdnewquad",
+                "name": "BGT Standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bgt_standaardvisualisatie__webmercatorquad",
+                "name": "BGT Standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bgt_standaardvisualisatie__europeanetrs89_laeaquad",
+                "name": "BGT Standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_standaardvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__netherlandsrdnewquad",
+                "name": "BGT Achtergrondvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__netherlandsrdnewquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__webmercatorquad",
+                "name": "BGT Achtergrondvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__webmercatorquad?f=mapbox"
+            },
+            {
+                "id": "bgt_achtergrondvisualisatie__europeanetrs89_laeaquad",
+                "name": "BGT Achtergrondvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/lv/bgt/ogc/v1/styles/bgt_achtergrondvisualisatie__europeanetrs89_laeaquad?f=mapbox"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "Basisregistratie Grootschalige Topografie - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/lv/bgt/ogc/v1/",
+        "service_title": "Basisregistratie Grootschalige Topografie",
+        "service_abstract": "De Basisregistratie Grootschalige Topografie (BGT) is de gedetailleerde grootschalige basiskaart (digitaal) van Nederland, waarin de ligging van alle fysieke objecten zoals gebouwen, wegen, water, spoorlijnen en (landbouw)terreinen is geregistreerd. Lees meer over de BGT en bekijk de BGT vector tiles in de Vectortile Viewer.",
+        "service_type": "api tiles"
+    },
+    {
+        "name": "Kadastrale Kaart - Tiles",
+        "title": "Kadastrale Kaart - Tiles",
+        "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+        "styles": [
+            {
+                "id": "standaardvisualisatie__netherlandsrdnewquad",
+                "name": "Kadastrale kaart standaardvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/standaardvisualisatie__netherlandsrdnewquad/legend"
+            },
+            {
+                "id": "standaardvisualisatie__europeanetrs89_laeaquad",
+                "name": "Kadastrale kaart standaardvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/standaardvisualisatie__europeanetrs89_laeaquad/legend"
+            },
+            {
+                "id": "standaardvisualisatie__webmercatorquad",
+                "name": "Kadastrale kaart standaardvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/standaardvisualisatie__webmercatorquad/legend"
+            },
+            {
+                "id": "kwaliteitsvisualisatie__netherlandsrdnewquad",
+                "name": "Kadastrale kaart kwaliteitsvisualisatie (NetherlandsRDNewQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/kwaliteitsvisualisatie__netherlandsrdnewquad/legend"
+            },
+            {
+                "id": "kwaliteitsvisualisatie__europeanetrs89_laeaquad",
+                "name": "Kadastrale kaart kwaliteitsvisualisatie (EuropeanETRS89_LAEAQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/kwaliteitsvisualisatie__europeanetrs89_laeaquad/legend"
+            },
+            {
+                "id": "kwaliteitsvisualisatie__webmercatorquad",
+                "name": "Kadastrale kaart kwaliteitsvisualisatie (WebMercatorQuad)",
+                "url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/styles/kwaliteitsvisualisatie__webmercatorquad/legend"
+            }
+        ],
+        "tiles": [
+            {
+                "title": "Kadastrale Kaart - Tiles",
+                "abstract": "Deze dataset wordt beschikbaar gesteld als vector tiles in \u00e9\u00e9n of meerdere projecties. Ook worden er styles beschikbaar gesteld.",
+                "tilesets": [
+                    {
+                        "tileset_id": "NetherlandsRDNewQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/28992",
+                        "tileset_max_zoomlevel": 12
+                    },
+                    {
+                        "tileset_id": "EuropeanETRS89_LAEAQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3035",
+                        "tileset_max_zoomlevel": 14
+                    },
+                    {
+                        "tileset_id": "WebMercatorQuad",
+                        "tileset_crs": "https://www.opengis.net/def/crs/EPSG/0/3857",
+                        "tileset_max_zoomlevel": 17
+                    }
+                ]
+            }
+        ],
+        "service_url": "https://api.pdok.nl/kadaster/brk-kadastrale-kaart/ogc/v1/",
+        "service_title": "Kadastrale Kaart",
+        "service_abstract": "Overzicht van de ligging van de kadastrale percelen in Nederland. Fungeert als schakel tussen terrein en registratie, vervult voor externe gebruiker vaak een referentiefunctie, een ondergrond ten opzichte waarvan de gebruiker eigen informatie kan vastleggen en presenteren. Een kadastrale kaart geeft slechts een indicatie van de ligging van de kadastrale grenzen. Er kunnen geen maten aan worden ontleend.",
+        "service_type": "api tiles"
+    }
+]

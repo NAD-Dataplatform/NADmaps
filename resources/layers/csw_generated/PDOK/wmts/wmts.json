@@ -1,0 +1,597 @@
+[
+    {
+        "name": "Actueel_orthoHRIR",
+        "title": "Luchtfoto Actueel Ortho 8cm Infrarood",
+        "abstract": "Landsdekkende dataset in 8cm resolutie infrarood luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_ortho25IR",
+        "title": "Luchtfoto Actueel Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset in 25cm resolutie infrarood luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2026_orthoHRIR",
+        "title": "Luchtfoto 2026 Ortho 5 en 8cm Infrarood",
+        "abstract": "Landsdekkende dataset in 8cm resolutie infrarood luchtfoto's van 2026",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2025_orthoHRIR",
+        "title": "Luchtfoto 2025 Ortho 5 en 8cm Infrarood",
+        "abstract": "Landsdekkende dataset in 8cm resolutie infrarood luchtfoto's van 2025",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2025_ortho25IR",
+        "title": "Luchtfoto 2025 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2025.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2024_ortho25IR",
+        "title": "Luchtfoto 2024 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2024.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2023_ortho25IR",
+        "title": "Luchtfoto 2023 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2023.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2022_ortho25IR",
+        "title": "Luchtfoto 2022 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2022.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2020_ortho25IR",
+        "title": "Luchtfoto 2020 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2020.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2019_ortho25IR",
+        "title": "Luchtfoto 2019 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2019.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2018_ortho25IR",
+        "title": "Luchtfoto 2018 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2018.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2017_ortho25IR",
+        "title": "Luchtfoto 2017 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2017.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2016_ortho25IR",
+        "title": "Luchtfoto 2016 Ortho 25cm Infrarood",
+        "abstract": "Landsdekkende dataset 25cm resolutie infrarood luchtfoto's van 2016.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotocir/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2017 25cm infrarood open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke infrarood orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_orthoHR",
+        "title": "Luchtfoto Actueel Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Actueel_ortho25",
+        "title": "Luchtfoto Actueel Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset in 25cm resolutie kleuren luchtfoto's van de meest recente jaargang.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2026_orthoHR",
+        "title": "Luchtfoto 2026 Ortho 5 en 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2026",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2026_quickorthoHR",
+        "title": "Luchtfoto 2026 Quick Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2026.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2025_orthoHR",
+        "title": "Luchtfoto 2025 Ortho 5 en 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2025",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2025_ortho25",
+        "title": "Luchtfoto 2025 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2025.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2024_orthoHR",
+        "title": "Luchtfoto 2024 Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2024",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2024_ortho25",
+        "title": "Luchtfoto 2024 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2024.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2023_orthoHR",
+        "title": "Luchtfoto 2023 Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2023",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2023_ortho25",
+        "title": "Luchtfoto 2023 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2023.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2022_orthoHR",
+        "title": "Luchtfoto 2022 Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2022",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2022_ortho25",
+        "title": "Luchtfoto 2022 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2022.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2021_orthoHR",
+        "title": "Luchtfoto 2021 Ortho 8cm RGB",
+        "abstract": "Landsdekkende dataset in 8cm resolutie kleuren luchtfoto's van 2021",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2020_ortho25",
+        "title": "Luchtfoto 2020 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2020.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2019_ortho25",
+        "title": "Luchtfoto 2019 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2019.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2018_ortho25",
+        "title": "Luchtfoto 2018 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2018.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2017_ortho25",
+        "title": "Luchtfoto 2017 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2017.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "2016_ortho25",
+        "title": "Luchtfoto 2016 Ortho 25cm RGB",
+        "abstract": "Landsdekkende dataset 25cm resolutie kleuren luchtfoto's van 2016.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:3857,EPSG:4258,EPSG:4326,EPSG:25831,EPSG:25832,OGC:1.0:GoogleMapsCompatible",
+        "imgformats": "image/jpeg",
+        "service_url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "service_title": "Luchtfoto Beeldmateriaal 2023 25cm RGB open data",
+        "service_abstract": "De orthofotomoza\u00efeken zijn een samenstelling van afzonderlijke orthofoto's, in principe van de centrale gedeelten van iedere orthofoto. Daardoor is de omvalling in de moza\u00efeken zo klein mogelijk gehouden. De orthomoza\u00efeken zijn landsdekkend. Deze luchtfoto's zijn beschikbaar als open data.\n            .\n\t\t\tIn 2023 is er, naast de definitieve webservice Ortho25, ook een webservice Quick_Ortho25. De beelden in de Quick_Ortho25 webservice zijn een tijdelijk product en geometrisch van voldoende niveau (afwijkingen op paspunten kleiner dan 2,5 meter). Deze beelden komen versneld beschikbaar, maar kleuren en snijlijnen zijn nog niet optimaal.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "lufolabels",
+        "title": "Luchtfoto labels",
+        "abstract": "De luchtfoto labels bestaan uit weglabels en wegassen en kunnen worden gebruikt als laag (overlay) op onder andere de PDOK luchtfoto.",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/bzk/luchtfotolabels/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Luchtfotolabels WMTS",
+        "service_abstract": "Luchtfoto wegenlabels en wegenassen, bedoeld als overlay voor de PDOK luchtfoto. Dit n.a.v. een wens op de PDOK Ideawall. Op basis van data uit de OpenStreetMap. Opdrachtgever: PDOK.",
+        "service_type": "wmts"
+    },
+    {
+        "name": "top10nl",
+        "title": "TOP10NL",
+        "abstract": "TOP10NL is een digitaal objectgericht kaartbestand wat ten grondslag ligt aan de topografische kaart 1:10000 en wat veelvuldig in diverse GIS- en CAD-systemen wordt gebruikt voor ondergrond, analyse-, en beheers- en planningsactiviteiten",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/brt/top10nl/wmts/v1_0?request=GetCapabilities&service=WMTS",
+        "service_title": "BRT TOP10NL WMTS",
+        "service_abstract": "TOP10NL is een digitaal objectgericht kaartbestand wat ten grondslag ligt aan de topografische kaart 1:10000 en wat veelvuldig in diverse GIS- en CAD-systemen wordt gebruikt voor ondergrond, analyse-, en beheers- en planningsactiviteiten.\n\nVoorstellen voor verbetering van de BRT kunt u bekijken met de BRT Terugmeldingen dataset:\nhttps://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/7a84c4de-4ec0-4202-a8d0-792fb7d39d1f",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Kadastralekaart",
+        "title": "Kadastralekaart",
+        "abstract": "Standaardvisualisatie met grenzen op basis van type (definitief, voorlopig of administratief).",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:25831,EPSG:3857",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/kadaster/kadastralekaart/wmts/v5_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Kadastrale kaart WMTS",
+        "service_abstract": "Overzicht van de ligging van de kadastrale percelen in Nederland. Fungeert als schakel tussen terrein en registratie, vervult voor externe gebruiker vaak een referentiefunctie, een ondergrond ten opzichte waarvan de gebruiker eigen informatie kan vastleggen en presenteren.\n\nIn de nieuwste versie van de open dataset van de Kadastrale kaart (v5) zijn kwaliteitslabels toegevoegd. Deze labels geven de nauwkeurigheid weer waarmee terreingrenzen op de Kadastrale kaart zijn afgebeeld. Hiermee wordt zichtbaar met welke marge de ingetekende grenzen op de Kadastrale kaart kunnen afwijken van de werkelijke grenzen in het terrein. \n\nMeer informatie over de Kadastrale kaart en kwaliteitslabels vindt u op https://www.pdok.nl/introductie/-/article/kadastrale-kaart",
+        "service_type": "wmts"
+    },
+    {
+        "name": "Kadastralekaart_kwaliteitsvisualisatie",
+        "title": "Kadastralekaart kwaliteitsvisualisatie",
+        "abstract": "Kwaliteitsvisualisatie met grenzen op basis van kwaliteitsklasse (B, C, D of E).",
+        "styles": [
+            {
+                "title": "",
+                "name": "default"
+            }
+        ],
+        "tiles": "EPSG:28992,EPSG:25831,EPSG:3857",
+        "imgformats": "image/png",
+        "service_url": "https://service.pdok.nl/kadaster/kadastralekaart/wmts/v5_0?request=GetCapabilities&service=WMTS",
+        "service_title": "Kadastrale kaart WMTS",
+        "service_abstract": "Overzicht van de ligging van de kadastrale percelen in Nederland. Fungeert als schakel tussen terrein en registratie, vervult voor externe gebruiker vaak een referentiefunctie, een ondergrond ten opzichte waarvan de gebruiker eigen informatie kan vastleggen en presenteren.\n\nIn de nieuwste versie van de open dataset van de Kadastrale kaart (v5) zijn kwaliteitslabels toegevoegd. Deze labels geven de nauwkeurigheid weer waarmee terreingrenzen op de Kadastrale kaart zijn afgebeeld. Hiermee wordt zichtbaar met welke marge de ingetekende grenzen op de Kadastrale kaart kunnen afwijken van de werkelijke grenzen in het terrein. \n\nMeer informatie over de Kadastrale kaart en kwaliteitslabels vindt u op https://www.pdok.nl/introductie/-/article/kadastrale-kaart",
+        "service_type": "wmts"
+    }
+]

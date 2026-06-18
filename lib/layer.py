@@ -383,14 +383,10 @@ class LayerManager:
         # =========================================
         # CSW list
         csw_file_path = os.path.join(layers_path, "csw_generated")
-        dir_list1 = os.listdir(csw_file_path)
-        dir_list = [item for item in os.listdir(csw_file_path) if os.path.isdir(os.path.join(csw_file_path,item))]
+        dir_list = os.listdir(csw_file_path)
 
-        self.log(f"CSW directory list: {dir_list1}")
         self.log(f"CSW directory list: {dir_list}")
-
         for source in dir_list:
-            # Add parent row
             self.log(f"[load_layer_list] CSW data for source: {source}")
 
             # Add layer rows
@@ -429,49 +425,57 @@ class LayerManager:
         # Create parent item (header)
         parent = QStandardItem(title)
         parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
-    
-        layer_files = [file for file in os.listdir(file_path) if file.endswith('.json')]
-        
+
+        dir_list = os.listdir(file_path)
+        self.log(f"[add csw source rows] file path: {file_path}")
+        self.log(f"[add csw source rows] dir list: {dir_list}")
+
         data_list = []
-        for layer_file in layer_files:
-            layer_path = os.path.join(file_path, layer_file)
+        # we save the layer data per source, per service type, e.g. resources/layers/csw_generated/PDOK/wfs
+        for service_type in dir_list:
+            service_path = os.path.join(file_path, service_type)
+            self.log(f"[add csw source rows] service path: {service_path}")
+            layer_files = [file for file in os.listdir(service_path) if file.endswith('.json')]
+            
+            for layer_file in layer_files:
+                layer_path = os.path.join(service_path, layer_file)
 
-            with open(layer_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
+                with open(layer_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
 
-            for layer in data:
-                # Layer name (first column, so we add json layer data as a hidden value)
-                layername = layer["title"]
-                itemLayername = QStandardItem(str(layer["title"]))
-                itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
+                for layer in data:
+                    # Layer name (first column, so we add json layer data as a hidden value)
+                    layername = str(layer['title'])
+                    itemLayername = QStandardItem(str(layername))
+                    itemLayername.setData(layer, Qt.ItemDataRole.UserRole)
 
-                # Service type
-                stype = (
-                    self.service_type_mapping[layer["service_type"]]
-                    if layer["service_type"] in self.service_type_mapping
-                    else layer["service_type"].upper()
-                )
-                itemType = QStandardItem(str(stype))
+                    # Service type
+                    stype = (
+                        self.service_type_mapping[layer["service_type"]]
+                        if layer["service_type"] in self.service_type_mapping
+                        else layer["service_type"].upper()
+                    )
+                    itemType = QStandardItem(str(stype))
 
-                # Service name (e.g. PDOK or Legger Delfland)
-                itemServicetitle = QStandardItem(str(layer["service_title"]))
+                    # Service name (e.g. PDOK or Legger Delfland)
+                    itemServicetitle = QStandardItem(str(layer["service_title"]))
 
-                # Item filter (used to search filter in. This column is hidden from the user)
-                itemFilter = QStandardItem(
-                    f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
-                )
+                    # Item filter (used to search filter in. This column is hidden from the user)
+                    itemFilter = QStandardItem(
+                        f"{layer['service_type']} {layername} {layer['service_title']} {layer['service_abstract']}"
+                    )
 
-                # tooltip = "Dubbelklik om een kaartlaag in te laden"
-                tooltip = layer["service_abstract"]
-                itemType.setToolTip(tooltip)
-                itemLayername.setToolTip(tooltip)
-                itemServicetitle.setToolTip(tooltip)
-                
-                parent.appendRow(
-                    [itemLayername, itemType, itemServicetitle, itemFilter]
-                )
+                    # tooltip = "Dubbelklik om een kaartlaag in te laden"
+                    tooltip = layer["service_abstract"]
+                    itemType.setToolTip(tooltip)
+                    itemLayername.setToolTip(tooltip)
+                    itemServicetitle.setToolTip(tooltip)
+                    
+                    parent.appendRow(
+                        [itemLayername, itemType, itemServicetitle, itemFilter]
+                    )
 
-                data_list.extend(data)
+                    data_list.extend(data)
 
         self.layerModel.appendRow(parent_row)
 
