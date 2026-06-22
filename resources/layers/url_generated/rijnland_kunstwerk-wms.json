@@ -2,7 +2,7 @@
     {
         "name": "0",
         "title": "LeggerKunstwerkVigerendLijn",
-        "abstract": "Legger Rijnland: Kunstwerken",
+        "abstract": "",
         "styles": [
             {
                 "title": "LeggerKunstwerkVigerendLijn",
@@ -12,13 +12,13 @@
         "crs": "EPSG:28992",
         "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
         "service_title": "Legger Rijnland: Kunstwerken",
-        "service_abstract": "Legger Rijnland: Kunstwerken",
+        "service_abstract": "",
         "service_type": "wms"
     },
     {
         "name": "1",
         "title": "LeggerKunstwerkVigerendPuntKleur",
-        "abstract": "Legger Rijnland: Kunstwerken",
+        "abstract": "",
         "styles": [
             {
                 "title": "LeggerKunstwerkVigerendPuntKleur",
@@ -28,13 +28,13 @@
         "crs": "EPSG:28992",
         "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
         "service_title": "Legger Rijnland: Kunstwerken",
-        "service_abstract": "Legger Rijnland: Kunstwerken",
+        "service_abstract": "",
         "service_type": "wms"
     },
     {
         "name": "2",
         "title": "LeggerKunstwerkVigerendPuntSymbool",
-        "abstract": "Legger Rijnland: Kunstwerken",
+        "abstract": "",
         "styles": [
             {
                 "title": "LeggerKunstwerkVigerendPuntSymbool",
@@ -44,7 +44,7 @@
         "crs": "EPSG:28992",
         "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
         "service_title": "Legger Rijnland: Kunstwerken",
-        "service_abstract": "Legger Rijnland: Kunstwerken",
+        "service_abstract": "",
         "service_type": "wms"
     }
 ]

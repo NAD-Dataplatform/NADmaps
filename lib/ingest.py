@@ -128,7 +128,7 @@ class IngestLayersManager():
         self.log(f"[remove_duplicates] length after: {len(result)}")
         return result
 
-    ############################# Ingest getCapabilities files #############################
+    ############################# Fetch getCapabilities files #############################
 
     def _ingest_gwsw_layers(self) -> None:
         base_url = "https://geodata.gwsw.nl"
@@ -185,7 +185,7 @@ class IngestLayersManager():
 
     def _ingest_wfs_layers(self, service_data: dict[str, any]) -> list[dict[str, any]]:
 
-        service_url = service_data["service_url"] 
+        service_url = service_data["service_url"]
         service_name = service_data["name"]
         #TODO: check service_data["abstract"] to add to the layer-data
 
@@ -470,14 +470,6 @@ class IngestLayersManager():
                 except Exception as e:
                     self.log(f"[_ingest] Fout bij service url ({service_data.get('service_url', '')}). Foutmelding: {e}", lvl=1)
 
-        # without thread (in case we have trouble with parallel logging-errors for example)
-        # for service_data in urls:
-        #     try:
-        #         layers = function(service_data)
-        #         layer_list.extend(layers)
-        #     except Exception as e:
-        #         self.log(f"[_ingest] Fout bij service url ({service_data.get('service_url', '')}). Foutmelding: {e}", lvl=1)
-
         if not layer_list:
             self.log(f"[_ingest] Geen lagen gevonden voor service type: {service_type}", lvl=1)
             return
@@ -485,30 +477,29 @@ class IngestLayersManager():
         new_list = self.remove_duplicates(layer_list)
         self.save_json_file(new_list, service_type, subpath)
 
+
     ############################# Read list of getCapabilities-URLs #############################
 
     def get_url_layers(self) -> None:
-        # do stuff
         source_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.url_file_name)
-        self.des_path = os.path.join(self.plugin_dir, "resources", "layers", "url_generated")
+        des_path = os.path.join("layers", "url_generated")
 
         with open(source_path, "r", encoding="utf-8") as f:
-            url_list = json.load(f)
+            source_list = json.load(f)
             
-        # wfs_urls = [url_data for url_data in url_list if url_data["service_type"] == "wfs"]
-        # wms_urls = [url_data for url_data in url_list if url_data["service_type"] == "wms"]
+        self.log(f"Found {len(source_list)} sources", lvl=0)
 
-        # self.log(f"Found {len(wfs_urls)} WFS urls and {len(wms_urls)} WMS urls", 0)
+        self.cleanup_folder(des_path)
 
-        # 4. Run the service type ingest functions
-        for service in ("wfs", "wms"):
-            urls = [url_data for url_data in url_list if url_data["service_type"] == service]
-            self.log(f"[get_url_layers] {len(urls)} urls voor service: {service} gevonden", 0)
-            self._ingest(service, urls, os.path.join("layers", "csw_generated", source_name, service))
+        for source in source_list:
+            # get correct function for service type (e.g. wfs requires _ingest_wfs_layers())
+            function = self.ingest_fn_mapping.get(source['service_type'])
+            # call function to retrieve data
+            service_data = function(source)
+            # store results
+            self.save_json_file(service_data, f"{source['name']}-{source['service_type']}", des_path)
 
-        # self.ingest_wfs_layers(wfs_urls)
-        # self.ingest_wms_layers(wms_urls)
-        self.ingest_gwsw_layers()
+        self._ingest_gwsw_layers()
     
     ############################# Read list of CatalogueServiceWeb-URLs #############################
 

@@ -373,7 +373,7 @@ class LayerManager:
         for url_data in url_file_list:
             name = url_data["title"]
             file = f"{url_data['name']}-{url_data['service_type']}.json"
-            self.log(f"[load_layer_list] url list file data, name: {name} and file: {file}")
+            self.log(f"[load_layer_list] url list file data, name: {name} and file: {file}", lvl=0)
             
             url_file_path = os.path.join(layers_path, "url_generated")
             layers = self.add_source_rows(url_file_path, file, name)
@@ -494,8 +494,12 @@ class LayerManager:
         parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
 
         layer_path = os.path.join(file_path, json_file)
-        with open(layer_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
+        try:
+            with open(layer_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            self.log(f"[add_source_rows] Kon bestand {title} niet vinden via pad: {layer_path}. Foutmelding: {e}", lvl=1)
+            return []
 
         for layer in data:
             # Layer name (first column, so we add json layer data as a hidden value)
