@@ -237,7 +237,7 @@ class NADMaps:
             self.log(f"Autostart failed. Error message: {e}")
 
     def show_dialog(self):
-        self.log("Showing NADMaps dialog after short delay.", 0)
+        self.log("Showing NADMaps dialog after short delay.", lvl=0)
         self.dlg.show()
         area = self.iface.mainWindow().dockWidgetArea(self.dlg)
         if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
@@ -400,7 +400,6 @@ class NADMaps:
         self.dlg.checkBox_MaxNumFeatures.clicked.connect(     lambda: self.set_maxnumfeatures_checkbox() ) # maxNumFeatures spinbox
         self.dlg.spinBox_MaxNumFeatures.valueChanged.connect( lambda: self.set_maxnumfeatures() )
 
-
         # update the information on the current selection of active layers
         self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
             self.get_selected_active_layers
@@ -409,9 +408,12 @@ class NADMaps:
         # Activate to log performance by tracking load times of the canvas
         # self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
         # self.iface.mapCanvas().renderComplete.connect(self.log_manager.stop_time)
-        self.dlg.pushButtonGetLayers.clicked.connect(self.ingest_manager.get_layers)
 
-        # self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
+        # Update layer list (Alle kaartlagen)
+        self.dlg.pushButtonGetLayers.clicked.connect(   self.ingest_manager.get_url_layers)
+        self.dlg.pushButtonGetCSWlist.clicked.connect(  self.ingest_manager.get_csw_result)
+        self.dlg.pushButtonGetCSWLayers.clicked.connect(self.ingest_manager.get_csw_layers)
+
 
     #########################################################################################
     ################################  General utility functions #############################

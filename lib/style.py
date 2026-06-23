@@ -33,7 +33,7 @@ def get_style_code(style_name: str, url: str, name: str):
     Create the name for a styling file. Encoded with md5 for better readability.
     """
     code = str(url + '_' + name)
-    md = hashlib.md5(code.encode("utf"))
+    md = hashlib.md5(code.encode("utf"), usedforsecurity=False)
     text = md.hexdigest()
     return str(style_name.lower() + '_' + text) 
 

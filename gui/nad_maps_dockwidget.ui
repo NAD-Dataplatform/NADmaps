@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>600</height>
+    <height>624</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1225,7 +1225,7 @@
          <property name="title">
           <string>Lagen verversen</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QLabel" name="labelGetLayers">
             <property name="text">
@@ -1236,8 +1236,34 @@
           <item>
            <widget class="QPushButton" name="pushButtonGetLayers">
             <property name="text">
-             <string>Opnieuw ophalen</string>
+             <string>getCapabilities bestanden uitlezen</string>
             </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonGetCSWlist">
+            <property name="text">
+             <string>CatalogueServiceWeb metadata ophalen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="horizontalGroupBox">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item>
+              <widget class="QComboBox" name="CSWLoadComboBox"/>
+             </item>
+             <item>
+              <widget class="QComboBox" name="CSWsourceComboBox"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButtonGetCSWLayers">
+               <property name="text">
+                <string>CSW lagen ophalen</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>

@@ -1,0 +1,56 @@
+[
+    {
+        "name": "hhd_legger",
+        "title": "Legger Delfland",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "service_type": "wfs"
+    },
+    {
+        "name": "klimaatatlas",
+        "title": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wfs?service=wfs&request=getcapabilities",
+        "service_type": "wfs"
+    },
+    {
+        "name": "klimaatatlas",
+        "title": "Klimaatatlas",
+        "service_url": "https://cas.cloud.sogelink.com/public/data/org/gws/YWFMLMWERURF/kea_public/wms?service=wms&request=getcapabilities",
+        "service_type": "wms"
+    },
+    {
+        "name": "waterketeninbeeld",
+        "title": "Waterketen in Beeld",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wfs?request=getcapabilities",
+        "service_type": "wfs"
+    },
+    {
+        "name": "waterketeninbeeld",
+        "title": "Waterketen in Beeld",
+        "service_url": "https://waterketeninbeeld.geoatlas.nl/geoserver/wkib/wms?request=getcapabilities",
+        "service_type": "wms"
+    },
+    {
+        "name": "rijnland_opp_water",
+        "title": "Legger Rijnland: Oppervlakte water",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Oppervlaktewater_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_type": "wfs"
+    },
+    {
+        "name": "rijnland_primaire_kering",
+        "title": "Legger Rijnland: Primaire keringen",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_Primaire_Kering_Vigerend/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+        "service_type": "wfs"
+    },
+    {
+        "name": "rijnland_regionale_kering",
+        "title": "Legger Rijnland: Regionale keringen", 
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_regionale_kering_vigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_type": "wms"
+    },
+    {
+        "name": "rijnland_kunstwerk",
+        "title": "Legger Rijnland: Kunstwerken",
+        "service_url": "https://rijnland.enl-mcs.nl/arcgis/services/Leggers/Legger_kunstwerkenVigerend/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+        "service_type": "wms"
+    }
+]
