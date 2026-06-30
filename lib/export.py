@@ -25,14 +25,15 @@ class ExportManager:
     def __init__(self, dlg, iface, working_dir, log, project=None):
         self.project = project or QgsProject.instance()
 
-        assert dlg is not None, "ExportManager: dlg is None"
-        assert iface is not None, "LayerManager: iface is None"
-        assert working_dir is not None, "ExportManager: working_dir is None"
-        assert log is not None, "ExportManager: log is None"
+        if log is None: raise ValueError("ExportManager: log is None")
+        self.log = log
+        
+        if dlg is None: self.log("ExportManager: dlg is None", level=2)
+        if iface is None: self.log("ExportManager: iface is None", level=2)
+        if working_dir is None: self.log("ExportManager: working_dir is None", level=2)
 
         self.dlg = dlg
         self.iface = iface
-        self.log = log
         
         self.set_working_directory(working_dir)
         

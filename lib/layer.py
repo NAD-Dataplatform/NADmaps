@@ -359,7 +359,7 @@ class LayerManager:
         for file_data in custom_file_list:
             name = file_data["name"]
             file = file_data["file"]
-            self.log(f"[load_layer_list] custom file data, name: {name} and file: {file}")
+            # self.log(f"[load_layer_list] custom file data, name: {name} and file: {file}", level=0)
 
             custom_file_path = os.path.join(layers_path, "custom")
 
@@ -373,7 +373,7 @@ class LayerManager:
         for url_data in url_file_list:
             name = url_data["title"]
             file = f"{url_data['name']}-{url_data['service_type']}.json"
-            self.log(f"[load_layer_list] url list file data, name: {name} and file: {file}", lvl=0)
+            # self.log(f"[load_layer_list] url list file data, name: {name} and file: {file}", level=0)
             
             url_file_path = os.path.join(layers_path, "url_generated")
             layers = self.add_source_rows(url_file_path, file, name)
@@ -385,9 +385,9 @@ class LayerManager:
         csw_file_path = os.path.join(layers_path, "csw_generated")
         dir_list = os.listdir(csw_file_path)
 
-        self.log(f"CSW directory list: {dir_list}")
+        # self.log(f"CSW directory list: {dir_list}", level=0)
         for source in dir_list:
-            self.log(f"[load_layer_list] CSW data for source: {source}")
+            # self.log(f"[load_layer_list] CSW data for source: {source}", level=0)
 
             # Add layer rows
             file_path = os.path.join(csw_file_path, source)
@@ -427,14 +427,14 @@ class LayerManager:
         parent_row = [parent, QStandardItem(""), QStandardItem(""), QStandardItem("")]
 
         dir_list = os.listdir(file_path)
-        self.log(f"[add csw source rows] file path: {file_path}")
-        self.log(f"[add csw source rows] dir list: {dir_list}")
+        # self.log(f"[add csw source rows] file path: {file_path}", level=0)
+        # self.log(f"[add csw source rows] dir list: {dir_list}", level=0)
 
         data_list = []
         # we save the layer data per source, per service type, e.g. resources/layers/csw_generated/PDOK/wfs
         for service_type in dir_list:
             service_path = os.path.join(file_path, service_type)
-            self.log(f"[add csw source rows] service path: {service_path}")
+            # self.log(f"[add csw source rows] service path: {service_path}", level=0)
             layer_files = [file for file in os.listdir(service_path) if file.endswith('.json')]
             
             for layer_file in layer_files:
@@ -498,7 +498,7 @@ class LayerManager:
             with open(layer_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception as e:
-            self.log(f"[add_source_rows] Kon bestand {title} niet vinden via pad: {layer_path}. Foutmelding: {e}", lvl=1)
+            self.log(f"[add_source_rows] Kon bestand {title} niet vinden via pad: {layer_path}. Foutmelding: {e}", level=1)
             return []
 
         for layer in data:

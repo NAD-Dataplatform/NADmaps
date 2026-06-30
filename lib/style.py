@@ -43,18 +43,18 @@ class StyleManager:
     Class to manage the styling of layers
     """
     def __init__(self, dlg, iface, plugin_dir, working_dir, creator, log):
-
-        assert dlg is not None, "StyleManager: dlg is None"
-        assert iface is not None, "StyleManager: iface is None"
-        assert plugin_dir is not None, "StyleManager: plugin_dir is None"
-        assert working_dir is not None, "StyleManager: working_dir is None"
-        assert creator is not None, "StyleManager: creator is None"
-        assert log is not None, "StyleManager: log is None"
+        if log is None: raise ValueError("StyleManager: log is None")
+        self.log = log
+        
+        if dlg is None: self.log("StyleManager: dlg is None", level=2)
+        if iface is None: self.log("StyleManager: iface is None", level=2)
+        if plugin_dir is None: self.log("StyleManager: plugin_dir is None", level=2)
+        if working_dir is None: self.log("StyleManager: working_dir is None", level=2)
+        if creator is None: self.log("StyleManager: creator is None", level=2)
         
         self.dlg = dlg
         self.iface = iface
         self.creator = creator
-        self.log = log
 
         self.plugin_styling_path = os.path.join(plugin_dir, "resources", "styling", "styling.json")
         self.plugin_styling_files_path = os.path.join( plugin_dir, "resources", "styling", "qml_files")
@@ -83,6 +83,7 @@ class StyleManager:
         """Set the working directory for the plugin"""
         # some checks if the path is not empty or a directory
         if not path:
+            self.log("StyleManager - set_working_directory: no path found")
             return
         if not os.path.isdir(path):
             return

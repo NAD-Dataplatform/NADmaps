@@ -189,7 +189,7 @@
              <item>
               <widget class="QLabel" name="thema_intro_label">
                <property name="text">
-                <string>Het tabblad 'Themasets' heeft een aantal kant en klare sets van kaartlagen klaarstaan. Zo hoef je niet zelf de benodigde kaartlagen bij elkaar te klikken. Dubbelklik op het gewenste thema en je kan gelijk aan de slag! </string>
+                <string>Het tabblad 'Themasets' heeft een aantal kant en klare sets van kaartlagen klaarstaan. Dubbelklik op het gewenste thema en je kan gelijk aan de slag! </string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -230,7 +230,7 @@
              <item>
               <widget class="QLabel" name="actievelagen_intro_label">
                <property name="text">
-                <string>Voor de geavanceerde gebruiker bestaat de mogelijkheid om zelf themasets samen te stellen. Hier kan je een combinatie van kaartlagen klaarzetten en samen met hun opmaak opslaan voor een volgende QGIS werksessie.</string>
+                <string>Voor de geavanceerde gebruiker bestaat de mogelijkheid om zelf themasets samen te stellen. Hier kan je een combinatie van kaartlagen klaarzetten en samen met hun opmaak opslaan.</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -277,7 +277,7 @@
              <item>
               <widget class="QLabel" name="lagen_intro_label">
                <property name="text">
-                <string>Het eerste tabblad bevat een grote kaartenbak met nuttige en openbaar beschikbare kaartlagen. Je kan beginnen met een achtergrond-kaart inladen om jezelf te orienteren. Vervolgens kan je de zoekbalk gebruiken om te filteren op interessante onderwerpen.</string>
+                <string>Het eerste tabblad bevat een grote kaartenbak met nuttige en openbaar beschikbare kaartlagen. Je kan de zoekbalk gebruiken om te filteren op interessante onderwerpen.</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -321,7 +321,7 @@
              <item>
               <widget class="QLabel" name="exporteren_intro_label">
                <property name="text">
-                <string>Een afbeelding exporteren kan ook!</string>
+                <string>De kaart op je scherm exporteren als afbeelding of PDF is mogelijk. Voeg naar wens een legenda, noordpijl en titel toe.</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

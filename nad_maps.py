@@ -32,6 +32,7 @@ from qgis.core import (
     QgsProject,
     QgsProcessingFeedback,
     QgsApplication,
+    QgsMessageLog
 )
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread, QUrl
 from qgis.PyQt.QtGui import QIcon, QDesktopServices
@@ -64,7 +65,7 @@ from .lib.search_location import SearchLocationManager
 from .lib.ingest import IngestLayersManager
 
 #########################################################################################
-####################  Run main script to initiate when NAD button is pressed ############
+#########################  Initiation of the NADMaps class ##############################
 #########################################################################################
 
 
@@ -80,56 +81,88 @@ class NADMaps:
         :type iface: QgsInterface
         """
         self.iface = iface
+        self.dlg = None
+        self.dockwidget = None
+
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
-        self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
-        self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+
+        self.log_manager = LoggingManager()
+        self.log = self.log_manager.log
 
         if getpass.getuser() in ADMIN_USERNAMES:
             self.creator = "Plugin"
         else:
             self.creator = getpass.getuser()
-            self.dlg.groupBoxGetLayers.setVisible(False)
-
-        self.log_manager = LoggingManager(dlg=self.dlg)
-        self.log = self.log_manager.log
-
-        self.log_manager = LoggingManager(dlg=self.dlg)
-        self.log = self.log_manager.log
+            # self.dlg.groupBoxGetLayers.setVisible(False)
 
         # initialize the working directory from settings
+        QSettings().setValue("NADmaps/working_dir", None)
         self.working_dir = QSettings().value("NADmaps/working_dir")
 
-        # if user did not select a working directory, then skip the creation of folder and path creation
-        if self.working_dir in ["", None]:
-            self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1)  
-        else:
-            try:
-                os.makedirs(self.working_dir, exist_ok=True)
-                os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-                os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
+        # Declare instance attributes
+        self.actions = []
+        self.menu = self.tr("&NAD Waterketen Kaarten")
 
-                # save the working directory to the settings, such that it is available next time the plugin is started
-                QSettings().setValue("NADmaps/working_dir", self.working_dir)
-                self.dlg.lineEditFilePath.setText(self.working_dir)
+        # Check if plugin was started the first time in current QGIS session
+        # Must be set in initGui() to survive plugin reloads
+        # will be set True in run()
+        self.setup_completed = False
+        self.current_layer = None
+        self.selected_active_layers = None
+        self.selected_layer = None
+        self.zoom_completed = False
+        self.render_connected = False
+        self.dockwidget_added = False
 
-                self.user_styling_path = os.path.join(
-                    self.working_dir, "styling", "styling.json"
-                )
-                self.user_styling_files_path = os.path.join(
-                    self.working_dir, "styling", "qml_files"
-                )
-            except Exception as e:
-                self.log(f"Kon geen werkmap aanmaken. De plugin kan niet goed functioneren zonder werkmap.", 1)
+        # Check if the autostart option is set to true in the settings
+        self.autostart_triggered = False
+        self.autostart = QSettings().value("NADmaps/autostart", False, type=bool)
 
-        # define plugin paths
-        self.plugin_styling_path = os.path.join(
-            self.plugin_dir, "resources", "styling", "styling.json"
+        if self.autostart == True:
+            self.iface.initializationCompleted.connect(lambda: self.safe_autostart)
+
+
+    def initGui(self):
+        """Create the menu entries and toolbar icons inside the QGIS GUI."""
+        self.run_icon = QIcon(os.path.join(self.plugin_dir, "resources", "nad.png"))
+
+        self.add_action(
+            icon_path=self.run_icon,
+            text=PLUGIN_NAME,
+            callback=self.safe_autostart,
+            parent=self.iface.mainWindow(),
         )
-        self.plugin_styling_files_path = os.path.join(
-            self.plugin_dir, "resources", "styling", "qml_files"
-        )
 
+    #########################################################################################
+    ####################  Run main script to initiate when NAD button is pressed ############
+    #########################################################################################
+
+    def safe_autostart(self):
+        try:
+            self.log("Running autostart...")
+            self.run(hiddenDialog=True)  # Delay the UI part
+            QTimer.singleShot(1500, self.show_dialog)
+            self.autostart_triggered = True
+            self.log("Autostart completed successfully.")
+        except Exception as e:
+            self.log(f"Autostart failed. Error message: {e}")
+
+    def show_dialog(self):
+        self.log("Showing NADMaps dialog after short delay.", level=0)
+        self.dlg.show()
+        area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+        if not self.dockwidget_added:
+        # if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
+            self.iface.mainWindow().removeDockWidget(self.dlg)
+            self.dockwidget = self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+            self.dlg.setFloating(False)
+            self.dockwidget_added = True
+        self.dlg.raise_()
+        self.dlg.activateWindow()
+
+    def create_managers(self):
+        self.log_manager.set_dialog(dlg=self.dlg)
         self.style_manager = StyleManager(
             dlg=self.dlg,
             iface=self.iface,
@@ -167,91 +200,78 @@ class NADMaps:
             project=None
         )
 
-        # Declare instance attributes
-        self.actions = []
-        self.menu = self.tr("&NAD Waterketen Kaarten")
+    def initialize_directories(self):        
+        # if user did not select a working directory, then skip the creation of folder and path creation
+        if self.working_dir in ["", None]:
+            self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1)  
+        else:
+            try:
+                os.makedirs(self.working_dir, exist_ok=True)
+                os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
+                os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
 
-        # Check if plugin was started the first time in current QGIS session
-        # Must be set in initGui() to survive plugin reloads
-        # will be set True in run()
-        self.setup_completed = False
-        self.current_layer = None
-        self.selected_active_layers = None
-        self.selected_layer = None
-        self.zoom_completed = False
+                # save the working directory to the settings, such that it is available next time the plugin is started
+                QSettings().setValue("NADmaps/working_dir", self.working_dir)
+                self.dlg.lineEditFilePath.setText(self.working_dir)
 
-        # Check if the autostart option is set to true in the settings
-        self.autostart_triggered = False
-        self.autostart = QSettings().value("NADmaps/autostart", False, type=bool)
-        self.log(f"Autostart value is {self.autostart}")
+                self.user_styling_path = os.path.join(self.working_dir, "styling", "styling.json")
+                self.user_styling_files_path = os.path.join(self.working_dir, "styling", "qml_files")
+            except Exception as e:
+                self.log(f"Kon geen werkmap aanmaken. De plugin kan niet goed functioneren zonder werkmap.", 1)
 
-        if self.autostart == True:
-            self.log("self.autostart == True")
-            self.iface.initializationCompleted.connect(
-                lambda: self.run(hiddenDialog=True)
-            )
+        # define plugin paths
+        self.plugin_styling_path = os.path.join(self.plugin_dir, "resources", "styling", "styling.json")
+        self.plugin_styling_files_path = os.path.join(self.plugin_dir, "resources", "styling", "qml_files")
 
-        # if QSettings().value("NADmaps/autostart", "false") == "true":
-        #     self.log("Autostart is enabled...")
-        #     task_mgr = QgsApplication.taskManager()
-        #     task_mgr.allTasksFinished.connect(self.safe_autostart)
-        #     # ^ In case a task is already running, this will trigger the autostart
+    def initialize_gui_state(self):
+        # deactivate the styling box until a layer is selected 
+        self.dlg.stylingGroupBox.setEnabled(False)
+        self.dlg.stylingGroupBox.setToolTip("Selecteer één laag om de styling aan te passen")
 
-        #     if not self.autostart_triggered:
-        #         # Fallback timer in case no tasks are running
-        #         QTimer.singleShot(1500, self.safe_autostart)
+        # init the values for the export settings
+        self.export_manager.init_export_comboboxes()
+        self.export_manager.check_map_name()  # To enable or disable pushbutton
+
+        # init autostart checkbox
+        self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", False, type=bool) == True)
+        # QSettings().value("NADmaps/autostart", "false") == "true"
+
+        # init standard area
+        self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
+
+        # init autoload standard area checkbox
+        checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
+        self.log(f"auto zoom to standard area is checked: {checked}")
+        self.dlg.checkBox_StandardArea.setChecked(checked)
+        if not checked:  # if unchecked, zoom is not required during this session
+            self.log("zoom_completed is set to True", 0)
+            self.zoom_completed = True
+
+        # init max number of features value en checkbox
+        self.dlg.spinBox_MaxNumFeatures.setValue(
+            int(QSettings().value("NADmaps/maxNumFeatures", 5000))
+        )
         if QSettings().value("NADmaps/maxNumFeaturesCheck", False, type=bool) == False:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(0))
         else:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(2))
 
-        # parallel rendering
-        QSettings().setValue("/qgis/parallel_rendering", True)
-        threadcount = QThread.idealThreadCount()
-        QgsApplication.setMaxThreads(threadcount)
-        QSettings().setValue("/core/OpenClEnabled", True)
-
-    def initGui(self):
-        """Create the menu entries and toolbar icons inside the QGIS GUI."""
-        self.run_icon = QIcon(os.path.join(self.plugin_dir, "resources", "nad.png"))
-
-        self.add_action(
-            icon_path=self.run_icon,
-            text=PLUGIN_NAME,
-            callback=self.run,
-            parent=self.iface.mainWindow(),
-        )
-
-    #########################################################################################
-    ####################  Run main script to initiate when NAD button is pressed ############
-    #########################################################################################
-
-    def safe_autostart(self):
-        try:
-            self.log("Running autostart...")
-            self.run(hiddenDialog=True)  # Delay the UI part
-            QTimer.singleShot(1500, self.show_dialog)
-            self.autostart_triggered = True
-            self.log("Autostart completed successfully.")
-        except Exception as e:
-            self.log(f"Autostart failed. Error message: {e}")
-
-    def show_dialog(self):
-        self.log("Showing NADMaps dialog after short delay.", lvl=0)
-        self.dlg.show()
-        area = self.iface.mainWindow().dockWidgetArea(self.dlg)
-        if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
-            self.iface.mainWindow().removeDockWidget(self.dlg)
-            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-            self.dlg.setFloating(False)
-        self.dlg.raise_()
-        self.dlg.activateWindow()
+        # This property holds whether the checkbox is a tri-state checkbox. False means the checkbox has only two states
+        self.dlg.checkBox_MaxNumFeatures.setTristate(False)
+        self.set_maxnumfeatures_checkbox()
 
     def run(self, hiddenDialog=False):
         """Run method that performs all the real work"""
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
         if self.setup_completed == False:
+            if self.dlg is None:
+                self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
+            self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
+            self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+            self.create_managers()
+            self.initialize_directories()
+
             # setup the (proxy)models
             self.setup_interactions()
 
@@ -267,54 +287,20 @@ class NADMaps:
 
             projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
             QgsProject.instance().setCrs(projectCrs)
-            self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+            # self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
 
             self.setup_completed = True
 
-        # deactivate the styling box until a layer is selected 
-        self.dlg.stylingGroupBox.setEnabled(False)
-        self.dlg.stylingGroupBox.setToolTip(
-            "Selecteer één laag om de styling aan te passen"
-        )
-
-        # init the values for the export settings
-        self.export_manager.init_export_comboboxes()
-        self.export_manager.check_map_name()  # To enable or disable pushbutton
-
-        # init autostart checkbox
-        self.dlg.checkBox_AutoStart.setChecked(
-            QSettings().value("NADmaps/autostart", False, type=bool) == True
-        )
-            # QSettings().value("NADmaps/autostart", "false") == "true"
-
-        # init standard area
-        self.dlg.lineEdit_StandardArea.setText(
-            QSettings().value("NADmaps/standard_area")
-        )
-
-        # init autoload standard area checkbox
-        checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
-        self.log(f"auto zoom to standard area is checked: {checked}")
-        self.dlg.checkBox_StandardArea.setChecked(checked)
-        if not checked:  # if unchecked, zoom is not required during this session
-            self.log("zoom_completed is set to True", 0)
-            self.zoom_completed = True
-
-        # init max number of features value en checkbox
-        self.dlg.spinBox_MaxNumFeatures.setValue(
-            int(QSettings().value("NADmaps/maxNumFeatures", 5000))
-        )
-
-        # This property holds whether the checkbox is a tri-state checkbox. False means the checkbox has only two states
-        self.dlg.checkBox_MaxNumFeatures.setTristate(False)
-        self.set_maxnumfeatures_checkbox()
+        self.initialize_gui_state()
 
         # show the dialog
         if not hiddenDialog:
             self.show_dialog()
 
         # Zoom to standard area after render when no layer was active at startup
-        self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
+        if not self.render_connected:
+            self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
+            self.render_connected = True
 
     #########################################################################################
     #################################  Setup functions ######################################
@@ -503,9 +489,27 @@ class NADMaps:
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
+        QgsMessageLog.logMessage("Unload gestart", "MyPlugin", 1)
         for action in self.actions:
-            self.iface.removePluginMenu(self.tr("&NAD Waterketen Kaarten"), action)
+            self.iface.removePluginMenu(self.menu, action)
             self.iface.removeToolBarIcon(action)
+        
+        if self.dockwidget:
+            self.iface.removeDockWidget(self.dockwidget)
+            self.dockwidget.deleteLater()
+            self.dockwidget = None
+
+        if self.dlg:
+            self.dlg.close()
+            self.dlg.deleteLater()
+            self.dlg = None
+        
+        QgsMessageLog.logMessage(f"dlg2: {self.dlg}", "MyPlugin", 1)
+        QgsMessageLog.logMessage(f"dockwidget: {self.dockwidget}", "MyPlugin", 1)
+
+
+
+
 
     def set_maxnumfeatures(self):
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()

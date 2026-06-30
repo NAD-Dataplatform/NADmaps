@@ -38,11 +38,13 @@ class ThemaManager:
     """
 
     def __init__(self, dlg, plugin_dir, working_dir, creator, log):
-        assert dlg is not None, "ThemaManager: dlg is None"
-        assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
-        assert working_dir is not None, "ThemaManager: working_dir is None"
-        assert creator is not None, "ThemaManager: creator is None"
-        assert log is not None, "ThemaManager: log is None"
+        if log is None: raise ValueError("ThemaManager: log is None")
+        self.log = log
+
+        if dlg is None: self.log("ThemaManager: dlg is None", level=2)
+        if plugin_dir is None: self.log("ThemaManager: plugin_dir is None", level=2)
+        if working_dir is None: self.log("ThemaManager: working_dir is None", level=2)
+        if creator is None: self.log("ThemaManager: creator is None", level=2)
 
         self.plugin_thema_path = os.path.join(
             plugin_dir, "resources", "themas", "thema.json"
@@ -67,7 +69,6 @@ class ThemaManager:
 
         self.dlg = dlg
         self.creator = creator
-        self.log = log
 
         self.current_thema = None
         self.current_layer = None
