@@ -32,7 +32,6 @@ from qgis.core import (
     QgsProject,
     QgsProcessingFeedback,
     QgsApplication,
-    QgsMessageLog
 )
 from qgis.PyQt.QtCore import QCoreApplication, QSettings, Qt, QTimer, QThread, QUrl
 from qgis.PyQt.QtGui import QIcon, QDesktopServices
@@ -84,9 +83,7 @@ class NADMaps:
         self.dlg = None
         self.dockwidget = None
 
-        # initialize plugin directory
-        self.plugin_dir = os.path.dirname(__file__)
-
+        self.layer_manager = None
         self.log_manager = LoggingManager()
         self.log = self.log_manager.log
 
@@ -96,7 +93,8 @@ class NADMaps:
             self.creator = getpass.getuser()
             # self.dlg.groupBoxGetLayers.setVisible(False)
 
-        # initialize the working directory from settings
+        # initialize plugin directory and working directory from settings
+        self.plugin_dir = os.path.dirname(__file__)
         QSettings().setValue("NADmaps/working_dir", None)
         self.working_dir = QSettings().value("NADmaps/working_dir")
 
@@ -108,20 +106,20 @@ class NADMaps:
         # Must be set in initGui() to survive plugin reloads
         # will be set True in run()
         self.setup_completed = False
-        self.current_layer = None
-        self.selected_active_layers = None
-        self.selected_layer = None
+
         self.zoom_completed = False
         self.render_connected = False
         self.dockwidget_added = False
 
+        self.selected_active_layers = None
+        self.selected_layer = None
+
         # Check if the autostart option is set to true in the settings
         self.autostart_triggered = False
         self.autostart = QSettings().value("NADmaps/autostart", False, type=bool)
-
+        self.log(f"[init] autostart value: {self.autostart}")
         if self.autostart == True:
-            self.iface.initializationCompleted.connect(lambda: self.safe_autostart)
-
+            self.iface.initializationCompleted.connect(self.run)
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
@@ -130,7 +128,7 @@ class NADMaps:
         self.add_action(
             icon_path=self.run_icon,
             text=PLUGIN_NAME,
-            callback=self.safe_autostart,
+            callback=self.run,
             parent=self.iface.mainWindow(),
         )
 
@@ -138,36 +136,77 @@ class NADMaps:
     ####################  Run main script to initiate when NAD button is pressed ############
     #########################################################################################
 
-    def safe_autostart(self):
-        try:
-            self.log("Running autostart...")
-            self.run(hiddenDialog=True)  # Delay the UI part
-            QTimer.singleShot(1500, self.show_dialog)
-            self.autostart_triggered = True
-            self.log("Autostart completed successfully.")
-        except Exception as e:
-            self.log(f"Autostart failed. Error message: {e}")
+    def run(self, hiddenDialog=False):
+        """Run method that performs all the real work"""
+        # Create the dialog with elements (after translation) and keep reference
+        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
+        if self.setup_completed == False:
+            if self.dlg is None:
+                self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
+            self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
+            self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+
+            # create all the subsystem classes
+            self.create_managers()
+
+            # setup the (proxy)models
+            self.initialize_gui_state()
+            self.setup_interactions()
+
+            # local and plugin directories
+            self.initialize_directories()
+            self.set_working_directory(self.working_dir)
+
+            # fill the list with available layers and pass to the style manager
+            layer_list = self.layer_manager.load_layer_list()
+            self.style_manager.set_layer_list(layer_list)
+
+            projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
+            QgsProject.instance().setCrs(projectCrs)
+            # self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
+
+            self.setup_completed = True
+
+
+        # create an initial list of active layers
+        self.layer_manager.update_active_layers_list()
+
+        # create a list of existing themas
+        self.thema_manager.update_thema_list()
+
+        # show the dialog
+        if not hiddenDialog:
+            self.show_dialog()
+
+        # Zoom to standard area after render when no layer was active at startup
+        if not self.render_connected:
+            self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
+            self.render_connected = True
+
+    #########################################################################################
+    #################################  Setup functions ######################################
+    #########################################################################################
 
     def show_dialog(self):
-        self.log("Showing NADMaps dialog after short delay.", level=0)
+        self.log("[show_dialog] Showing NADMaps dialog.", level=0)
         self.dlg.show()
-        area = self.iface.mainWindow().dockWidgetArea(self.dlg)
+        
         if not self.dockwidget_added:
-        # if self.dlg.isFloating() or area != Qt.RightDockWidgetArea:
             self.iface.mainWindow().removeDockWidget(self.dlg)
             self.dockwidget = self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
             self.dlg.setFloating(False)
             self.dockwidget_added = True
+
         self.dlg.raise_()
         self.dlg.activateWindow()
 
     def create_managers(self):
         self.log_manager.set_dialog(dlg=self.dlg)
+
         self.style_manager = StyleManager(
             dlg=self.dlg,
             iface=self.iface,
             plugin_dir=self.plugin_dir,
-            working_dir=self.working_dir,
             creator=self.creator,
             log=self.log,
         )
@@ -182,7 +221,6 @@ class NADMaps:
         self.thema_manager = ThemaManager(
             dlg=self.dlg,
             plugin_dir=self.plugin_dir,
-            working_dir=self.working_dir,
             creator=self.creator,
             log=self.log,
         )
@@ -192,65 +230,52 @@ class NADMaps:
             plugin_dir=self.plugin_dir,
             log=self.log,
         )
-        self.export_manager = ExportManager(
-            dlg=self.dlg,
-            iface=self.iface,
-            working_dir=self.working_dir,
-            log=self.log,
-            project=None
-        )
+        self.export_manager = ExportManager(dlg=self.dlg, iface=self.iface, log=self.log)
 
-    def initialize_directories(self):        
-        # if user did not select a working directory, then skip the creation of folder and path creation
-        if self.working_dir in ["", None]:
-            self.log("Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1)  
-        else:
-            try:
-                os.makedirs(self.working_dir, exist_ok=True)
-                os.makedirs(os.path.join(self.working_dir, "styling"), exist_ok=True)
-                os.makedirs(os.path.join(self.working_dir, "styling", "qml_files"), exist_ok=True)
-
-                # save the working directory to the settings, such that it is available next time the plugin is started
-                QSettings().setValue("NADmaps/working_dir", self.working_dir)
-                self.dlg.lineEditFilePath.setText(self.working_dir)
-
-                self.user_styling_path = os.path.join(self.working_dir, "styling", "styling.json")
-                self.user_styling_files_path = os.path.join(self.working_dir, "styling", "qml_files")
-            except Exception as e:
-                self.log(f"Kon geen werkmap aanmaken. De plugin kan niet goed functioneren zonder werkmap.", 1)
-
+    def initialize_directories(self):
         # define plugin paths
+        os.makedirs(os.path.join(self.plugin_dir, "resources", "styling"), exist_ok=True)
         self.plugin_styling_path = os.path.join(self.plugin_dir, "resources", "styling", "styling.json")
         self.plugin_styling_files_path = os.path.join(self.plugin_dir, "resources", "styling", "qml_files")
 
-    def initialize_gui_state(self):
-        # deactivate the styling box until a layer is selected 
-        self.dlg.stylingGroupBox.setEnabled(False)
-        self.dlg.stylingGroupBox.setToolTip("Selecteer één laag om de styling aan te passen")
+        # if user did not select a working directory, then skip the creation of folder and path creation
+        if self.working_dir in ["", None]:
+            self.log("[initialize_directories] Geen werkmap opgegeven. De plugin kan niet goed functioneren zonder werkmap.", 1)  
+        else:
+            # save the working directory to the settings, such that it is available next time the plugin is started
+            QSettings().setValue("NADmaps/working_dir", self.working_dir)
+            self.dlg.lineEditFilePath.setText(self.working_dir)
 
+    def initialize_gui_state(self):
         # init the values for the export settings
         self.export_manager.init_export_comboboxes()
         self.export_manager.check_map_name()  # To enable or disable pushbutton
 
+        # init thema manager gui
+        self.thema_manager.initialize_gui_state()
+        self.layer_manager.initialize_gui_state()
+
+        # setup for the active layer tab
+        self.get_selected_active_layers()
+
         # init autostart checkbox
         self.dlg.checkBox_AutoStart.setChecked(QSettings().value("NADmaps/autostart", False, type=bool) == True)
-        # QSettings().value("NADmaps/autostart", "false") == "true"
 
         # init standard area
         self.dlg.lineEdit_StandardArea.setText(QSettings().value("NADmaps/standard_area"))
 
         # init autoload standard area checkbox
         checked = QSettings().value("NADmaps/autoload_standardarea", False, type=bool)
-        self.log(f"auto zoom to standard area is checked: {checked}")
+        self.log(f"[initialize_gui_state] Auto zoom to standard area is checked: {checked}")
+
         self.dlg.checkBox_StandardArea.setChecked(checked)
         if not checked:  # if unchecked, zoom is not required during this session
-            self.log("zoom_completed is set to True", 0)
+            self.log("[initialize_gui_state] zoom_completed is set to True", 0)
             self.zoom_completed = True
 
         # init max number of features value en checkbox
-        self.dlg.spinBox_MaxNumFeatures.setValue(
-            int(QSettings().value("NADmaps/maxNumFeatures", 5000))
-        )
+        self.dlg.spinBox_MaxNumFeatures.setValue(int(QSettings().value("NADmaps/maxNumFeatures", 5000)))
+
         if QSettings().value("NADmaps/maxNumFeaturesCheck", False, type=bool) == False:
             self.dlg.checkBox_MaxNumFeatures.setCheckState(Qt.CheckState(0))
         else:
@@ -260,51 +285,10 @@ class NADMaps:
         self.dlg.checkBox_MaxNumFeatures.setTristate(False)
         self.set_maxnumfeatures_checkbox()
 
-    def run(self, hiddenDialog=False):
-        """Run method that performs all the real work"""
-        # Create the dialog with elements (after translation) and keep reference
-        # Only create GUI ONCE in callback, so that it will only load when the plugin is started
-        if self.setup_completed == False:
-            if self.dlg is None:
-                self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
-            self.dlg = NADMapsDockWidget(parent=self.iface.mainWindow())
-            self.dlg.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-            self.create_managers()
-            self.initialize_directories()
-
-            # setup the (proxy)models
-            self.setup_interactions()
-
-            # create an initial list of active layers
-            self.layer_manager.update_active_layers_list()
-
-            # create a list of existing themas
-            self.thema_manager.update_thema_list()
-
-            # Create a list of all layers available via the plugin
-            layer_list = self.layer_manager.load_layer_list()
-            self.style_manager.set_layer_list(layer_list)
-
-            projectCrs = QgsCoordinateReferenceSystem.fromEpsgId(28992)
-            QgsProject.instance().setCrs(projectCrs)
-            # self.iface.addDockWidget(Qt.RightDockWidgetArea, self.dlg)
-
-            self.setup_completed = True
-
-        self.initialize_gui_state()
-
-        # show the dialog
-        if not hiddenDialog:
-            self.show_dialog()
-
-        # Zoom to standard area after render when no layer was active at startup
-        if not self.render_connected:
-            self.iface.mapCanvas().renderComplete.connect(self.check_and_execute_zoom)
-            self.render_connected = True
-
-    #########################################################################################
-    #################################  Setup functions ######################################
-    #########################################################################################
+        # Hide admin only objects
+        if self.creator != "Plugin":
+            self.dlg.groupBoxGetLayers.setVisible(False)
+            self.dlg.logView.setVisible(False)
 
     # Check if zoom should be executed
     def check_zoom_required(self):
@@ -329,13 +313,6 @@ class NADMaps:
             self.search_manager.get_lookup_id_and_zoom(standard_area)
             self.zoom_completed = True
 
-    def open_wiki(self):
-        url = QUrl(WIKI_URL)
-        QDesktopServices.openUrl(url)
-
-    def go_to_tab(self, tab_index: int):
-        self.dlg.tabWidget.setCurrentIndex(tab_index)
-
     def setup_interactions(self):
         """
         This does a setup of all the button interactions.
@@ -348,6 +325,8 @@ class NADMaps:
         self.dlg.goExporterenButton.clicked.connect(    lambda: self.go_to_tab(4) )
 
         # Active layer tab
+        self.dlg.activeMapListView.selectionModel().selectionChanged.connect(self.get_selected_active_layers)
+
         self.dlg.loadStyleButton.clicked.connect(       lambda: self.style_manager.load_styling() )
         self.dlg.loadStyleButton.clicked.connect(       lambda: self.layer_manager.update_active_layers_list() )
         self.dlg.removeStyleButton.clicked.connect(     lambda: self.style_manager.delete_styling() )
@@ -355,8 +334,6 @@ class NADMaps:
         self.dlg.saveStyleButton.clicked.connect(       lambda: self.style_manager.save_styling(self.selected_layer) )
         self.dlg.saveStyleButton.clicked.connect(       lambda: self.layer_manager.update_active_layers_list() )
 
-        self.dlg.saveThemaButton.setEnabled(False)
-        self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
         self.dlg.saveThemaButton.clicked.connect(       lambda: self.thema_manager.save_thema(False, self.selected_active_layers) )
         self.dlg.saveAllThemaButton.clicked.connect(    lambda: self.thema_manager.save_thema(True, self.selected_active_layers) )
 
@@ -386,10 +363,6 @@ class NADMaps:
         self.dlg.checkBox_MaxNumFeatures.clicked.connect(     lambda: self.set_maxnumfeatures_checkbox() ) # maxNumFeatures spinbox
         self.dlg.spinBox_MaxNumFeatures.valueChanged.connect( lambda: self.set_maxnumfeatures() )
 
-        # update the information on the current selection of active layers
-        self.dlg.activeMapListView.selectionModel().selectionChanged.connect(
-            self.get_selected_active_layers
-        )
 
         # Activate to log performance by tracking load times of the canvas
         # self.iface.mapCanvas().renderStarting.connect(self.log_manager.start_time)
@@ -405,25 +378,33 @@ class NADMaps:
     ################################  General utility functions #############################
     #########################################################################################
 
+    def open_wiki(self):
+        url = QUrl(WIKI_URL)
+        QDesktopServices.openUrl(url)
+
+    def go_to_tab(self, tab_index: int):
+        self.dlg.tabWidget.setCurrentIndex(tab_index)
+
     def set_working_directory(self, path):
         """Set the working directory for the plugin"""
 
         # some checks if the path is not empty or a directory
         if path == "" or path == None:
+            self.log("[set_working_directory] Opgegeven pad is leeg.", level = 1)
             return
         if not os.path.isdir(path):
+            self.log(f"[set_working_directory] Opgegeven pad {path} is geen directory.", level = 1)
             return
-        # plugin path & user path
-        os.makedirs(path, exist_ok=True)
-        os.makedirs(os.path.join(path, "styling"), exist_ok=True)
-        os.makedirs(os.path.join(path, "styling", "qml_files"), exist_ok=True)
 
+        try:
+            os.makedirs(path, exist_ok=True)
+        except Exception as e:
+            self.log(f"Niet gelukt om de werkmap aan te maken voor pad: {path}. Foutmelding: {e}")
+
+        # pass path to relevant module classes
         self.thema_manager.set_working_directory(path)
         self.style_manager.set_working_directory(path)
         self.export_manager.set_working_directory(path)
-
-        self.user_styling_path = os.path.join(path, "styling", "styling.json")
-        self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
 
         # save the working directory to the settings, such that it is available next time the plugin is started
         QSettings().setValue("NADmaps/working_dir", path)
@@ -450,46 +431,28 @@ class NADMaps:
         """
         Get the selected layers from the active layers-tab
         """
-        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
-        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-        # self.log(f"nr selected rows = {nr_of_selected_rows}")
+        first_column_indexes = {index.siblingAtColumn(0) for index in self.dlg.activeMapListView.selectedIndexes() }
+        selected_layers = [index.data(Qt.ItemDataRole.UserRole) for index in first_column_indexes]
+        nr_selected = len(selected_layers)
 
-        # enable or disable the styling-functions
-        if nr_of_selected_rows == 1:
-            self.style_manager.update_styling_list()
-            self.dlg.stylingGroupBox.setEnabled(True)
-            self.dlg.stylingGroupBox.setToolTip("")
-            self.dlg.saveThemaButton.setEnabled(True)
-            self.dlg.saveThemaButton.setToolTip("")
-        elif nr_of_selected_rows > 1:
-            self.dlg.stylingGroupBox.setEnabled(False)
-            self.dlg.stylingGroupBox.setToolTip(
-                "Selecteer één laag om de styling aan te passen"
-            )
-            self.dlg.saveThemaButton.setEnabled(True)
-            self.dlg.saveThemaButton.setToolTip("")
-        elif nr_of_selected_rows == 0:
-            self.dlg.stylingGroupBox.setEnabled(False)
-            self.dlg.stylingGroupBox.setToolTip(
-                "Selecteer één laag om de styling aan te passen"
-            )
-            self.dlg.saveThemaButton.setEnabled(False)
-            self.dlg.saveThemaButton.setToolTip("Geen lagen geselecteerd")
+        # update gui in sub
+        self.style_manager.update_styling_gui()
+        self.thema_manager.update_thema_gui()
+
+        if nr_selected == 0:
             self.selected_active_layers = None
             return
 
-        self.selected_active_layers = []
-        first_index_list = set(index.siblingAtColumn(0) for index in selectedIndexes)
-        for index in first_index_list:
-            active_layer = index.data(Qt.ItemDataRole.UserRole)
-            self.selected_active_layers.append(active_layer)
-            if nr_of_selected_rows == 1:
-                self.selected_layer = active_layer
-            # self.log(f"selected active layers = {self.selected_active_layers}")
+        self.selected_active_layers = selected_layers
+
+        if nr_selected == 1:
+            self.selected_layer = selected_layers[0]
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
-        QgsMessageLog.logMessage("Unload gestart", "MyPlugin", 1)
+        if self.layer_manager:
+            self.layer_manager.unload()
+
         for action in self.actions:
             self.iface.removePluginMenu(self.menu, action)
             self.iface.removeToolBarIcon(action)
@@ -503,13 +466,6 @@ class NADMaps:
             self.dlg.close()
             self.dlg.deleteLater()
             self.dlg = None
-        
-        QgsMessageLog.logMessage(f"dlg2: {self.dlg}", "MyPlugin", 1)
-        QgsMessageLog.logMessage(f"dockwidget: {self.dockwidget}", "MyPlugin", 1)
-
-
-
-
 
     def set_maxnumfeatures(self):
         maxnumfeatures = self.dlg.spinBox_MaxNumFeatures.value()

@@ -42,29 +42,30 @@ class StyleManager:
     """
     Class to manage the styling of layers
     """
-    def __init__(self, dlg, iface, plugin_dir, working_dir, creator, log):
+    def __init__(self, dlg, iface, plugin_dir, creator, log):
         if log is None: raise ValueError("StyleManager: log is None")
         self.log = log
         
         if dlg is None: self.log("StyleManager: dlg is None", level=2)
         if iface is None: self.log("StyleManager: iface is None", level=2)
         if plugin_dir is None: self.log("StyleManager: plugin_dir is None", level=2)
-        if working_dir is None: self.log("StyleManager: working_dir is None", level=2)
         if creator is None: self.log("StyleManager: creator is None", level=2)
         
         self.dlg = dlg
         self.iface = iface
         self.creator = creator
+        
+        self.working_dir_available = False
+        self.working_dir = None
 
         self.plugin_styling_path = os.path.join(plugin_dir, "resources", "styling", "styling.json")
-        self.plugin_styling_files_path = os.path.join( plugin_dir, "resources", "styling", "qml_files")
+        self.plugin_styling_files_path = os.path.join(plugin_dir, "resources", "styling", "qml_files")
         assert os.path.exists(self.plugin_styling_path), f"StyleManager: plugin_styling_path does not exist: {self.plugin_styling_path}"
         assert os.path.exists(self.plugin_styling_files_path), f"StyleManager: plugin_styling_files_path does not exist: {self.plugin_styling_files_path}"
-
-        self.set_working_directory(working_dir)
         
-        self.dlg.stylingGroupBox.setToolTip("Selecteer maar één laag om de styling aan te passen")
-
+        # Interactions
+        self.dlg.saveStylingLineEdit.textChanged.connect(self.update_styling_gui)
+        
         self.layer_type_mapping = {
             0: "Vector",
             1: "Raster",
@@ -83,16 +84,18 @@ class StyleManager:
         """Set the working directory for the plugin"""
         # some checks if the path is not empty or a directory
         if not path:
-            self.log("StyleManager - set_working_directory: no path found")
             return
         if not os.path.isdir(path):
             return
         
-        os.makedirs(path, exist_ok=True)
         os.makedirs(os.path.join(path, "styling"), exist_ok=True)
+        os.makedirs(os.path.join(path, "styling", "qml_files"), exist_ok=True)
         
         self.user_styling_path = os.path.join(path, "styling", "styling.json")
         self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
+
+        self.working_dir_available = True
+        self.working_dir = path
 
     def set_layer_list(self, layer_list):
         self.layer_list = layer_list
@@ -103,15 +106,17 @@ class StyleManager:
         try:
             with open(self.plugin_styling_path, "r", encoding="utf-8") as f:
                 layer_style_list.extend(json.load(f))
-        except:
+        except Exception as e:
+            self.log(f"Kon plugin-styling opties niet vinden voor het pad {self.plugin_styling_path}. Foutmelding: {e}")
             pass
 
         # Load user styles
-        if os.path.exists(self.user_styling_path):
+        if self.working_dir_available and os.path.exists(self.user_styling_path):
             try:
                 with open(self.user_styling_path, "r", encoding="utf-8") as f:
                     layer_style_list.extend(json.load(f))
-            except:
+            except Exception as e:
+                self.log(f"Kon gebruiker-styling opties niet vinden voor het pad {self.user_styling_path}. Foutmelding: {e}")
                 pass
         
         return layer_style_list
@@ -215,7 +220,7 @@ class StyleManager:
                 # in all cases add the style name to the layer properties
                 data.setCustomProperty( "layerStyle", style_title )
         except Exception as e:
-            self.log(f"Failed to load style: {style_title}. Error message: {e}")
+            self.log(f"Failed to load style: {style_title}. Error message: {e}", level=1)
 
     def save_styling(self, layer):
         """
@@ -307,7 +312,7 @@ class StyleManager:
         self.dlg.saveStylingLineEdit.clear()
 
         # self.update_active_layers_list()
-        self.update_styling_list()
+        self._update_styling_list()
 
     def delete_styling(self):
         """Delete an existing style (only user-defined styles should be deleted)."""
@@ -382,25 +387,21 @@ class StyleManager:
         else:
             self.log(f"QML file not found: {file_path}")
 
-        self.update_styling_list()
         if style_name == current_style:
             data.setCustomProperty( "layerStyle", "" )
-        # self.update_active_layers_list()
+        self._update_styling_list()
 
-    def update_styling_list(self):
+    def _update_styling_list(self):
         """Update the dropdown menu with saved styling options"""
         self.dlg.stylingComboBox.clear()
-        selectedIndexes = self.dlg.activeMapListView.selectedIndexes()
-        nr_of_selected_rows = len(set(index.row() for index in selectedIndexes))
-
-        # enable or disable the styling-functions
-        if nr_of_selected_rows != 1:
-            return
     
         data = self.dlg.activeMapListView.selectedIndexes()[0].data(
             Qt.ItemDataRole.UserRole
         )
 
+        if data is None:
+            return
+        
         uri = data.source()  # source is the uri of the layer
         title = data.name()
         display_name = ""
@@ -457,3 +458,30 @@ class StyleManager:
 
         # in all cases add the style name to the layer properties
         data.setCustomProperty( "layerStyle", display_name )
+
+    def update_styling_gui(self):
+        first_column_indexes = {index.siblingAtColumn(0) for index in self.dlg.activeMapListView.selectedIndexes()}
+
+        if len(first_column_indexes) != 1:
+            self.dlg.stylingGroupBox.setEnabled(False)
+            self.dlg.stylingGroupBox.setToolTip("Selecteer één laag om de styling aan te passen")
+            return
+        
+        self._update_styling_list()
+        self.dlg.stylingGroupBox.setEnabled(True)
+        self.dlg.stylingGroupBox.setToolTip("")
+
+        # Opmaak opslaan knop interactie
+        style_name = self.dlg.saveStylingLineEdit.text()
+        tooltip = ""
+        enable = True
+
+        if not self.working_dir_available:
+            enable = False
+            tooltip = "Geen werkmap geselecteerd in het Instellingen-tabblad."
+        elif not style_name:
+            enable = False
+            tooltip = "Geen laagnaam ingevuld."
+            
+        self.dlg.saveStyleButton.setEnabled(enable)
+        self.dlg.saveStyleButton.setToolTip(tooltip)

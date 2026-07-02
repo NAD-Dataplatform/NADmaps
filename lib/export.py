@@ -22,20 +22,20 @@ from qgis.PyQt.QtWidgets import QMessageBox
 
 
 class ExportManager:
-    def __init__(self, dlg, iface, working_dir, log, project=None):
-        self.project = project or QgsProject.instance()
+    def __init__(self, dlg, iface, log):
+        self.project = QgsProject.instance()
 
         if log is None: raise ValueError("ExportManager: log is None")
         self.log = log
         
         if dlg is None: self.log("ExportManager: dlg is None", level=2)
         if iface is None: self.log("ExportManager: iface is None", level=2)
-        if working_dir is None: self.log("ExportManager: working_dir is None", level=2)
 
         self.dlg = dlg
         self.iface = iface
         
-        self.set_working_directory(working_dir)
+        self.working_dir = None
+        self.working_dir_available = False
         
         # Unknown what this does. TODO Check and document in the future
         QgsLegendSettings().setWrapChar(' ')
@@ -51,20 +51,28 @@ class ExportManager:
 
     def set_working_directory(self, path):
         """Set the working directory for the plugin"""
-        # some checks if the path is not empty or a directory
         if not path:
             return
         if not os.path.isdir(path):
             return
         
+        self.working_dir_available = True
         self.working_dir = path
 
     def check_map_name(self):
         """
         If no filename is supplied, then exporting is not possible.
         """
+        tooltip = "Geen bestandsnaam ingevuld of geen werkmap geselecteerd in het Instellingen-tabblad."
+        enable = False
+
         map_name = self.dlg.lineEdit_FileName.text()
-        self.dlg.pushButton_ExporteerMap.setEnabled(bool(map_name))
+        if map_name and self.working_dir_available:
+            enable = True
+            tooltip = ""
+
+        self.dlg.pushButton_ExporteerMap.setEnabled(enable)
+        self.dlg.pushButton_ExporteerMap.setToolTip(tooltip)
 
     def init_export_comboboxes(self):
         """
@@ -459,13 +467,11 @@ class ExportManager:
             return
 
         file_format = self.dlg.comboBox_BestandsFormaat.currentText()
-        return os.path.join(
-            self.working_dir, "export", f"{map_name}.{file_format.lower()}"
-        )
+        return os.path.join(self.working_dir, "export", f"{map_name}.{file_format.lower()}")
 
     def export_map_button_pressed(self):
-        if not os.path.exists(self.working_dir):
-            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
+        if not self.working_dir_available:
+            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.", level=1)
             return
 
         file_path = self._generate_export_path()

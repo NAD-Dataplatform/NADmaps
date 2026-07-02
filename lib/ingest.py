@@ -18,7 +18,7 @@ from owslib.ogcapi.features import Features
 
 from .constants import SERVICE_TYPE_MAPPING
 
-class IngestLayersManager(): 
+class IngestLayersManager():
     def __init__(self, dlg, iface, plugin_dir, log):
         if log is None: raise ValueError("LayerManager: log is None")
         self.log = log
@@ -31,7 +31,6 @@ class IngestLayersManager():
         self.iface = iface
         self.plugin_dir = plugin_dir
         
-        self.log("Init IngestLayersManager")
         self.session = requests.Session()
         
         # cert = False # Skips certification (not for production!)

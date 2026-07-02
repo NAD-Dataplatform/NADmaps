@@ -226,6 +226,21 @@ class LayerManager:
 
 
         ##################################################################
+        # Set default layer loading behaviour
+        self.service_type_mapping = SERVICE_TYPE_MAPPING
+        self.default_tree_locations = {
+            "wms": "top",
+            "wmts": "bottom",
+            "wfs": "top",
+            "wcs": "top",
+            "api features": "top",
+            "api tiles": "bottom",
+            "xyz": "bottom",
+        }
+
+
+    def initialize_gui_state(self):
+        ##################################################################
         # Model for the list of all active layers
         self.mapsModel = QStandardItemModel()
 
@@ -236,8 +251,8 @@ class LayerManager:
         self.dlg.activeMapListView.setModel(self.proxyModelMaps)
         self.dlg.activeMapListView.setEditTriggers( QAbstractItemView.EditTrigger.NoEditTriggers )
         
-        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect( lambda: self.update_active_layers_list() )
-        QgsProject.instance().layerTreeRoot().nameChanged.connect( lambda: self.update_active_layers_list() )
+        QgsProject.instance().layerTreeRoot().layerOrderChanged.connect( self.update_active_layers_list )
+        QgsProject.instance().layerTreeRoot().nameChanged.connect( self.update_active_layers_list )
 
         ##################################################################
         # Model for the list of all layers available via the plugin
@@ -261,18 +276,20 @@ class LayerManager:
 
         self.dlg.searchLineEdit.textChanged.connect(self.filter_layers)
 
-        ##################################################################
-        # Set default layer loading behaviour
-        self.service_type_mapping = SERVICE_TYPE_MAPPING
-        self.default_tree_locations = {
-            "wms": "top",
-            "wmts": "bottom",
-            "wfs": "top",
-            "wcs": "top",
-            "api features": "top",
-            "api tiles": "bottom",
-            "xyz": "bottom",
-        }
+
+
+    def unload(self):
+        root = QgsProject.instance().layerTreeRoot()
+        try:
+            root.layerOrderChanged.disconnect(self.update_active_layers_list)
+        except Exception:
+            pass
+
+        try:
+            root.nameChanged.disconnect(self.update_active_layers_list)
+        except Exception:
+            pass
+
 
     ############################# Search in all layers list ######################
 
