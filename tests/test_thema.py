@@ -23,6 +23,7 @@ def nadmap_mock(iface_mock, selected_active_layers):
     nadmap.initGui()
     # nadmap.setup_models()
     nadmap.creator = "Gebruiker"
+    nadmap.create_managers()
     nadmap.thema_manager.creator = "Gebruiker"
     nadmap.working_dir = QSettings().value("NADmaps/working_dir")
     nadmap.thema_manager.user_thema_path = os.path.join(
