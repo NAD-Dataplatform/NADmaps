@@ -95,7 +95,7 @@ class NADMaps:
 
         # initialize plugin directory and working directory from settings
         self.plugin_dir = os.path.dirname(__file__)
-        QSettings().setValue("NADmaps/working_dir", None)
+        # QSettings().setValue("NADmaps/working_dir", None)
         self.working_dir = QSettings().value("NADmaps/working_dir")
 
         # Declare instance attributes
