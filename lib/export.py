@@ -17,7 +17,7 @@ from qgis.core import (
     QgsLegendSettings, QgsTextFormat
 )
 from qgis.PyQt.QtCore import Qt, QSizeF
-from PyQt5.QtGui import QColor, QFont
+from qgis.PyQt.QtGui import QColor, QFont
 from qgis.PyQt.QtWidgets import QMessageBox
 
 
