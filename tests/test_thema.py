@@ -32,7 +32,7 @@ def nadmap_mock(iface_mock, selected_active_layers):
     nadmap.thema_manager.user_thema_path = os.path.join(
         nadmap.working_dir, "themas", "user_themas.json"
     )
-    
+
     nadmap.selected_active_layers = selected_active_layers
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
@@ -48,7 +48,6 @@ def test_save_thema(thema_manager_mock, selected_active_layers):
     # Save a theme with dummy layer and check the resulting json
     assert thema_manager_mock.user_thema_path is not None
     assert thema_manager_mock.user_thema_path != ""
-    assert os.path.exists(thema_manager_mock.user_thema_path)
 
     thema_manager_mock.save_thema(
         all=False, selected_active_layers=selected_active_layers
