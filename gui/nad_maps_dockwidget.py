@@ -38,7 +38,7 @@ class NADMapsDockWidget(QtWidgets.QDockWidget, FORM_CLASS):
         super().__init__(parent)
         self.setObjectName("NADMapsDockWidget")
         self.setWindowTitle("NAD Maps")
-        self.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
+        # self.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
 
         # Set up the main widget
         self.main_widget = QtWidgets.QWidget()
