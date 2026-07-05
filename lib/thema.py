@@ -37,85 +37,35 @@ class ThemaManager:
     Class to manage the thema sets (a list of one or more map layers)
     """
 
-    def __init__(self, dlg, plugin_dir, working_dir, creator, log):
-        assert dlg is not None, "ThemaManager: dlg is None"
-        assert plugin_dir is not None, "ThemaManager: plugin_dir is None"
-        assert working_dir is not None, "ThemaManager: working_dir is None"
-        assert creator is not None, "ThemaManager: creator is None"
-        assert log is not None, "ThemaManager: log is None"
+    def __init__(self, dlg, plugin_dir, creator, log):
+        if log is None: raise ValueError("ThemaManager: log is None")
+        self.log = log
 
-        self.plugin_thema_path = os.path.join(
-            plugin_dir, "resources", "themas", "thema.json"
-        )
-        self.plugin_styling_path = os.path.join(
-            plugin_dir, "resources", "styling", "styling.json"
-        )
-        self.plugin_styling_files_path = os.path.join(
-            plugin_dir, "resources", "styling", "qml_files"
-        )
-        assert os.path.exists(self.plugin_thema_path), (
-            f"ThemaManager: plugin_thema_path does not exist: {self.plugin_thema_path}"
-        )
-        assert os.path.exists(self.plugin_styling_path), (
-            f"ThemaManager: plugin_styling_path does not exist: {self.plugin_styling_path}"
-        )
-        assert os.path.exists(self.plugin_styling_files_path), (
-            f"ThemaManager: plugin_styling_files_path does not exist: {self.plugin_styling_files_path}"
-        )
+        if dlg is None: self.log("ThemaManager: dlg is None", level=2)
+        if plugin_dir is None: self.log("ThemaManager: plugin_dir is None", level=2)
+        if creator is None: self.log("ThemaManager: creator is None", level=2)
 
-        self.set_working_directory(working_dir)
+        self.plugin_thema_path = os.path.join(plugin_dir, "resources", "themas", "thema.json")
+        self.plugin_styling_path = os.path.join(plugin_dir, "resources", "styling", "styling.json")
+        self.plugin_styling_files_path = os.path.join(plugin_dir, "resources", "styling", "qml_files")
+
+        assert os.path.exists(self.plugin_thema_path), (f"ThemaManager: plugin_thema_path does not exist: {self.plugin_thema_path}")
+        assert os.path.exists(self.plugin_styling_path), (f"ThemaManager: plugin_styling_path does not exist: {self.plugin_styling_path}")
+        assert os.path.exists(self.plugin_styling_files_path), (f"ThemaManager: plugin_styling_files_path does not exist: {self.plugin_styling_files_path}")
+
 
         self.dlg = dlg
         self.creator = creator
-        self.log = log
 
         self.current_thema = None
         self.current_layer = None
 
-        self.themaModel = QStandardItemModel()
-        self.dlg.themaView.setModel(self.themaModel)
-
-        self.favoriteFilterThema = QSortFilterProxyModel()
-        self.favoriteFilterThema.setSourceModel(self.themaModel)
-        self.favoriteFilterThema.setFilterKeyColumn(1)
-        self.favoriteFilterThema.setFilterRole(
-            Qt.CheckStateRole
-        )  # https://doc.qt.io/qtforpython-6/PySide6/QtCore/QSortFilterProxyModel.html#PySide6.QtCore.QSortFilterProxyModel.setFilterRole
-
-        self.userFilterThema = QSortFilterProxyModel()
-        self.userFilterThema.setSourceModel(self.favoriteFilterThema)
-        self.userFilterThema.setFilterKeyColumn(
-            2
-        )  # change this when you want to order by something else (like order in layer panel)
-
-        self.dlg.themaView.setModel(self.userFilterThema)
-        self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
-        self.themaViewSelectionModel = QItemSelectionModel(self.dlg.themaView.model())
-
-        self.themaMapModel = QStandardItemModel()
-
-        self.proxyModelThemaMaps = QSortFilterProxyModel()
-        self.proxyModelThemaMaps.setSourceModel(self.themaMapModel)
-
-        self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
-        self.dlg.themaMapListView.setEditTriggers(
-            QAbstractItemView.EditTrigger.NoEditTriggers
-        )
-
-        self.dlg.themaView.clicked.connect(lambda cell: self.update_favorites(cell))
-        # Update the display with a list of map layers within the selected thema
-        self.dlg.themaView.selectionModel().selectionChanged.connect(
-            self.show_thema_layers
-        )
-        # TODO: what does this do?
-        self.dlg.themaView.selectionModel().select(
-            self.themaModel.index(0, 0),
-            QItemSelectionModel.Select | QItemSelectionModel.Rows,
-        )
-
-        self.dlg.themaView.doubleClicked.connect(
-            lambda: self.load_thema_layers()
-        )  # Using lambda here to prevent sending signal parameters to the loadService() function
+        self.working_dir_available = False
+        self.working_dir = None
+        self.user_thema_path = None
+        self.user_thema_favorite_path = None
+        self.user_styling_path = None
+        self.user_styling_files_path = None
 
         self.service_type_mapping = SERVICE_TYPE_MAPPING
 
@@ -135,23 +85,91 @@ class ThemaManager:
         # https://plugins.qgis.org/plugins/connector/
         # self.log("Finished init ThemaManager")
 
+    def initialize_gui_state(self):
+        self.themaModel = QStandardItemModel()
+        self.dlg.themaView.setModel(self.themaModel)
+
+        # We have 2 filter models
+        self.favoriteFilterThema = QSortFilterProxyModel()
+        self.favoriteFilterThema.setSourceModel(self.themaModel)
+        self.favoriteFilterThema.setFilterKeyColumn(1)
+        self.favoriteFilterThema.setFilterRole(Qt.CheckStateRole) # https://doc.qt.io/qtforpython-6/PySide6/QtCore/QSortFilterProxyModel.html#PySide6.QtCore.QSortFilterProxyModel.setFilterRole
+
+        self.userFilterThema = QSortFilterProxyModel()
+        self.userFilterThema.setSourceModel(self.favoriteFilterThema)
+        self.userFilterThema.setFilterKeyColumn(2) # change this when you want to order by something else (like order in layer panel)
+
+        self.dlg.themaView.setModel(self.userFilterThema)
+        self.dlg.themaView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.themaViewSelectionModel = QItemSelectionModel(self.dlg.themaView.model())
+
+        # Add interaction connectors
+        self.dlg.themaView.clicked.connect(lambda cell: self.update_favorites(cell))
+        # Update the display with a list of map layers within the selected thema
+        self.dlg.themaView.selectionModel().selectionChanged.connect(self.show_thema_layers)
+
+        # TODO: what does this do?
+        self.dlg.themaView.selectionModel().select(
+            self.themaModel.index(0, 0),
+            QItemSelectionModel.Select | QItemSelectionModel.Rows,
+        )
+        
+        # Using lambda here to prevent sending signal parameters to the loadService() function
+        self.dlg.themaView.doubleClicked.connect(self.load_thema_layers)  
+        self.dlg.saveThemaLineEdit.textChanged.connect(self.update_thema_gui)
+
+        # This item model is for the list of layers within a thema
+        self.themaMapModel = QStandardItemModel()
+        self.proxyModelThemaMaps = QSortFilterProxyModel()
+        self.proxyModelThemaMaps.setSourceModel(self.themaMapModel)
+
+        self.dlg.themaMapListView.setModel(self.proxyModelThemaMaps)
+        self.dlg.themaMapListView.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+
+
     def set_working_directory(self, path):
         """Set the working directory for the plugin"""
-        # some checks if the path is not empty or a directory
+        
+        if not path:
+            return
+        if not os.path.isdir(path):
+            return
 
-        if path and os.path.isdir(path) and path not in ["", None]:
-            os.makedirs(path, exist_ok=True)
-            os.makedirs(os.path.join(path, "themas"), exist_ok=True)
+        os.makedirs(os.path.join(path, "themas"), exist_ok=True)
 
-            self.user_thema_path = os.path.join(path, "themas", "user_themas.json")
-            self.user_thema_favorite_path = os.path.join(path, "themas", "favorites.json")
-            self.user_styling_path = os.path.join(path, "styling", "styling.json")
-            self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
-        else:
-            self.user_thema_path = ""
-            self.user_thema_favorite_path = ""
-            self.user_styling_path = ""
-            self.user_styling_files_path = ""
+        self.user_thema_path = os.path.join(path, "themas", "user_themas.json")
+        self.user_thema_favorite_path = os.path.join(path, "themas", "favorites.json")
+        self.user_styling_path = os.path.join(path, "styling", "styling.json")
+        self.user_styling_files_path = os.path.join(path, "styling", "qml_files")
+
+        self.working_dir = path
+        self.working_dir_available = True
+
+    def update_thema_gui(self):
+        thema_name = self.dlg.saveThemaLineEdit.text()
+
+        has_selection = bool(self.dlg.activeMapListView.selectedIndexes())
+
+        enable_all = True
+        enable_select = True
+        tooltip_all = ""
+        tooltip_select = ""
+
+        if not self.working_dir_available:
+            enable_all = enable_select = False
+            tooltip_all = tooltip_select = "Geen werkmap geselecteerd in het Instellingen-tabblad."
+        elif not thema_name:
+            enable_all = enable_select = False
+            tooltip_all = tooltip_select = "Geen bestandsnaam ingevuld."
+        elif not has_selection:
+            enable_select = False
+            tooltip_select = "Geen lagen geselecteerd"
+
+        self.dlg.saveThemaButton.setEnabled(enable_select)
+        self.dlg.saveThemaButton.setToolTip(tooltip_select)
+
+        self.dlg.saveAllThemaButton.setEnabled(enable_all)
+        self.dlg.saveAllThemaButton.setToolTip(tooltip_all)
 
     def delete_thema(self):
         """Delete an existing thema (only user defined themas can be deleted)"""
@@ -194,11 +212,8 @@ class ThemaManager:
             json_path = self.plugin_thema_path
         elif self.user_thema_path != "":
             json_path = self.user_thema_path
-        # elif os.path.exists(self.user_thema_path):
-        #     json_path = self.user_thema_path
         else:
-            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.")
-            print("save thema: Geen opslaglocatie gevonden. Return")
+            self.log("Geen opslaglocatie gevonden. Selecteer eerst de juiste werkmap in de Instellingen.", level=1)
             return
 
         # load the layers
@@ -353,7 +368,7 @@ class ThemaManager:
         themas = []
         with open(self.plugin_thema_path, "r", encoding="utf-8") as f:
             themas.extend(json.load(f))
-        if os.path.exists(self.user_thema_path):
+        if self.working_dir_available and os.path.exists(self.user_thema_path):
             with open(self.user_thema_path, "r", encoding="utf-8") as f:
                 themas.extend(json.load(f))
 

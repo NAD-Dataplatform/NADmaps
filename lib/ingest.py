@@ -18,19 +18,19 @@ from owslib.ogcapi.features import Features
 
 from .constants import SERVICE_TYPE_MAPPING
 
-class IngestLayersManager(): 
+class IngestLayersManager():
     def __init__(self, dlg, iface, plugin_dir, log):
-        if dlg is None: raise ValueError("LayerManager: dlg is None")
-        if iface is None: raise ValueError("LayerManager: iface is None")
-        if plugin_dir is None: raise ValueError("LayerManager: plugin_dir is None")
         if log is None: raise ValueError("LayerManager: log is None")
+        self.log = log
+        
+        if dlg is None: self.log("LayerManager: dlg is None", level=2)
+        if iface is None: self.log("LayerManager: iface is None", level=2)
+        if plugin_dir is None: self.log("LayerManager: plugin_dir is None", level=2)
 
         self.dlg = dlg
         self.iface = iface
         self.plugin_dir = plugin_dir
-        self.log = log
         
-        self.log("Init IngestLayersManager")
         self.session = requests.Session()
         
         # cert = False # Skips certification (not for production!)
@@ -94,7 +94,7 @@ class IngestLayersManager():
 
     def cleanup_folder(self, subpath: str | None) -> None:
         if not subpath:
-            self.log("[cleanup_folder] Geen subpath opgegeven; cleanup overgeslagen", lvl=0)
+            self.log("[cleanup_folder] Geen subpath opgegeven; cleanup overgeslagen", level=0)
             return
         
         dir_path = os.path.join(self.plugin_dir, "resources", subpath)
@@ -108,7 +108,7 @@ class IngestLayersManager():
                     self.log(f"[cleanup_folder] Kon bestand niet verwijderen: {file_path}. Foutmelding: {e}")
                     continue
         else:
-            self.log(f"[cleanup_folder] Folder bestond nog niet: {dir_path}", lvl=0)
+            self.log(f"[cleanup_folder] Folder bestond nog niet: {dir_path}", level=0)
 
     def remove_duplicates(self, dict_list: list[dict]) -> list[dict]:
         self.log(f"[remove_duplicates] length before: {len(dict_list)}")
@@ -442,18 +442,18 @@ class IngestLayersManager():
     def _ingest(self, service_type: str, urls: list[dict], subpath: str):
         function = self.ingest_fn_mapping.get(service_type)
         if function is None:
-            self.log(f"[_ingest] Onbekend service type: {service_type}", lvl=2)
+            self.log(f"[_ingest] Onbekend service type: {service_type}", level=2)
             return
 
         if not urls:
-            self.log(f"[_ingest] Geen URLs gevonden voor service type: {service_type}", lvl=1)
+            self.log(f"[_ingest] Geen URLs gevonden voor service type: {service_type}", level=1)
             return
 
         self.cleanup_folder(subpath)
         layer_list = []
 
         max_workers = min(8, len(urls))  # stel conservatief in
-        self.log(f"[_ingest] Start parallel ingest voor {service_type} met {max_workers} workers", lvl=0)
+        self.log(f"[_ingest] Start parallel ingest voor {service_type} met {max_workers} workers", level=0)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_service = {
@@ -468,10 +468,10 @@ class IngestLayersManager():
                     if layers:
                         layer_list.extend(layers)
                 except Exception as e:
-                    self.log(f"[_ingest] Fout bij service url ({service_data.get('service_url', '')}). Foutmelding: {e}", lvl=1)
+                    self.log(f"[_ingest] Fout bij service url ({service_data.get('service_url', '')}). Foutmelding: {e}", level=1)
 
         if not layer_list:
-            self.log(f"[_ingest] Geen lagen gevonden voor service type: {service_type}", lvl=1)
+            self.log(f"[_ingest] Geen lagen gevonden voor service type: {service_type}", level=1)
             return
 
         new_list = self.remove_duplicates(layer_list)
@@ -487,7 +487,7 @@ class IngestLayersManager():
         with open(source_path, "r", encoding="utf-8") as f:
             source_list = json.load(f)
             
-        self.log(f"Found {len(source_list)} sources", lvl=0)
+        self.log(f"Found {len(source_list)} sources", level=0)
 
         self.cleanup_folder(des_path)
 
@@ -510,7 +510,7 @@ class IngestLayersManager():
         source = self.dlg.CSWsourceComboBox.currentText()
 
         if service not in self.ingest_fn_mapping:
-            self.log(f"[get_csw_layers] Onbekende service: {service}", lvl=2)
+            self.log(f"[get_csw_layers] Onbekende service: {service}", level=2)
 
         source_name = source.split('.')[0]
 
@@ -602,7 +602,7 @@ class IngestLayersManager():
         
         :param data: list with JSON objects containing CatalogueServiceWeb-URLs
         """
-        self.log("[get_csw_result] start", lvl=0)
+        self.log("[get_csw_result] start", level=0)
         csw_path = os.path.join(self.plugin_dir, "resources", "layer_sources", self.csw_file_name)
         
         with open(csw_path, "r", encoding="utf-8") as f:
@@ -624,12 +624,12 @@ class IngestLayersManager():
                 self.log(f"Kon de {csw_name} CatalogueServiceWeb niet vinden. Foutmelding: {e}")
                 continue
 
-            self.log(f"[get_csw_result] csw received: {csw}", lvl=0)
+            self.log(f"[get_csw_result] csw received: {csw}", level=0)
             page_size = 50
             all_records = {}
             start = 0
 
-            self.log(f"[get_csw_result] Beginnen met gepagineerd ophalen van records. Aantal records per keer={page_size}", lvl=0)
+            self.log(f"[get_csw_result] Beginnen met gepagineerd ophalen van records. Aantal records per keer={page_size}", level=0)
             while True:
                 try:
                     csw.getrecords2(startposition=start, maxrecords=page_size, esn="full")
@@ -649,7 +649,7 @@ class IngestLayersManager():
 
                 start += page_size
 
-            self.log(f"[get_csw_result] Ophalen records afgerond. Totaal={len(all_records)}", lvl=0)
+            self.log(f"[get_csw_result] Ophalen records afgerond. Totaal={len(all_records)}", level=0)
 
 
             csw_list = []
@@ -667,7 +667,7 @@ class IngestLayersManager():
                 self.log(f"[get_csw_result] Verwerken van lijst met records is mislukt. Foutmelding: {e}")
 
 
-            self.log(f"[get_csw_result] Formatting records naar een CSW lijst afgerond. Totaal={len(csw_list)}", lvl=0)
+            self.log(f"[get_csw_result] Formatting records naar een CSW lijst afgerond. Totaal={len(csw_list)}", level=0)
             if len(csw_list) == 0:
                 self.log(f"[get_csw_result] CSW lijst was leeg voor URL: {csw_url}")
                 continue

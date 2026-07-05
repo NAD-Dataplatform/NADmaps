@@ -1,482 +1,482 @@
 [
-	{
-		"name": "gwsw:Default_Lijn",
-		"title": "Den Haag: Rioolleiding",
-		"service_url": "https://geodata.gwsw.nl/DenHaag",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Leeftijd",
-				"file": "leeftijd_0d1af4a43019fa8dd03959069748296c",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Waterschap: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gemalen",
-				"file": "gemalen_8590d3f2c9c54494e9ee6aae9a77cb41",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Lijn",
-		"title": "Waterschap: Rioolleiding",
-		"service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Persleidingen",
-				"file": "persleidingen_8b2b303ff8ff97bf30b7343a6327ead9",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Maassluis: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Maassluis",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_6e22db3c65e4976f37d61d42067e5023",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Delft: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Delft",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_52d41e6b0fb4401099d20c3eaa651e9a",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Den Haag: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/DenHaag",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_6de0753285f3ff533722178d9505708c",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Lansingerland: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Lansingerland",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_c8145c86a0389ce781f2373747167c40",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Leidschendam-Voorburg: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Leidschendam",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_3ef788c91ee40a535efab49a61d38635",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Pijnacker-Nootdorp: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Pijnacker",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_145a9c19595b70d88503fccf1f8a875f",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Rijswijk: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Rijswijk",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_16d0f1bd29c175448e0ec4495ac62674",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Schiedam: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Schiedam",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_282ff9053591f70f109fde17bb626cdf",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Vlaardingen: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Vlaardingen",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_d1586a3b728cf7d3b71ea52b9f96e0d7",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Westland: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Westland",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_f2347d475c1e319ac5422174babbe4e6",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Zoetermeer: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Zoetermeer",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_93b56f54aa2f78a8a717304d2ee19a61",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Lijn",
-		"title": "Midden-Delfland: Rioolleiding",
-		"service_url": "https://geodata.gwsw.nl/Middendelfland",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_22d8a3a0f7bb040945b1fa4d5b3fe317",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "gwsw:Default_Punt",
-		"title": "Midden-Delfland: Rioolput",
-		"service_url": "https://geodata.gwsw.nl/Middendelfland",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_3d2d13b913e1317f980ed2a9ef012573",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "beheerstedelijkwater:BeheerLeiding",
-		"title": "Rioolleiding",
-		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Persleidingen",
-				"file": "persleidingen_ce9827e653d7fa8613e16625276bb249",
-				"creator": "Plugin"
-			},
-			{
-				"name": "GWSW met labels",
-				"file": "gwsw met labels_ce9827e653d7fa8613e16625276bb249",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "beheerstedelijkwater:BeheerPut",
-		"title": "Rioolput",
-		"service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gemalen",
-				"file": "gemalen_47e878e81bd115825fbecca546513bd2",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "restwarmte:liggingindustrieco2",
-		"title": "Ligging industrie en CO2",
-		"service_url": "https://service.pdok.nl/rvo/restwarmte/wfs/v1_0?request=GetCapabilities&service=WFS",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Doelgroep",
-				"file": "doelgroep_381aadb81af758186f7660cedd18a720",
-				"creator": "Plugin"
-			},
-			{
-				"name": "Bedrijfsnaam",
-				"file": "bedrijfsnaam_381aadb81af758186f7660cedd18a720",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "landelijk_gebied:STIKSTOF_EMISSIES",
-		"title": "Stikstof emissies 2022",
-		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "NOx totaal emissie kg j km2",
-				"file": "nox totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
-				"creator": "Plugin"
-			},
-			{
-				"name": "NH3 totaal emissie kg j km2",
-				"file": "nh3 totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "landelijk_gebied:GROENBLAUWE_DOORADERING_VLAK",
-		"title": "Groen Blauwe Dooradering (GBDA) - vlak",
-		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Categorie Provincie",
-				"file": "categorie provincie_a11ab1445fcbd183f68af6581163575d",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "landelijk_gebied:GROENBLAUWE_RUIMTE",
-		"title": "Groenblauwe ruimte landelijk gebied",
-		"service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Hoofdgroep",
-				"file": "hoofdgroep_63a914685382ffaa1080d063f2862927",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__buitenbeschermingszone_rivierzijde",
-		"title": "Waterkering: buitenbeschermingszone rivierzijde",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gestreept",
-				"file": "gestreept_c317c2eaeae66a2b71a82e5ee27c726f",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__buitenbeschermingszone_landzijde",
-		"title": "Waterkering: buitenbeschermingszone landzijde",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gestreept",
-				"file": "gestreept_bd4405a4dcf64832ef40015798dd2582",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__beschermingszone_buitenzijde_of_zeewaarts",
-		"title": "Waterkering: beschermingszone buitenzijde of zeewaarts",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gestreept",
-				"file": "gestreept_302723153ad18282c6d373b0de3bedd6",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Oppervlaktewaterlichaam__primair_water",
-		"title": "Oppervlaktewaterlichaam__primair_water",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Blauw",
-				"file": "blauw_dc33055117f5cb88d05a80d3ad06cbdc",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Oppervlaktewaterlichaam__watervoerend_deel",
-		"title": "Oppervlaktewaterlichaam: watervoerend deel",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Blauw",
-				"file": "blauw_9f52c3748b8bf57eb793e00861f7f6d8",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
-		"title": "Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Roze",
-				"file": "roze_789ddbce402af94d2ac8d7dc83327133",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
-		"title": "Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Roze",
-				"file": "roze_e9364837be7c98ae4ee8ca9e82b16342",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__ruimtelijke_reserveringszone",
-		"title": "Waterkering__ruimtelijke_reserveringszone",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Geruit",
-				"file": "geruit_369d4e058903237ce5452ef2d1b12825",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Regionale_waterkering__buitenkruinlijn",
-		"title": "Regionale_waterkering__buitenkruinlijn",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Oranje",
-				"file": "oranje_9609083e3ed58dc8106b981d283f5a14",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Overige_waterkering__polderkade_middenkruinlijn",
-		"title": "Overige_waterkering__polderkade_middenkruinlijn",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Groen",
-				"file": "groen_c0b736dc17985a3fc6a261dadd22533c",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
-		"title": "Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Rood",
-				"file": "rood_2485671f137a007295d5c977317faf5b",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Primaire_waterkering_Zeewering__landwaartse_begrenzing",
-		"title": "Primaire_waterkering_Zeewering__landwaartse_begrenzing",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Rood",
-				"file": "rood_d9fa9931af8e323c3cff3aea24edac7c",
-				"creator": "Plugin"
-			}
-		]
-	},
-	{
-		"name": "LeggerDelfland:Waterkering__beschermingszone_binnenzijde_of_landwaarts",
-		"title": "Waterkering: beschermingszone binnenzijde of landwaarts",
-		"service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
-		"creator": "Plugin",
-		"styles": [
-			{
-				"name": "Gestreept",
-				"file": "gestreept_56fc102964b3dce77b2c5f172ad5c4b8",
-				"creator": "Plugin"
-			},
-			{
-				"name": "Gestreept",
-				"file": "gestreept_25c18bf894c71048cf522c6f31ebf453",
-				"creator": "Plugin"
-			},
-			{
-				"name": "Gestreept",
-				"file": "gestreept_942d8f21a9ac848b6a0ca3a0f3534ddd",
-				"creator": "Plugin"
-			}
-		]
-	}
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Den Haag: Rioolleiding",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Leeftijd",
+                "file": "leeftijd_0d1af4a43019fa8dd03959069748296c",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Waterschap: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gemalen",
+                "file": "gemalen_8590d3f2c9c54494e9ee6aae9a77cb41",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Waterschap: Rioolleiding",
+        "service_url": "https://geodata.gwsw.nl/WS_WaterschappenAfvalwaterKeten",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Persleidingen",
+                "file": "persleidingen_8b2b303ff8ff97bf30b7343a6327ead9",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Maassluis: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Maassluis",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_6e22db3c65e4976f37d61d42067e5023",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Delft: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Delft",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_52d41e6b0fb4401099d20c3eaa651e9a",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Den Haag: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/DenHaag",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_6de0753285f3ff533722178d9505708c",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Lansingerland: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Lansingerland",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_c8145c86a0389ce781f2373747167c40",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Leidschendam-Voorburg: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Leidschendam",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_3ef788c91ee40a535efab49a61d38635",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Pijnacker-Nootdorp: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Pijnacker",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_145a9c19595b70d88503fccf1f8a875f",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Rijswijk: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Rijswijk",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_16d0f1bd29c175448e0ec4495ac62674",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Schiedam: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Schiedam",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_282ff9053591f70f109fde17bb626cdf",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Vlaardingen: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Vlaardingen",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_d1586a3b728cf7d3b71ea52b9f96e0d7",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Westland: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Westland",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_f2347d475c1e319ac5422174babbe4e6",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Zoetermeer: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Zoetermeer",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_93b56f54aa2f78a8a717304d2ee19a61",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Lijn",
+        "title": "Midden-Delfland: Rioolleiding",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_22d8a3a0f7bb040945b1fa4d5b3fe317",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "gwsw:Default_Punt",
+        "title": "Midden-Delfland: Rioolput",
+        "service_url": "https://geodata.gwsw.nl/Middendelfland",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_3d2d13b913e1317f980ed2a9ef012573",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "beheerstedelijkwater:BeheerLeiding",
+        "title": "Rioolleiding",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Persleidingen",
+                "file": "persleidingen_ce9827e653d7fa8613e16625276bb249",
+                "creator": "Plugin"
+            },
+            {
+                "name": "GWSW met labels",
+                "file": "gwsw met labels_ce9827e653d7fa8613e16625276bb249",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "beheerstedelijkwater:BeheerPut",
+        "title": "Rioolput",
+        "service_url": "https://service.pdok.nl/rioned/beheerstedelijkwater/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gemalen",
+                "file": "gemalen_47e878e81bd115825fbecca546513bd2",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "restwarmte:liggingindustrieco2",
+        "title": "Ligging industrie en CO2",
+        "service_url": "https://service.pdok.nl/rvo/restwarmte/wfs/v1_0?request=GetCapabilities&service=WFS",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Doelgroep",
+                "file": "doelgroep_381aadb81af758186f7660cedd18a720",
+                "creator": "Plugin"
+            },
+            {
+                "name": "Bedrijfsnaam",
+                "file": "bedrijfsnaam_381aadb81af758186f7660cedd18a720",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "landelijk_gebied:STIKSTOF_EMISSIES",
+        "title": "Stikstof emissies 2022",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "NOx totaal emissie kg j km2",
+                "file": "nox totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
+                "creator": "Plugin"
+            },
+            {
+                "name": "NH3 totaal emissie kg j km2",
+                "file": "nh3 totaal emissie kg j km2_9bd8218ab47636f966e6fa613cb61dc8",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "landelijk_gebied:GROENBLAUWE_DOORADERING_VLAK",
+        "title": "Groen Blauwe Dooradering (GBDA) - vlak",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Categorie Provincie",
+                "file": "categorie provincie_a11ab1445fcbd183f68af6581163575d",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "landelijk_gebied:GROENBLAUWE_RUIMTE",
+        "title": "Groenblauwe ruimte landelijk gebied",
+        "service_url": "https://geodata.zuid-holland.nl/geoserver/landelijk_gebied/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Hoofdgroep",
+                "file": "hoofdgroep_63a914685382ffaa1080d063f2862927",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__buitenbeschermingszone_rivierzijde",
+        "title": "Waterkering: buitenbeschermingszone rivierzijde",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gestreept",
+                "file": "gestreept_c317c2eaeae66a2b71a82e5ee27c726f",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__buitenbeschermingszone_landzijde",
+        "title": "Waterkering: buitenbeschermingszone landzijde",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gestreept",
+                "file": "gestreept_bd4405a4dcf64832ef40015798dd2582",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__beschermingszone_buitenzijde_of_zeewaarts",
+        "title": "Waterkering: beschermingszone buitenzijde of zeewaarts",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gestreept",
+                "file": "gestreept_302723153ad18282c6d373b0de3bedd6",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Oppervlaktewaterlichaam__primair_water",
+        "title": "Oppervlaktewaterlichaam__primair_water",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Blauw",
+                "file": "blauw_dc33055117f5cb88d05a80d3ad06cbdc",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Oppervlaktewaterlichaam__watervoerend_deel",
+        "title": "Oppervlaktewaterlichaam: watervoerend deel",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Blauw",
+                "file": "blauw_9f52c3748b8bf57eb793e00861f7f6d8",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
+        "title": "Waterkering__zone_waterstaatswerk_primaire_waterkering_Delflandsedijk",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Roze",
+                "file": "roze_789ddbce402af94d2ac8d7dc83327133",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
+        "title": "Waterkering__zone_waterstaatswerk_overige_waterkering_polderkade",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Roze",
+                "file": "roze_e9364837be7c98ae4ee8ca9e82b16342",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__ruimtelijke_reserveringszone",
+        "title": "Waterkering__ruimtelijke_reserveringszone",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Geruit",
+                "file": "geruit_369d4e058903237ce5452ef2d1b12825",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Regionale_waterkering__buitenkruinlijn",
+        "title": "Regionale_waterkering__buitenkruinlijn",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Oranje",
+                "file": "oranje_9609083e3ed58dc8106b981d283f5a14",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Overige_waterkering__polderkade_middenkruinlijn",
+        "title": "Overige_waterkering__polderkade_middenkruinlijn",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Groen",
+                "file": "groen_c0b736dc17985a3fc6a261dadd22533c",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
+        "title": "Primaire_waterkering_Delflandsedijk__buitenkruinlijn",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Rood",
+                "file": "rood_2485671f137a007295d5c977317faf5b",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+        "title": "Primaire_waterkering_Zeewering__landwaartse_begrenzing",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Rood",
+                "file": "rood_d9fa9931af8e323c3cff3aea24edac7c",
+                "creator": "Plugin"
+            }
+        ]
+    },
+    {
+        "name": "LeggerDelfland:Waterkering__beschermingszone_binnenzijde_of_landwaarts",
+        "title": "Waterkering: beschermingszone binnenzijde of landwaarts",
+        "service_url": "https://dservices.arcgis.com/f6rHQPZpXXOzhDXU/arcgis/services/LeggerDelfland/WFSServer?service=wfs&request=getcapabilities",
+        "creator": "Plugin",
+        "styles": [
+            {
+                "name": "Gestreept",
+                "file": "gestreept_56fc102964b3dce77b2c5f172ad5c4b8",
+                "creator": "Plugin"
+            },
+            {
+                "name": "Gestreept",
+                "file": "gestreept_25c18bf894c71048cf522c6f31ebf453",
+                "creator": "Plugin"
+            },
+            {
+                "name": "Gestreept",
+                "file": "gestreept_942d8f21a9ac848b6a0ca3a0f3534ddd",
+                "creator": "Plugin"
+            }
+        ]
+    }
 ]

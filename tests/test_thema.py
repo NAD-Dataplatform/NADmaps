@@ -22,12 +22,17 @@ def nadmap_mock(iface_mock, selected_active_layers):
     nadmap = NADMaps(iface_mock)
     nadmap.initGui()
     # nadmap.setup_models()
+    nadmap.run()
     nadmap.creator = "Gebruiker"
     nadmap.thema_manager.creator = "Gebruiker"
+    
     nadmap.working_dir = QSettings().value("NADmaps/working_dir")
+    themas_dir = os.path.join(nadmap.working_dir, "themas")
+    os.makedirs(themas_dir, exist_ok=True)
     nadmap.thema_manager.user_thema_path = os.path.join(
         nadmap.working_dir, "themas", "user_themas.json"
     )
+
     nadmap.selected_active_layers = selected_active_layers
     nadmap.dlg.saveThemaLineEdit.setText("test theme name")
     return nadmap
